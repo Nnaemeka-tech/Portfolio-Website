@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. SEO & METADATA (Customize [brackets] before publishing) -->
+    <title>Automated Booking Systems for Moving Companies | Nnaemeka</title>
+    <meta name="description" content="I build automated lead generation and dispatch systems for moving companies. Expert integration for SmartMoving, Movegistics, and Supermove CRMs.">
+    <meta name="keywords" content="Moving company web design, SmartMoving API developer, Supermove integration, Make.com automation for movers, Lagos logistics software">
+    <meta name="author" content="Nnaemeka">
+    <meta name="robots" content="index, follow">
+
+    <!-- Social Preview (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://[your-domain].com/">
+    <meta property="og:title" content="Automated Systems for Moving Companies">
+    <meta property="og:description" content="Stop losing leads to slow response times. I automate your booking flow directly into your CRM.">
+    <meta property="og:image" content="images/social-preview.jpg"> <!-- Ensure you have this image -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- JSON-LD SCHEMA (Tells Google you are a Service Provider) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nnaemeka - Moving Industry Systems Architect",
+      "url": "https://[YOUR-REAL-DOMAIN].com",
+      "image": "https://[YOUR-REAL-DOMAIN].com/images/nnaemeka-photo.jpg",
+      "description": "Specialized developer building automated booking engines and CRM integrations for moving companies.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lagos",
+        "addressCountry": "NG"
+      },
+      "priceRange": "$$$"
+    }
+    </script>
+
+    <!-- 2. ANALYTICS (Paste G-Tag here) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script> -->
+
+    <!-- 3. FONTS & STYLES -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151b2e',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        },
+                        brand: {
+                            accent: '#00dc82', // Make.com Green
+                            crm: '#6366f1', // CRM Indigo
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'], // Global Font
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'flow': 'flowAnimation 2s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        flowAnimation: {
+                            '0%': { strokeDashoffset: '24' },
+                            '100%': { strokeDashoffset: '0' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        /* Circuit Board Background Pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #22d3ee, #00dc82);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* ===== Design Gallery Styles (Native Dark Theme) ===== */
+        .ngw-wrapper {
+          display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+          gap: 40px; padding: 0 10px; box-sizing: border-box; width: 100%;
+        }
+        .ngw-item {
+          display: flex; flex-direction: column; align-items: center; text-align: center; width: auto;
+          color: #e2e8f0; 
+        }
+        .ngw-window-effect {
+          position: relative; overflow: hidden; width: 100%; aspect-ratio: 1/1;
+          background: #1e293b; transition: all 0.3s ease;
+        }
+        .ngw-bg, .ngw-alt {
+          position: absolute; inset: 0; background-size: cover; background-position: center;
+          transition: opacity .6s ease, transform .6s ease; filter: blur(12px); 
+          transform: scale(1.1); z-index: 1; opacity: 0.5; 
+        }
+        .ngw-alt { opacity: 0; }
+        .ngw-window {
+          position: absolute; top: 50%; left: 50%; width: 85%; height: 85%;
+          transform: translate(-50%, -50%); border-radius: 8px; overflow: hidden; z-index: 5;
+          box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.85) inset; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .ngw-win-a, .ngw-win-b {
+          position: absolute; inset: 0; background-size: cover; background-position: top center;
+          transition: opacity .6s ease, transform .6s ease;
+        }
+        .ngw-win-b { opacity: 0; }
+        .ngw-window-effect.active .ngw-bg { opacity: 0; transform: scale(1); }
+        .ngw-window-effect.active .ngw-alt { opacity: 0.5; transform: scale(1.02); }
+        .ngw-window-effect.active .ngw-win-a { opacity: 0; transform: scale(0.98); }
+        .ngw-window-effect.active .ngw-win-b { opacity: 1; transform: scale(1.05); }
+        .ngw-window-effect.active .ngw-window { 
+            width: 90%; height: 90%; 
+            box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.6) inset;
+            border-color: rgba(34, 211, 238, 0.4); 
+        }
+        .ngw-window-effect:hover { cursor: zoom-in; }
+
+        /* Lightbox Styles */
+        .ngw-lightbox {
+          position: fixed; inset: 0; z-index: 99999;
+          background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px);
+          display: none; align-items: flex-start; justify-content: center;
+          overflow-y: auto; -webkit-overflow-scrolling: touch;
+          padding: 40px 20px; box-sizing: border-box;
+        }
+        .ngw-lightbox .ngw-lightbox-inner {
+          width: 1000px; max-width: 1000px; margin: 12px auto; box-sizing: border-box;
+        }
+        .ngw-lightbox img {
+          display: block; width: 100%; height: auto; border-radius: 4px;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+          border: 1px solid rgba(255,255,255,0.1);
+        }
+        .ngw-lightbox .ngw-close {
+          position: fixed; top: 35px; right: 18px; z-index: 100000;
+          width: 44px; height: 44px; border-radius: 50%;
+          background: rgba(30, 41, 59, 0.8); color: #fff;
+          font-size: 22px; line-height: 40px; text-align: center; cursor: pointer;
+          border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          transition: all 0.2s ease;
+        }
+        .ngw-lightbox .ngw-close:hover { background: #06b6d4; border-color: #22d3ee; }
+        @media (max-width: 480px) {
+          .ngw-lightbox { padding: 20px 12px; }
+          .ngw-lightbox .ngw-lightbox-inner { margin-top: 8px; }
+          .ngw-lightbox .ngw-close { top: 10px; right: 10px; width: 40px; height: 40px; line-height: 36px; font-size: 20px; }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 bg-grid min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="code-font text-cyan-400 font-bold text-xl hover:text-white transition-colors">&lt;Dev/Nnaemeka&gt;</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#pipeline" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">The Pipeline</a>
+                        <a href="#projects" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                        <a href="#design-gallery" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Designs</a>
+                         <a href="#about" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                         <a href="#blog" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Insights</a>
+                        <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">Hire Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                        SYSTEMS ONLINE
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white leading-tight">
+                        I don't just build websites.<br>
+                        <span class="gradient-text">I build Growth Engines.</span>
+                    </h1>
+                    <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
+                        I build automated lead generation and booking systems specifically for moving companies. 
+                        My integrated solution solves your inaccurate lead costs and saves your operation team hours a week by piping qualified leads directly into your movers CRM.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#projects" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-500/20">
+                            View Case Study
+                        </a>
+                        <a href="#contact" class="inline-flex justify-center items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-all code-font">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Hire Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- JSON Code Visual -->
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-brand-accent rounded-lg blur opacity-25"></div>
+                    <div class="relative bg-slate-950 rounded-lg border border-slate-800 shadow-2xl overflow-hidden font-mono text-sm leading-6 h-[400px]">
+                        <div class="flex items-center px-4 py-2 bg-slate-900 border-b border-slate-800 gap-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="ml-4 text-xs text-slate-500">make_automation_payload.json</span>
+                        </div>
+                        <div class="p-6 text-slate-300 overflow-y-auto h-full">
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">1</span><span><span class="text-purple-400">const</span> <span class="text-blue-400">leadCapture</span> = {</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">2</span><span class="pl-4"><span class="text-cyan-400">"client"</span>: <span class="text-green-400">"Lagos Logistics Ltd"</span>,</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">3</span><span class="pl-4"><span class="text-cyan-400">"input_source"</span>: <span class="text-green-400">"Elementor Quote Form"</span>,</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">4</span><span class="pl-4"><span class="text-cyan-400">"automation_tool"</span>: <span class="text-green-400">"Make.com"</span>,</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">5</span><span class="pl-4"><span class="text-cyan-400">"actions"</span>: [</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">6</span><span class="pl-8"><span class="text-green-400">"Validate Address (Google Maps API)"</span>,</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">7</span><span class="pl-8"><span class="text-green-400">"Format Phone (+234)"</span>,</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">8</span><span class="pl-8"><span class="text-green-400">"Trigger WhatsApp Notification"</span></span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">9</span><span class="pl-4">],</span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">10</span><span class="pl-4"><span class="text-cyan-400">"status"</span>: <span class="text-yellow-400">"200 OK"</span></span></div>
+                            <div class="flex"><span class="text-slate-600 w-8 select-none">11</span><span>}</span></div>
+                            <div class="mt-4 border-t border-slate-800 pt-2 text-xs text-slate-500">
+                                <span class="text-green-500">✓ Compiled successfully</span> • Latency: 120ms
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Pipeline Section -->
+    <section id="pipeline" class="py-20 bg-slate-850 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">The Zero-Latency Pipeline</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    How I turn a website visitor into a booked move without manual intervention.
+                </p>
+            </div>
+            <div class="relative max-w-5xl mx-auto">
+                <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-700 md:hidden -translate-x-1/2"></div>
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-slate-700 -translate-y-1/2 z-0"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+                    <div class="glass-panel p-6 rounded-xl border-t-4 border-t-blue-500 flex flex-col items-center text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 text-blue-400 text-2xl"><i class="fa-brands fa-wordpress"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">1. The Trigger</h3>
+                        <p class="text-sm text-slate-400 mb-4">Client requests a quote on the Elementor site.</p>
+                        <div class="code-font text-xs bg-slate-950 p-2 rounded w-full text-left text-blue-300">POST /webhook<br>{ "phone": "080123..." }</div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl border-t-4 border-t-purple-500 flex flex-col items-center text-center transform hover:-translate-y-2 transition-transform duration-300 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+                        <div class="absolute -top-3 bg-purple-600 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wider">Middleware Logic</div>
+                        <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4 text-purple-400 text-2xl animate-pulse"><i class="fa-solid fa-gears"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">2. The Processor</h3>
+                        <p class="text-sm text-slate-400 mb-4">Make.com sanitizes data & formats numbers.</p>
+                        <div class="code-font text-xs bg-slate-950 p-2 rounded w-full text-left text-purple-300">if (loc == "Lagos") {<br>&nbsp;&nbsp;format("+234");<br>}</div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl border-t-4 border-t-brand-crm flex flex-col items-center text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mb-4 text-indigo-400 text-2xl"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">3. The Destination</h3>
+                        <p class="text-sm text-slate-400 mb-4">Lead secured, categorized, and assigned.</p>
+                        <div class="code-font text-xs bg-slate-950 p-2 rounded w-full text-left text-indigo-300">INSERT INTO leads<br>VALUES ('Tunde', 'Island')<br>Status: <span class="text-green-400">SECURED</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Split Screen -->
+    <section id="stack" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Front End -->
+                <div class="p-8 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-slate-600 transition-colors">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <i class="fa-solid fa-paintbrush text-cyan-400 mr-3"></i> Front-End & Design
+                    </h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
+                            <span>High-conversion <strong>Elementor</strong> landing pages.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
+                            <span>Multi-step Quote Calculators (Volume/Distance).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
+                            <span>Speed Optimization for 3G/4G networks.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Back End -->
+                <div class="p-8 rounded-2xl bg-slate-800/50 border border-brand-accent/30 hover:border-brand-accent/60 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-accent text-slate-900 text-xs font-bold px-3 py-1 rounded-bl-lg">SPECIALTY</div>
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <i class="fa-solid fa-server text-brand-accent mr-3"></i> Backend & Automation
+                    </h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
+                            <span><strong>Make.com</strong> Scenario Architecture.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
+                            <span>CRM Integrations (SmartMoving, HubSpot, Movegistics).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
+                            <span>WhatsApp Business API implementation.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Case Studies -->
+    <section id="projects" class="py-20 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-sm font-mono text-cyan-400 mb-2">FEATURED PROJECTS</h2>
+                    <h3 class="text-3xl font-bold text-white">Case Studies</h3>
+                </div>
+                <div class="flex gap-2 mt-4 md:mt-0">
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs text-slate-400 font-mono">Make.com</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs text-slate-400 font-mono">Elementor</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs text-slate-400 font-mono">WhatsApp API</span>
+                </div>
+            </div>
+
+            <!-- PROJECT 1 -->
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden mb-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 lg:p-12 order-2 lg:order-1">
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2"><i class="fa-solid fa-triangle-exclamation text-red-500 mr-2"></i> The Problem</h4>
+                                <p class="text-slate-400">The client was losing 30% of leads because manual data entry took too long. By the time they emailed a quote, the customer had already booked another mover.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2"><i class="fa-solid fa-microchip text-cyan-500 mr-2"></i> My Solution</h4>
+                                <p class="text-slate-400 mb-4">I engineered a bypass system. Instead of waiting for a human, I used <strong>Make.com</strong> to intercept the form data.</p>
+                                <p class="text-slate-400">The biggest challenge was data quality. I wrote a custom logic parser to convert local "080" phone numbers into international "+234" format, ensuring 100% delivery for the WhatsApp API.</p>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                                <h4 class="text-sm font-bold text-white mb-3">Impact Metrics</h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><div class="text-2xl font-bold text-brand-accent">4 sec</div><div class="text-xs text-slate-500 uppercase">Response Time</div></div>
+                                    <div><div class="text-2xl font-bold text-brand-accent">+40%</div><div class="text-xs text-slate-500 uppercase">Booking Rate</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-6 lg:p-12 border-l border-slate-800 flex flex-col justify-center order-1 lg:order-2">
+                        <div class="flex justify-end mb-4">
+                            <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex text-xs font-medium">
+                                <button id="btn-design-1" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm transition-colors" onclick="switchView('design', '1')">Design</button>
+                                <button id="btn-logic-1" class="px-4 py-1.5 rounded-md text-slate-400 hover:text-white transition-colors" onclick="switchView('logic', '1')">Logic</button>
+                            </div>
+                        </div>
+                        <div id="view-logic-1" class="hidden">
+                            <div class="mb-4 flex justify-between items-center">
+                                <span class="text-xs font-mono text-slate-500">logic_controller.js</span>
+                                <div class="flex gap-2"><div class="w-2 h-2 rounded-full bg-slate-700"></div><div class="w-2 h-2 rounded-full bg-slate-700"></div></div>
+                            </div>
+                            <div class="bg-slate-900 p-6 rounded-lg font-mono text-xs sm:text-sm text-slate-300 overflow-x-auto shadow-inner border border-slate-800/50">
+<pre><span class="text-purple-400">function</span> <span class="text-blue-400">processMovingLead</span>(data) {
+  <span class="text-slate-500">// 1. Sanitize Phone Number for API</span>
+  <span class="text-purple-400">let</span> phone = data.phone.trim();
+  <span class="text-purple-400">if</span> (phone.startsWith(<span class="text-green-400">"0"</span>)) {
+     phone = <span class="text-green-400">"+234"</span> + phone.slice(1);
+  }
+  <span class="text-slate-500">// 2. Route based on Location</span>
+  <span class="text-purple-400">const</span> dispatcher = (data.area === <span class="text-green-400">"Island"</span>) 
+     ? <span class="text-green-400">"team_a@movers.ng"</span> 
+     : <span class="text-green-400">"team_b@movers.ng"</span>;
+
+  <span class="text-slate-500">// 3. Fire Webhook to CRM</span>
+  CRM.createLead({
+     name: data.name,
+     phone: phone,
+     assignee: dispatcher
+  });
+
+  <span class="text-purple-400">return</span> <span class="text-cyan-400">true</span>;
+}</pre>
+                            </div>
+                        </div>
+                        <div id="view-design-1">
+                             <div class="mb-4 flex justify-between items-center"><span class="text-xs font-mono text-slate-500">mobile_preview.png</span></div>
+                            <div class="bg-slate-800 rounded-lg aspect-[4/3] flex flex-col items-center justify-center border-2 border-dashed border-slate-700 relative overflow-hidden group">
+                                <div class="text-slate-600 mb-2"><i class="fa-regular fa-image fa-3x"></i></div>
+                                <span class="text-slate-500 text-sm font-mono">Project Screenshot</span>
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white text-xs">Place screenshot here</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Gallery -->
+    <section id="design-gallery" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Design Gallery</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">A selection of high-fidelity interfaces built for conversion.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Gallery Items -->
+                <div class="group">
+                    <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Movereel_1.png" data-img2="images/Movereel_2.png" data-full="images/Movereel_3.webp" data-title="Service Area Page"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Service Area Page</h3>
+                    <p class="text-sm text-slate-400">Local SEO optimization to improve visibility and increase client inquiries.</p>
+                </div>
+                <div class="group">
+                    <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Apex_1.png" data-img2="images/Apex_2.png" data-full="images/Apex_3.webp" data-title="Apex Mover Homepage"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Apex Mover Homepage</h3>
+                    <p class="text-sm text-slate-400">A sleek homepage design focused on trust and conversion.</p>
+                </div>
+                <div class="group">
+                    <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Atlas_1.png" data-img2="images/Atlas_2.png" data-full="images/Atlas_3.webp" data-title="Atlas Move Homepage"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Atlas Move Homepage</h3>
+                    <p class="text-sm text-slate-400">Modern layout with integrated booking workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: About Me (Split Screen) -->
+    <section id="about" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Image -->
+                <div class="relative group max-w-md mx-auto lg:mx-0 w-full">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-brand-accent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                    <!-- Replace with your actual image -->
+                    <div class="relative w-full aspect-square bg-slate-800 rounded-2xl overflow-hidden border border-slate-700">
+                        <img src="images/Profile_pic.jpg" alt="Nnaemeka - Automation Architect" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+                <!-- Right: Refined Copy -->
+                <div>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 mr-2"></span>
+                        THE ARCHITECT
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+                        I Understand Your Business <br>
+                        <span class="gradient-text">From the Inside Out.</span>
+                    </h2>
+                    <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
+                        <p>I grew up in a service-based family, where I learned that a 'slow week' isn't just a spreadsheet error, it's a family problem.</p>
+                        <p>Most movers have websites that look good but fail operationally. Leads get lost in emails, and quotes arrive too late.</p>
+                        <p>That is why I pivoted. I don't just design websites; I build <strong>automated revenue systems</strong> that capture leads and sync them directly to your trucks so you never miss a booked job.</p>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-slate-800 flex gap-12">
+                        <div><div class="text-3xl font-bold text-white">100%</div><div class="text-xs text-slate-500 font-mono mt-1">MOVING FOCUSED</div></div>
+                        <div><div class="text-3xl font-bold text-white">24/7</div><div class="text-xs text-slate-500 font-mono mt-1">SYSTEM UPTIME</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-slate-850 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Common Questions</h2>
+                <p class="text-slate-400">Clarifying the technical details so you can focus on moving.</p>
+            </div>
+            <div class="space-y-4">
+                <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
+                    <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Do I need to rebuild my entire website?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>Not necessarily. If your current site is built on WordPress, I can often integrate the automation layer directly into your existing pages.</p></div>
+                </details>
+                <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
+                    <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Which CRMs do you integrate with?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>I specialize in the moving industry standards: <strong>SmartMoving</strong>, <strong>Movegistics</strong>, and <strong>Supermove</strong>.</p></div>
+                </details>
+                <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
+                    <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">What happens if the API breaks?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>I build error-handling protocols. If a connection fails, the system pauses and alerts us immediately, ensuring no lead is ever lost.</p></div>
+                </details>
+                <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
+                    <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">How long does an integration take?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>A standard pipeline typically takes <strong>1-2 weeks</strong>. Full website redesigns take 3-4 weeks.</p></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (Extracted from Footer) -->
+    <section id="contact" class="bg-slate-950 py-20 border-t border-slate-900">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Ready to automate your operations?</h2>
+            <p class="text-slate-400 mb-8">I take on limited custom integration projects. Let's see if your stack is compatible.</p>
+            <a href="mailto:your-email@example.com" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-xl shadow-cyan-900/20">Book a Technical Audit</a>
+        </div>
+    </section>
+
+    <!-- INSIGHTS SECTION (Moved Below CTA) -->
+    <section id="blog" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-10 border-l-4 border-cyan-500 pl-4">Latest Insights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Card 1 -->
+                <article class="group cursor-pointer">
+                    <div class="h-48 bg-slate-800 rounded-lg mb-4 overflow-hidden border border-slate-700 group-hover:border-cyan-500 transition-colors">
+                        <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center text-slate-600">
+                            <i class="fa-solid fa-chart-line fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mb-2">
+                         <span class="text-xs font-mono text-cyan-400 bg-cyan-900/30 px-2 py-0.5 rounded">Automation</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Why Lagos Movers Lose 30% of Leads</h3>
+                    <p class="text-slate-400 text-sm">An analysis of response times in the local logistics market and how to fix it.</p>
+                </article>
+                <!-- Blog Card 2 -->
+                <article class="group cursor-pointer">
+                     <div class="h-48 bg-slate-800 rounded-lg mb-4 overflow-hidden border border-slate-700 group-hover:border-cyan-500 transition-colors">
+                        <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center text-slate-600">
+                            <i class="fa-brands fa-whatsapp fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mb-2">
+                         <span class="text-xs font-mono text-cyan-400 bg-cyan-900/30 px-2 py-0.5 rounded">Tutorial</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Automating WhatsApp for Business</h3>
+                    <p class="text-slate-400 text-sm">How to use Make.com to send instant quote confirmations without coding.</p>
+                </article>
+                <!-- Blog Card 3 -->
+                <article class="group cursor-pointer">
+                     <div class="h-48 bg-slate-800 rounded-lg mb-4 overflow-hidden border border-slate-700 group-hover:border-cyan-500 transition-colors">
+                        <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center text-slate-600">
+                            <i class="fa-solid fa-code fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mb-2">
+                         <span class="text-xs font-mono text-cyan-400 bg-cyan-900/30 px-2 py-0.5 rounded">Tech Stack</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Elementor vs Custom Code</h3>
+                    <p class="text-slate-400 text-sm">When to stick with page builders and when you need a custom integration.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Socials Only) -->
+    <footer class="bg-slate-950 py-10 border-t border-slate-900">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-8">
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-behance fa-lg"></i></a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-upwork fa-lg"></i></a>
+            </div>
+            <p class="mt-8 text-xs text-slate-600 font-mono">System Status: <span class="text-green-500">● Operational</span></p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Markup -->
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <button class="ngw-close" aria-label="Close lightbox">×</button>
+      <div class="ngw-lightbox-inner" id="ngw-lightbox-inner" tabindex="0"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Toggle Switch Logic
+        function switchView(view, projectId) {
+            const logicView = document.getElementById(`view-logic-${projectId}`);
+            const designView = document.getElementById(`view-design-${projectId}`);
+            const btnLogic = document.getElementById(`btn-logic-${projectId}`);
+            const btnDesign = document.getElementById(`btn-design-${projectId}`);
+
+            if (view === 'logic') {
+                logicView.classList.remove('hidden'); designView.classList.add('hidden');
+                btnLogic.classList.add('bg-slate-700', 'text-white', 'shadow-sm'); btnLogic.classList.remove('text-slate-400');
+                btnDesign.classList.remove('bg-slate-700', 'text-white', 'shadow-sm'); btnDesign.classList.add('text-slate-400');
+            } else {
+                logicView.classList.add('hidden'); designView.classList.remove('hidden');
+                btnDesign.classList.add('bg-slate-700', 'text-white', 'shadow-sm'); btnDesign.classList.remove('text-slate-400');
+                btnLogic.classList.remove('bg-slate-700', 'text-white', 'shadow-sm'); btnLogic.classList.add('text-slate-400');
+            }
+        }
+
+        // Window Effect & Lightbox Logic
+        (function () {
+          const containers = document.querySelectorAll('.ngw-window-effect');
+          if (!containers.length) return;
+          containers.forEach(c => {
+            const img1 = c.getAttribute('data-img1') || '';
+            const img2 = c.getAttribute('data-img2') || '';
+            c.style.position = 'relative';
+            c.innerHTML = `<div class="ngw-bg" style="background-image:url('${img1}')"></div><div class="ngw-alt" style="background-image:url('${img2}')"></div><div class="ngw-window"><div class="ngw-win-a" style="background-image:url('${img1}')"></div><div class="ngw-win-b" style="background-image:url('${img2}')"></div></div>`;
+            const toggleActive = (on) => { if (on) c.classList.add('active'); else c.classList.remove('active'); };
+            c.addEventListener('mouseenter', () => toggleActive(true));
+            c.addEventListener('mouseleave', () => toggleActive(false));
+            if (window.innerWidth <= 767) { let state = false; setInterval(() => { state = !state; toggleActive(state); }, 3000); }
+          });
+        })();
+
+        (function () {
+          function openLightbox(url, altText) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            if (!lb || !inner) return;
+            inner.innerHTML = '';
+            const img = new Image(); img.src = url; img.alt = altText || 'Full screenshot';
+            img.loading = 'auto'; 
+            img.addEventListener('load', () => inner.focus());
+            inner.appendChild(img);
+            lb.style.display = 'flex'; lb.setAttribute('aria-hidden', 'false');
+            document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden';
+          }
+          function closeLightbox() {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            if (!lb || !inner) return;
+            lb.style.display = 'none'; lb.setAttribute('aria-hidden', 'true'); inner.innerHTML = '';
+            document.documentElement.style.overflow = ''; document.body.style.overflow = '';
+          }
+          function initLightboxTriggers() {
+            const triggers = document.querySelectorAll('.ngw-item, .ngw-window-effect');
+            triggers.forEach(trig => {
+              trig.style.cursor = 'zoom-in';
+              trig.addEventListener('click', function (e) {
+                if (e.target && (e.target.closest('.ngw-lightbox') || e.target.closest('.ngw-close'))) return;
+                let full = this.getAttribute('data-full') || this.querySelector('.ngw-window-effect')?.getAttribute('data-full') || this.getAttribute('data-img1') || this.getAttribute('data-img2');
+                if (!full && this.classList.contains('ngw-window-effect')) { full = this.getAttribute('data-full') || this.getAttribute('data-img1') || this.getAttribute('data-img2'); }
+                if (!full) return;
+                openLightbox(full, this.getAttribute('data-title') || '');
+              });
+            });
+          }
+          document.addEventListener('click', function (e) {
+            const lb = document.getElementById('ngw-lightbox');
+            if (!lb || lb.style.display !== 'flex') return;
+            const inner = document.getElementById('ngw-lightbox-inner');
+            if (e.target === lb) closeLightbox();
+          });
+          const closeBtn = document.querySelector('.ngw-close');
+          if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+          document.addEventListener('DOMContentLoaded', function () { setTimeout(initLightboxTriggers, 300); });
+        })();
+    </script>
+</body>
+</html>
