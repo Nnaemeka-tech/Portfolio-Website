@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://nnaemeka.website/">
     <meta property="og:title" content="Automated Systems for Moving Companies">
     <meta property="og:description" content="Stop losing leads to slow response times. I automate your booking flow directly into your CRM.">
-    <meta property="og:image" content="images/social-preview.jpg"> 
+    <meta property="og:image" content="images/social-preview.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -28,7 +28,7 @@
       "@type": "ProfessionalService",
       "name": "Nnaemeka - Moving Industry Systems Architect",
       "url": "https://nnaemeka.website",
-      "image": "https://nnaemeka.website/images/Profile_pic.webp",
+      "image": "https://nnaemeka.website/images/Profile_pic.jpg",
       "description": "Specialized developer building automated booking engines and CRM integrations for moving companies.",
       "address": {
         "@type": "PostalAddress",
@@ -39,17 +39,22 @@
     }
     </script>
 
-    <!-- 2. ANALYTICS -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script> -->
-
-    <!-- 3. FONTS & STYLES (OPTIMIZED) -->
-    <!-- Preconnect to Google Fonts for faster download -->
+    <!-- 3. FONTS & STYLES (SPEED OPTIMIZED) -->
+    <!-- Preconnect ensures fast connection to Google servers -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Non-blocking Font Loading Strategy -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </noscript>
 
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script> <!-- Added defer -->
+    
+    <!-- Defer FontAwesome (Loads in background) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     
     <script>
         tailwind.config = {
@@ -62,7 +67,7 @@
                     },
                     fontFamily: {
                         mono: ['"Fira Code"', '"Courier New"', 'monospace'],
-                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'], 
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -78,111 +83,54 @@
         }
     </script>
     <style>
-        /* Removed @import to prevent render blocking */
-        
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: #0f172a;
             color: #e2e8f0;
         }
-        
         .code-font { font-family: 'Fira Code', monospace; }
-
-        /* Circuit Board Background Pattern */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
-
         .glass-panel {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .gradient-text {
             background: linear-gradient(to right, #22d3ee, #00dc82);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-        /* ===== Design Gallery Styles (Native Dark Theme) ===== */
-        .ngw-wrapper {
-          display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
-          gap: 40px; padding: 0 10px; box-sizing: border-box; width: 100%;
-        }
-        .ngw-item {
-          display: flex; flex-direction: column; align-items: center; text-align: center; width: auto;
-          color: #e2e8f0; 
-        }
-        .ngw-window-effect {
-          position: relative; overflow: hidden; width: 100%; aspect-ratio: 1/1;
-          background: #1e293b; transition: all 0.3s ease;
-        }
-        .ngw-bg, .ngw-alt {
-          position: absolute; inset: 0; background-size: cover; background-position: center;
-          transition: opacity .6s ease, transform .6s ease; filter: blur(12px); 
-          transform: scale(1.1); z-index: 1; opacity: 0.5; 
-        }
+        /* NGWebWorks Styles */
+        .ngw-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 0 10px; box-sizing: border-box; width: 100%; }
+        .ngw-item { display: flex; flex-direction: column; align-items: center; text-align: center; width: auto; color: #e2e8f0; }
+        .ngw-window-effect { position: relative; overflow: hidden; width: 100%; aspect-ratio: 1/1; background: #1e293b; transition: all 0.3s ease; }
+        .ngw-bg, .ngw-alt { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity .6s ease, transform .6s ease; filter: blur(12px); transform: scale(1.1); z-index: 1; opacity: 0.5; }
         .ngw-alt { opacity: 0; }
-        .ngw-window {
-          position: absolute; top: 50%; left: 50%; width: 85%; height: 85%;
-          transform: translate(-50%, -50%); border-radius: 8px; overflow: hidden; z-index: 5;
-          box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.85) inset; border: 1px solid rgba(255,255,255,0.05);
-        }
-        .ngw-win-a, .ngw-win-b {
-          position: absolute; inset: 0; background-size: cover; background-position: top center;
-          transition: opacity .6s ease, transform .6s ease;
-        }
+        .ngw-window { position: absolute; top: 50%; left: 50%; width: 85%; height: 85%; transform: translate(-50%, -50%); border-radius: 8px; overflow: hidden; z-index: 5; box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.85) inset; border: 1px solid rgba(255,255,255,0.05); }
+        .ngw-win-a, .ngw-win-b { position: absolute; inset: 0; background-size: cover; background-position: top center; transition: opacity .6s ease, transform .6s ease; }
         .ngw-win-b { opacity: 0; }
         .ngw-window-effect.active .ngw-bg { opacity: 0; transform: scale(1); }
         .ngw-window-effect.active .ngw-alt { opacity: 0.5; transform: scale(1.02); }
         .ngw-window-effect.active .ngw-win-a { opacity: 0; transform: scale(0.98); }
         .ngw-window-effect.active .ngw-win-b { opacity: 1; transform: scale(1.05); }
-        .ngw-window-effect.active .ngw-window { 
-            width: 90%; height: 90%; 
-            box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.6) inset;
-            border-color: rgba(34, 211, 238, 0.4); 
-        }
+        .ngw-window-effect.active .ngw-window { width: 90%; height: 90%; box-shadow: 0 0 0 9999px rgba(30, 41, 59, 0.6) inset; border-color: rgba(34, 211, 238, 0.4); }
         .ngw-window-effect:hover { cursor: zoom-in; }
-
-        /* Lightbox Styles */
-        .ngw-lightbox {
-          position: fixed; inset: 0; z-index: 99999;
-          background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px);
-          display: none; align-items: flex-start; justify-content: center;
-          overflow-y: auto; -webkit-overflow-scrolling: touch;
-          padding: 40px 20px; box-sizing: border-box;
-        }
-        .ngw-lightbox .ngw-lightbox-inner {
-          width: 1000px; max-width: 1000px; margin: 12px auto; box-sizing: border-box;
-        }
-        .ngw-lightbox img {
-          display: block; width: 100%; height: auto; border-radius: 4px;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-          border: 1px solid rgba(255,255,255,0.1);
-        }
-        .ngw-lightbox .ngw-close {
-          position: fixed; top: 35px; right: 18px; z-index: 100000;
-          width: 44px; height: 44px; border-radius: 50%;
-          background: rgba(30, 41, 59, 0.8); color: #fff;
-          font-size: 22px; line-height: 40px; text-align: center; cursor: pointer;
-          border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          transition: all 0.2s ease;
-        }
+        
+        .ngw-lightbox { position: fixed; inset: 0; z-index: 99999; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px); display: none; align-items: flex-start; justify-content: center; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 40px 20px; box-sizing: border-box; }
+        .ngw-lightbox .ngw-lightbox-inner { width: 1000px; max-width: 1000px; margin: 12px auto; box-sizing: border-box; }
+        .ngw-lightbox img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.1); }
+        .ngw-lightbox .ngw-close { position: fixed; top: 35px; right: 18px; z-index: 100000; width: 44px; height: 44px; border-radius: 50%; background: rgba(30, 41, 59, 0.8); color: #fff; font-size: 22px; line-height: 40px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: all 0.2s ease; }
         .ngw-lightbox .ngw-close:hover { background: #06b6d4; border-color: #22d3ee; }
-        @media (max-width: 480px) {
-          .ngw-lightbox { padding: 20px 12px; }
-          .ngw-lightbox .ngw-lightbox-inner { margin-top: 8px; }
-          .ngw-lightbox .ngw-close { top: 10px; right: 10px; width: 40px; height: 40px; line-height: 36px; font-size: 20px; }
-        }
+        @media (max-width: 480px) { .ngw-lightbox { padding: 20px 12px; } .ngw-lightbox .ngw-lightbox-inner { margin-top: 8px; } .ngw-lightbox .ngw-close { top: 10px; right: 10px; width: 40px; height: 40px; line-height: 36px; font-size: 20px; } }
     </style>
 </head>
 <body class="bg-slate-900 bg-grid min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
@@ -310,50 +258,23 @@
     <section id="stack" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Front End -->
                 <div class="p-8 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-slate-600 transition-colors">
-                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
-                        <i class="fa-solid fa-paintbrush text-cyan-400 mr-3"></i> Front-End & Design
-                    </h3>
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-paintbrush text-cyan-400 mr-3"></i> Front-End & Design</h3>
                     <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
-                            <span>High-conversion <strong>Elementor</strong> landing pages.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
-                            <span>Multi-step Quote Calculators (Volume/Distance).</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i>
-                            <span>Speed Optimization for 3G/4G networks.</span>
-                        </li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i><span>High-conversion <strong>Elementor</strong> landing pages.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i><span>Multi-step Quote Calculators (Volume/Distance).</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i><span>Speed Optimization for 3G/4G networks.</span></li>
                     </ul>
                 </div>
-
-                <!-- Back End -->
                 <div class="p-8 rounded-2xl bg-slate-800/50 border border-brand-accent/30 hover:border-brand-accent/60 transition-colors relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-brand-accent text-slate-900 text-xs font-bold px-3 py-1 rounded-bl-lg">SPECIALTY</div>
-                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
-                        <i class="fa-solid fa-server text-brand-accent mr-3"></i> Backend & Automation
-                    </h3>
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-server text-brand-accent mr-3"></i> Backend & Automation</h3>
                     <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
-                            <span><strong>Make.com</strong> Scenario Architecture.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
-                            <span>CRM Integrations (SmartMoving, HubSpot, Movegistics).</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i>
-                            <span>WhatsApp Business API implementation.</span>
-                        </li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i><span><strong>Make.com</strong> Scenario Architecture.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i><span>CRM Integrations (SmartMoving, HubSpot, Movegistics).</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-accent mt-1 mr-3"></i><span>WhatsApp Business API implementation.</span></li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </section>
@@ -453,7 +374,7 @@
                 <p class="text-slate-400 max-w-2xl mx-auto">A selection of high-fidelity interfaces built for conversion.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Gallery Items (Update image extensions to .webp) -->
+                <!-- Gallery Items -->
                 <div class="group">
                     <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
                         <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Movereel_1.webp" data-img2="images/Movereel_2.webp" data-full="images/Movereel_3.webp" data-title="Service Area Page"></div>
@@ -486,7 +407,7 @@
                 <!-- Left: Image -->
                 <div class="relative group max-w-md mx-auto lg:mx-0 w-full">
                     <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-brand-accent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                    <!-- Replace with your actual image and USE WEBP -->
+                    <!-- Replace with your actual image -->
                     <div class="relative w-full aspect-square bg-slate-800 rounded-2xl overflow-hidden border border-slate-700">
                         <img src="images/Profile_pic.webp" loading="lazy" decoding="async" width="600" height="600" alt="Nnaemeka - Automation Architect" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
                     </div>
@@ -502,10 +423,9 @@
                         <span class="gradient-text">From the Inside Out.</span>
                     </h2>
                     <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
-                        <p>Hi, I'm Nnaemeka. Why do I only work with movers? Because I get it. I grew up in a service-based family, so I understand this business from the inside out.</p>
-                        <p>My father ran his own local company, which means I learned that a ‘slow week’ wasn’t just a business problem, it was a family problem.</p>
-                        <p>From that experience, I learned exactly how much one new, booked job is really worth. However, when I became a web designer, I saw that most movers were stuck with outdated sites. That’s why I knew I could fix it. I’ve seen the real-world side of this business my entire life.</p>
-                        <p>Today, I’m a specialist. I build professional, high-trust websites for moving companies that are designed for one thing: to get you more booked jobs.</p>
+                        <p>I grew up in a service-based family, where I learned that a 'slow week' isn't just a spreadsheet error, it's a family problem.</p>
+                        <p>Most movers have websites that look good but fail operationally. Leads get lost in emails, and quotes arrive too late.</p>
+                        <p>That is why I pivoted. I don't just design websites; I build <strong>automated revenue systems</strong> that capture leads and sync them directly to your trucks so you never miss a booked job.</p>
                     </div>
                     <div class="mt-8 pt-8 border-t border-slate-800 flex gap-12">
                         <div><div class="text-3xl font-bold text-white">100%</div><div class="text-xs text-slate-500 font-mono mt-1">MOVING FOCUSED</div></div>
@@ -544,7 +464,7 @@
         </div>
     </section>
 
-    <!-- CTA Section (Extracted from Footer) -->
+    <!-- CTA Section -->
     <section id="contact" class="bg-slate-950 py-20 border-t border-slate-900">
         <div class="max-w-3xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-white mb-6">Ready to automate your operations?</h2>
@@ -553,7 +473,7 @@
         </div>
     </section>
 
-    <!-- INSIGHTS SECTION (Moved Below CTA) -->
+    <!-- INSIGHTS SECTION -->
     <section id="blog" class="py-20 bg-slate-900 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-white mb-10 border-l-4 border-cyan-500 pl-4">Latest Insights</h2>
@@ -601,7 +521,7 @@
         </div>
     </section>
 
-    <!-- Footer (Socials Only) -->
+    <!-- Footer -->
     <footer class="bg-slate-950 py-10 border-t border-slate-900">
         <div class="max-w-3xl mx-auto px-4 text-center">
             <div class="flex justify-center space-x-8">
