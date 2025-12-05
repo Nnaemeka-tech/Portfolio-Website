@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 1. SEO & METADATA (Customize [brackets] before publishing) -->
+    <!-- 1. SEO & METADATA -->
     <title>Design and Automated Booking Systems for Moving Companies | Nnaemeka</title>
     <meta name="description" content="I build automated lead generation and dispatch systems for moving companies. Expert integration for SmartMoving, Movegistics, and other CRMs.">
     <meta name="keywords" content="Moving company web design, SmartMoving API developer, Supermove integration, Make.com automation for movers, Lagos logistics software">
@@ -16,19 +16,19 @@
     <meta property="og:url" content="https://nnaemeka.website/">
     <meta property="og:title" content="Automated Systems for Moving Companies">
     <meta property="og:description" content="Stop losing leads to slow response times. I automate your booking flow directly into your CRM.">
-    <meta property="og:image" content="images/social-preview.jpg"> <!-- Ensure you have this image -->
+    <meta property="og:image" content="images/social-preview.jpg"> 
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <!-- JSON-LD SCHEMA (Tells Google you are a Service Provider) -->
+    <!-- JSON-LD SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Nnaemeka - Moving Industry Systems Architect",
-      "url": "https://nnaemeka.website.com",
-      "image": "https://nnaemeka.website.com/images/Profile_pic.jpg",
+      "url": "https://nnaemeka.website",
+      "image": "https://nnaemeka.website/images/Profile_pic.webp",
       "description": "Specialized developer building automated booking engines and CRM integrations for moving companies.",
       "address": {
         "@type": "PostalAddress",
@@ -39,35 +39,30 @@
     }
     </script>
 
-    <!-- 2. ANALYTICS (Paste G-Tag here) -->
+    <!-- 2. ANALYTICS -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script> -->
 
-    <!-- 3. FONTS & STYLES -->
+    <!-- 3. FONTS & STYLES (OPTIMIZED) -->
+    <!-- Preconnect to Google Fonts for faster download -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script> <!-- Added defer -->
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        slate: {
-                            850: '#151b2e',
-                            900: '#0f172a',
-                            950: '#020617',
-                        },
-                        cyan: {
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                        },
-                        brand: {
-                            accent: '#00dc82', // Make.com Green
-                            crm: '#6366f1', // CRM Indigo
-                        }
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#00dc82', crm: '#6366f1' }
                     },
                     fontFamily: {
                         mono: ['"Fira Code"', '"Courier New"', 'monospace'],
-                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'], // Global Font
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'], 
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -75,21 +70,15 @@
                         'float': 'float 6s ease-in-out infinite',
                     },
                     keyframes: {
-                        flowAnimation: {
-                            '0%': { strokeDashoffset: '24' },
-                            '100%': { strokeDashoffset: '0' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
+                        flowAnimation: { '0%': { strokeDashoffset: '24' }, '100%': { strokeDashoffset: '0' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } }
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+        /* Removed @import to prevent render blocking */
         
         body {
             font-family: 'Space Grotesk', sans-serif;
@@ -119,19 +108,10 @@
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
         /* ===== Design Gallery Styles (Native Dark Theme) ===== */
         .ngw-wrapper {
@@ -473,24 +453,24 @@
                 <p class="text-slate-400 max-w-2xl mx-auto">A selection of high-fidelity interfaces built for conversion.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Gallery Items -->
+                <!-- Gallery Items (Update image extensions to .webp) -->
                 <div class="group">
                     <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
-                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Movereel_1.png" data-img2="images/Movereel_2.png" data-full="images/Movereel_3.webp" data-title="Service Area Page"></div>
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Movereel_1.webp" data-img2="images/Movereel_2.webp" data-full="images/Movereel_3.webp" data-title="Service Area Page"></div>
                     </div>
                     <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Service Area Page</h3>
                     <p class="text-sm text-slate-400">Local SEO optimization to improve visibility and increase client inquiries.</p>
                 </div>
                 <div class="group">
                     <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
-                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Apex_1.png" data-img2="images/Apex_2.png" data-full="images/Apex_3.webp" data-title="Apex Mover Homepage"></div>
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Apex_1.webp" data-img2="images/Apex_2.webp" data-full="images/Apex_3.webp" data-title="Apex Mover Homepage"></div>
                     </div>
                     <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Apex Mover Homepage</h3>
                     <p class="text-sm text-slate-400">A sleek homepage design focused on trust and conversion.</p>
                 </div>
                 <div class="group">
                     <div class="glass-panel p-2 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
-                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Atlas_1.png" data-img2="images/Atlas_2.png" data-full="images/Atlas_3.webp" data-title="Atlas Move Homepage"></div>
+                        <div class="ngw-window-effect rounded-lg overflow-hidden" data-img1="images/Atlas_1.webp" data-img2="images/Atlas_2.webp" data-full="images/Atlas_3.webp" data-title="Atlas Move Homepage"></div>
                     </div>
                     <h3 class="text-xl font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Atlas Move Homepage</h3>
                     <p class="text-sm text-slate-400">Modern layout with integrated booking workflow.</p>
@@ -506,9 +486,9 @@
                 <!-- Left: Image -->
                 <div class="relative group max-w-md mx-auto lg:mx-0 w-full">
                     <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-brand-accent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                    <!-- Replace with your actual image -->
+                    <!-- Replace with your actual image and USE WEBP -->
                     <div class="relative w-full aspect-square bg-slate-800 rounded-2xl overflow-hidden border border-slate-700">
-                        <img src="images/Profile_pic.jpg" alt="Nnaemeka - Automation Architect" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        <img src="images/Profile_pic.webp" loading="lazy" decoding="async" width="600" height="600" alt="Nnaemeka - Automation Architect" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
                     </div>
                 </div>
                 <!-- Right: Refined Copy -->
@@ -522,9 +502,10 @@
                         <span class="gradient-text">From the Inside Out.</span>
                     </h2>
                     <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
-                        <p>I grew up in a service-based family, where I learned that a 'slow week' isn't just a spreadsheet error, it's a family problem.</p>
-                        <p>Most movers have websites that look good but fail operationally. Leads get lost in emails, and quotes arrive too late.</p>
-                        <p>That is why I pivoted. I don't just design websites; I build <strong>automated revenue systems</strong> that capture leads and sync them directly to your trucks so you never miss a booked job.</p>
+                        <p>Hi, I'm Nnaemeka. Why do I only work with movers? Because I get it. I grew up in a service-based family, so I understand this business from the inside out.</p>
+                        <p>My father ran his own local company, which means I learned that a ‘slow week’ wasn’t just a business problem, it was a family problem.</p>
+                        <p>From that experience, I learned exactly how much one new, booked job is really worth. However, when I became a web designer, I saw that most movers were stuck with outdated sites. That’s why I knew I could fix it. I’ve seen the real-world side of this business my entire life.</p>
+                        <p>Today, I’m a specialist. I build professional, high-trust websites for moving companies that are designed for one thing: to get you more booked jobs.</p>
                     </div>
                     <div class="mt-8 pt-8 border-t border-slate-800 flex gap-12">
                         <div><div class="text-3xl font-bold text-white">100%</div><div class="text-xs text-slate-500 font-mono mt-1">MOVING FOCUSED</div></div>
@@ -549,7 +530,7 @@
                 </details>
                 <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
                     <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Which CRMs do you integrate with?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>I specialize in the moving industry standards: <strong>SmartMoving</strong>, <strong>Movegistics</strong>, and <strong>Supermove</strong>. I can also build custom connections for HubSpot, Salesforce, or Google Sheets if you are just starting out. </p></div>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed"><p>I specialize in the moving industry standards: <strong>SmartMoving</strong>, <strong>Movegistics</strong>, and <strong>Supermove</strong>. I can also build custom connections for HubSpot, Salesforce, or Google Sheets if you are just starting out.</p></div>
                 </details>
                 <details class="group glass-panel rounded-lg border border-slate-700 open:border-cyan-500/50 transition-colors">
                     <summary class="flex justify-between items-center cursor-pointer p-6 list-none"><span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">What happens if the API breaks?</span><span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span></summary>
@@ -568,7 +549,7 @@
         <div class="max-w-3xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-white mb-6">Ready to automate your operations?</h2>
             <p class="text-slate-400 mb-8">I take on limited custom integration projects. Let's see if your stack is compatible.</p>
-            <a href="mailto:machogeogia4@gmail.com" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-xl shadow-cyan-900/20">Book a Technical Audit</a>
+            <a href="mailto:your-email@example.com" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-xl shadow-cyan-900/20">Book a Technical Audit</a>
         </div>
     </section>
 
