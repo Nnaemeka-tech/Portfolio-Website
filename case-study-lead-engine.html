@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Lead Scoring Engine | Nnaemeka</title>
+    <meta name="description" content="Technical breakdown of an algorithmic lead routing system.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#00dc82', crm: '#6366f1' }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        /* Custom Scrollbar for Code Blocks */
+        pre::-webkit-scrollbar { height: 8px; }
+        pre::-webkit-scrollbar-track { background: #1e293b; }
+        pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="lab.html" class="code-font text-cyan-400 font-bold hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Lab
+            </a>
+            <div class="text-xs font-mono text-slate-500">CASE STUDY: ID #001</div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div class="inline-flex items-center px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-2"></span>
+                PROJECT STATUS: DEPLOYED
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Algorithmic Lead Scoring & Routing Engine</h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                How I used branching logic to automate the decision-making process of a Sales Manager, reducing "Speed to Lead" from hours to milliseconds.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 sticky top-24">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Role</div>
+                            <div class="text-slate-200">Automation Architect</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-cyan-400 border border-slate-700">n8n</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-orange-400 border border-slate-700">HubSpot</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-blue-400 border border-slate-700">Webhooks</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Complexity</div>
+                            <div class="flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i> </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Outcome</div>
+                            <div class="text-green-400 font-bold">100% Qualified Bookings</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="index.html#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all">
+                            Hire Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+                
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">01</span>
+                        The Problem
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        The client, a high-ticket consulting firm, was generating 50+ leads a month. While the volume was good, the quality was mixed. The sales team was spending 20+ hours a week on "discovery calls" with prospects who had no budget or weren't ready to buy.
+                    </p>
+                    <div class="p-4 bg-red-900/10 border border-red-500/20 rounded-lg">
+                        <p class="text-red-400 text-sm font-mono">
+                            <i class="fa-solid fa-triangle-exclamation mr-2"></i> The Cost: While reps talked to unqualified leads, high-value "Whales" were waiting too long for a response and going to competitors.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">02</span>
+                        The Architecture
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        We moved away from simple linear automation (like Zapier) and built a <strong>Conditional Logic Engine</strong> using n8n. The system acts as a "Traffic Cop," evaluating every lead in real-time against a 3-step protocol:
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        
+                        <div class="border-l-2 border-slate-700 pl-4">
+                            <h4 class="text-white font-bold text-lg mb-1">Step 1: The Intake (Diagnostic)</h4>
+                            <p class="text-slate-400 text-sm">We replaced the standard contact form with a "Diagnostic Quiz" that captures key data points upfront: Budget, Timeline, and Authority. This ensures we have the raw data needed for scoring.</p>
+                            
+                            <div class="mt-4 rounded-lg overflow-hidden border border-slate-800 shadow-xl">
+                                <img src="images/smart-terminal.webp" alt="Intake Logic Visual" class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity">
+                            </div>
+                        </div>
+
+                        <div class="border-l-2 border-slate-700 pl-4">
+                            <h4 class="text-white font-bold text-lg mb-1">Step 2: The Algorithm (Scoring)</h4>
+                            <p class="text-slate-400 text-sm">The system doesn't just read the data; it computes a "Fit Score" (0-100) based on weighted variables:</p>
+                            <ul class="text-sm text-slate-500 mt-2 space-y-1">
+                                <li>• <strong>Budget > $5k:</strong> +40 Points</li>
+                                <li>• <strong>Timeline "ASAP":</strong> +30 Points</li>
+                                <li>• <strong>Decision Maker:</strong> +30 Points</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-2 border-slate-700 pl-4">
+                            <h4 class="text-white font-bold text-lg mb-1">Step 3: The Traffic Cop (Routing)</h4>
+                            <p class="text-slate-400 text-sm">A Switch Node evaluates the final score. <strong>High Scores (>80)</strong> get an instant Calendly link. <strong>Low Scores</strong> are routed to an educational email drip to nurture them for the future.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="bg-slate-900 border border-slate-700 rounded-lg overflow-hidden shadow-2xl group">
+                            <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs text-slate-400 font-mono ml-2">n8n_workflow_v1.json</span>
+                            </div>
+                            <img src="images/n8n2.webp" alt="n8n Workflow Diagram" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2 text-center font-mono">Figure 1: The "Traffic Cop" Logic Flow implemented in n8n</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">03</span>
+                        Under the Hood
+                    </h2>
+                    <p class="text-slate-400 mb-4">
+                        The core of the system is the routing logic. Here is a snippet of the JSON configuration used in the Switch Node to determine the path:
+                    </p>
+                    <div class="bg-slate-900 rounded-lg border border-slate-800 p-4 overflow-x-auto">
+<pre class="code-font text-xs text-cyan-300">
+{
+  "rules": {
+    "rules": [
+      {
+        "value2": 80,
+        "output": 0,
+        "label": "High Intent (Score > 80)"
+      },
+      {
+        "value2": 40,
+        "output": 1,
+        "label": "Medium Intent (Score 40-79)"
+      }
+    ]
+  },
+  "fallbackOutput": 2,
+  "label": "Low Intent (Score < 40)"
+}
+</pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">04</span>
+                        The Impact
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-brand-accent mb-1">100%</div>
+                            <div class="text-xs text-slate-500 uppercase">Qualified Calendars</div>
+                        </div>
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-brand-accent mb-1">0ms</div>
+                            <div class="text-xs text-slate-500 uppercase">Routing Latency</div>
+                        </div>
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-brand-accent mb-1">20h</div>
+                            <div class="text-xs text-slate-500 uppercase">Saved Weekly</div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-10 border-t border-slate-900 text-center">
+        <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with n8n & Logic.</p>
+    </footer>
+
+</body>
+</html>

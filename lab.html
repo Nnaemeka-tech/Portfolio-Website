@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Automation Lab | Nnaemeka</title>
+    <meta name="description" content="A live archive of automated business systems. Real-time logic simulations.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#00dc82', crm: '#6366f1' }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'flow': 'flow 2s linear infinite',
+                    },
+                    keyframes: {
+                        flow: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '50%': { opacity: '1' },
+                            '100%': { transform: 'translateX(100%)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/00dc82/0f172a?text=N">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Grid Background Pattern */
+        .bg-grid-slate { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px); }
+
+        /* Custom Inputs */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #22d3ee; cursor: pointer; margin-top: -8px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px; }
+        
+        .logic-scroll::-webkit-scrollbar { width: 6px; height: 6px;}
+        .logic-scroll::-webkit-scrollbar-track { background: #0f172a; }
+        .logic-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+
+        /* Animation for the Data Stream connections */
+        .stream-line { position: relative; overflow: hidden; }
+        .stream-line::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+            transform: translateX(-100%);
+            animation: flow 2s infinite;
+        }
+        
+        /* Card Hover Effects */
+        .option-card:hover { transform: translateY(-2px); border-color: #22d3ee; }
+        .option-card:active { transform: translateY(0px); }
+        
+        /* Nav Link Hover */
+        .nav-link:hover { color: #22d3ee; }
+        .nav-link:hover::before { content: '[ '; color: #4ade80; }
+        .nav-link:hover::after { content: ' ]'; color: #4ade80; }
+
+        /* Lightbox & Hovers */
+        .ngw-window-effect { position: relative; overflow: hidden; width: 100%; background: #1e293b; cursor: zoom-in; transition: border-color 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .ngw-bg { position: absolute; inset: 0; background-size: cover; background-position: top; transition: transform 0.5s ease; }
+        .ngw-window-effect:hover .ngw-bg { transform: scale(1.05); }
+        .ngw-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .ngw-window-effect:hover .ngw-overlay { opacity: 1; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="group flex items-center gap-2 code-font font-bold text-lg hover:text-white transition-colors text-cyan-400">
+                &lt;Dev/Nnaemeka&gt; 
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse group-hover:shadow-[0_0_10px_#4ade80]"></span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-mono text-xs tracking-wide text-slate-400">
+                <a href="index.html#framework" class="nav-link transition-all">Framework</a>
+                <a href="#" class="text-white font-bold cursor-default">[ The_Lab ]</a> <a href="index.html#interface" class="nav-link transition-all">Interfaces</a>
+                <a href="index.html#about" class="nav-link transition-all">About_Me</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    > Initiate_Project
+                </a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-cyan-400 p-2"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-white/10 absolute w-full font-mono text-sm z-50">
+            <div class="px-6 py-6 space-y-4">
+                <a href="index.html#framework" class="block text-slate-300 hover:text-cyan-400">// Framework</a>
+                <a href="#" class="block text-cyan-400 font-bold">// The_Lab (Active)</a>
+                <a href="index.html#interface" class="block text-slate-300 hover:text-cyan-400">// Interfaces</a>
+                <a href="index.html#contact" class="block text-brand-accent font-bold">> Initiate_Project</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-16 px-6 border-b border-slate-800 bg-slate-950 bg-grid-slate relative">
+        <div class="absolute inset-0 bg-slate-950/80"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end">
+                <div>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                        SYSTEM ARCHIVE
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">The Automation Lab</h1>
+                    <p class="text-slate-400 max-w-2xl">A collection of live logic engines and automated workflows. <br>These aren't mockups—they are real code simulations.</p>
+                </div>
+                <div class="mt-6 md:mt-0 text-right">
+                    <div class="text-xs text-slate-500 font-mono mb-2">OPERATIONAL STATUS</div>
+                    <div class="text-green-400 font-bold font-mono text-xl">100% UPTIME</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative mb-20">
+                <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+                    <div class="flex items-center gap-2 text-cyan-400">
+                        <i class="fa-solid fa-filter"></i>
+                        <span class="text-sm font-mono font-bold tracking-wide">EXHIBIT A: THE SMART LEAD QUALIFICATION ENGINE</span>
+                    </div>
+                    <div class="hidden lg:flex bg-slate-950 p-1 rounded-lg border border-slate-700">
+                        <button id="btn-frontend-a" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm text-xs font-bold transition-all" onclick="switchLabView('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                        <button id="btn-backend-a" class="px-4 py-1.5 rounded-md text-slate-400 text-xs font-bold hover:text-white transition-all" onclick="switchLabView('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-4 sm:p-8 lg:p-12 xl:p-16 flex flex-col justify-center">
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-triangle-exclamation text-red-500 mr-2"></i> The Problem</h4>
+                                <p class="text-slate-400 leading-relaxed text-sm lg:text-base">High-Ticket Coaches & Consultants suffer from "Calendar Congestion." You get 50 leads a month, but 40 of them are "free-seekers" or early-stage startups who can't afford your $5k+ retainer. You waste 20+ hours a month on calls that never close.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-microchip text-cyan-500 mr-2"></i> My Solution</h4>
+                                <p class="text-slate-400 leading-relaxed mb-4 text-sm lg:text-base">I build an <strong>Algorithmic Gatekeeper</strong>. Instead of a standard contact form, we deploy a logic-based "Application Engine."</p>
+                                <p class="text-slate-400 leading-relaxed text-sm lg:text-base">It quizzes the prospect and calculates a "Fit Score" (0-100) in the background. High scores get your Calendly link. Low scores get a "Downsell" email sequence. Your calendar stays protected.</p>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                                <h4 class="text-sm font-bold text-white mb-3">Impact Metrics</h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><div class="text-2xl font-bold text-brand-accent">100%</div><div class="text-xs text-slate-500 uppercase mt-1">Qualified Meetings</div></div>
+                                    <div><div class="text-2xl font-bold text-brand-accent">20+ Hrs</div><div class="text-xs text-slate-500 uppercase mt-1">Saved Monthly</div></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800 mt-4">
+                                <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-6">
+                                    <span class="flex items-center"><i class="fa-solid fa-share-nodes text-pink-400 mr-2"></i>n8n</span>
+                                    <span class="flex items-center"><i class="fa-brands fa-hubspot text-orange-400 mr-2"></i>HubSpot</span>
+                                    <span class="flex items-center"><i class="fa-solid fa-code text-yellow-400 mr-2"></i>Custom JS</span>
+                                </div>
+                                <a href="case-study-lead-engine.html" class="inline-flex items-center text-sm font-bold text-cyan-400 hover:text-white transition-colors group">
+                                    Read Case Study <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 sm:p-8 lg:p-12 xl:p-16 border-l border-slate-800 flex flex-col justify-center relative min-h-[500px]">
+                        <div class="w-full flex lg:hidden justify-center mb-8 relative z-10">
+                            <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex text-xs font-medium">
+                                <button id="btn-frontend-a-m" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm transition-all" onclick="switchLabView('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                                <button id="btn-backend-a-m" class="px-4 py-1.5 rounded-md text-slate-400 hover:text-white transition-all" onclick="switchLabView('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                            </div>
+                        </div>
+                        
+                        <div id="view-frontend-a" class="flex flex-col justify-center max-w-sm mx-auto w-full">
+                             <div class="w-full bg-slate-800 h-1.5 rounded-full mb-8"><div id="qualify-progress" class="bg-purple-500 h-1.5 rounded-full transition-all duration-500" style="width: 14%"></div></div>
+                             
+                             <div id="step-1" class="step-container transition-opacity duration-300">
+                                 <label class="block text-xs font-mono text-purple-400 mb-6 tracking-wider">STEP 1/6: IDENTIFICATION</label>
+                                 <div class="space-y-4">
+                                     <input type="text" id="lead-name" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-4 text-white focus:border-purple-500 focus:outline-none transition-colors">
+                                     <input type="email" id="lead-email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-4 text-white focus:border-purple-500 focus:outline-none transition-colors">
+                                     <button onclick="nextStep(1, 0)" class="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg border border-slate-700 mt-2 transition-all flex justify-between px-6 items-center group">
+                                         Start Diagnostic <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                     </button>
+                                 </div>
+                             </div>
+
+                             <div id="step-2" class="step-container hidden opacity-0">
+                                 <label class="block text-xs font-mono text-purple-400 mb-6">STEP 2/6: PRIMARY OBJECTIVE</label>
+                                 <div class="grid grid-cols-1 gap-3">
+                                     <button onclick="nextStep(2, 10)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-left flex items-center gap-4 transition-all">
+                                         <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-400"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                         <div><div class="text-sm font-bold text-white">Scale Revenue</div><div class="text-xs text-slate-500">I want more sales.</div></div>
+                                     </button>
+                                     <button onclick="nextStep(2, 5)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-left flex items-center gap-4 transition-all">
+                                         <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400"><i class="fa-solid fa-clock"></i></div>
+                                         <div><div class="text-sm font-bold text-white">Save Time</div><div class="text-xs text-slate-500">I need to automate ops.</div></div>
+                                     </button>
+                                 </div>
+                             </div>
+
+                             <div id="step-3" class="step-container hidden opacity-0">
+                                <label class="block text-xs font-mono text-purple-400 mb-6">STEP 3/6: BIGGEST HURDLE</label>
+                                <div class="grid grid-cols-1 gap-3">
+                                    <button onclick="nextStep(3, 0)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-left transition-all">
+                                        <div class="text-sm font-bold text-white mb-1">No Strategy</div>
+                                        <div class="text-xs text-slate-500">I don't know where to start.</div>
+                                    </button>
+                                    <button onclick="nextStep(3, 10)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-left transition-all">
+                                        <div class="text-sm font-bold text-white mb-1">Execution Gap</div>
+                                        <div class="text-xs text-slate-500">I have a plan, but no team.</div>
+                                    </button>
+                                </div>
+                             </div>
+
+                             <div id="step-4" class="step-container hidden opacity-0">
+                                 <label class="block text-xs font-mono text-purple-400 mb-6">STEP 4/6: INVESTMENT RANGE</label>
+                                 <div class="grid grid-cols-2 gap-3">
+                                     <button onclick="nextStep(4, 0)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-center transition-all">
+                                         <div class="text-xs text-slate-500 mb-2">Seed</div>
+                                         <div class="text-lg font-bold text-white">< $1k</div>
+                                     </button>
+                                     <button onclick="nextStep(4, 20)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-center transition-all border-purple-500/30">
+                                         <div class="text-xs text-purple-400 mb-2">Growth</div>
+                                         <div class="text-lg font-bold text-white">$1k - $5k</div>
+                                     </button>
+                                     <button onclick="nextStep(4, 40)" class="option-card p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-center col-span-2 transition-all border-green-500/30">
+                                         <div class="text-xs text-green-400 mb-2">Scale</div>
+                                         <div class="text-lg font-bold text-white">$5k +</div>
+                                     </button>
+                                 </div>
+                             </div>
+
+                             <div id="step-5" class="step-container hidden opacity-0">
+                                 <label class="block text-xs font-mono text-purple-400 mb-6">STEP 5/6: TIMELINE</label>
+                                 <div class="space-y-3">
+                                     <button onclick="nextStep(5, 30)" class="option-card w-full p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 flex justify-between items-center transition-all">
+                                         <span class="text-sm font-bold text-white">ASAP / Immediately</span>
+                                         <i class="fa-solid fa-bolt text-yellow-400"></i>
+                                     </button>
+                                     <button onclick="nextStep(5, 10)" class="option-card w-full p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 flex justify-between items-center transition-all">
+                                         <span class="text-sm font-bold text-white">1 - 3 Months</span>
+                                         <i class="fa-regular fa-calendar text-slate-500"></i>
+                                     </button>
+                                     <button onclick="nextStep(5, 0)" class="option-card w-full p-4 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 flex justify-between items-center transition-all">
+                                         <span class="text-sm font-bold text-white">Just Browsing</span>
+                                         <i class="fa-solid fa-eye text-slate-600"></i>
+                                     </button>
+                                 </div>
+                             </div>
+
+                             <div id="step-analyzing" class="step-container hidden opacity-0 text-center py-12">
+                                 <div class="relative w-20 h-20 mx-auto mb-6">
+                                     <div class="absolute inset-0 rounded-full border-4 border-slate-800"></div>
+                                     <div class="absolute inset-0 rounded-full border-4 border-t-purple-500 animate-spin"></div>
+                                 </div>
+                                 <h4 class="text-white font-bold text-xl animate-pulse">Running Algorithm...</h4>
+                                 <p class="text-xs text-slate-500 mt-2">Analyzing 5 data points...</p>
+                             </div>
+
+                             <div id="step-result" class="step-container hidden opacity-0 text-center py-8">
+                                 <h3 id="result-title" class="text-3xl font-bold text-white mb-4"></h3>
+                                 <div id="result-alert" class="hidden mb-8 p-4 bg-green-900/10 border border-green-500/30 rounded-xl text-left flex items-start gap-4">
+                                     <div class="bg-green-500/20 p-2 rounded-lg text-green-400"><i class="fa-brands fa-whatsapp"></i></div>
+                                     <div>
+                                         <div class="text-[10px] text-green-400 uppercase font-bold tracking-wider mb-1">System Alert</div>
+                                         <div class="text-sm text-white leading-snug" id="alert-text"></div>
+                                     </div>
+                                 </div>
+                                 <p id="result-desc" class="text-slate-400 text-sm mb-8 leading-relaxed"></p>
+                                 <a href="#" id="result-action" class="inline-block w-full py-4 bg-slate-800 text-slate-300 font-bold rounded-lg transition-all border border-slate-700 cursor-default"></a>
+                             </div>
+                        </div>
+                        
+                        <div id="view-backend-a" class="hidden h-[500px] overflow-y-auto logic-scroll relative p-6">
+                            <div class="flex flex-col items-center w-full min-w-[300px]">
+                                <div class="flex flex-col items-center gap-4 mb-8">
+                                    <div class="w-48 p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-white shadow-lg">Application Form</div>
+                                    <div class="h-6 w-0.5 bg-slate-700"></div>
+                                    <div class="w-48 p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-white shadow-lg">CRM Entry + Tagging</div>
+                                    <div class="h-6 w-0.5 bg-slate-700"></div>
+                                    <div class="w-48 p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-white font-bold shadow-lg">Lead Scoring Engine</div>
+                                    <div class="h-6 w-0.5 bg-slate-700"></div>
+                                    <div class="w-48 p-3 bg-purple-900/30 border border-purple-500/50 rounded-lg text-center text-xs text-purple-300 font-bold shadow-[0_0_15px_rgba(168,85,247,0.2)]">Logic Router</div>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-4 w-full max-w-2xl relative">
+                                    <div class="absolute top-0 left-[16%] right-[16%] h-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 left-[16%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 left-[50%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 right-[16%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-green-400 font-bold tracking-wider bg-green-900/20 px-2 py-1 rounded">High Intent</div>
+                                        <div class="w-full p-2 bg-green-900/10 border border-green-500/20 rounded text-center text-[10px] text-green-300">CRM: Tag "Hot"</div>
+                                        <div class="h-3 w-0.5 bg-green-500/30"></div>
+                                        
+                                        <div class="grid grid-cols-2 gap-2 w-full">
+                                            <div class="flex flex-col items-center">
+                                                <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[9px] text-slate-300">Email: Admin Alert</div>
+                                            </div>
+                                            <div class="flex flex-col items-center">
+                                                <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[9px] text-slate-300 font-bold border-l-2 border-l-green-500">Email: Booking Link</div>
+                                                <div class="h-3 w-0.5 bg-slate-700"></div>
+                                                <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[9px] text-slate-400">Calendar & Reminders</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-yellow-400 font-bold tracking-wider bg-yellow-900/20 px-2 py-1 rounded">Medium Intent</div>
+                                        <div class="w-full p-2 bg-yellow-900/10 border border-yellow-500/20 rounded text-center text-[10px] text-yellow-300">Nurture Sequence</div>
+                                        <div class="h-3 w-0.5 bg-yellow-500/30"></div>
+                                        <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[10px] text-slate-400">Case Studies</div>
+                                        <div class="h-3 w-0.5 bg-slate-700"></div>
+                                        <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[10px] text-slate-400">Re-Offer Call</div>
+                                    </div>
+
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-slate-500 font-bold tracking-wider bg-slate-800 px-2 py-1 rounded">Low Intent</div>
+                                        <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[10px] text-slate-400">Long-Term Drip</div>
+                                        <div class="h-3 w-0.5 bg-slate-700"></div>
+                                        <div class="w-full p-2 bg-slate-800 border border-slate-700 rounded text-center text-[10px] text-slate-400">Newsletter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex items-center justify-center py-16 mb-20">
+                <div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+                <div class="relative bg-slate-950 px-4 text-cyan-500/50"><i class="fa-solid fa-arrow-down animate-bounce"></i></div>
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative mb-20">
+                 <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+                    <div class="flex items-center gap-2 text-brand-crm"><i class="fa-solid fa-plane-departure"></i><span class="text-sm font-mono font-bold tracking-wide">EXHIBIT B: THE ONBOARDING AUTOPILOT</span></div>
+                    <div class="hidden lg:flex bg-slate-950 p-1 rounded-lg border border-slate-700">
+                        <button id="btn-frontend-b" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm text-xs font-bold" onclick="switchLabViewB('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                        <button id="btn-backend-b" class="px-4 py-1.5 rounded-md text-slate-400 text-xs font-bold" onclick="switchLabViewB('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-4 sm:p-8 lg:p-12 xl:p-16 border-b lg:border-b-0 lg:border-r border-slate-800">
+                        <div class="space-y-8 h-full flex flex-col justify-center">
+                            <div><h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-clock text-red-500 mr-2"></i> The Problem</h4><p class="text-slate-400 leading-relaxed text-sm lg:text-base">The "Admin Gap." A new client pays you $3,000, but it takes 24 hours to manually generate their contract and folders. This delay creates "Buyer's Remorse."</p></div>
+                            <div><h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-robot text-brand-crm mr-2"></i> My Solution</h4><p class="text-slate-400 leading-relaxed text-sm lg:text-base">We implement a **Zero-Touch Handoff**. A webhook listens for the Stripe payment and triggers a 5-step setup sequence instantly.</p></div>
+                            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700"><h4 class="text-sm font-bold text-white mb-3">Impact Metrics</h4><div class="grid grid-cols-2 gap-4"><div><div class="text-2xl font-bold text-brand-accent">0 Min</div><div class="text-xs text-slate-500 uppercase mt-1">Admin Time</div></div><div><div class="text-2xl font-bold text-brand-accent">Instant</div><div class="text-xs text-slate-500 uppercase mt-1">Client Gratification</div></div></div></div>
+                            <div class="pt-4 border-t border-slate-800 mt-4">
+                                <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-6"><span class="flex items-center"><i class="fa-brands fa-stripe text-blue-400 mr-2"></i>Stripe API</span><span class="flex items-center"><i class="fa-brands fa-google-drive text-green-400 mr-2"></i>Google Drive API</span><span class="flex items-center"><i class="fa-solid fa-list-check text-purple-400 mr-2"></i>ClickUp API</span></div>
+                                <a href="#" class="inline-flex items-center text-sm font-bold text-cyan-400 hover:text-white transition-colors group">Read Case Study <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-4 sm:p-8 lg:p-12 xl:p-16 flex flex-col justify-center font-mono relative min-h-[500px]">
+                        <div class="w-full flex lg:hidden justify-center mb-8 relative z-10">
+                            <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex text-xs font-medium">
+                                <button id="btn-frontend-b-m" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm" onclick="switchLabViewB('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                                <button id="btn-backend-b-m" class="px-4 py-1.5 rounded-md text-slate-400" onclick="switchLabViewB('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                            </div>
+                        </div>
+                        <div id="view-frontend-b" class="h-full">
+                            <div id="ob-trigger" class="absolute inset-0 flex flex-col items-center justify-center p-8 transition-opacity duration-500"><button onclick="runOnboardingSim()" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-brand-crm font-sans rounded-lg hover:bg-indigo-500"><span class="relative flex items-center gap-3">Simulate $3,000 Payment <i class="fa-solid fa-credit-card"></i></span></button></div>
+                            <div id="ob-terminal" class="hidden opacity-0 transition-opacity duration-500 h-full"><div class="h-full flex flex-col"><div class="text-xs text-slate-500 mb-6 flex justify-between"><span>> Payment Webhook received: <span class="text-green-400">$3,000.00 (Client: Jane Doe)</span></span><span id="ob-timer" class="text-brand-accent">T+ 0.0s</span></div><div class="space-y-4 flex-grow overflow-y-auto pr-2 logic-scroll"><div id="ob-task-1" class="p-3 bg-slate-900 border border-slate-800 rounded flex items-center gap-3 opacity-50"><i id="ob-icon-1" class="fa-solid fa-circle-notch fa-spin text-slate-500"></i><div class="flex-grow text-sm text-slate-400">Generating PDF Agreement...</div><div id="ob-status-1" class="text-xs text-slate-600 uppercase font-bold">Pending</div></div><div id="ob-task-2" class="p-3 bg-slate-900 border border-slate-800 rounded flex items-center gap-3 opacity-50"><i id="ob-icon-2" class="fa-solid fa-circle-notch text-slate-700"></i><div class="flex-grow text-sm text-slate-400">Creating Shared Drive Folder...</div><div id="ob-status-2" class="text-xs text-slate-600 uppercase font-bold">Pending</div></div><div id="ob-task-3" class="p-3 bg-slate-900 border border-slate-800 rounded flex items-center gap-3 opacity-50"><i id="ob-icon-3" class="fa-solid fa-circle-notch text-slate-700"></i><div class="flex-grow text-sm text-slate-400">Setting up ClickUp Project Board...</div><div id="ob-status-3" class="text-xs text-slate-600 uppercase font-bold">Pending</div></div><div id="ob-task-4" class="p-3 bg-slate-900 border border-slate-800 rounded flex items-center gap-3 opacity-50"><i id="ob-icon-4" class="fa-solid fa-circle-notch text-slate-700"></i><div class="flex-grow text-sm text-slate-400">Sending Welcome & Access Email...</div><div id="ob-status-4" class="text-xs text-slate-600 uppercase font-bold">Pending</div></div></div><div id="ob-success" class="hidden mt-6 p-4 bg-green-900/20 border border-green-500/30 rounded text-green-400 text-sm text-center animate-pulse"><i class="fa-solid fa-check-circle mr-2"></i> All systems go. Client is fully onboarded.</div></div></div>
+                        </div>
+                        <div id="view-backend-b" class="hidden h-full flex flex-col items-center justify-center p-6">
+                            <div class="flex flex-col items-center w-full max-w-sm gap-4">
+                                <div class="w-full p-3 bg-blue-900/20 border border-blue-500/30 rounded flex items-center justify-between"><span class="text-xs text-blue-400 font-bold">TRIGGER</span><span class="text-xs text-white">Stripe Webhook</span><i class="fa-brands fa-stripe text-blue-400"></i></div>
+                                <div class="h-4 w-0.5 bg-slate-700"></div>
+                                <div class="w-full p-3 bg-slate-800 border border-slate-700 rounded flex items-center justify-between"><span class="text-xs text-slate-500">STEP 1</span><span class="text-xs text-white">Create Contract (G-Docs)</span><i class="fa-solid fa-file-contract text-slate-500"></i></div>
+                                <div class="h-4 w-0.5 bg-slate-700"></div>
+                                <div class="w-full p-3 bg-slate-800 border border-slate-700 rounded flex items-center justify-between"><span class="text-xs text-slate-500">STEP 2</span><span class="text-xs text-white">Create Folder (Drive)</span><i class="fa-brands fa-google-drive text-slate-500"></i></div>
+                                <div class="h-4 w-0.5 bg-slate-700"></div>
+                                <div class="w-full p-3 bg-slate-800 border border-slate-700 rounded flex items-center justify-between"><span class="text-xs text-slate-500">STEP 3</span><span class="text-xs text-white">Create Project (ClickUp)</span><i class="fa-solid fa-list-check text-slate-500"></i></div>
+                                <div class="h-4 w-0.5 bg-slate-700"></div>
+                                <div class="w-full p-3 bg-green-900/10 border border-green-500/20 rounded flex items-center justify-between"><span class="text-xs text-green-500">OUTPUT</span><span class="text-xs text-white">Send Welcome Email</span><i class="fa-solid fa-envelope text-green-500"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex items-center justify-center py-16 mb-20">
+                <div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+                <div class="relative bg-slate-950 px-4 text-cyan-500/50"><i class="fa-solid fa-arrow-down animate-bounce"></i></div>
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative mb-20">
+                 <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+                    <div class="flex items-center gap-2 text-cyan-400">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span class="text-sm font-mono font-bold tracking-wide">EXHIBIT C: THE "LEAD FIREWALL"</span>
+                    </div>
+                    <div class="hidden lg:flex bg-slate-950 p-1 rounded-lg border border-slate-700">
+                        <button id="btn-frontend-c" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm text-xs font-bold" onclick="switchLabViewC('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                        <button id="btn-backend-c" class="px-4 py-1.5 rounded-md text-slate-400 text-xs font-bold" onclick="switchLabViewC('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-4 sm:p-8 lg:p-12 xl:p-16 border-b lg:border-b-0 lg:border-r border-slate-800">
+                        <div class="space-y-8 h-full flex flex-col justify-center">
+                            <div><h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-inbox text-red-500 mr-2"></i> The Problem</h4><p class="text-slate-400 leading-relaxed text-sm lg:text-base">Property managers are drowning in noise. You get 50 inquiries a day, but 90% are from people who are "just looking" or can't afford the property. You waste hours replying to dead-end leads.</p></div>
+                            <div><h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-filter text-cyan-400 mr-2"></i> My Solution</h4><p class="text-slate-400 leading-relaxed text-sm lg:text-base">A **Logic Firewall**. We replace your contact form with a "Virtual Leasing Agent." It asks the hard questions (Budget, Timeline, Financing) *before* the lead reaches you.</p></div>
+                            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700"><h4 class="text-sm font-bold text-white mb-3">Impact Metrics</h4><div class="grid grid-cols-2 gap-4"><div><div class="text-2xl font-bold text-brand-accent">90%</div><div class="text-xs text-slate-500 uppercase mt-1">Noise Reduction</div></div><div><div class="text-2xl font-bold text-brand-accent">100%</div><div class="text-xs text-slate-500 uppercase mt-1">Qualified Showings</div></div></div></div>
+                            <div class="pt-4 border-t border-slate-800 mt-4">
+                                <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-6"><span class="flex items-center"><i class="fa-solid fa-share-nodes text-pink-400 mr-2"></i>n8n</span><span class="flex items-center"><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i>WhatsApp API</span><span class="flex items-center"><i class="fa-solid fa-calendar text-yellow-400 mr-2"></i>Calendly API</span></div>
+                                <a href="#" class="inline-flex items-center text-sm font-bold text-cyan-400 hover:text-white transition-colors group">Read Case Study <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-4 sm:p-8 lg:p-12 xl:p-16 flex flex-col justify-center font-mono relative min-h-[500px]">
+                        <div class="w-full flex lg:hidden justify-center mb-8 relative z-10">
+                            <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex text-xs font-medium">
+                                <button id="btn-frontend-c-m" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm" onclick="switchLabViewC('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                                <button id="btn-backend-c-m" class="px-4 py-1.5 rounded-md text-slate-400" onclick="switchLabViewC('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                            </div>
+                        </div>
+                        <div id="view-frontend-c" class="h-full flex flex-col justify-center">
+                            <div class="bg-slate-900 border border-slate-700 rounded-xl p-6 shadow-xl relative">
+                                <div class="text-center mb-6">
+                                    <h3 class="text-xl text-white font-bold">Schedule Viewing</h3>
+                                    <p class="text-xs text-slate-500 mt-1">Answer 3 questions to check availability.</p>
+                                </div>
+                                <div id="estate-form" class="space-y-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Property Type</label><select class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-white text-xs"><option>Apartment</option><option>House</option><option>Land</option></select></div>
+                                        <div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Location</label><input type="text" placeholder="e.g. Lekki Phase 1" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-white text-xs"></div>
+                                    </div>
+                                    <div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Budget Range</label><select id="est-budget" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white text-sm"><option value="0">Below Market Price (< 50M)</option><option value="10">Standard Market Price (50-100M)</option><option value="20">Premium / Cash Ready (150M+)</option></select></div>
+                                    <div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Timeline</label><select id="est-time" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white text-sm"><option value="0">Just Looking (6 Months+)</option><option value="5">1-3 Months</option><option value="10">Ready Now (ASAP)</option></select></div>
+                                    <div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Financing</label><select id="est-finance" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white text-sm"><option value="0">Not yet approved</option><option value="5">Pre-Approved Mortgage</option><option value="10">Cash on Hand</option></select></div>
+                                    <div class="grid grid-cols-2 gap-4"><div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Inspection Date</label><input type="date" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-white text-xs"></div><div><label class="text-[10px] text-slate-400 uppercase font-bold mb-1 block">Have Agent?</label><select class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-white text-xs"><option>No</option><option>Yes</option></select></div></div>
+                                    <button onclick="runEstateScore()" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded-lg transition-all mt-2">Check Availability</button>
+                                </div>
+                                <div id="est-result-success" class="hidden text-center py-6 border border-green-500/50 bg-green-900/10 rounded-xl mt-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fa-solid fa-check text-white text-xl"></i></div><h4 class="text-white font-bold text-lg">Application Pre-Approved</h4><p class="text-slate-300 text-xs mt-2 px-4">Congratulations. Your profile matches the criteria.</p><div class="mt-4 p-3 bg-slate-950 rounded border border-slate-800 text-xs text-cyan-400 font-mono"><i class="fa-solid fa-envelope mr-2"></i> Check your email. We just sent you the Senior Agent's private line.</div><button onclick="resetEstate()" class="text-xs text-slate-500 mt-4 underline hover:text-white">Start Over</button></div>
+                                <div id="est-result-fail" class="hidden text-center py-6 border border-yellow-500/50 bg-yellow-900/10 rounded-xl mt-4"><div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fa-solid fa-info text-white text-xl"></i></div><h4 class="text-white font-bold text-lg">Application Update</h4><p id="est-fail-msg" class="text-slate-300 text-xs mt-2 px-4 leading-relaxed"></p><div class="mt-4 text-[10px] text-slate-500 uppercase font-bold tracking-wider">Added to Nurture List</div><button onclick="resetEstate()" class="text-xs text-slate-500 mt-4 underline hover:text-white">Start Over</button></div>
+                                <div id="est-loading" class="hidden text-center py-12"><i class="fa-solid fa-circle-notch fa-spin text-cyan-500 text-3xl mb-4"></i><p class="text-xs text-slate-400 uppercase font-bold animate-pulse">Analyzing Criteria...</p></div>
+                            </div>
+                        </div>
+                        <div id="view-backend-c" class="hidden h-[500px] overflow-y-auto logic-scroll relative p-6">
+                            <div class="flex flex-col items-center w-full min-w-[500px]">
+                                <div class="flex flex-col items-center gap-4 mb-8">
+                                    <div class="w-48 p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-white shadow-lg">Application Form</div>
+                                    <div class="h-6 w-0.5 bg-slate-700"></div>
+                                    <div class="w-64 p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-white shadow-lg">Screen: Automation Filters <br><span class="text-[9px] text-slate-500">(Budget, Location, Timeline, Finance)</span></div>
+                                    <div class="h-6 w-0.5 bg-slate-700"></div>
+                                    <div class="w-48 p-3 bg-purple-900/30 border border-purple-500/50 rounded-lg text-center text-xs text-purple-300 font-bold shadow-[0_0_15px_rgba(168,85,247,0.2)]">Logic Router</div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4 w-full max-w-4xl relative">
+                                    <div class="absolute top-0 left-[12%] right-[12%] h-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 left-[12%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 left-[38%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 right-[38%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="absolute top-0 right-[12%] h-4 w-0.5 bg-slate-700 -mt-4"></div>
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-red-500 font-bold tracking-wider">Not Qualified</div>
+                                        <div class="w-full p-3 bg-red-900/20 border border-red-500/30 rounded-lg text-center text-xs text-red-400">Auto-Polite Reply</div>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-blue-400 font-bold tracking-wider">Cold Leads</div>
+                                        <div class="w-full p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg text-center text-xs text-blue-400">Email Nurture</div>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-yellow-400 font-bold tracking-wider">Warm Leads</div>
+                                        <div class="w-full p-3 bg-yellow-900/20 border border-yellow-500/30 rounded-lg text-center text-xs text-yellow-400">CRM Follow-up Task</div>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 mt-1">
+                                        <div class="text-[10px] uppercase text-green-400 font-bold tracking-wider">Hot Leads</div>
+                                        <div class="w-full p-3 bg-green-900/20 border border-green-500/30 rounded-lg text-center text-xs text-green-400">WhatsApp/SMS Gateway</div>
+                                        <div class="h-4 w-0.5 bg-green-500/30"></div>
+                                        <div class="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-center text-xs text-slate-400 font-bold">Notify Realtor</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex items-center justify-center py-16 mb-20">
+                <div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+                <div class="relative bg-slate-950 px-4 text-cyan-500/50"><i class="fa-solid fa-arrow-down animate-bounce"></i></div>
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative mb-20">
+                <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+                    <div class="flex items-center gap-2 text-yellow-400">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span class="text-sm font-mono font-bold tracking-wide">EXHIBIT D: ZERO-LATENCY LEAD RESPONSE SYSTEM</span>
+                    </div>
+                    <div class="hidden lg:flex bg-slate-950 p-1 rounded-lg border border-slate-700">
+                        <button id="btn-frontend-d" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm text-xs font-bold transition-all" onclick="switchLabViewD('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                        <button id="btn-backend-d" class="px-4 py-1.5 rounded-md text-slate-400 text-xs font-bold hover:text-white transition-all" onclick="switchLabViewD('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-4 sm:p-8 lg:p-12 xl:p-16 border-b lg:border-b-0 lg:border-r border-slate-800">
+                        <div class="space-y-8 h-full flex flex-col justify-center">
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-stopwatch text-red-500 mr-2"></i> The Problem</h4>
+                                <p class="text-slate-400 leading-relaxed text-sm lg:text-base">In the local service industry, speed is survival. 78% of customers buy from the first business that replies. Manual lead entry creates a "Response Gap" where hot leads go cold, resulting in lost revenue.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-robot text-yellow-400 mr-2"></i> My Solution</h4>
+                                <p class="text-slate-400 leading-relaxed text-sm lg:text-base">I engineered a fully autonomous "Zero-Latency" pipeline. It captures Facebook Leads, logs them into Airtable, and uses an **AI Logic Engine** to dispatch a personalized email response in under 3 seconds.</p>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                                <h4 class="text-sm font-bold text-white mb-3">Impact Metrics</h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><div class="text-2xl font-bold text-brand-accent">&lt; 3 Sec</div><div class="text-xs text-slate-500 uppercase mt-1">Response Time</div></div>
+                                    <div><div class="text-2xl font-bold text-brand-accent">100%</div><div class="text-xs text-slate-500 uppercase mt-1">Lead Capture</div></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800 mt-4">
+                                <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-6">
+                                    <span class="flex items-center"><i class="fa-solid fa-share-nodes text-pink-400 mr-2"></i>n8n</span>
+                                    <span class="flex items-center"><i class="fa-solid fa-database text-blue-400 mr-2"></i>Airtable</span>
+                                    <span class="flex items-center"><i class="fa-solid fa-envelope text-red-400 mr-2"></i>Gmail API</span>
+                                </div>
+                                <a href="case-study-lead-engine.html" class="inline-flex items-center text-sm font-bold text-cyan-400 hover:text-white transition-colors group">
+                                    Read Case Study <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 sm:p-8 lg:p-12 xl:p-16 flex flex-col justify-center font-mono relative min-h-[500px]">
+                        <div class="w-full flex lg:hidden justify-center mb-8 relative z-10">
+                            <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex text-xs font-medium">
+                                <button id="btn-frontend-d-m" class="px-4 py-1.5 rounded-md bg-slate-700 text-white shadow-sm" onclick="switchLabViewD('frontend')"><i class="fa-solid fa-laptop mr-2"></i> FRONTEND</button>
+                                <button id="btn-backend-d-m" class="px-4 py-1.5 rounded-md text-slate-400" onclick="switchLabViewD('backend')"><i class="fa-solid fa-network-wired mr-2"></i> BACKEND</button>
+                            </div>
+                        </div>
+
+                        <div id="view-frontend-d" class="h-full flex flex-col justify-center items-center">
+                            <div class="border border-slate-700 rounded-lg overflow-hidden shadow-2xl w-full max-w-md">
+                                 <img src="https://placehold.co/600x400/1e293b/a1a1aa?text=Frontend+Demo+(Insert+GIF)" alt="Frontend Demo" class="w-full h-auto opacity-80 hover:opacity-100 transition-opacity">
+                            </div>
+                            <p class="text-xs text-slate-500 mt-4 font-mono"><i class="fa-solid fa-arrow-up mr-2"></i>Live Email Notification Demo</p>
+                        </div>
+
+                        <div id="view-backend-d" class="hidden h-full flex items-center overflow-x-auto logic-scroll">
+                            <div class="flex items-center gap-4 min-w-[700px] px-6">
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="p-4 bg-slate-800 border border-slate-700 rounded-lg shadow-lg flex flex-col items-center min-w-[120px] relative">
+                                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <i class="fa-brands fa-facebook text-blue-500 text-2xl mb-2"></i>
+                                        <span class="text-[10px] text-slate-400 uppercase font-bold">Webhook</span>
+                                        <span class="text-xs text-white">Lead Ads</span>
+                                    </div>
+                                </div>
+
+                                <div class="w-12 h-1 bg-slate-800 rounded-full stream-line"></div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="p-4 bg-slate-800 border border-slate-700 rounded-lg shadow-lg flex flex-col items-center min-w-[120px] relative">
+                                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <i class="fa-solid fa-database text-yellow-500 text-2xl mb-2"></i>
+                                        <span class="text-[10px] text-slate-400 uppercase font-bold">Airtable</span>
+                                        <span class="text-xs text-white">Create Record</span>
+                                    </div>
+                                </div>
+
+                                <div class="w-12 h-1 bg-slate-800 rounded-full stream-line"></div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="p-4 bg-purple-900/20 border border-purple-500/50 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.2)] flex flex-col items-center min-w-[140px] relative">
+                                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                                        <i class="fa-solid fa-robot text-purple-400 text-3xl mb-2 animate-bounce"></i>
+                                        <span class="text-[10px] text-purple-300 uppercase font-bold">AI Engine</span>
+                                        <span class="text-xs text-white">Analyze & Draft</span>
+                                        <div class="flex gap-1 mt-2">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
+                                            <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
+                                            <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-12 h-1 bg-slate-800 rounded-full stream-line"></div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="p-4 bg-slate-800 border border-slate-700 rounded-lg shadow-lg flex flex-col items-center min-w-[120px] relative">
+                                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <i class="fa-solid fa-envelope text-red-500 text-2xl mb-2"></i>
+                                        <span class="text-[10px] text-slate-400 uppercase font-bold">Gmail</span>
+                                        <span class="text-xs text-white">Send Reply</span>
+                                    </div>
+                                </div>
+
+                                <div class="w-12 h-1 bg-slate-800 rounded-full stream-line"></div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="p-4 bg-slate-800 border border-slate-700 rounded-lg shadow-lg flex flex-col items-center min-w-[120px] relative">
+                                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <i class="fa-solid fa-bell text-cyan-500 text-2xl mb-2"></i>
+                                        <span class="text-[10px] text-slate-400 uppercase font-bold">Admin</span>
+                                        <span class="text-xs text-white">Alert Team</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="index.html#contact" class="inline-flex items-center px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-lg border border-slate-700 transition-all transform hover:scale-105 group">
+                    Hire Me To Build This <i class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-10 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
+            <div class="space-y-4">
+                <div class="code-font text-cyan-400 font-bold text-lg">&lt;Dev/Nnaemeka&gt;</div>
+                <p class="text-slate-500">Automation Architect & Systems Engineer.</p>
+                <div class="text-slate-600 pt-4 font-mono text-xs">
+                    &lt; Design & Code by Nnaemeka /&gt;
+                </div>
+            </div>
+            
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="index.html#framework" class="block hover:text-white transition-colors">> /view_framework</a>
+                <a href="index.html#interface" class="block hover:text-white transition-colors">> /view_interfaces</a>
+                <a href="index.html#contact" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div id="server-time">HQ TIME: --:--:--</div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); }); }
+
+        // 2. Lagos Time Clock (GMT+1)
+        function updateTime() {
+            const timeString = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'Africa/Lagos',
+                hour12: false
+            });
+            document.getElementById('server-time').innerText = `HQ TIME: ${timeString}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- EXHIBIT A LOGIC (Updated for 6 Steps + Cards) ---
+        function switchLabView(view){
+            const d = document.getElementById('view-frontend-a'); const w = document.getElementById('view-backend-a');
+            const bf = document.getElementById('btn-frontend-a'); const bb = document.getElementById('btn-backend-a');
+            const bfm = document.getElementById('btn-frontend-a-m'); const bbm = document.getElementById('btn-backend-a-m');
+            if(view === 'frontend'){
+                d.classList.remove('hidden'); w.classList.add('hidden');
+                if(bf) { bf.classList.add('bg-slate-700','text-white'); bf.classList.remove('text-slate-400'); } if(bb) { bb.classList.remove('bg-slate-700','text-white'); bb.classList.add('text-slate-400'); }
+                if(bfm) { bfm.classList.add('bg-slate-700','text-white'); bfm.classList.remove('text-slate-400'); } if(bbm) { bbm.classList.remove('bg-slate-700','text-white'); bbm.classList.add('text-slate-400'); }
+            } else {
+                d.classList.add('hidden'); w.classList.remove('hidden');
+                if(bb) { bb.classList.add('bg-slate-700','text-white'); bb.classList.remove('text-slate-400'); } if(bf) { bf.classList.remove('bg-slate-700','text-white'); bf.classList.add('text-slate-400'); }
+                if(bbm) { bbm.classList.add('bg-slate-700','text-white'); bbm.classList.remove('text-slate-400'); } if(bfm) { bfm.classList.remove('bg-slate-700','text-white'); bfm.classList.add('text-slate-400'); }
+            }
+        }
+        
+        let score=0;
+        function nextStep(current, points){
+            score+=points;
+            if(current===1){if(!document.getElementById('lead-name').value)return;}
+            
+            // Hide Current
+            document.getElementById(`step-${current}`).classList.add('hidden');
+            
+            // Show Next
+            const next = current + 1;
+            const nextEl = document.getElementById(`step-${next}`);
+            
+            if(nextEl){
+                nextEl.classList.remove('hidden');
+                setTimeout(()=>nextEl.classList.add('opacity-100'), 50); // Fade in
+                // Update Progress
+                document.getElementById('qualify-progress').style.width=`${(next/6)*100}%`;
+            } else {
+                // Finished
+                const analyzing = document.getElementById('step-analyzing');
+                const result = document.getElementById('step-result');
+                
+                // Reset Result State
+                result.classList.add('hidden', 'opacity-0');
+                result.classList.remove('opacity-100');
+
+                analyzing.classList.remove('hidden');
+                // Force fade in analyzing
+                setTimeout(() => {
+                    analyzing.classList.remove('opacity-0');
+                    analyzing.classList.add('opacity-100');
+                }, 50);
+
+                setTimeout(()=>{
+                    // Hide Analyzing
+                    analyzing.classList.add('hidden');
+                    analyzing.classList.remove('opacity-100');
+                    analyzing.classList.add('opacity-0');
+                    
+                    // Show Result Logic (FIXED BUG)
+                    result.classList.remove('hidden');
+                    setTimeout(() => {
+                        result.classList.remove('opacity-0');
+                        result.classList.add('opacity-100');
+                    }, 50);
+                    
+                    showRes(score);
+                }, 2000);
+            }
+        }
+
+        function showRes(s){
+            const t=document.getElementById('result-title');
+            const d=document.getElementById('result-desc');
+            const a=document.getElementById('result-alert');
+            const btn=document.getElementById('result-action');
+            
+            if(s>=60){ 
+                t.innerText="Application Received";
+                t.className = "text-3xl font-bold text-green-400 mb-4"; // Reset classes
+                d.innerText="Thank you for your interest. A private booking link will be sent to your email shortly.";
+                a.classList.add('hidden'); // Force hide alert box
+                btn.innerText = "Check Your Inbox";
+                btn.className = "inline-block w-full py-4 bg-slate-800 text-slate-300 font-bold rounded-lg transition-all border border-slate-700 cursor-default"; 
+                btn.href = "#";
+            } else {
+                t.innerText="Application Status";
+                t.className = "text-3xl font-bold text-slate-200 mb-4";
+                d.innerText="Thank you for your interest. Currently, we do not have space for a project of this nature. We have added you to our notification list and will contact you when a slot opens up.";
+                a.classList.add('hidden');
+                btn.innerText = "Return Home";
+                btn.className = "inline-block w-full py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-purple-900/20";
+                btn.href = "index.html"; 
+            }
+        }
+        
+        // --- EXHIBIT B LOGIC ---
+        function switchLabViewB(view){
+            const d = document.getElementById('view-frontend-b'); const w = document.getElementById('view-backend-b');
+            const bf = document.getElementById('btn-frontend-b'); const bb = document.getElementById('btn-backend-b');
+            const bfm = document.getElementById('btn-frontend-b-m'); const bbm = document.getElementById('btn-backend-b-m');
+            if(view === 'frontend'){
+                d.classList.remove('hidden'); w.classList.add('hidden');
+                if(bf) { bf.classList.add('bg-slate-700','text-white'); bf.classList.remove('text-slate-400'); } if(bb) { bb.classList.remove('bg-slate-700','text-white'); bb.classList.add('text-slate-400'); }
+                if(bfm) { bfm.classList.add('bg-slate-700','text-white'); bfm.classList.remove('text-slate-400'); } if(bbm) { bbm.classList.remove('bg-slate-700','text-white'); bbm.classList.add('text-slate-400'); }
+            } else {
+                d.classList.add('hidden'); w.classList.remove('hidden');
+                if(bb) { bb.classList.add('bg-slate-700','text-white'); bb.classList.remove('text-slate-400'); } if(bf) { bf.classList.remove('bg-slate-700','text-white'); bf.classList.add('text-slate-400'); }
+                if(bbm) { bbm.classList.add('bg-slate-700','text-white'); bbm.classList.remove('text-slate-400'); } if(bfm) { bfm.classList.remove('bg-slate-700','text-white'); bfm.classList.add('text-slate-400'); }
+            }
+        }
+        let simTimerB; function runOnboardingSim(){document.getElementById('ob-trigger').classList.add('opacity-0','pointer-events-none');document.getElementById('ob-terminal').classList.remove('hidden');setTimeout(()=>{document.getElementById('ob-terminal').classList.add('opacity-100');},50);let t=0;simTimerB=setInterval(()=>{t+=0.1;document.getElementById('ob-timer').innerText=`T+ ${t.toFixed(1)}s`},100);setTimeout(()=>document.getElementById('ob-success').classList.remove('hidden'),5500);}
+
+        // --- EXHIBIT C LOGIC ---
+        function switchLabViewC(view) {
+            const frontend = document.getElementById('view-frontend-c'); const backend = document.getElementById('view-backend-c');
+            const btnF = document.getElementById('btn-frontend-c'); const btnB = document.getElementById('btn-backend-c');
+            const btnFM = document.getElementById('btn-frontend-c-m'); const btnBM = document.getElementById('btn-backend-c-m');
+            if(view === 'frontend') {
+                frontend.classList.remove('hidden'); backend.classList.add('hidden');
+                if(btnF) { btnF.classList.add('bg-slate-700', 'text-white'); btnF.classList.remove('text-slate-400'); } if(btnB) { btnB.classList.remove('bg-slate-700', 'text-white'); btnB.classList.add('text-slate-400'); }
+                if(btnFM) { btnFM.classList.add('bg-slate-700', 'text-white'); btnFM.classList.remove('text-slate-400'); } if(btnBM) { btnBM.classList.remove('bg-slate-700', 'text-white'); btnBM.classList.add('text-slate-400'); }
+            } else {
+                frontend.classList.add('hidden'); backend.classList.remove('hidden');
+                if(btnB) { btnB.classList.add('bg-slate-700', 'text-white'); btnB.classList.remove('text-slate-400'); } if(btnF) { btnF.classList.remove('bg-slate-700', 'text-white'); btnF.classList.add('text-slate-400'); }
+                if(btnBM) { btnBM.classList.add('bg-slate-700', 'text-white'); btnBM.classList.remove('text-slate-400'); } if(btnFM) { btnFM.classList.remove('bg-slate-700', 'text-white'); btnFM.classList.add('text-slate-400'); }
+            }
+        }
+        function runEstateScore() {
+            document.getElementById('estate-form').classList.add('hidden'); document.getElementById('est-loading').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('est-loading').classList.add('hidden');
+                let score = 0;
+                const budget = parseInt(document.getElementById('est-budget').value); const time = parseInt(document.getElementById('est-time').value); const finance = parseInt(document.getElementById('est-finance').value);
+                score = budget + time + finance;
+                if(score >= 20) { document.getElementById('est-result-success').classList.remove('hidden'); } else {
+                    let msg = ""; if(budget === 0) { msg = "Thank you for your interest. Based on your budget we currently don’t have listings that match — but we’ll notify you when something does."; } else if (time === 0) { msg = "Your move-in timeline doesn’t match the current availability. We’ll keep you updated."; } else { msg = "Based on current owner criteria, we cannot proceed with a viewing at this time. We have added you to our update list."; }
+                    document.getElementById('est-fail-msg').innerText = msg; document.getElementById('est-result-fail').classList.remove('hidden');
+                }
+            }, 1500);
+        }
+        function resetEstate() { document.getElementById('est-result-success').classList.add('hidden'); document.getElementById('est-result-fail').classList.add('hidden'); document.getElementById('estate-form').classList.remove('hidden'); }
+
+        // --- EXHIBIT D LOGIC ---
+        function switchLabViewD(view) {
+            const frontend = document.getElementById('view-frontend-d'); const backend = document.getElementById('view-backend-d');
+            const btnF = document.getElementById('btn-frontend-d'); const btnB = document.getElementById('btn-backend-d');
+            const btnFM = document.getElementById('btn-frontend-d-m'); const btnBM = document.getElementById('btn-backend-d-m');
+            if(view === 'frontend') {
+                frontend.classList.remove('hidden'); backend.classList.add('hidden');
+                if(btnF) { btnF.classList.add('bg-slate-700', 'text-white'); btnF.classList.remove('text-slate-400'); } if(btnB) { btnB.classList.remove('bg-slate-700', 'text-white'); btnB.classList.add('text-slate-400'); }
+                if(btnFM) { btnFM.classList.add('bg-slate-700', 'text-white'); btnFM.classList.remove('text-slate-400'); } if(btnBM) { btnBM.classList.remove('bg-slate-700', 'text-white'); btnBM.classList.add('text-slate-400'); }
+            } else {
+                frontend.classList.add('hidden'); backend.classList.remove('hidden'); backend.classList.add('flex'); // Add flex back when showing
+                if(btnB) { btnB.classList.add('bg-slate-700', 'text-white'); btnB.classList.remove('text-slate-400'); } if(btnF) { btnF.classList.remove('bg-slate-700', 'text-white'); btnF.classList.add('text-slate-400'); }
+                if(btnBM) { btnBM.classList.add('bg-slate-700', 'text-white'); btnBM.classList.remove('text-slate-400'); } if(btnFM) { btnFM.classList.remove('bg-slate-700', 'text-white'); btnFM.classList.add('text-slate-400'); }
+            }
+        }
+    </script>
+</body>
+</html>
