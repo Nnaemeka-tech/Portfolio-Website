@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: The Digital Foreman | Nnaemeka</title>
+    <meta name="description" content="An intelligent lead triage system that ensures zero missed emergencies for high-volume landscaping businesses.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#00dc82', crm: '#6366f1' }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        pre::-webkit-scrollbar { height: 8px; }
+        pre::-webkit-scrollbar-track { background: #1e293b; }
+        pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="lab.html" class="code-font text-cyan-400 font-bold hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Lab
+            </a>
+            <div class="text-xs font-mono text-slate-500">CASE STUDY: ID #001</div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div class="inline-flex items-center px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-orange-400 animate-pulse mr-2"></span>
+                PROJECT: LEAD-COMMAND
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Automated Lead Management System for Landscaping Businesses.</h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                How I built a triage engine that guarantees instant, intelligent responses to every lead, eliminating the risk of missed emergencies and lost high-value projects.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 sticky top-24">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Role</div>
+                            <div class="text-slate-200">Automation Architect</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-cyan-400 border border-slate-700">n8n</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-yellow-400 border border-slate-700">Airtable</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-red-400 border border-slate-700">Twilio (SMS)</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Reliability</div>
+                            <div class="flex text-green-500 text-xs">
+                                <i class="fa-solid fa-shield-halved mr-1"></i>
+                                <span>100% Uptime</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Outcome</div>
+                            <div class="text-white font-bold">Zero Missed Emergencies</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="/#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all">
+                            Hire Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+
+<section class="mb-16 border-b border-slate-800 pb-12">
+    <h2 class="text-2xl font-bold text-white mb-4">Overview</h2>
+    <p class="text-slate-400 leading-relaxed mb-4">
+        Landscaping companies serving multiple neighborhoods often deal with a chaotic mix of customer inquiries every day. Some leads are routine lawn mowing requests, while others are urgent situations involving fallen trees or high-value hardscaping projects.
+    </p>
+    <p class="text-slate-400 leading-relaxed">
+        This project focused on building a reliable <strong>"Digital Intake & Dispatch"</strong> system that acts as a filter for the business. It helps owners respond faster, prioritize effectively, and avoid missing high-value or urgent jobs, ensuring the owner only focuses on what truly matters.
+    </p>
+</section>
+                
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">01</span>
+                        The Problem: Anxiety & Inconsistency
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        For many landscaping businesses, all inquiries end up in the same place, regardless of urgency or job size. Leads from Google search, local service ads, Facebook ads, and website forms are handled manually.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        This creates common problems:
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+        For many landscaping businesses, all inquiries end up in the same place, regardless of urgency or job size. Leads from Google, Facebook, and the website are handled manually, creating a bottleneck where:
+    </p>
+
+    <ul class="space-y-3 mb-6">
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Urgent tree removal requests get delayed.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            High-value hardscaping projects receive slow responses.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Owners spend time sorting messages instead of running the business.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Emergency situations are handled inconsistently.
+        </li>
+    </ul>
+
+    <p class="text-slate-400 leading-relaxed mb-6">
+        The business needed a way to automatically understand each inquiry and take the right action immediately.
+    </p>
+
+                    <div class="p-4 bg-red-900/10 border border-red-500/20 rounded-lg">
+                        <p class="text-red-400 text-sm font-mono">
+                            <i class="fa-solid fa-triangle-exclamation mr-2"></i> The Risk: Manual triage is slow and error-prone. A missed emergency call destroys reputation; a missed hardscaping lead destroys revenue.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">02</span>
+                        The Solution: Three Lanes of Service
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+        I designed a custom lead automation system that acts as a digital intake and dispatch assistant for landscaping companies. When a new inquiry is submitted, the system:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-database"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Captures & Stores</strong> the lead in a structured CRM (Airtable) immediately.
+            </p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-microchip"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Analyzes</strong> the inquiry text to determine urgency and service type using logic.
+            </p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-share-nodes"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Routes</strong> the lead into the correct workflow path automatically.
+            </p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-bell"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Notifies</strong> the owner only when direct attention is absolutely required.
+            </p>
+        </div>
+    </div>
+
+    <p class="text-slate-400 leading-relaxed mb-6">
+        The system categorizes leads into three primary groups:
+    </p>
+
+
+                    <div class="grid grid-cols-1 gap-4 mb-8">
+                        
+                        <div class="p-5 rounded-lg border border-red-500/30 bg-red-500/5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-red-400 font-bold mb-1">Lane 1: Emergency (Tree/Storm)</h4>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Overrides phone mute. Sends SMS alarm to Owner + Manager. Auto-replies to customer: "We received your emergency alert."</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-lg border border-yellow-500/30 bg-yellow-500/5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-500 shrink-0">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-yellow-400 font-bold mb-1">Lane 2: Project (Patio/Hardscape)</h4>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Flags lead as "Priority" in CRM. Sends "Digital Foreman" email asking about materials (Pavers vs. Stone) to qualify lead instantly.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-blue-400 font-bold mb-1">Lane 3: Routine (Mowing)</h4>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Fully automated. Sends standard quote questionnaire. Owner is <u>not</u> disturbed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="bg-slate-900 border border-slate-700 rounded-lg overflow-hidden shadow-2xl group">
+                            <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs text-slate-400 font-mono ml-2">landscaping_triage_v2.json</span>
+                            </div>
+                            <img src="images/n8n-landscaping.webp" alt="n8n Landscaping Triage Diagram" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2 text-center font-mono">Figure 1: The "Digital Foreman" Triage Logic</p>
+                    </div>
+
+                   <div class="mt-8">
+    <img 
+        src="images/airtable-view.webp" 
+        alt="Airtable CRM Database View" 
+        class="w-full h-auto rounded-lg border border-slate-800 shadow-2xl"
+    >
+    <p class="text-xs text-slate-500 mt-2 text-center font-mono">Figure 2: The Structured Lead Database (Airtable)</p>
+</div>
+
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">03</span>
+        Built-In Escalation & Control
+    </h2>
+    <p class="text-slate-400 leading-relaxed mb-6">
+        For emergency situations, I engineered a safety net. If an urgent lead is not acknowledged within a 15-minute window, the system triggers a secondary <strong>Escalation Layer</strong> (SMS to backup manager) to ensure nothing is missed.
+    </p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        
+        <div>
+            <p class="text-slate-400 text-sm mb-4">
+                Manual control fields in the CRM allow the business to:
+            </p>
+            <ul class="space-y-3">
+                <li class="flex items-start text-slate-300 text-sm">
+                    <span class="text-green-400 mr-3 mt-0.5"><i class="fa-regular fa-square-check"></i></span>
+                    Mark when the owner has taken action.
+                </li>
+                <li class="flex items-start text-slate-300 text-sm">
+                    <span class="text-green-400 mr-3 mt-0.5"><i class="fa-regular fa-square-check"></i></span>
+                    Stop the escalation timer immediately.
+                </li>
+                <li class="flex items-start text-slate-300 text-sm">
+                    <span class="text-green-400 mr-3 mt-0.5"><i class="fa-regular fa-square-check"></i></span>
+                    Track lead status clearly inside the CRM.
+                </li>
+            </ul>
+        </div>
+
+        <div class="w-full h-full min-h-[200px] border-2 border-dashed border-slate-700 bg-slate-900/50 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:border-slate-500 transition-colors relative group">
+            <img 
+    src="images/twilio-sms.webp" 
+    alt="Twilio Escalation SMS Alert" 
+    class="w-full h-auto rounded-lg border border-slate-800 shadow-2xl"
+>
+            </div>
+</div>                      
+
+                    <div class="mt-8 bg-slate-900 rounded-lg border border-slate-800 p-4 overflow-x-auto">
+<pre class="code-font text-xs text-cyan-300">
+{
+  "process": "EMERGENCY_ESCALATION",
+  "trigger": "Lead_Labeled_Urgent",
+  "monitoring_loop": {
+     "wait_time": "900000", // 15 Minutes
+     "check_status": "Airtable_Field('Owner_Ack') == TRUE",
+     "on_success": "End_Workflow",
+     "on_fail": {
+        "action": "TRIGGER_BACKUP_CALL",
+        "recipient": "Shop_Manager_Cell",
+        "message": "URGENT: Owner has not responded to Tree Emergency #1042."
+     }
+  }
+}
+</pre>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 font-mono">Simulated logic of the Escalation Safety Net.
+
+</p>
+
+
+
+    <div class="mt-8 p-4 bg-green-900/10 border border-green-500/20 rounded-lg flex items-start gap-3">
+        <div class="text-green-400 mt-0.5"><i class="fa-solid fa-shield-cat"></i></div>
+        <p class="text-sm text-green-300">
+            <strong>The Result:</strong> This prevents false alarms (waking up the staff) while ensuring 100% protection against missed emergencies.
+        </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">04</span>
+                        The Impact
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-red-400 mb-1">0</div>
+                            <div class="text-xs text-slate-500 uppercase">Missed Emergencies</div>
+                        </div>
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-brand-accent mb-1">&lt; 3min</div>
+                            <div class="text-xs text-slate-500 uppercase">Response Time</div>
+                        </div>
+                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-white mb-1">100%</div>
+                            <div class="text-xs text-slate-500 uppercase">Reliability Score</div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-10 border-t border-slate-900 text-center">
+        <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with n8n & Logic.</p>
+    </footer>
+
+</body>
+</html>
