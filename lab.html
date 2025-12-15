@@ -44,8 +44,8 @@
         .terminal-scroll::-webkit-scrollbar-track { background: #0f172a; }
         .terminal-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
-        /* Google Ad Card Styling */
-        .ad-card {
+        /* Simulation Card Styling (Renamed from .ad-card to bypass blockers) */
+        .sim-card {
             font-family: Arial, sans-serif;
             border-radius: 12px;
             background: #202124;
@@ -55,11 +55,11 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .ad-card:hover { border-color: #8ab4f8; transform: translateY(-2px); }
-        .ad-badge { color: #202124; background-color: #bdc1c6; font-weight: bold; font-size: 11px; padding: 2px 4px; border-radius: 2px; margin-right: 8px; }
-        .ad-url { font-size: 12px; color: #bdc1c6; display: flex; align-items: center; gap: 4px; }
-        .ad-title { color: #8ab4f8; font-size: 18px; line-height: 24px; margin-top: 8px; margin-bottom: 4px; }
-        .ad-desc { font-size: 14px; line-height: 20px; color: #bdc1c6; }
+        .sim-card:hover { border-color: #8ab4f8; transform: translateY(-2px); }
+        .sim-badge { color: #202124; background-color: #bdc1c6; font-weight: bold; font-size: 11px; padding: 2px 4px; border-radius: 2px; margin-right: 8px; }
+        .sim-url { font-size: 12px; color: #bdc1c6; display: flex; align-items: center; gap: 4px; }
+        .sim-title { color: #8ab4f8; font-size: 18px; line-height: 24px; margin-top: 8px; margin-bottom: 4px; }
+        .sim-desc { font-size: 14px; line-height: 20px; color: #bdc1c6; }
 
         /* Form Input Styles */
         .lab-input {
@@ -219,7 +219,7 @@
                         </div>
                         
                         <div class="mt-8 flex flex-wrap gap-4">
-                            <a href="case-study-landscaping.html" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors border border-slate-700">
+                            <a href="#case-study-placeholder" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors border border-slate-700">
                                 View Case Study
                             </a>
                             <button class="js-scroll-to-lab px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-cyan-900/20">
@@ -241,19 +241,21 @@
                         </div>
                         <div class="bg-black p-6 rounded-xl border border-slate-800">
                             <p class="text-slate-500 text-xs mb-4 text-center uppercase tracking-widest">User View</p>
-                            <div class="js-ad-card ad-card">
+                            
+                            <div class="js-sim-card sim-card">
                                 <div class="flex items-center mb-1">
-                                    <span class="ad-badge">Sponsored</span>
-                                    <div class="ad-url">
+                                    <span class="sim-badge">Sponsored</span>
+                                    <div class="sim-url">
                                         <span>landscape-pros.com</span>
                                         <i class="fa-solid fa-ellipsis-vertical text-[10px] ml-1"></i>
                                     </div>
                                 </div>
-                                <div class="ad-title">24/7 Emergency Tree Service</div>
-                                <div class="ad-desc">
+                                <div class="sim-title">24/7 Emergency Tree Service</div>
+                                <div class="sim-desc">
                                     Storm damage? Fallen trees? We have crews in your area now. Licensed & Insured. Click for Priority Response.
                                 </div>
                             </div>
+
                             <div class="text-center mt-4 text-xs text-slate-600 animate-pulse">
                                 Click the ad to simulate a user
                             </div>
@@ -396,7 +398,7 @@
             function initModule(module) {
                 // Selectors
                 const triggerView = module.querySelector('.js-trigger-view');
-                const adCard = module.querySelector('.js-ad-card');
+                const adCard = module.querySelector('.js-sim-card'); // UPDATED SELECTOR
                 const form = module.querySelector('.js-lab-form');
                 const successMsg = module.querySelector('.js-success');
                 const terminal = module.querySelector('.js-terminal-output');
