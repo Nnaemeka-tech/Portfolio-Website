@@ -165,8 +165,8 @@
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-white leading-tight">
-                        Business Automation <br>
-                        <span class="text-cyan-400">Designer.</span>
+                        Put Business Growth on Autopilot <br>
+                        <span class="text-cyan-400">With Intelligent Automation.</span>
                     </h1>
 
                     <div class="text-xs md:text-sm font-mono text-slate-500 uppercase tracking-widest mb-6">
@@ -174,7 +174,7 @@
                     </div>
 
                     <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
-                        From Lead Capture to Invoice. I build the infrastructure that powers high-growth service companies with <strong>Zero-Latency automation</strong> using n8n, AI, and Logic engines.
+                        I build the digital infrastructure that powers high-growth companies. From lead capture to invoicing, I replace manual admin work with <strong>custom workflow automation</strong> that runs 24/7.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="lab.html" class="inline-flex justify-center items-center px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20 group">
@@ -304,11 +304,10 @@
                         </p>
                         <div class="mt-auto">
                             <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
+                                <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Twilio</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Airtable</span>
-                        </div>
-
+                            </div>
                             <a href="case-study-landscaping.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700">
                                 Read Case Study
                             </a>
@@ -323,7 +322,7 @@
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-white">Booking & Operations Automation for Logistics</h3>
+                            <h3 class="text-xl font-bold text-white">Booking & Operations Automation for Logistics Company</h3>
                             <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                         </div>
                         <p class="text-sm text-cyan-400 font-medium mb-4">Logistics • Automation</p>
@@ -332,11 +331,10 @@
                         </p>
                         <div class="mt-auto">
                             <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Javascript</span>
+                                <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Javascript</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Regex</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">API</span>
-                        </div>
-
+                            </div>
                             <a href="case-study-movers.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700">
                                 Read Case Study
                             </a>
@@ -362,7 +360,7 @@
                 <p class="text-slate-400">Why automation costs less than a payroll.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-slate-800 rounded-xl overflow-hidden">
-                <div class="bg-slate-950/50 p-4 md:p-10 border-r border-slate-800">
+                <div class="bg-slate-900/50 p-4 md:p-10 border-r border-slate-800">
                     <div class="flex items-center gap-2 mb-6">
                         <span class="w-2 h-2 rounded-full bg-red-500"></span>
                         <h3 class="text-white font-mono uppercase tracking-widest text-sm">Human Admin</h3>
@@ -556,35 +554,52 @@
                 <p class="text-slate-400">You are losing leads to speed. Book a logic audit to fix your process.</p>
             </div>
 
-            <form action="https://formspree.io/f/mqakpeag" method="POST" class="space-y-4 bg-slate-900 p-4 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Full Name</label>
-                        <input type="text" name="name" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
+            <div id="form-container" class="bg-slate-900 p-4 md:p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                <form id="logic-intake-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Full Name</label>
+                            <input type="text" name="name" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Email Address</label>
+                            <input type="email" name="email" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
+                        </div>
                     </div>
+                    
                     <div>
-                        <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Email Address</label>
-                        <input type="email" name="email" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
+                        <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Current Website / Tools (Optional)</label>
+                        <input type="text" name="website" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">What is your biggest operational headache?</label>
+                        <textarea name="message" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-brand-accent hover:bg-white text-slate-900 font-bold py-4 rounded-lg transition-all shadow-lg shadow-green-900/20 flex items-center justify-center gap-2">
+                        <span id="btn-text">Book Free Strategy Call</span>
+                        <i id="btn-icon" class="fa-solid fa-satellite-dish"></i>
+                        <i id="btn-spinner" class="fa-solid fa-circle-notch fa-spin hidden"></i>
+                    </button>
+                </form>
+
+                <div id="success-view" class="hidden absolute inset-0 bg-slate-900 flex flex-col items-center justify-center text-center p-8">
+                    <div class="w-16 h-16 bg-green-500/10 text-green-400 rounded-full flex items-center justify-center text-3xl mb-4 border border-green-500/20">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Transmission Received.</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        My logic engine is processing your request. You will receive an automated confirmation email in exactly 30 seconds.
+                    </p>
+                    <div class="text-xs font-mono text-slate-600 bg-slate-950 px-3 py-2 rounded border border-slate-800">
+                        STATUS: 200 OK | LATENCY: 124ms
                     </div>
                 </div>
-                
-                <div>
-                    <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">Current Website / Tools (Optional)</label>
-                    <input type="text" name="website" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors">
-                </div>
-
-                <div>
-                    <label class="block text-slate-500 text-xs font-bold mb-2 uppercase">What is your biggest operational headache?</label>
-                    <textarea name="message" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-cyan-500 focus:outline-none transition-colors"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-brand-accent hover:bg-white text-slate-900 font-bold py-4 rounded-lg transition-all shadow-lg shadow-green-900/20">
-                    Book Strategy Call
-                </button>
-            </form>
+            </div>
 
             <div class="mt-12 text-center border-t border-slate-900 pt-8">
-                 <p class="text-slate-400 mb-4">Prefer to chat? <a href="https://wa.me/2347047266014" class="text-green-400 font-bold hover:underline">WhatsApp Me</a> or email <a href="mailto:machogeorgia4@gmail.com" class="text-cyan-400 font-bold hover:underline">machogeorgia4@gmail.com</a></p>
+                 <p class="text-slate-400 mb-4">Prefer to chat? <a href="https://wa.me/2347063513731" class="text-green-400 font-bold hover:underline">WhatsApp Me</a> or email <a href="mailto:machogeorgia4@gmail.com" class="text-cyan-400 font-bold hover:underline">machogeorgia4@gmail.com</a></p>
             </div>
         </div>
     </section>
@@ -707,6 +722,69 @@
               if (e.key === 'Escape') closeLightbox(); 
           });
         })();
+
+        // 5. WEBHOOK FORM HANDLER (The System Drafter Logic)
+        const contactForm = document.getElementById('logic-intake-form');
+        const successMsg = document.getElementById('success-view');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const btnSpinner = document.getElementById('btn-spinner');
+
+        // 👇 WEBHOOK URL from your previous code 👇
+        const WEBHOOK_URL = "https://hook.us2.make.com/ds7zpt2g2ehhi3lzmuu837wsyejnhwld"; 
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // 1. UI Loading State
+                btnText.innerText = "Transmitting Data...";
+                btnIcon.classList.add('hidden');
+                btnSpinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+                // 2. Gather Data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Add Metadata (The Flex)
+                data.timestamp = new Date().toISOString();
+                data.source = "Portfolio Website";
+                data.userAgent = navigator.userAgent;
+
+                try {
+                    // 3. Send to Automation Server
+                    const response = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    // 4. Show Success
+                    if (response.ok) {
+                        setTimeout(() => {
+                            contactForm.classList.add('opacity-0', 'pointer-events-none'); 
+                            successMsg.classList.remove('hidden');
+                        }, 800);
+                    } else {
+                        throw new Error('Server rejected transmission');
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("System Uplink Failed. Please try the manual backup (WhatsApp).");
+                    
+                    // Reset Button
+                    btnText.innerText = "Initialize Uplink";
+                    btnIcon.classList.remove('hidden');
+                    btnSpinner.classList.add('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                }
+            });
+        }
     </script>
 </body>
 </html>
