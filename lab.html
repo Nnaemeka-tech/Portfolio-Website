@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Automation Lab | Nnaemeka</title>
-    <meta name="description" content="A live archive of automated business systems. Real-time logic simulations.">
+    <meta name="description" content="A portfolio of automated business systems designed to save time and increase revenue.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,9 +28,6 @@
                     fontFamily: {
                         mono: ['"Fira Code"', '"Courier New"', 'monospace'],
                         sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -45,75 +42,15 @@
         .code-font { font-family: 'Fira Code', monospace; }
         .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         
-        /* Grid Background Pattern */
-        .bg-grid-slate { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px); }
-
-        /* Custom Scrollbar for Terminal */
-        .terminal-scroll::-webkit-scrollbar { width: 6px; }
-        .terminal-scroll::-webkit-scrollbar-track { background: #0f172a; }
-        .terminal-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-
-        /* Safe Search Result Styling (AdBlock Proof) */
-        .search-result-card {
-            font-family: Arial, sans-serif;
-            background: #202124;
-            color: #bdc1c6;
-            padding: 16px;
-            border: 1px solid #3c4043;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
+        /* Placeholder Pattern for Images */
+        .img-pattern {
+            background-color: #1e293b;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
         }
-        .search-result-card:hover { border-color: #8ab4f8; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .promoted-tag { color: #202124; background-color: #bdc1c6; font-weight: bold; font-size: 11px; padding: 2px 4px; border-radius: 2px; margin-right: 8px; }
-        .search-title { color: #8ab4f8; font-size: 18px; line-height: 24px; margin-top: 6px; margin-bottom: 4px; }
         
-        /* Quiz Option Card */
-        .quiz-option {
-            width: 100%;
-            text-align: left;
-            padding: 16px;
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .quiz-option:hover { border-color: #22d3ee; background-color: #1e293b; }
-        .quiz-option i { width: 24px; text-align: center; }
-
-        /* Form Input Styles */
-        .lab-input {
-            width: 100%;
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            padding: 12px;
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .lab-input:focus { border-color: #22d3ee; }
-        .lab-button {
-            background-color: #22d3ee;
-            color: #020617;
-            font-weight: bold;
-            padding: 10px 24px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-        }
-        .lab-button:hover { background-color: #06b6d4; }
-
-        /* Nav Link Hover */
-        .nav-link:hover { color: #22d3ee; }
-        .nav-link:hover::before { content: '[ '; color: #4ade80; }
-        .nav-link:hover::after { content: ' ]'; color: #4ade80; }
-
-        /* Mobile Tab Active State */
-        .tab-active { border-bottom: 2px solid #00dc82; color: #00dc82; background: rgba(0, 220, 130, 0.05); }
-        .tab-inactive { color: #64748b; }
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); border-color: #22d3ee; }
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
@@ -125,623 +62,223 @@
                 <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse group-hover:shadow-[0_0_10px_#4ade80]"></span>
             </a>
             <div class="hidden md:flex space-x-8 font-mono text-xs tracking-wide text-slate-400">
-                <a href="index.html#framework" class="nav-link transition-all">Framework</a>
+                <a href="index.html" class="nav-link transition-all hover:text-white">Home</a>
                 <a href="#" class="text-white font-bold cursor-default">[ The_Lab ]</a>
-                <a href="index.html#interface" class="nav-link transition-all">Interfaces</a>
-                <a href="index.html#about" class="nav-link transition-all">About_Me</a>
             </div>
             <div class="hidden md:block">
                 <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
                     > Initiate_Project
                 </a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-cyan-400 p-2"><i class="fa-solid fa-bars"></i></button>
-        </div>
-        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-white/10 absolute w-full font-mono text-sm z-50">
-            <div class="px-6 py-6 space-y-4">
-                <a href="index.html#framework" class="block text-slate-300 hover:text-cyan-400">// Framework</a>
-                <a href="#" class="block text-cyan-400 font-bold">// The_Lab (Active)</a>
-                <a href="index.html#interface" class="block text-slate-300 hover:text-cyan-400">// Interfaces</a>
-                <a href="index.html#contact" class="block text-brand-accent font-bold">> Initiate_Project</a>
-            </div>
         </div>
     </nav>
 
-    <section class="pt-32 pb-16 px-6 border-b border-slate-800 bg-slate-950 bg-grid-slate relative">
-        <div class="absolute inset-0 bg-slate-950/80"></div>
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="inline-flex items-center px-3 py-1 border border-cyan-500/30 bg-cyan-900/10 rounded-full text-cyan-400 text-xs font-mono mb-6">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 inline-block mr-2 animate-pulse-slow"></span>
-                SYSTEM PROTOCOLS
+    <section class="pt-40 pb-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center px-3 py-1 border border-slate-700 bg-slate-900 rounded-full text-slate-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block mr-2 animate-pulse"></span>
+                SYSTEMS ONLINE
             </div>
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
                 The Automation Lab.
             </h1>
-            <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
-                An interactive repository of automation logic. I build zero-latency decision engines for service businesses.
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                A collection of custom systems I’ve built to help businesses save time, reduce errors, and handle more leads without hiring more staff.
             </p>
         </div>
     </section>
 
-    <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="max-w-7xl mx-auto px-6 pb-24">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
-            <div class="bg-slate-900 border-l-4 border-red-500 rounded-r-xl p-6">
-                <div class="text-red-400 font-mono text-sm mb-2">01 // THE PROBLEM</div>
-                <h3 class="text-white font-bold mb-2">Manual Triage</h3>
-                <p class="text-slate-400 text-sm">Staff wasting hours sorting vague emails instead of closing deals.</p>
-            </div>
-            <div class="bg-slate-900 border-l-4 border-cyan-500 rounded-r-xl p-6">
-                <div class="text-cyan-400 font-mono text-sm mb-2">02 // THE SYSTEM</div>
-                <h3 class="text-white font-bold mb-2">Intent Detection</h3>
-                <p class="text-slate-400 text-sm">Backend logic that reads the message to understand urgency and value.</p>
-            </div>
-            <div class="bg-slate-900 border-l-4 border-purple-500 rounded-r-xl p-6">
-                <div class="text-purple-400 font-mono text-sm mb-2">03 // THE INTERFACE</div>
-                <h3 class="text-white font-bold mb-2">Clean Ingestion</h3>
-                <p class="text-slate-400 text-sm">Capturing structured data at the source to prevent errors downstream.</p>
-            </div>
-        </section>
-
-        <article class="project-module mb-32" data-id="landscape-intent">
-            <div class="mb-8 border-b border-slate-800 pb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">01. The Digital Foreman</h2>
-                <p class="text-slate-400 max-w-3xl leading-relaxed text-lg">
-                    A "Digital Dispatcher" that intercepts traffic from Google Ads, analyzes the customer's written intent, and instantly routes them to either Emergency Dispatch or Sales.
-                </p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-10 mb-12 hover:border-slate-700 transition-colors">
-                <div class="flex items-center gap-2 text-slate-400 text-sm mb-6">
-                    <i class="fa-solid fa-bullseye text-cyan-400"></i> Target: <span class="text-slate-300">Landscaping & Tree Services</span>
+            <article class="project-card bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-2xl">
+                <div class="h-64 w-full img-pattern relative border-b border-slate-800 group">
+                    <img src="images/n8n-landscaping.webp" alt="Landscaping Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-sm font-mono text-red-400 mb-2">THE PAIN POINT</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed">
-                                Emergency leads (fallen trees) get buried in the same inbox as "Can I get a quote for next month?" This delay causes high-value emergency jobs to go to competitors who answer faster.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-mono text-cyan-400 mb-2">THE LOGIC FIX</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed">
-                                We intercept the lead at the Google Ad click. The system reads the inquiry text for keywords like "Danger", "Tree", or "Storm" and triggers an SMS alert to the field crew within 2 seconds.
-                            </p>
-                        </div>
+                
+                <div class="p-8 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Lead Triage Automation for Field Services</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
+                    <p class="text-sm text-cyan-400 font-medium mb-4">Landscaping Services • Lead Gen</p>
                     
-                    <div class="flex flex-col justify-between">
-                         <div class="mb-8">
-                            <h4 class="text-xs font-mono text-slate-500 uppercase mb-4">Tools Stack</h4>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-solid fa-bolt text-cyan-400"></i> n8n
-                                </div>
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-solid fa-table text-yellow-400"></i> Airtable
-                                </div>
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-solid fa-comment-sms text-red-400"></i> Twilio
-                                </div>
-                            </div>
-
-                            <h4 class="text-xs font-mono text-slate-500 uppercase mb-4">Key Results</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-sm text-slate-300">
-                                    <i class="fa-solid fa-check text-green-500 mr-3 text-xs"></i>
-                                    <span><strong class="text-white">0</strong> Missed Emergencies</span>
-                                </li>
-                                <li class="flex items-center text-sm text-slate-300">
-                                    <i class="fa-solid fa-check text-green-500 mr-3 text-xs"></i>
-                                    <span><strong class="text-white">&lt; 3 mins</strong> Response Time</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="case-study-landscaping.html" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors border border-slate-700">
-                                View Case Study
-                            </a>
-                            <button class="js-scroll-to-lab px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-cyan-900/20">
-                                Test Logic Below <i class="fa-solid fa-arrow-down ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lab-container relative">
-                <div class="lg:hidden flex mb-4 border-b border-slate-800">
-                    <button class="flex-1 py-3 text-sm font-mono font-bold tab-active js-tab-btn" data-target="input">INPUT</button>
-                    <button class="flex-1 py-3 text-sm font-mono font-bold tab-inactive js-tab-btn" data-target="terminal">TERMINAL</button>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 md:p-8 h-fit min-h-[450px] js-col-input">
-                        <div class="js-trigger-view">
-                            <div class="mb-6 border-b border-slate-800 pb-4">
-                                <h3 class="text-xl font-bold text-white">Traffic Source</h3>
-                                <p class="text-slate-500 text-xs mt-1 font-mono">Simulating Mobile Google Search</p>
-                            </div>
-                            <div class="bg-black p-6 rounded-xl border border-slate-800 js-source-trigger search-result-card">
-                                <div class="flex items-center mb-1">
-                                    <span class="promoted-tag">Promoted</span>
-                                    <span class="text-xs text-slate-400">landscape-pros.com > emergency</span>
-                                </div>
-                                <div class="search-title">24/7 Emergency Tree Service</div>
-                                <div class="text-slate-400 text-sm">
-                                    Storm damage? We deploy crews within 1 hour. Licensed & Insured. Click for Priority Response.
-                                </div>
-                            </div>
-                            <div class="text-center mt-4 text-xs text-slate-600 animate-pulse">
-                                Click the result to simulate a user
-                            </div>
-                        </div>
-
-                        <form class="js-lab-form hidden transition-opacity duration-500" onsubmit="return false;">
-                            <div class="mb-6 border-b border-slate-800 pb-4 flex justify-between items-center">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Priority Intake</h3>
-                                    <p class="text-slate-500 text-xs mt-1 font-mono">Data Entry Point</p>
-                                </div>
-                                <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded border border-blue-700">Source: Google Ads</span>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div><label class="block text-slate-400 text-xs font-bold mb-2">Name</label><input type="text" class="js-input-name lab-input text-sm" placeholder="John Doe" value="John Doe"></div>
-                                    <div><label class="block text-slate-400 text-xs font-bold mb-2">Phone</label><input type="text" class="js-input-phone lab-input text-sm" placeholder="(555) 123-4567" value="(555) 019-2834"></div>
-                                </div>
-                                <div><label class="block text-slate-400 text-xs font-bold mb-2">Email</label><input type="email" class="js-input-email lab-input text-sm" placeholder="john@example.com" value="john@example.com"></div>
-                                <div><label class="block text-cyan-400 text-xs font-bold mb-2 uppercase">How can we help?</label><textarea class="js-input-inquiry lab-input text-sm h-20 resize-none" placeholder="Describe the issue..."></textarea><p class="text-slate-600 text-[10px] mt-1">Try keywords like: "Tree fell on my roof", "Storm damage", "Emergency"</p></div>
-                                <button type="button" class="js-submit-btn lab-button w-full flex justify-center items-center gap-2 mt-4">Submit Request <i class="fa-solid fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-
-                        <div class="js-success hidden text-center py-8">
-                            <div class="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl"><i class="fa-solid fa-check"></i></div>
-                            <h3 class="text-xl font-bold text-white mb-2">Logic Executed in 120ms</h3>
-                            <p class="text-slate-400 text-sm mb-6 px-4">While your competitor is still finding their phone, you just secured the lead. Want this speed for your business?</p>
-                            <a href="index.html#contact" class="inline-block w-full py-3 bg-brand-accent hover:bg-white text-slate-900 font-bold rounded-lg transition-colors mb-4 shadow-lg shadow-green-900/20">
-                                Build This System
-                            </a>
-                            <button class="js-reset-btn text-cyan-400 text-xs hover:underline">Restart Simulation</button>
-                        </div>
-                    </div>
-
-                    <div class="bg-[#0f172a] border border-slate-800 rounded-2xl overflow-hidden relative h-full min-h-[450px] flex flex-col font-mono text-sm shadow-2xl hidden lg:flex js-col-terminal">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center gap-2">
-                             <div class="flex gap-1.5">
-                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-                            </div>
-                            <span class="text-xs text-slate-500 ml-2">server_log.txt</span>
-                            <span class="ml-auto text-xs text-green-500 animate-pulse">● Live</span>
-                        </div>
-                        <div class="js-terminal-output terminal-scroll flex-1 p-6 overflow-y-auto space-y-2 text-slate-300">
-                            <div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>
-                        </div>
-                        <div class="absolute inset-0 bg-cyan-500/5 pointer-events-none mix-blend-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="project-module mb-32" data-id="gatekeeper">
-            
-            <div class="mb-8 border-b border-slate-800 pb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">02. The Algorithmic Gatekeeper</h2>
-                <p class="text-slate-400 max-w-3xl leading-relaxed text-lg">
-                    A logic-based application engine that audits prospects, calculates a "Fit Score" in real-time, and only permits qualified leads to book a call.
-                </p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-10 mb-12 hover:border-slate-700 transition-colors">
-                <div class="flex items-center gap-2 text-slate-400 text-sm mb-6">
-                    <i class="fa-solid fa-bullseye text-cyan-400"></i> Target: <span class="text-slate-300">Coaches & Consultants</span>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-sm font-mono text-red-400 mb-2">THE PAIN POINT</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed">
-                                "Calendar Congestion." You get 50 leads a month, but 40 are unable to afford your retainer. You waste 20+ hours on calls that never close.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-mono text-cyan-400 mb-2">THE LOGIC FIX</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed">
-                                Instead of a contact form, we use a Quiz. The system scores answers in the background. High scores (>70) get an email with a booking link. Low scores get a helpful downsell course.
-                            </p>
-                        </div>
-                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        An intelligent triage system that intercepts incoming leads from Google Ads. It instantly detects urgency keywords (like "Tree Fell") and routes them to the crew via SMS, while standard quotes go to the CRM.
+                    </p>
                     
-                    <div class="flex flex-col justify-between">
-                         <div class="mb-8">
-                            <h4 class="text-xs font-mono text-slate-500 uppercase mb-4">Tools Stack</h4>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-solid fa-share-nodes text-pink-400"></i> n8n
-                                </div>
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-brands fa-hubspot text-orange-400"></i> HubSpot
-                                </div>
-                                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
-                                    <i class="fa-solid fa-calendar text-blue-400"></i> Calendly
-                                </div>
-                            </div>
-
-                            <h4 class="text-xs font-mono text-slate-500 uppercase mb-4">Key Results</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-sm text-slate-300">
-                                    <i class="fa-solid fa-check text-green-500 mr-3 text-xs"></i>
-                                    <span><strong class="text-white">100%</strong> Qualified Meetings</span>
-                                </li>
-                                <li class="flex items-center text-sm text-slate-300">
-                                    <i class="fa-solid fa-check text-green-500 mr-3 text-xs"></i>
-                                    <span><strong class="text-white">20+ Hrs</strong> Saved Monthly</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="case-study-lead-engine.html" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors border border-slate-700">
-                                View Case Study
-                            </a>
-                            <button class="js-scroll-to-gatekeeper px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-cyan-900/20">
-                                Start Audit <i class="fa-solid fa-arrow-down ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lab-container relative">
-                 <div class="lg:hidden flex mb-4 border-b border-slate-800">
-                    <button class="flex-1 py-3 text-sm font-mono font-bold tab-active js-tab-btn" data-target="input">AUDIT</button>
-                    <button class="flex-1 py-3 text-sm font-mono font-bold tab-inactive js-tab-btn" data-target="terminal">LOGIC LOG</button>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 md:p-8 h-fit min-h-[450px] relative js-col-input">
-                        <div class="mb-6 border-b border-slate-800 pb-4 flex justify-between items-center">
-                            <div>
-                                <h3 class="text-xl font-bold text-white">Fit Auditor</h3>
-                                <p class="text-slate-500 text-xs mt-1 font-mono">Live Scoring Engine</p>
-                            </div>
-                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded border border-purple-700">v2.0 Logic</span>
-                        </div>
-
-                        <div class="quiz-step" data-step="0">
-                            <div class="text-center py-12">
-                                <div class="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fa-solid fa-fingerprint text-3xl text-slate-400"></i>
-                                </div>
-                                <h3 class="text-white font-bold text-lg mb-2">Identity Check</h3>
-                                <p class="text-slate-400 text-sm mb-6">We need to know who you are before we audit your business.</p>
-                                <div class="space-y-3 mb-6">
-                                    <input type="text" class="js-quiz-name lab-input" placeholder="Full Name">
-                                    <input type="email" class="js-quiz-email lab-input" placeholder="Email Address">
-                                </div>
-                                <button class="js-quiz-next lab-button w-full" data-next="1">Begin Audit <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step hidden" data-step="1">
-                            <label class="block text-purple-400 text-xs font-mono mb-4">QUESTION 1 / 3</label>
-                            <h3 class="text-white font-bold text-lg mb-6">What is your primary objective?</h3>
-                            <div class="space-y-3">
-                                <button class="quiz-option js-quiz-option" data-points="10" data-label="Scale Revenue" data-next="2">
-                                    <i class="fa-solid fa-arrow-trend-up text-green-400"></i>
-                                    <div>
-                                        <div class="text-white font-bold text-sm">Scale Revenue</div>
-                                        <div class="text-slate-500 text-xs">I want to double my sales.</div>
-                                    </div>
-                                </button>
-                                <button class="quiz-option js-quiz-option" data-points="5" data-label="Fix Operations" data-next="2">
-                                    <i class="fa-solid fa-gears text-blue-400"></i>
-                                    <div>
-                                        <div class="text-white font-bold text-sm">Fix Operations</div>
-                                        <div class="text-slate-500 text-xs">I am drowning in admin work.</div>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step hidden" data-step="2">
-                            <label class="block text-purple-400 text-xs font-mono mb-4">QUESTION 2 / 3</label>
-                            <h3 class="text-white font-bold text-lg mb-6">What is your investment range?</h3>
-                            <div class="space-y-3">
-                                <button class="quiz-option js-quiz-option" data-points="0" data-label="Under $1k" data-next="3">
-                                    <i class="fa-solid fa-seedling text-slate-400"></i>
-                                    <div class="text-white font-bold text-sm">Bootstrapping (< $1k)</div>
-                                </button>
-                                <button class="quiz-option js-quiz-option" data-points="20" data-label="$1k - $5k" data-next="3">
-                                    <i class="fa-solid fa-layer-group text-yellow-400"></i>
-                                    <div class="text-white font-bold text-sm">Growth ($1k - $5k)</div>
-                                </button>
-                                <button class="quiz-option js-quiz-option" data-points="50" data-label="$5k+" data-next="3">
-                                    <i class="fa-solid fa-rocket text-red-400"></i>
-                                    <div class="text-white font-bold text-sm">Scale ($5k+)</div>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step hidden" data-step="3">
-                            <label class="block text-purple-400 text-xs font-mono mb-4">QUESTION 3 / 3</label>
-                            <h3 class="text-white font-bold text-lg mb-6">How soon do you want to start?</h3>
-                            <div class="space-y-3">
-                                <button class="quiz-option js-quiz-option" data-points="30" data-label="ASAP" data-final="true">
-                                    <i class="fa-solid fa-bolt text-yellow-400"></i>
-                                    <div class="text-white font-bold text-sm">Immediately</div>
-                                </button>
-                                <button class="quiz-option js-quiz-option" data-points="10" data-label="1-3 Months" data-final="true">
-                                    <i class="fa-regular fa-calendar text-slate-400"></i>
-                                    <div class="text-white font-bold text-sm">1 - 3 Months</div>
-                                </button>
-                                 <button class="quiz-option js-quiz-option" data-points="0" data-label="Just Looking" data-final="true">
-                                    <i class="fa-solid fa-eye text-slate-500"></i>
-                                    <div class="text-white font-bold text-sm">Just Browsing</div>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step hidden" id="gate-success">
-                            <div class="text-center py-8">
-                                <div class="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                                    <i class="fa-solid fa-lock-open"></i>
-                                </div>
-                                <h3 class="text-xl font-bold text-white mb-2">Application Accepted</h3>
-                                <div class="bg-slate-950 border border-slate-800 rounded p-4 text-left mb-6">
-                                    <p class="text-slate-400 text-xs mb-2">System Message:</p>
-                                    <p class="text-white text-sm">"Your Fit Score indicates you are ready for the Accelerator."</p>
-                                </div>
-                                <p class="text-slate-400 text-sm mb-4">Stop manually vetting prospects. Let the logic do it.</p>
-                                <a href="index.html#contact" class="block w-full py-3 bg-brand-accent hover:bg-white text-slate-900 font-bold rounded-lg transition-colors mb-4 shadow-lg shadow-green-900/20">
-                                    Deploy This Gatekeeper
-                                </a>
-                                <button class="js-quiz-reset text-cyan-400 text-xs hover:underline">Restart Audit</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step hidden" id="gate-fail">
-                             <div class="text-center py-8">
-                                <div class="w-16 h-16 bg-slate-800 text-slate-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                                    <i class="fa-solid fa-lock"></i>
-                                </div>
-                                <h3 class="text-xl font-bold text-white mb-2">Application Received</h3>
-                                 <p class="text-slate-400 text-sm mb-6 px-4">You successfully filtered out a low-fit lead automatically. This saves you 15 minutes of phone time.</p>
-                                 <a href="index.html#contact" class="block w-full py-3 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition-colors mb-4">
-                                    Build This Filter
-                                </a>
-                                 <button class="js-quiz-reset text-cyan-400 text-xs hover:underline">Restart Audit</button>
-                            </div>
-                        </div>
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>Zero missed emergency calls</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>&lt; 3 minute response time</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>100% automated follow-up</span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="bg-[#0f172a] border border-slate-800 rounded-2xl overflow-hidden relative h-full min-h-[450px] flex flex-col font-mono text-sm shadow-2xl hidden lg:flex js-col-terminal">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center gap-2">
-                             <div class="flex gap-1.5">
-                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-                            </div>
-                            <span class="text-xs text-slate-500 ml-2">logic_engine.log</span>
-                            <span class="ml-auto text-xs text-green-500 animate-pulse">● Live</span>
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Twilio</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Airtable</span>
                         </div>
-                        <div class="js-gate-terminal terminal-scroll flex-1 p-6 overflow-y-auto space-y-2 text-slate-300">
-                            <div><span class="text-slate-500">[System]</span> > Session initialized...</div>
-                        </div>
-                         <div class="absolute inset-0 bg-purple-500/5 pointer-events-none mix-blend-overlay"></div>
+                        
+                        <a href="case-study-landscaping.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
+                            Read Case Study
+                        </a>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
+
+            <article class="project-card bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-2xl">
+                <div class="h-64 w-full img-pattern relative border-b border-slate-800 group">
+                    <img src="images/n8n2.webp" alt="Gatekeeper Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                </div>
+                
+                <div class="p-8 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Sales Pipeline Automation for Consultants</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
+                    </div>
+                    <p class="text-sm text-cyan-400 font-medium mb-4">Consulting • Sales Operations</p>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        A logic-based application funnel that audits prospects before they can book a call. It calculates a "Fit Score" in real-time—only high-scoring leads get access to the calendar, while others are routed to a nurture sequence.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>100% qualified calendar bookings</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>20+ hours saved per week</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>Zero latency routing (0ms)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">HubSpot</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Webhooks</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Logic</span>
+                        </div>
+                        
+                        <a href="case-study-gatekeeper.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
+                            Read Case Study
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-2xl">
+                <div class="h-64 w-full img-pattern relative border-b border-slate-800 group">
+    <img src="images/movers-n8n.webp" alt="Movers Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+</div>
+                
+                
+                <div class="p-8 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Booking & Operations Automation for Logistics Companies</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
+                    </div>
+                    <p class="text-sm text-cyan-400 font-medium mb-4">Logistics • Business Automation</p>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        A self-healing booking system that sanitizes messy customer data (like bad phone numbers) instantly. It identifies high-value commercial jobs and routes them to a VIP lane for immediate owner attention.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>&lt; 5 minute average response</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>0% data entry errors</span>
+                            </li>
+                            <li class="flex items-start text-sm text-slate-400">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
+                                <span>100% ROI (No new hires)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Javascript</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Regex</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">API</span>
+                        </div>
+                        
+                        <a href="case-study-movers.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
+                            Read Case Study
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="mt-24 text-center border-t border-slate-900 pt-12">
+            <p class="text-slate-500 text-sm font-mono mb-2">CURRENTLY BUILDING</p>
+            <h4 class="text-white font-bold text-lg">AI Voice Receptionist</h4>
+            <p class="text-slate-600 text-sm mt-2">Experimental voice agent for after-hours scheduling.</p>
+        </div>
 
     </div>
 
     <footer class="bg-slate-950 py-10 border-t border-slate-900">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
             <div class="space-y-4">
                 <div class="code-font text-cyan-400 font-bold text-lg">&lt;Dev/Nnaemeka&gt;</div>
                 <p class="text-slate-500">Business Automation Designer.</p>
                 <div class="flex gap-4 pt-2">
-                    <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://github.com/Nnaemeka-tech" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://x.com/Nnaemeka_20" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <div class="text-slate-600 pt-2 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
             </div>
             <div class="font-mono text-slate-400 space-y-2">
-                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
-                <a href="index.html#framework" class="block hover:text-white transition-colors">> /view_framework</a>
-                <a href="index.html#interface" class="block hover:text-white transition-colors">> /view_interfaces</a>
-                <a href="index.html#contact" class="block hover:text-white transition-colors">> /initiate_contact</a>
+                <div class="text-slate-600 text-xs uppercase mb-2">Menu</div>
+                <a href="index.html" class="block hover:text-white transition-colors">Home</a>
+                <a href="#" class="block text-white transition-colors">The Lab</a>
             </div>
             <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
-                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
-                <div>System Status: <span class="text-green-500">● Operational</span></div>
-                <div id="server-time">HQ TIME: --:--:--</div>
-                <div>Loc: Lagos, NG [Remote]</div>
+                <div class="text-slate-600 text-xs uppercase mb-2">Status</div>
+                <div>System: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG</div>
             </div>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. Mobile Menu Logic
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            if(btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); }); }
-
-            // 2. Lagos Time Logic
-            function updateTime() {
-                const timeString = new Date().toLocaleTimeString('en-US', { timeZone: 'Africa/Lagos', hour12: false });
-                const el = document.getElementById('server-time');
-                if(el) el.innerText = `HQ TIME: ${timeString}`;
-            }
-            setInterval(updateTime, 1000);
-            updateTime();
-
-            // 3. MOBILE TABS LOGIC (Switch between Input / Terminal)
-            document.querySelectorAll('.project-module').forEach(module => {
-                const tabs = module.querySelectorAll('.js-tab-btn');
-                const inputCol = module.querySelector('.js-col-input');
-                const termCol = module.querySelector('.js-col-terminal');
-
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        // Reset tabs style
-                        tabs.forEach(t => {
-                            t.classList.remove('tab-active');
-                            t.classList.add('tab-inactive');
-                        });
-                        // Activate current tab
-                        tab.classList.add('tab-active');
-                        tab.classList.remove('tab-inactive');
-
-                        // Switch Views
-                        const target = tab.dataset.target;
-                        if(target === 'input') {
-                            inputCol.classList.remove('hidden');
-                            termCol.classList.add('hidden');
-                        } else {
-                            inputCol.classList.add('hidden');
-                            termCol.classList.remove('hidden');
-                            termCol.classList.add('flex'); // Ensure flex is restored
-                        }
-                    });
-                });
-            });
-
-            // 4. PROJECT 1 LOGIC (Lead Qualification)
-            const p1 = document.querySelector('.project-module[data-id="landscape-intent"]');
-            if(p1) {
-                const adCard = p1.querySelector('.js-source-trigger');
-                const form = p1.querySelector('.js-lab-form');
-                const triggerView = p1.querySelector('.js-trigger-view');
-                const successMsg = p1.querySelector('.js-success');
-                const terminal = p1.querySelector('.js-terminal-output');
-                const submitBtn = p1.querySelector('.js-submit-btn');
-                const resetBtn = p1.querySelector('.js-reset-btn');
-                const scrollBtn = p1.querySelector('.js-scroll-to-lab');
-                
-                const inputName = p1.querySelector('.js-input-name');
-                const inputEmail = p1.querySelector('.js-input-email');
-                const inputInquiry = p1.querySelector('.js-input-inquiry');
-
-                if(scrollBtn) scrollBtn.addEventListener('click', () => { p1.querySelector('.lab-container').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-
-                function log(msg, type = 'info') {
-                    const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
-                    let color = 'text-slate-300'; let prefix = '>';
-                    if (type === 'highlight') { color = 'text-cyan-400 font-bold'; prefix = 'ℹ'; }
-                    if (type === 'alert') { color = 'text-yellow-400'; prefix = '⚠'; }
-                    if (type === 'success') { color = 'text-green-400'; prefix = '✓'; }
-                    terminal.innerHTML += `<div><span class="text-slate-500">[${time}]</span> <span class="${color}">${prefix} ${msg}</span></div>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                }
-
-                if(adCard) adCard.addEventListener('click', () => { triggerView.classList.add('hidden'); form.classList.remove('hidden'); log('CONNECTION ESTABLISHED: Source Google Ads'); });
-                if(submitBtn) submitBtn.addEventListener('click', () => {
-                    const inquiry = inputInquiry.value;
-                    if(!inquiry) { alert("Please fill out the inquiry."); return; }
-                    form.classList.add('hidden'); successMsg.classList.remove('hidden');
-                    log('------------------------------------------'); log('INCOMING POST REQUEST (Webhook)', 'highlight');
-                    setTimeout(() => log(`"name": "${inputName.value}"`), 200);
-                    setTimeout(() => log(`"email": "${inputEmail.value}"`), 600);
-                    setTimeout(() => log(`"inquiry": "${inquiry}"`), 1000);
-                    setTimeout(() => { log('------------------------------------------'); log('DATA LOGGED: Airtable Record Created.', 'success'); log('ROUTING LOGIC: Starting sequence >>>', 'alert'); }, 1400);
-                });
-                if(resetBtn) resetBtn.addEventListener('click', () => { successMsg.classList.add('hidden'); triggerView.classList.remove('hidden'); inputInquiry.value = ""; terminal.innerHTML = '<div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>'; });
-            }
-
-            // 5. PROJECT 2 LOGIC (The Gatekeeper)
-            const p2 = document.querySelector('.project-module[data-id="gatekeeper"]');
-            if(p2) {
-                let score = 0;
-                const terminal = p2.querySelector('.js-gate-terminal');
-                const nameInput = p2.querySelector('.js-quiz-name');
-                const emailInput = p2.querySelector('.js-quiz-email');
-                const scrollBtn = p2.querySelector('.js-scroll-to-gatekeeper');
-                
-                if(scrollBtn) scrollBtn.addEventListener('click', () => { p2.querySelector('.lab-container').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-
-                function gLog(msg, type = 'info') {
-                    const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
-                    let color = 'text-slate-300';
-                    if (type === 'calc') color = 'text-purple-400';
-                    if (type === 'success') color = 'text-green-400';
-                    if (type === 'fail') color = 'text-red-400';
-                    terminal.innerHTML += `<div><span class="text-slate-500">[${time}]</span> <span class="${color}">> ${msg}</span></div>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                }
-
-                // Step 0: Name & Email Validation
-                p2.querySelector('.js-quiz-next').addEventListener('click', function() {
-                    if(!nameInput.value || !emailInput.value) { alert("Please enter your name and email."); return; }
-                    gLog(`SESSION STARTED: User "${nameInput.value}"`);
-                    changeStep(0, 1);
-                });
-
-                // Quiz Options
-                p2.querySelectorAll('.js-quiz-option').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const points = parseInt(this.dataset.points);
-                        const label = this.dataset.label;
-                        score += points;
-                        
-                        gLog(`INPUT: "${label}" selected.`);
-                        setTimeout(() => gLog(`CALC: +${points} points added. (Total: ${score})`, 'calc'), 300);
-
-                        if(this.dataset.final) {
-                            setTimeout(() => finalize(), 1000);
-                        } else {
-                            const currentStep = this.closest('.quiz-step');
-                            const nextStepId = this.dataset.next;
-                            setTimeout(() => {
-                                currentStep.classList.add('hidden');
-                                p2.querySelector(`.quiz-step[data-step="${nextStepId}"]`).classList.remove('hidden');
-                            }, 600);
-                        }
-                    });
-                });
-
-                function finalize() {
-                    const step3 = p2.querySelector('.quiz-step[data-step="3"]');
-                    step3.classList.add('hidden');
-                    gLog('--------------------------------');
-                    gLog(`FINAL SCORE CALCULATION: ${score}/100`, 'calc');
-                    
-                    if(score >= 70) {
-                        gLog('DECISION: QUALIFIED (High Value Lead)', 'success');
-                        gLog('ACTION: Triggering Email Workflow -> "Send Booking Link"', 'success');
-                        p2.querySelector('#gate-success').classList.remove('hidden');
-                    } else {
-                        gLog('DECISION: UNQUALIFIED (Low Fit Score)', 'fail');
-                        gLog('ACTION: Triggering Email Workflow -> "Send Nurture Course"', 'fail');
-                        p2.querySelector('#gate-fail').classList.remove('hidden');
-                    }
-                }
-
-                function changeStep(from, to) {
-                    p2.querySelector(`.quiz-step[data-step="${from}"]`).classList.add('hidden');
-                    p2.querySelector(`.quiz-step[data-step="${to}"]`).classList.remove('hidden');
-                }
-
-                p2.querySelectorAll('.js-quiz-reset').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        score = 0;
-                        nameInput.value = "";
-                        emailInput.value = "";
-                        terminal.innerHTML = '<div><span class="text-slate-500">[System]</span> > Session initialized...</div>';
-                        p2.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
-                        p2.querySelector('.quiz-step[data-step="0"]').classList.remove('hidden');
-                    });
-                });
-            }
-        });
-    </script>
 </body>
 </html>

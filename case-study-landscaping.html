@@ -12,7 +12,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: The Digital Foreman | Nnaemeka</title>
+    <title>Case Study: Automated Lead Management System for Landscaping Businesses< | Nnaemeka</title>
     <meta name="description" content="An intelligent lead triage system that ensures zero missed emergencies for high-volume landscaping businesses.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,7 +32,7 @@
             }
         }
     </script>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <style>
@@ -41,6 +41,49 @@
         pre::-webkit-scrollbar { height: 8px; }
         pre::-webkit-scrollbar-track { background: #1e293b; }
         pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+        /* --- ADDED FOR SIMULATION --- */
+        .terminal-scroll::-webkit-scrollbar { width: 6px; }
+        .terminal-scroll::-webkit-scrollbar-track { background: #0f172a; }
+        .terminal-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+        .search-result-card {
+            font-family: Arial, sans-serif;
+            background: #202124;
+            color: #bdc1c6;
+            padding: 16px;
+            border: 1px solid #3c4043;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .search-result-card:hover { border-color: #8ab4f8; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .promoted-tag { color: #202124; background-color: #bdc1c6; font-weight: bold; font-size: 11px; padding: 2px 4px; border-radius: 2px; margin-right: 8px; }
+        .search-title { color: #8ab4f8; font-size: 18px; line-height: 24px; margin-top: 6px; margin-bottom: 4px; }
+        
+        .lab-input {
+            width: 100%;
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .lab-input:focus { border-color: #22d3ee; }
+        .lab-button {
+            background-color: #22d3ee;
+            color: #020617;
+            font-weight: bold;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .lab-button:hover { background-color: #06b6d4; }
+        
+        .tab-active { border-bottom: 2px solid #00dc82; color: #00dc82; background: rgba(0, 220, 130, 0.05); }
+        .tab-inactive { color: #64748b; }
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen">
@@ -92,13 +135,13 @@
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 bg-slate-800 rounded text-xs text-cyan-400 border border-slate-700">n8n</span>
                                 <span class="px-2 py-1 bg-slate-800 rounded text-xs text-yellow-400 border border-slate-700">Airtable</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-red-400 border border-slate-700">Twilio</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-red-400 border border-slate-700">Twilio (SMS)</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 pt-6 border-t border-slate-800">
-                        <a href="/#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
+                        <a href="#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
                             Book Strategy Call
                         </a>
                         <p class="text-center text-xs text-slate-500 mt-3">Free 15-min logic mapping session</p>
@@ -131,24 +174,32 @@
                         This creates a bottleneck where:
                     </p>
 
-                    <ul class="space-y-3 mb-6">
-                        <li class="flex items-start text-slate-400">
-                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-                            Urgent tree removal requests get delayed.
-                        </li>
-                        <li class="flex items-start text-slate-400">
-                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-                            High-value hardscaping projects receive slow responses.
-                        </li>
-                        <li class="flex items-start text-slate-400">
-                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-                            Owners spend time sorting messages instead of running the business.
-                        </li>
-                    </ul>
+                        <ul class="space-y-3 mb-6">
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Urgent tree removal requests get delayed.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            High-value hardscaping projects receive slow responses.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Owners spend time sorting messages instead of running the business.
+        </li>
+        <li class="flex items-start text-slate-400">
+            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+            Emergencies are handled inconsistently.
+        </li>
+    </ul>
+
+    <p class="text-slate-400 leading-relaxed mb-6">
+        The business needed a way to understand each inquiry and take the right action immediately, automatically.
+    </p>
 
                     <div class="p-4 bg-red-900/10 border border-red-500/20 rounded-lg">
                         <p class="text-red-400 text-sm font-mono">
-                            <i class="fa-solid fa-triangle-exclamation mr-2"></i> The Risk: Manual triage is slow and error-prone. A missed emergency call destroys reputation; a missed hardscaping lead destroys revenue.
+                            <i class="fa-solid fa-triangle-exclamation mr-2"></i> The Risk: Manual triage is slow and error-prone. A missed emergency call can destroy a reputation; a missed hardscaping lead can destroy revenue.
                         </p>
                     </div>
                 </section>
@@ -159,72 +210,78 @@
                         The Solution: Three Lanes of Service
                     </h2>
                     <p class="text-slate-400 leading-relaxed mb-6">
-                        I designed a custom lead automation system that acts as a digital intake and dispatch assistant. When a new inquiry is submitted, the system:
-                    </p>
+        I designed a custom lead automation system that acts as a digital intake and dispatch assistant for landscaping companies. When a new inquiry is submitted, the system:
+    </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-database"></i></div>
-                            <p class="text-sm text-slate-300">
-                                <strong>Captures & Stores</strong> the lead in a structured CRM (Airtable).
-                            </p>
-                        </div>
-                        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-microchip"></i></div>
-                            <p class="text-sm text-slate-300">
-                                <strong>Analyzes</strong> the inquiry text to determine urgency.
-                            </p>
-                        </div>
-                        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-share-nodes"></i></div>
-                            <p class="text-sm text-slate-300">
-                                <strong>Routes</strong> the lead into the correct workflow path.
-                            </p>
-                        </div>
-                        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-bell"></i></div>
-                            <p class="text-sm text-slate-300">
-                                <strong>Notifies</strong> the owner only when absolutely required.
-                            </p>
-                        </div>
-                    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-database"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Captures & Stores</strong> the lead in a structured CRM (Airtable) immediately.
+            </p>
+        </div>
 
-                    <p class="text-slate-400 leading-relaxed mb-6">
-                        The system categorizes leads into three primary groups:
-                    </p>
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-microchip"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Analyzes</strong> the inquiry text to determine urgency and service type using logic.
+            </p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-share-nodes"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Routes</strong> the lead into the correct workflow path automatically.
+            </p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-bell"></i></div>
+            <p class="text-sm text-slate-300">
+                <strong>Notifies</strong> the owner only when direct attention is absolutely required.
+            </p>
+        </div>
+    </div>
+
+    <p class="text-slate-400 leading-relaxed mb-6">
+        The system categorizes leads into three primary groups:
+    </p>
+
 
                     <div class="grid grid-cols-1 gap-4 mb-8">
                         
-                        <div class="p-5 rounded-lg border border-red-500/30 bg-red-500/5 flex items-start gap-4 hover:bg-red-500/10 transition-colors cursor-default">
+                        <div class="p-5 rounded-lg border border-red-500/30 bg-red-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
                                 <i class="fa-solid fa-bolt"></i>
                             </div>
                             <div>
                                 <h4 class="text-red-400 font-bold mb-1">Lane 1: Emergency (Tree/Storm)</h4>
-                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Overrides phone mute. Sends SMS alarm to Owner + Manager. Auto-replies to customer.</p>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Overrides phone mute. Sends SMS alarm to Owner + Manager. Auto-replies to customer: "We received your emergency alert."</p>
                             </div>
                         </div>
 
-                        <div class="p-5 rounded-lg border border-yellow-500/30 bg-yellow-500/5 flex items-start gap-4 hover:bg-yellow-500/10 transition-colors cursor-default">
+                        <div class="p-5 rounded-lg border border-yellow-500/30 bg-yellow-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-500 shrink-0">
                                 <i class="fa-solid fa-gem"></i>
                             </div>
                             <div>
                                 <h4 class="text-yellow-400 font-bold mb-1">Lane 2: Project (Patio/Hardscape)</h4>
-                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Flags lead as "Priority". Sends "Digital Foreman" email to qualify lead materials instantly.</p>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Flags lead as "Priority" in CRM. Sends "Digital Foreman" email asking about materials (Pavers vs. Stone) to qualify lead instantly.</p>
                             </div>
                         </div>
 
-                        <div class="p-5 rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-start gap-4 hover:bg-blue-500/10 transition-colors cursor-default">
+                        <div class="p-5 rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
                                 <i class="fa-solid fa-calendar-check"></i>
                             </div>
                             <div>
                                 <h4 class="text-blue-400 font-bold mb-1">Lane 3: Routine (Mowing)</h4>
-                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Fully automated. Sends standard quote questionnaire. Owner is <u>not</u> disturbed.</p>
+                                <p class="text-slate-400 text-sm"><strong>Action:</strong> Fully automated. Sends standard quote questionnaire. Owner is not disturbed.</p>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="mb-8">
                         <div class="bg-slate-900 border border-slate-700 rounded-lg overflow-hidden shadow-2xl group">
@@ -333,12 +390,98 @@
                     </div>
                 </section>
 
+                <section class="mt-16 mb-16 border-b border-slate-800 pb-12">
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-2 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <div class="text-xs font-mono text-cyan-400 bg-cyan-900/20 border border-cyan-500/30 px-2 py-1 rounded">
+                                ● LIVE SIMULATION ACTIVE
+                            </div>
+                        </div>
+                        
+                        <div class="lab-container p-6 simulation-root" data-id="landscape-intent">
+                            
+                            <h3 class="text-2xl font-bold text-white mb-2">Try the Logic Live</h3>
+                            <p class="text-slate-400 text-sm mb-8">Simulate a customer coming from Google Ads. Type an emergency keyword (e.g., "Tree fell") to see the system react.</p>
+
+                            <div class="lg:hidden flex mb-4 border-b border-slate-800">
+                                <button class="flex-1 py-3 text-sm font-mono font-bold tab-active js-tab-btn" data-target="input">INPUT</button>
+                                <button class="flex-1 py-3 text-sm font-mono font-bold tab-inactive js-tab-btn" data-target="terminal">TERMINAL</button>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 h-fit min-h-[450px] js-col-input">
+                                    <div class="js-trigger-view">
+                                        <div class="mb-6 border-b border-slate-800 pb-4">
+                                            <h3 class="text-xl font-bold text-white">Traffic Source</h3>
+                                            <p class="text-slate-500 text-xs mt-1 font-mono">Simulating Mobile Google Search</p>
+                                        </div>
+                                        <div class="bg-black p-6 rounded-xl border border-slate-800 js-source-trigger search-result-card">
+                                            <div class="flex items-center mb-1">
+                                                <span class="promoted-tag">Promoted</span>
+                                                <span class="text-xs text-slate-400">landscape-pros.com > emergency</span>
+                                            </div>
+                                            <div class="search-title">24/7 Emergency Tree Service</div>
+                                            <div class="text-slate-400 text-sm">
+                                                Storm damage? We deploy crews within 1 hour. Licensed & Insured. Click for Priority Response.
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-4 text-xs text-slate-600 animate-pulse">
+                                            Click the result to simulate a user
+                                        </div>
+                                    </div>
+
+                                    <form class="js-lab-form hidden transition-opacity duration-500" onsubmit="return false;">
+                                        <div class="mb-6 border-b border-slate-800 pb-4 flex justify-between items-center">
+                                            <div>
+                                                <h3 class="text-xl font-bold text-white">Priority Intake</h3>
+                                                <p class="text-slate-500 text-xs mt-1 font-mono">Data Entry Point</p>
+                                            </div>
+                                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded border border-blue-700">Source: Google Ads</span>
+                                        </div>
+                                        <div class="space-y-4">
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div><label class="block text-slate-400 text-xs font-bold mb-2">Name</label><input type="text" class="js-input-name lab-input text-sm" placeholder="John Doe" value="John Doe"></div>
+                                                <div><label class="block text-slate-400 text-xs font-bold mb-2">Phone</label><input type="text" class="js-input-phone lab-input text-sm" placeholder="(555) 123-4567" value="(555) 019-2834"></div>
+                                            </div>
+                                            <div><label class="block text-slate-400 text-xs font-bold mb-2">Email</label><input type="email" class="js-input-email lab-input text-sm" placeholder="john@example.com" value="john@example.com"></div>
+                                            <div><label class="block text-cyan-400 text-xs font-bold mb-2 uppercase">How can we help?</label><textarea class="js-input-inquiry lab-input text-sm h-20 resize-none" placeholder="Describe the issue..."></textarea><p class="text-slate-600 text-[10px] mt-1">Try keywords like: "Tree fell on my roof", "Storm damage", "Emergency"</p></div>
+                                            <button type="button" class="js-submit-btn lab-button w-full flex justify-center items-center gap-2 mt-4">Submit Request <i class="fa-solid fa-paper-plane"></i></button>
+                                        </div>
+                                    </form>
+
+                                    <div class="js-success hidden text-center py-8">
+                                        <div class="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl"><i class="fa-solid fa-check"></i></div>
+                                        <h3 class="text-xl font-bold text-white mb-2">Logic Executed in 120ms</h3>
+                                        <p class="text-slate-400 text-sm mb-6 px-4">While your competitor is still finding their phone, you just secured the lead.</p>
+                                        <button class="js-reset-btn text-cyan-400 text-xs hover:underline">Restart Simulation</button>
+                                    </div>
+                                </div>
+
+                                <div class="bg-[#0f172a] border border-slate-800 rounded-2xl overflow-hidden relative h-full min-h-[450px] flex flex-col font-mono text-sm shadow-2xl hidden lg:flex js-col-terminal">
+                                    <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center gap-2">
+                                        <div class="flex gap-1.5">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                                        </div>
+                                        <span class="text-xs text-slate-500 ml-2">server_log.txt</span>
+                                        <span class="ml-auto text-xs text-green-500 animate-pulse">● Live</span>
+                                    </div>
+                                    <div class="js-terminal-output terminal-scroll flex-1 p-6 overflow-y-auto space-y-2 text-slate-300">
+                                        <div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>
+                                    </div>
+                                    <div class="absolute inset-0 bg-cyan-500/5 pointer-events-none mix-blend-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </section>
                 <div class="mt-16 p-8 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
                     <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative z-10">
                         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Want this exact system for your business?</h3>
                         <p class="text-slate-400 mb-8 max-w-lg mx-auto">Stop missing leads and start sleeping better. I will map out your current chaos and design a custom "Digital Foreman" for you.</p>
-                        <a href="/#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
                             Book a 15-Min Logic Mapping Call
                             <i class="fa-solid fa-arrow-right ml-2"></i>
                         </a>
@@ -353,5 +496,85 @@
         <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with n8n & Logic.</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Shared Logic: Mobile Tabs
+            const module = document.querySelector('.simulation-root');
+            if(module) {
+                const tabs = module.querySelectorAll('.js-tab-btn');
+                const inputCol = module.querySelector('.js-col-input');
+                const termCol = module.querySelector('.js-col-terminal');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => { t.classList.remove('tab-active'); t.classList.add('tab-inactive'); });
+                        tab.classList.add('tab-active');
+                        tab.classList.remove('tab-inactive');
+                        const target = tab.dataset.target;
+                        if(target === 'input') {
+                            inputCol.classList.remove('hidden');
+                            termCol.classList.add('hidden');
+                        } else {
+                            inputCol.classList.add('hidden');
+                            termCol.classList.remove('hidden');
+                            termCol.classList.add('flex');
+                        }
+                    });
+                });
+            }
+
+            // Digital Foreman Specific Logic
+            const p1 = document.querySelector('.simulation-root[data-id="landscape-intent"]');
+            if(p1) {
+                const adCard = p1.querySelector('.js-source-trigger');
+                const form = p1.querySelector('.js-lab-form');
+                const triggerView = p1.querySelector('.js-trigger-view');
+                const successMsg = p1.querySelector('.js-success');
+                const terminal = p1.querySelector('.js-terminal-output');
+                const submitBtn = p1.querySelector('.js-submit-btn');
+                const resetBtn = p1.querySelector('.js-reset-btn');
+                
+                const inputName = p1.querySelector('.js-input-name');
+                const inputEmail = p1.querySelector('.js-input-email');
+                const inputInquiry = p1.querySelector('.js-input-inquiry');
+
+                function log(msg, type = 'info') {
+                    const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
+                    let color = 'text-slate-300'; let prefix = '>';
+                    if (type === 'highlight') { color = 'text-cyan-400 font-bold'; prefix = 'ℹ'; }
+                    if (type === 'alert') { color = 'text-yellow-400'; prefix = '⚠'; }
+                    if (type === 'success') { color = 'text-green-400'; prefix = '✓'; }
+                    terminal.innerHTML += `<div><span class="text-slate-500">[${time}]</span> <span class="${color}">${prefix} ${msg}</span></div>`;
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+
+                if(adCard) adCard.addEventListener('click', () => { triggerView.classList.add('hidden'); form.classList.remove('hidden'); log('CONNECTION ESTABLISHED: Source Google Ads'); });
+                
+                if(submitBtn) submitBtn.addEventListener('click', () => {
+                    const inquiry = inputInquiry.value;
+                    if(!inquiry) { alert("Please fill out the inquiry."); return; }
+                    form.classList.add('hidden'); successMsg.classList.remove('hidden');
+                    log('------------------------------------------'); log('INCOMING POST REQUEST (Webhook)', 'highlight');
+                    setTimeout(() => log(`"name": "${inputName.value}"`), 200);
+                    setTimeout(() => log(`"email": "${inputEmail.value}"`), 600);
+                    setTimeout(() => log(`"inquiry": "${inquiry}"`), 1000);
+                    setTimeout(() => { 
+                        log('------------------------------------------'); 
+                        log('DATA LOGGED: Airtable Record Created.', 'success'); 
+                        if(inquiry.toLowerCase().includes('emergency') || inquiry.toLowerCase().includes('tree') || inquiry.toLowerCase().includes('storm')) {
+                             log('ANALYSIS: Keywords "Emergency/Tree" Detected', 'alert');
+                             log('ROUTING: High Priority -> SMS Alert Sent', 'success');
+                        } else {
+                             log('ANALYSIS: Standard Inquiry', 'info');
+                             log('ROUTING: Normal Pipeline -> Auto-Reply Sent', 'success');
+                        }
+                    }, 1400);
+                });
+                
+                if(resetBtn) resetBtn.addEventListener('click', () => { successMsg.classList.add('hidden'); triggerView.classList.remove('hidden'); inputInquiry.value = ""; terminal.innerHTML = '<div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>'; });
+            }
+        });
+    </script>
 </body>
 </html>
