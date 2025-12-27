@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SZXRJSQ1KS');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: AI-Assisted Legal Intake Automation | Nnaemeka</title>
+    <meta name="description" content="Eliminating manual data entry for high-volume law firms using Zapier, OpenAI, and Clio.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#00dc82', crm: '#6366f1' }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        /* Placeholder styling for missing images */
+        .img-placeholder {
+            background-image: repeating-linear-gradient(45deg, #1e293b 0, #1e293b 10px, #0f172a 10px, #0f172a 20px);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="lab.html" class="code-font text-cyan-400 font-bold hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Lab
+            </a>
+            <div class="text-xs font-mono text-slate-500">CASE STUDY: ID #004</div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                PROJECT: LEGAL INTAKE AUTOMATION
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">From Unstructured Email to Verified Case File.</h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                How we eliminated manual data entry for a high-volume law firm using Zapier, OpenAI, and Clio.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 sticky top-24 shadow-xl">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="pb-4 border-b border-slate-800/50">
+                            <div class="text-xs text-brand-accent uppercase font-mono mb-1 font-bold">Primary Outcome</div>
+                            <div class="text-white text-xl font-bold leading-tight">Zero-Touch Intake</div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Efficiency</div>
+                            <div class="flex text-green-500 text-xs font-bold items-center">
+                                <i class="fa-solid fa-bolt mr-2"></i>
+                                <span>Instant Case Creation</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-orange-400 border border-slate-700">Zapier</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-green-400 border border-slate-700">OpenAI</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-blue-400 border border-slate-700">Clio</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-yellow-400 border border-slate-700">Drive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
+                            Book System Audit
+                        </a>
+                        <p class="text-center text-xs text-slate-500 mt-3">Free 15-min intake analysis</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+
+                <section class="mb-16 border-b border-slate-800 pb-12">
+                    <h2 class="text-2xl font-bold text-white mb-4">The "Bleeding Neck" Problem</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Legal intake relies on speed and accuracy. However, this firm was drowning in unstructured emails. Staff had to manually read every inquiry, download attachments, check for existing clients, and type data into Clio.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        This manual friction caused three critical failures:
+                    </p>
+
+                    <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg">
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <strong>Data Entry Errors:</strong> Typos in names and phone numbers created broken contact records.
+                            </li>
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-clone"></i></span>
+                                <strong>Duplicate Conflicts:</strong> Staff often created new contacts for existing clients, fragmenting case history.
+                            </li>
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-folder-open"></i></span>
+                                <strong>Lost Files:</strong> Attachments were left in Outlook instead of being properly filed in the matter folder.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">01</span>
+                        The Intelligence Layer (Zapier + AI)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        We built a logic-based listener on the Outlook inbox. Instead of just forwarding emails, we pipe the body text into <strong>OpenAI</strong> via Zapier.
+                    </p>
+                    <div class="mb-12">
+                        <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-brain text-brand-accent mr-2"></i> Structured Extraction
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            The AI doesn't just summarize; it extracts specific entities (Client Name, Urgency, Case Type) into strict JSON format, ensuring clean data for the CRM.
+                        </p>
+                        
+                        <div class="rounded-lg overflow-hidden border border-slate-800 shadow-2xl group mb-3">
+                            <img src="images/legal-zapier-workflow.webp" alt="Zapier Legal Intake Workflow" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 1: The Logic Map (Outlook -> AI -> Database)</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">02</span>
+                        Automated Compliance (Google Drive)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        A clean file system is a lawyer's best friend. The automation creates a standardized folder structure for every new intake instantly.
+                    </p>
+                    <div class="mb-12">
+                        <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-folder-tree text-brand-accent mr-2"></i> No More Lost PDFs
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            Folder names are auto-generated: <code>[Client Email] - [Date]</code>. All attachments are stripped from the email and archived here automatically.
+                        </p>
+
+                        <div class="rounded-lg overflow-hidden border border-slate-800 shadow-2xl group mb-3">
+                             <img src="images/legal-drive-folders.webp" alt="Automated Google Drive Organization" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 2: Automated Client Archives</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">03</span>
+                        The Source of Truth (Clio)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The final step is the most critical: updating the Legal CRM. The system performs a "Conditional Check" before creating records.
+                    </p>
+                    <div class="mb-8">
+                         <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-check-double text-brand-accent mr-2"></i> Duplicate Prevention
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            It searches for the email address first. If the client exists, it appends the new matter. If not, it creates a new Contact. This guarantees <strong>100% database hygiene</strong>.
+                        </p>
+                        
+                        <div class="rounded-lg overflow-hidden border border-slate-800 shadow-2xl group mb-3">
+                             <img src="images/legal-clio-record.webp" alt="Completed Clio Matter Record" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 3: The Final Result (Zero Data Entry)</p>
+                    </div>
+                </section>
+
+                <section class="mt-16 mb-16 border-b border-slate-800 pb-12">
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">The Efficiency Shift</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="p-6 border border-red-900/30 bg-red-900/10 rounded-xl">
+                                <h4 class="text-red-400 font-bold mb-4 flex items-center">
+                                    <i class="fa-solid fa-xmark mr-2"></i> The Old Way
+                                </h4>
+                                <ul class="space-y-4 text-sm text-slate-400">
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Time per Intake</span>
+                                        <span class="text-red-300 font-mono">15-20 mins</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Data Accuracy</span>
+                                        <span class="text-red-300 font-mono">Human Error Risk</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Availability</span>
+                                        <span class="text-red-300 font-mono">Office Hours Only</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="p-6 border border-green-900/30 bg-green-900/10 rounded-xl">
+                                <h4 class="text-brand-accent font-bold mb-4 flex items-center">
+                                    <i class="fa-solid fa-check mr-2"></i> The Automated Way
+                                </h4>
+                                <ul class="space-y-4 text-sm text-slate-400">
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Time per Intake</span>
+                                        <span class="text-brand-accent font-mono">~30 Seconds</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Data Accuracy</span>
+                                        <span class="text-brand-accent font-mono">100% Normalized</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Availability</span>
+                                        <span class="text-brand-accent font-mono">24/7/365</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="mt-16 p-8 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Is your intake process bleeding time?</h3>
+                        <p class="text-slate-400 mb-8 max-w-lg mx-auto">I can deploy this exact architecture for your firm in less than 48 hours.</p>
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                            Automate My Intake
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-10 border-t border-slate-900 text-center">
+        <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with Zapier & Logic.</p>
+    </footer>
+
+</body>
+</html>
