@@ -1,0 +1,35 @@
+/* style.css */
+
+/* 1. SITE CONTAINER (Controls the outside walls of the page sections) */
+.site-container {
+    /* MOBILE: */
+    padding-left: 0px !important; 
+    padding-right: 0px !important;
+    margin-left: 15px !important; 
+    margin-right: 15px !important;
+}
+
+/* 2. CARD PADDING (Controls the text inside ALL dark cards) */
+.card-padding {
+    /* MOBILE: Sets the space inside the card on phones */
+    padding: 15px !important; 
+    
+    /* OPTIONAL: Add top/bottom spacing if the text looks squished vertically */
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* --- DESKTOP RESET (Restores big spacious look on PC) --- */
+@media (min-width: 768px) {
+    .site-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    .card-padding {
+        /* This matches the original spacious design on Desktop */
+        padding: 2rem !important; 
+    }
+}
