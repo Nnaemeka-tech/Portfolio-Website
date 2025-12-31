@@ -28,20 +28,30 @@
                     fontFamily: {
                         mono: ['"Fira Code"', '"Courier New"', 'monospace'],
                         sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
+    
+    <link rel="stylesheet" href="style.css?v=1">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
         .code-font { font-family: 'Fira Code', monospace; }
         .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         
+        .nav-link:hover { color: #22d3ee; }
+        .nav-link:hover::before { content: '[ '; color: #4ade80; }
+        .nav-link:hover::after { content: ' ]'; color: #4ade80; }
+
         /* Placeholder Pattern for Images */
         .img-pattern {
             background-color: #1e293b;
@@ -51,31 +61,104 @@
         
         .project-card { transition: all 0.3s ease; }
         .project-card:hover { transform: translateY(-5px); }
-        /* Specific hover colors handled in HTML via Tailwind classes */
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
 
     <nav class="fixed w-full z-50 glass-panel">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/" class="group flex items-center gap-2 code-font font-bold text-lg hover:text-white transition-colors text-cyan-400">
-                &lt;Dev/Nnaemeka&gt; 
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse group-hover:shadow-[0_0_10px_#4ade80]"></span>
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            
+            <a href="index.html" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
             </a>
-            <div class="hidden md:flex space-x-8 font-mono text-xs tracking-wide text-slate-400">
-                <a href="index.html" class="nav-link transition-all hover:text-white">Home</a>
-                <a href="#" class="text-white font-bold cursor-default">[ The_Lab ]</a>
-            </div>
-            <div class="hidden md:block">
-                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
-                    > Initiate_Project
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="index.html#framework" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Framework</span>
                 </a>
+                <a href="lab.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">The_Lab</span>
+                </a>
+                <a href="index.html#interface" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Interfaces</span>
+                </a>
+                <a href="index.html#about" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About_Me</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-cyan-400 bg-slate-900/50 backdrop-blur hover:border-cyan-500 hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="index.html#framework" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Framework</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="lab.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">The_Lab</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#interface" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Interfaces</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#about" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About_Me</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="index.html#contact" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold font-mono text-sm rounded-lg shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-[1.02]">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="pt-40 pb-16 px-6">
-        <div class="max-w-7xl mx-auto text-center">
+    <section class="pt-40 pb-16">
+        <div class="max-w-7xl site-container text-center">
             <div class="inline-flex items-center px-3 py-1 border border-slate-700 bg-slate-900 rounded-full text-slate-400 text-xs font-mono mb-6">
                 <span class="w-2 h-2 rounded-full bg-green-500 inline-block mr-2 animate-pulse"></span>
                 SYSTEMS ONLINE
@@ -89,7 +172,7 @@
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="max-w-7xl site-container pb-24">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -97,51 +180,32 @@
                 <div class="absolute top-4 right-4 z-10">
                     <span class="text-[10px] font-bold bg-indigo-500 text-white px-2 py-1 rounded shadow-lg animate-pulse">NEW</span>
                 </div>
-
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/adhoc6.webp" alt="AI Intake Assistant Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                
-                <div class="p-8 flex-1 flex flex-col">
+                <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold text-white">The 24/7 Intake Assistant</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
                     <p class="text-sm text-indigo-400 font-medium mb-4">Private Practice • Local AI</p>
-                    
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        A privacy-first intake agent that runs entirely on local infrastructure. It uses Llama 3 to analyze sensitive client forms and draft personalized strategy plans—without any data ever touching the cloud.
+                        A privacy-first intake agent that runs entirely on local infrastructure. It uses Llama 3 to analyze sensitive client forms.
                     </p>
-                    
                     <div class="mb-6">
                         <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-brain text-indigo-500"></i> Key Results
                         </h4>
                         <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>100% Data Privacy (Offline AI)</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>&lt; 60s Analysis Time</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>0 "Ghosted" Inquiries</span>
-                            </li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>100% Data Privacy</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>&lt; 60s Analysis Time</span></li>
                         </ul>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Ollama</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Llama 3</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">NocoDB</span>
                         </div>
-                        
                         <a href="case-study-therapy.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-indigo-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-indigo-500">
                             Read Case Study
                         </a>
@@ -153,46 +217,29 @@
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/n8n-landscaping.webp" alt="Landscaping Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                
-                <div class="p-8 flex-1 flex flex-col">
+                <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white">Lead Triage Automation for Field Services</h3>
+                        <h3 class="text-xl font-bold text-white">Lead Triage Automation</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
                     <p class="text-sm text-cyan-400 font-medium mb-4">Landscaping Services • Lead Gen</p>
-                    
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        An intelligent triage system that intercepts incoming leads from Google Ads. It instantly detects urgency keywords (like "Tree Fell") and routes them to the crew via SMS, while standard quotes go to the CRM.
+                        An intelligent triage system that intercepts incoming leads from Google Ads and routes them to the crew via SMS.
                     </p>
-                    
                     <div class="mb-6">
                         <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
                         </h4>
                         <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>Zero missed emergency calls</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>&lt; 3 minute response time</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>100% automated follow-up</span>
-                            </li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>Zero missed emergency calls</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>100% automated follow-up</span></li>
                         </ul>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Twilio</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Airtable</span>
                         </div>
-                        
                         <a href="case-study-landscaping.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
                             Read Case Study
                         </a>
@@ -204,46 +251,29 @@
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/n8n2.webp" alt="Gatekeeper Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                
-                <div class="p-8 flex-1 flex flex-col">
+                <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white">Sales Pipeline Automation for Consultants</h3>
+                        <h3 class="text-xl font-bold text-white">Sales Pipeline Automation</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
                     <p class="text-sm text-cyan-400 font-medium mb-4">Consulting • Sales Operations</p>
-                    
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        A logic-based application funnel that audits prospects before they can book a call. It calculates a "Fit Score" in real-time—only high-scoring leads get access to the calendar, while others are routed to a nurture sequence.
+                        A logic-based application funnel that audits prospects before they can book a call. It calculates a "Fit Score" in real-time.
                     </p>
-                    
                     <div class="mb-6">
                         <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
                         </h4>
                         <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>100% qualified calendar bookings</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>20+ hours saved per week</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>Zero latency routing (0ms)</span>
-                            </li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>100% qualified bookings</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>20+ hours saved per week</span></li>
                         </ul>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">HubSpot</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Webhooks</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Logic</span>
                         </div>
-                        
                         <a href="case-study-gatekeeper.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
                             Read Case Study
                         </a>
@@ -255,46 +285,29 @@
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/movers-n8n.webp" alt="Movers Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                
-                <div class="p-8 flex-1 flex flex-col">
+                <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white">Booking & Operations Automation for Logistics</h3>
+                        <h3 class="text-xl font-bold text-white">Booking Automation</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
                     <p class="text-sm text-cyan-400 font-medium mb-4">Logistics • Business Automation</p>
-                    
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        A self-healing booking system that sanitizes messy customer data (like bad phone numbers) instantly. It identifies high-value commercial jobs and routes them to a VIP lane for immediate owner attention.
+                        A self-healing booking system that sanitizes messy customer data instantly. It identifies high-value commercial jobs and routes them to a VIP lane.
                     </p>
-                    
                     <div class="mb-6">
                         <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
                         </h4>
                         <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>&lt; 5 minute average response</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>0% data entry errors</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>100% ROI (No new hires)</span>
-                            </li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>&lt; 5 min average response</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>0% data entry errors</span></li>
                         </ul>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Javascript</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Regex</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">API</span>
                         </div>
-                        
                         <a href="case-study-movers.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
                             Read Case Study
                         </a>
@@ -306,47 +319,29 @@
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/legal-zapier-workflow.webp" alt="Legal Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
-                
-                <div class="p-8 flex-1 flex flex-col">
+                <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white">AI-Assisted Legal Intake Automation</h3>
+                        <h3 class="text-xl font-bold text-white">AI-Assisted Legal Intake</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
                     </div>
                     <p class="text-sm text-cyan-400 font-medium mb-4">Legal Tech • Process Automation</p>
-                    
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        An intelligent inbox listener that parses unstructured client emails using OpenAI. It creates verified records in Clio and automatically creates a dedicated Google Drive folder to archive attachments and case summaries.
+                        An intelligent inbox listener that parses unstructured client emails using OpenAI. It creates verified records in Clio automatically.
                     </p>
-                    
                     <div class="mb-6">
                         <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
                         </h4>
                         <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>Zero manual data entry</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>Automated file compliance</span>
-                            </li>
-                            <li class="flex items-start text-sm text-slate-400">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i>
-                                <span>100% database hygiene</span>
-                            </li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>Zero manual data entry</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>100% database hygiene</span></li>
                         </ul>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Tools Used</h4>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Zapier</span>
                             <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">OpenAI</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Clio</span>
-                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Google Drive</span>
                         </div>
-                        
                         <a href="case-study-legal.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-cyan-500">
                             Read Case Study
                         </a>
@@ -364,29 +359,84 @@
 
     </div>
 
-    <footer class="bg-slate-950 py-10 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+            
             <div class="space-y-4">
-                <div class="code-font text-cyan-400 font-bold text-lg">&lt;Dev/Nnaemeka&gt;</div>
+                <a href="/" class="group flex items-center gap-0.5 select-none w-fit" aria-label="Nnaemeka Logic Architect">
+                    <div class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                        <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                        <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                    <div class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
                 <p class="text-slate-500">Business Automation Designer.</p>
                 <div class="flex gap-4 pt-2">
-                    <a href="https://x.com/Nnaemeka_20" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://github.com/Nnaemeka-tech" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
             </div>
+
             <div class="font-mono text-slate-400 space-y-2">
-                <div class="text-slate-600 text-xs uppercase mb-2">Menu</div>
-                <a href="index.html" class="block hover:text-white transition-colors">Home</a>
-                <a href="#" class="block text-white transition-colors">The Lab</a>
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="lab.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="index.html#interface" class="block hover:text-white transition-colors">> /view_interfaces</a>
+                <a href="index.html#contact" class="block hover:text-white transition-colors">> /initiate_contact</a>
             </div>
+
             <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
-                <div class="text-slate-600 text-xs uppercase mb-2">Status</div>
-                <div>System: <span class="text-green-500">● Operational</span></div>
-                <div>Loc: Lagos, NG</div>
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div id="server-time">HQ TIME: --:--:--</div>
+                <div>Loc: Lagos, NG [Remote]</div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle & Icon Swap
+const btn = document.getElementById('mobile-menu-btn');
+const menu = document.getElementById('mobile-menu');
+const icon = document.getElementById('menu-icon');
+
+if(btn && menu && icon) { 
+    btn.addEventListener('click', () => { 
+        // Toggle the menu visibility
+        menu.classList.toggle('hidden');
+        
+        // Swap the Icon (Bars <-> Xmark)
+        if (menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-xmark', 'rotate-90');
+            icon.classList.add('fa-bars', 'rotate-0');
+        } else {
+            icon.classList.remove('fa-bars', 'rotate-0');
+            icon.classList.add('fa-xmark', 'rotate-90');
+        }
+    }); 
+}
+
+
+        // 2. Lagos Time Clock (For Footer)
+        function updateTime() {
+            const timeString = new Date().toLocaleTimeString('en-US', { timeZone: 'Africa/Lagos', hour12: false });
+            document.getElementById('server-time').innerText = `HQ TIME: ${timeString}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 
 </body>
 </html>

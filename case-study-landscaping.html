@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SZXRJSQ1KS');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SZXRJSQ1KS');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Automated Lead Management System for Landscaping Businesses< | Nnaemeka</title>
+    <title>Case Study: Automated Lead Management System for Landscaping Businesses | Nnaemeka</title>
     <meta name="description" content="An intelligent lead triage system that ensures zero missed emergencies for high-volume landscaping businesses.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,17 +32,85 @@
             }
         }
     </script>
+    
+    <link rel="stylesheet" href="style.css?v=1">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
         .code-font { font-family: 'Fira Code', monospace; }
+        
+        /* Scrollbars */
         pre::-webkit-scrollbar { height: 8px; }
         pre::-webkit-scrollbar-track { background: #1e293b; }
         pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
 
-        /* --- ADDED FOR SIMULATION --- */
+        /* Glass Panel Header */
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Layout Utilities */
+        .site-container {
+            max-width: 80rem; 
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .ngw-lightbox {
+            position: fixed; top: 0; left: 0; w-full; h-full;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            display: none; justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .ngw-close {
+            position: absolute; top: 20px; right: 30px;
+            color: white; font-size: 2rem; cursor: pointer; z-index: 10000;
+        }
+        #ngw-lightbox-inner img {
+            max-width: 90vw; max-height: 90vh;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0,220,130,0.2);
+        }
+        
+        /* Interactive Image Container */
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+        .ngw-bg {
+            width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            transition: transform 0.5s ease;
+        }
+        .ngw-window-effect:hover .ngw-bg { transform: scale(1.05); }
+        .ngw-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .ngw-window-effect:hover .ngw-overlay { opacity: 1; }
+
+        /* --- SIMULATION STYLES --- */
         .terminal-scroll::-webkit-scrollbar { width: 6px; }
         .terminal-scroll::-webkit-scrollbar-track { background: #0f172a; }
         .terminal-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -51,7 +119,6 @@
             font-family: Arial, sans-serif;
             background: #202124;
             color: #bdc1c6;
-            padding: 16px;
             border: 1px solid #3c4043;
             border-radius: 12px;
             cursor: pointer;
@@ -72,6 +139,7 @@
             transition: border-color 0.2s;
         }
         .lab-input:focus { border-color: #22d3ee; }
+        
         .lab-button {
             background-color: #22d3ee;
             color: #020617;
@@ -84,20 +152,108 @@
         
         .tab-active { border-bottom: 2px solid #00dc82; color: #00dc82; background: rgba(0, 220, 130, 0.05); }
         .tab-inactive { color: #64748b; }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect { height: 200px; }
+            .card-padding { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen">
 
-    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="lab.html" class="code-font text-cyan-400 font-bold hover:text-white transition-colors">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Lab
+        <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            
+            <a href="index.html" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
             </a>
-            <div class="text-xs font-mono text-slate-500">CASE STUDY: ID #001</div>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="index.html#framework" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Framework</span>
+                </a>
+                <a href="lab.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">The_Lab</span>
+                </a>
+                <a href="index.html#interface" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Interfaces</span>
+                </a>
+                <a href="index.html#about" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About_Me</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-cyan-400 bg-slate-900/50 backdrop-blur hover:border-cyan-500 hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="index.html#framework" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Framework</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="lab.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">The_Lab</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#interface" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Interfaces</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#about" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About_Me</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="index.html#contact" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold font-mono text-sm rounded-lg shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-[1.02]">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+    <main class="pt-32 pb-24 site-container">
         
         <div class="mb-16 border-b border-slate-800 pb-12">
             <div class="inline-flex items-center px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-mono mb-6">
@@ -113,7 +269,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <div class="lg:col-span-4 space-y-8">
-                <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 sticky top-24 shadow-xl">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 card-padding sticky top-24 shadow-xl">
                     <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
                     
                     <div class="space-y-6">
@@ -141,7 +297,7 @@
                     </div>
 
                     <div class="mt-8 pt-6 border-t border-slate-800">
-                        <a href="#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
+                        <a href="index.html#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
                             Book Strategy Call
                         </a>
                         <p class="text-center text-xs text-slate-500 mt-3">Free 15-min logic mapping session</p>
@@ -174,30 +330,30 @@
                         This creates a bottleneck where:
                     </p>
 
-                        <ul class="space-y-3 mb-6">
-        <li class="flex items-start text-slate-400">
-            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-            Urgent tree removal requests get delayed.
-        </li>
-        <li class="flex items-start text-slate-400">
-            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-            High-value hardscaping projects receive slow responses.
-        </li>
-        <li class="flex items-start text-slate-400">
-            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-            Owners spend time sorting messages instead of running the business.
-        </li>
-        <li class="flex items-start text-slate-400">
-            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
-            Emergencies are handled inconsistently.
-        </li>
-    </ul>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start text-slate-400">
+                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+                            Urgent tree removal requests get delayed.
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+                            High-value hardscaping projects receive slow responses.
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+                            Owners spend time sorting messages instead of running the business.
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-xmark"></i></span>
+                            Emergencies are handled inconsistently.
+                        </li>
+                    </ul>
 
-    <p class="text-slate-400 leading-relaxed mb-6">
-        The business needed a way to understand each inquiry and take the right action immediately, automatically.
-    </p>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The business needed a way to understand each inquiry and take the right action immediately, automatically.
+                    </p>
 
-                    <div class="p-4 bg-red-900/10 border border-red-500/20 rounded-lg">
+                    <div class="card-padding bg-red-900/10 border border-red-500/20 rounded-lg">
                         <p class="text-red-400 text-sm font-mono">
                             <i class="fa-solid fa-triangle-exclamation mr-2"></i> The Risk: Manual triage is slow and error-prone. A missed emergency call can destroy a reputation; a missed hardscaping lead can destroy revenue.
                         </p>
@@ -210,48 +366,45 @@
                         The Solution: Three Lanes of Service
                     </h2>
                     <p class="text-slate-400 leading-relaxed mb-6">
-        I designed a custom lead automation system that acts as a digital intake and dispatch assistant for landscaping companies. When a new inquiry is submitted, the system:
-    </p>
+                        I designed a custom lead automation system that acts as a digital intake and dispatch assistant for landscaping companies. When a new inquiry is submitted, the system:
+                    </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        
-        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-database"></i></div>
-            <p class="text-sm text-slate-300">
-                <strong>Captures & Stores</strong> the lead in a structured CRM (Airtable) immediately.
-            </p>
-        </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-database"></i></div>
+                            <p class="text-sm text-slate-300">
+                                <strong>Captures & Stores</strong> the lead in a structured CRM (Airtable) immediately.
+                            </p>
+                        </div>
 
-        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-microchip"></i></div>
-            <p class="text-sm text-slate-300">
-                <strong>Analyzes</strong> the inquiry text to determine urgency and service type using logic.
-            </p>
-        </div>
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-microchip"></i></div>
+                            <p class="text-sm text-slate-300">
+                                <strong>Analyzes</strong> the inquiry text to determine urgency and service type using logic.
+                            </p>
+                        </div>
 
-        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-share-nodes"></i></div>
-            <p class="text-sm text-slate-300">
-                <strong>Routes</strong> the lead into the correct workflow path automatically.
-            </p>
-        </div>
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-share-nodes"></i></div>
+                            <p class="text-sm text-slate-300">
+                                <strong>Routes</strong> the lead into the correct workflow path automatically.
+                            </p>
+                        </div>
 
-        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
-            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-bell"></i></div>
-            <p class="text-sm text-slate-300">
-                <strong>Notifies</strong> the owner only when direct attention is absolutely required.
-            </p>
-        </div>
-    </div>
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg flex items-start gap-3">
+                            <div class="text-cyan-400 mt-1"><i class="fa-solid fa-bell"></i></div>
+                            <p class="text-sm text-slate-300">
+                                <strong>Notifies</strong> the owner only when direct attention is absolutely required.
+                            </p>
+                        </div>
+                    </div>
 
-    <p class="text-slate-400 leading-relaxed mb-6">
-        The system categorizes leads into three primary groups:
-    </p>
-
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The system categorizes leads into three primary groups:
+                    </p>
 
                     <div class="grid grid-cols-1 gap-4 mb-8">
-                        
-                        <div class="p-5 rounded-lg border border-red-500/30 bg-red-500/5 flex items-start gap-4">
+                        <div class="card-padding rounded-lg border border-red-500/30 bg-red-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
                                 <i class="fa-solid fa-bolt"></i>
                             </div>
@@ -261,7 +414,7 @@
                             </div>
                         </div>
 
-                        <div class="p-5 rounded-lg border border-yellow-500/30 bg-yellow-500/5 flex items-start gap-4">
+                        <div class="card-padding rounded-lg border border-yellow-500/30 bg-yellow-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-500 shrink-0">
                                 <i class="fa-solid fa-gem"></i>
                             </div>
@@ -271,7 +424,7 @@
                             </div>
                         </div>
 
-                        <div class="p-5 rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-start gap-4">
+                        <div class="card-padding rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
                                 <i class="fa-solid fa-calendar-check"></i>
                             </div>
@@ -282,27 +435,21 @@
                         </div>
                     </div>
 
-
                     <div class="mb-8">
-                        <div class="bg-slate-900 border border-slate-700 rounded-lg overflow-hidden shadow-2xl group">
-                            <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center gap-2">
-                                <div class="flex gap-1.5">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                                </div>
-                                <span class="text-xs text-slate-400 font-mono ml-2">landscaping_triage_v2.json</span>
-                            </div>
-                            <img src="images/n8n-landscaping.webp" alt="n8n Landscaping Triage Diagram" class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div class="ngw-window-effect shadow-2xl group mb-3" 
+                             data-img1="images/n8n-landscaping.webp" 
+                             data-full="images/n8n-landscaping.webp">
                         </div>
                         <p class="text-xs text-slate-500 mt-2 text-center font-mono">Figure 1: The "Digital Foreman" Triage Logic</p>
                     </div>
 
                     <div class="mt-8">
-                        <img src="images/airtable-view.webp" alt="Airtable CRM Database View" class="w-full h-auto rounded-lg border border-slate-800 shadow-2xl">
+                        <div class="ngw-window-effect shadow-2xl group mb-3" 
+                             data-img1="images/airtable-view.webp" 
+                             data-full="images/airtable-view.webp">
+                        </div>
                         <p class="text-xs text-slate-500 mt-2 text-center font-mono">Figure 2: The Structured Lead Database (Airtable)</p>
                     </div>
-
                 </section>
 
                 <section>
@@ -336,12 +483,13 @@
                             </ul>
                         </div>
 
-                        <div class="w-full h-full min-h-[200px] border-2 border-dashed border-slate-700 bg-slate-900/50 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:border-slate-500 transition-colors relative group">
-                            <img src="images/twilio-sms.webp" alt="Twilio Escalation SMS Alert" class="w-full h-auto rounded-lg border border-slate-800 shadow-2xl">
+                        <div class="ngw-window-effect shadow-2xl group mb-3 border border-dashed border-slate-700 bg-slate-900/50" 
+                             data-img1="images/twilio-sms.webp" 
+                             data-full="images/twilio-sms.webp">
                         </div>
                     </div>                      
 
-                    <div class="mt-8 bg-slate-900 rounded-lg border border-slate-800 p-4 overflow-x-auto">
+                    <div class="mt-8 bg-slate-900 rounded-lg border border-slate-800 card-padding overflow-x-auto">
 <pre class="code-font text-xs text-cyan-300">
 {
   "process": "EMERGENCY_ESCALATION",
@@ -361,7 +509,7 @@
                     </div>
                     <p class="text-xs text-slate-500 mt-2 font-mono">Simulated logic of the Escalation Safety Net.</p>
 
-                    <div class="mt-8 p-4 bg-green-900/10 border border-green-500/20 rounded-lg flex items-start gap-3">
+                    <div class="mt-8 card-padding bg-green-900/10 border border-green-500/20 rounded-lg flex items-start gap-3">
                         <div class="text-green-400 mt-0.5"><i class="fa-solid fa-shield-cat"></i></div>
                         <p class="text-sm text-green-300">
                             <strong>The Result:</strong> This prevents false alarms (waking up the staff) while ensuring 100% protection against missed emergencies.
@@ -375,15 +523,15 @@
                         The Impact
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg text-center">
                             <div class="text-3xl font-bold text-red-400 mb-1">0</div>
                             <div class="text-xs text-slate-500 uppercase">Missed Emergencies</div>
                         </div>
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg text-center">
                             <div class="text-3xl font-bold text-brand-accent mb-1">&lt; 3min</div>
                             <div class="text-xs text-slate-500 uppercase">Response Time</div>
                         </div>
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg text-center">
                             <div class="text-3xl font-bold text-white mb-1">100%</div>
                             <div class="text-xs text-slate-500 uppercase">Reliability Score</div>
                         </div>
@@ -398,7 +546,7 @@
                             </div>
                         </div>
                         
-                        <div class="lab-container p-6 simulation-root" data-id="landscape-intent">
+                        <div class="lab-container card-padding simulation-root" data-id="landscape-intent">
                             
                             <h3 class="text-2xl font-bold text-white mb-2">Try the Logic Live</h3>
                             <p class="text-slate-400 text-sm mb-8">Simulate a customer coming from Google Ads. Type an emergency keyword (e.g., "Tree fell") to see the system react.</p>
@@ -409,13 +557,13 @@
                             </div>
 
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 h-fit min-h-[450px] js-col-input">
+                                <div class="bg-slate-900 border border-slate-800 rounded-2xl card-padding h-fit min-h-[450px] js-col-input">
                                     <div class="js-trigger-view">
                                         <div class="mb-6 border-b border-slate-800 pb-4">
                                             <h3 class="text-xl font-bold text-white">Traffic Source</h3>
                                             <p class="text-slate-500 text-xs mt-1 font-mono">Simulating Mobile Google Search</p>
                                         </div>
-                                        <div class="bg-black p-6 rounded-xl border border-slate-800 js-source-trigger search-result-card">
+                                        <div class="search-result-card card-padding js-source-trigger">
                                             <div class="flex items-center mb-1">
                                                 <span class="promoted-tag">Promoted</span>
                                                 <span class="text-xs text-slate-400">landscape-pros.com > emergency</span>
@@ -467,21 +615,22 @@
                                         <span class="text-xs text-slate-500 ml-2">server_log.txt</span>
                                         <span class="ml-auto text-xs text-green-500 animate-pulse">● Live</span>
                                     </div>
-                                    <div class="js-terminal-output terminal-scroll flex-1 p-6 overflow-y-auto space-y-2 text-slate-300">
+                                    <div class="js-terminal-output terminal-scroll flex-1 card-padding overflow-y-auto space-y-2 text-slate-300">
                                         <div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>
                                     </div>
                                     <div class="absolute inset-0 bg-cyan-500/5 pointer-events-none mix-blend-overlay"></div>
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </section>
-                <div class="mt-16 p-8 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+                
+                <div class="mt-16 card-padding bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
                     <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative z-10">
                         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Want this exact system for your business?</h3>
                         <p class="text-slate-400 mb-8 max-w-lg mx-auto">Stop missing leads and start sleeping better. I will map out your current chaos and design a custom "Digital Foreman" for you.</p>
-                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                        <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
                             Book a 15-Min Logic Mapping Call
                             <i class="fa-solid fa-arrow-right ml-2"></i>
                         </a>
@@ -492,14 +641,140 @@
         </div>
     </main>
 
-    <footer class="bg-slate-950 py-10 border-t border-slate-900 text-center">
-        <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with n8n & Logic.</p>
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <div class="space-y-4">
+                <a href="index.html" class="group flex items-center gap-0.5 select-none w-fit" aria-label="Nnaemeka Logic Architect">
+                    <div class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                        <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                        <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                    <div class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="lab.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="index.html#interface" class="block hover:text-white transition-colors">> /view_interfaces</a>
+                <a href="index.html#contact" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div id="server-time">HQ TIME: --:--:--</div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
     </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+      <div id="ngw-lightbox-inner"></div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- GLOBAL SITE LOGIC (Header & Footer) ---
             
-            // Shared Logic: Mobile Tabs
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if(btn && menu) { 
+                btn.addEventListener('click', () => { 
+                    menu.classList.toggle('hidden'); 
+                    
+                    if(icon) {
+                        if (menu.classList.contains('hidden')) {
+                            icon.classList.remove('fa-xmark', 'rotate-90');
+                            icon.classList.add('fa-bars', 'rotate-0');
+                        } else {
+                            icon.classList.remove('fa-bars', 'rotate-0');
+                            icon.classList.add('fa-xmark', 'rotate-90');
+                        }
+                    }
+                }); 
+            }
+
+            // 2. Lagos Time Clock (For Footer)
+            function updateTime() {
+                const timeString = new Date().toLocaleTimeString('en-US', { timeZone: 'Africa/Lagos', hour12: false });
+                const el = document.getElementById('server-time');
+                if(el) el.innerText = `HQ TIME: ${timeString}`;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // 3. Lightbox Logic (For Images)
+            const containers = document.querySelectorAll('.ngw-window-effect');
+            if (containers.length) {
+                const lb = document.getElementById('ngw-lightbox');
+                const inner = document.getElementById('ngw-lightbox-inner');
+                const closeBtn = document.querySelector('.ngw-close');
+
+                function openLightbox(url) {
+                    inner.innerHTML = '';
+                    const img = new Image(); img.src = url;
+                    inner.appendChild(img);
+                    lb.style.display = 'flex';
+                    document.body.classList.add('lightbox-open');
+                }
+
+                function closeLightbox() {
+                    lb.style.display = 'none';
+                    document.body.classList.remove('lightbox-open');
+                }
+
+                containers.forEach(c => {
+                    // Setup structure
+                    const img1 = c.getAttribute('data-img1') || '';
+                    c.style.position = 'relative';
+                    c.innerHTML = `<div class="ngw-bg" style="background-image:url('${img1}')"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+                    
+                    // Click Event
+                    c.addEventListener('click', function () {
+                        const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                        if(fullImg) openLightbox(fullImg);
+                    });
+                });
+
+                if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+                if(lb) {
+                    lb.addEventListener('click', function(e) {
+                        if (e.target === this) closeLightbox();
+                    });
+                }
+                document.addEventListener('keydown', function (e) { 
+                    if (e.key === 'Escape') closeLightbox(); 
+                });
+            }
+
+            // --- PAGE SPECIFIC LOGIC (Landscaping/Digital Foreman) ---
+
+            // 1. Shared Logic: Mobile Tabs
             const module = document.querySelector('.simulation-root');
             if(module) {
                 const tabs = module.querySelectorAll('.js-tab-btn');
@@ -524,7 +799,7 @@
                 });
             }
 
-            // Digital Foreman Specific Logic
+            // 2. Digital Foreman Specific Logic
             const p1 = document.querySelector('.simulation-root[data-id="landscape-intent"]');
             if(p1) {
                 const adCard = p1.querySelector('.js-source-trigger');
@@ -549,19 +824,30 @@
                     terminal.scrollTop = terminal.scrollHeight;
                 }
 
-                if(adCard) adCard.addEventListener('click', () => { triggerView.classList.add('hidden'); form.classList.remove('hidden'); log('CONNECTION ESTABLISHED: Source Google Ads'); });
+                if(adCard) adCard.addEventListener('click', () => { 
+                    triggerView.classList.add('hidden'); 
+                    form.classList.remove('hidden'); 
+                    log('CONNECTION ESTABLISHED: Source Google Ads'); 
+                });
                 
                 if(submitBtn) submitBtn.addEventListener('click', () => {
                     const inquiry = inputInquiry.value;
                     if(!inquiry) { alert("Please fill out the inquiry."); return; }
-                    form.classList.add('hidden'); successMsg.classList.remove('hidden');
-                    log('------------------------------------------'); log('INCOMING POST REQUEST (Webhook)', 'highlight');
+                    
+                    form.classList.add('hidden'); 
+                    successMsg.classList.remove('hidden');
+                    
+                    log('------------------------------------------'); 
+                    log('INCOMING POST REQUEST (Webhook)', 'highlight');
+                    
                     setTimeout(() => log(`"name": "${inputName.value}"`), 200);
                     setTimeout(() => log(`"email": "${inputEmail.value}"`), 600);
                     setTimeout(() => log(`"inquiry": "${inquiry}"`), 1000);
+                    
                     setTimeout(() => { 
                         log('------------------------------------------'); 
                         log('DATA LOGGED: Airtable Record Created.', 'success'); 
+                        
                         if(inquiry.toLowerCase().includes('emergency') || inquiry.toLowerCase().includes('tree') || inquiry.toLowerCase().includes('storm')) {
                              log('ANALYSIS: Keywords "Emergency/Tree" Detected', 'alert');
                              log('ROUTING: High Priority -> SMS Alert Sent', 'success');
@@ -572,7 +858,12 @@
                     }, 1400);
                 });
                 
-                if(resetBtn) resetBtn.addEventListener('click', () => { successMsg.classList.add('hidden'); triggerView.classList.remove('hidden'); inputInquiry.value = ""; terminal.innerHTML = '<div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>'; });
+                if(resetBtn) resetBtn.addEventListener('click', () => { 
+                    successMsg.classList.add('hidden'); 
+                    triggerView.classList.remove('hidden'); 
+                    inputInquiry.value = ""; 
+                    terminal.innerHTML = '<div><span class="text-slate-500">[System]</span> > Waiting for incoming webhook...</div>'; 
+                });
             }
         });
     </script>

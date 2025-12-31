@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Study: The 24/7 Intake Assistant | Nnaemeka</title>
     <meta name="description" content="How we automate client intake for private practices using Local AI and n8n.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,30 +33,85 @@
             }
         }
     </script>
+    
+    <link rel="stylesheet" href="style.css?v=1">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
         .code-font { font-family: 'Fira Code', monospace; }
+        
+        /* Scrollbar Styling */
         pre::-webkit-scrollbar { height: 8px; }
         pre::-webkit-scrollbar-track { background: #1e293b; }
         pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-        
-        /* Image Placeholder Style */
-        .case-study-img {
-            width: 100%;
-            height: auto;
-            border-radius: 0.5rem;
-            border: 1px solid #1e293b;
-            background-color: #0f172a;
-            transition: opacity 0.3s;
-        }
-        .case-study-img:hover {
-            opacity: 0.9;
+
+        /* Glass Panel Header */
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* TRANSPLANTED LAB STYLES */
+        /* Layout Utilities */
+        .site-container {
+            max-width: 80rem; 
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .ngw-lightbox {
+            position: fixed; top: 0; left: 0; w-full; h-full;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            display: none; justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .ngw-close {
+            position: absolute; top: 20px; right: 30px;
+            color: white; font-size: 2rem; cursor: pointer; z-index: 10000;
+        }
+        #ngw-lightbox-inner img {
+            max-width: 90vw; max-height: 90vh;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0,220,130,0.2);
+        }
+        
+        /* Interactive Image Container */
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 300px; /* Consistent height */
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+        .ngw-bg {
+            width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            transition: transform 0.5s ease;
+        }
+        .ngw-window-effect:hover .ngw-bg { transform: scale(1.05); }
+        .ngw-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .ngw-window-effect:hover .ngw-overlay { opacity: 1; }
+
+        /* --- LAB SIMULATION STYLES --- */
         .terminal-scroll::-webkit-scrollbar { width: 6px; }
         .terminal-scroll::-webkit-scrollbar-track { background: #0f172a; }
         .terminal-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -72,14 +128,8 @@
         }
         .lab-input:focus { border-color: #22d3ee; }
         
-        /* Toggle Switch */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #22d3ee;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #22d3ee;
-        }
+        .toggle-checkbox:checked { right: 0; border-color: #22d3ee; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #22d3ee; }
         
         .lab-button {
             background-color: #22d3ee;
@@ -93,20 +143,107 @@
 
         .tab-active { border-bottom: 2px solid #00dc82; color: #00dc82; background: rgba(0, 220, 130, 0.05); }
         .tab-inactive { color: #64748b; }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect { height: 200px; }
+            .card-padding { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen">
 
-    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="lab.html" class="code-font text-cyan-400 font-bold hover:text-white transition-colors">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Lab
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            
+            <a href="index.html" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
             </a>
-            <div class="text-xs font-mono text-slate-500">CASE STUDY: ID #005</div>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="index.html#framework" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Framework</span>
+                </a>
+                <a href="lab.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">The_Lab</span>
+                </a>
+                <a href="index.html#interface" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Interfaces</span>
+                </a>
+                <a href="index.html#about" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About_Me</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-cyan-400 bg-slate-900/50 backdrop-blur hover:border-cyan-500 hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="index.html#framework" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Framework</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="lab.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">The_Lab</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#interface" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Interfaces</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#about" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About_Me</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="index.html#contact" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold font-mono text-sm rounded-lg shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-[1.02]">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
-
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+    <main class="pt-32 pb-24 site-container">
         
         <div class="mb-16 border-b border-slate-800 pb-12">
             <div class="inline-flex items-center px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-mono mb-6">
@@ -122,7 +259,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <div class="lg:col-span-4 space-y-8">
-                <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 sticky top-24 shadow-xl">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 card-padding sticky top-24 shadow-xl">
                     <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
                     
                     <div class="space-y-6">
@@ -150,7 +287,7 @@
                     </div>
 
                     <div class="mt-8 pt-6 border-t border-slate-800">
-                        <a href="#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
+                        <a href="index.html#contact" class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
                             Book Strategy Call
                         </a>
                         <p class="text-center text-xs text-slate-500 mt-3">Free 15-min logic mapping session</p>
@@ -187,7 +324,10 @@
                             Think of this as a receptionist who never sleeps. When a potential client requests help, the system instantly creates a secure file in the database and sends a warm, branded welcome email with the intake link.
                         </p>
                         
-                        <img src="images/adhoc1.webp" alt="n8n Intake Workflow Screenshot" class="case-study-img mb-2">
+                        <div class="ngw-window-effect shadow-2xl group mb-2" 
+                             data-img1="images/adhoc1.webp" 
+                             data-full="images/adhoc1.webp">
+                        </div>
                         <p class="text-xs text-slate-500 text-center font-mono">Figure 1: The Intake & Database Flow</p>
                     </div>
 
@@ -199,7 +339,10 @@
                             Clients often get overwhelmed and forget to complete the forms. The system notices when someone goes quiet. After 3 days, it sends a gentle, supportive check-in email to ensure no one slips through the cracks.
                         </p>
                         
-                        <img src="images/adhoc2.webp" alt="n8n Retention Logic Screenshot" class="case-study-img mb-2">
+                        <div class="ngw-window-effect shadow-2xl group mb-2" 
+                             data-img1="images/adhoc2.webp" 
+                             data-full="images/adhoc2.webp">
+                        </div>
                         <p class="text-xs text-slate-500 text-center font-mono">Figure 2: The Automated Retention Logic</p>
                     </div>
 
@@ -211,7 +354,10 @@
                             This lane acts as a smart switchboard. It first checks the privacy consent flag. If a client says <strong>"No"</strong>, it respects their choice and sends an email inviting them to book a direct human session. If they say <strong>"Yes"</strong>, it activates the Local AI to read their struggle and draft a compassionate, personalized response instantly.
                         </p>
                         
-                        <img src="images/adhoc3.webp" alt="n8n AI Logic Workflow Screenshot" class="case-study-img mb-2">
+                        <div class="ngw-window-effect shadow-2xl group mb-2" 
+                             data-img1="images/adhoc3.webp" 
+                             data-full="images/adhoc3.webp">
+                        </div>
                         <p class="text-xs text-slate-500 text-center font-mono">Figure 3: The Consent & AI Logic Flow</p>
                     </div>
 
@@ -228,11 +374,14 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                         <div class="space-y-2">
-                             <img src="images/adhoc4.webp" alt="Mobile Responsive HTML Email Mockup" class="case-study-img shadow-2xl border-none">
+                             <div class="ngw-window-effect shadow-2xl group mb-2 border-none" 
+                                 data-img1="images/adhoc4.webp" 
+                                 data-full="images/adhoc4.webp">
+                            </div>
                             <p class="text-xs text-slate-500 text-center font-mono">Mobile View (iPhone)</p>
                         </div>
                         <div class="space-y-6">
-                            <div class="p-4 bg-slate-900 rounded-lg border border-slate-800">
+                            <div class="bg-slate-900 rounded-lg border border-slate-800 card-padding">
                                 <h4 class="text-white text-sm font-bold mb-2">Code Features:</h4>
                                 <ul class="text-xs text-slate-400 space-y-2 font-mono">
                                     <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Dark Mode Compatible</li>
@@ -253,7 +402,10 @@
                         No more messy spreadsheets. All leads flow into <strong>NocoDB</strong> (a self-hosted database). The system automatically tags their status (New, Stalled, Completed) and saves their AI Strategy Plan into a dedicated column for the therapist to review later.
                     </p>
                     
-                    <img src="images/adhoc5.webp" alt="NocoDB CRM View Screenshot" class="case-study-img mb-2 shadow-lg">
+                    <div class="ngw-window-effect shadow-lg group mb-2" 
+                         data-img1="images/adhoc5.webp" 
+                         data-full="images/adhoc5.webp">
+                    </div>
                     <p class="text-xs text-slate-500 text-center font-mono">Figure 4: The Cleaned Data View in NocoDB</p>
                 </section>
 
@@ -281,15 +433,15 @@
                 <section class="mb-16">
                      <h2 class="text-2xl font-bold text-white mb-8">The Impact</h2>
                      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
                             <div class="text-3xl font-bold text-brand-accent mb-1">&lt; 60s</div>
                             <div class="text-xs text-slate-500 uppercase">Time to Strategy Plan</div>
                         </div>
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
                             <div class="text-3xl font-bold text-white mb-1">100%</div>
                             <div class="text-xs text-slate-500 uppercase">Lead Capture Rate</div>
                         </div>
-                        <div class="p-6 bg-slate-900 border border-slate-800 rounded-lg text-center">
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
                             <div class="text-3xl font-bold text-blue-400 mb-1">0</div>
                             <div class="text-xs text-slate-500 uppercase">Privacy Breaches</div>
                         </div>
@@ -304,7 +456,7 @@
                             </div>
                         </div>
                         
-                        <div class="lab-container p-6 simulation-root" data-id="therapy-bot">
+                        <div class="lab-container card-padding simulation-root" data-id="therapy-bot">
                             
                             <h3 class="text-2xl font-bold text-white mb-2">See How It Handles a New Inquiry</h3>
                             <p class="text-slate-400 text-sm mb-8">Test the "Empathy Engine" live. See how the AI reads the emotional context and drafts a strategy.</p>
@@ -375,12 +527,12 @@
                     </div>
                 </section>
 
-                <div class="mt-16 p-8 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+                <div class="mt-16 card-padding bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
                     <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative z-10">
                         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Too many leads, not enough time?</h3>
                         <p class="text-slate-400 mb-8 max-w-lg mx-auto">I can map this "Digital Front Desk" for your practice in a 15-minute call.</p>
-                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                        <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
                             Map Your Logic
                             <i class="fa-solid fa-arrow-right ml-2"></i>
                         </a>
@@ -391,13 +543,140 @@
         </div>
     </main>
 
-    <footer class="bg-slate-950 py-10 border-t border-slate-900 text-center">
-        <p class="text-slate-600 text-sm font-mono">&copy; 2025 Dev/Nnaemeka. Built with n8n & Logic.</p>
+   <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <div class="space-y-4">
+                <a href="index.html" class="group flex items-center gap-0.5 select-none w-fit" aria-label="Nnaemeka Logic Architect">
+                    <div class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                        <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                        <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                    <div class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="lab.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="index.html#interface" class="block hover:text-white transition-colors">> /view_interfaces</a>
+                <a href="index.html#contact" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div id="server-time">HQ TIME: --:--:--</div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
     </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+      <div id="ngw-lightbox-inner"></div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- GLOBAL SITE LOGIC (Header & Footer) ---
             
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if(btn && menu) { 
+                btn.addEventListener('click', () => { 
+                    menu.classList.toggle('hidden'); 
+                    
+                    // Optional: Icon Animation if you use the <i> tag
+                    if(icon) {
+                        if (menu.classList.contains('hidden')) {
+                            icon.classList.remove('fa-xmark', 'rotate-90');
+                            icon.classList.add('fa-bars', 'rotate-0');
+                        } else {
+                            icon.classList.remove('fa-bars', 'rotate-0');
+                            icon.classList.add('fa-xmark', 'rotate-90');
+                        }
+                    }
+                }); 
+            }
+
+            // 2. Lagos Time Clock (For Footer)
+            function updateTime() {
+                const timeString = new Date().toLocaleTimeString('en-US', { timeZone: 'Africa/Lagos', hour12: false });
+                const el = document.getElementById('server-time');
+                if(el) el.innerText = `HQ TIME: ${timeString}`;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // 3. Lightbox Logic (For Images)
+            const containers = document.querySelectorAll('.ngw-window-effect');
+            if (containers.length) {
+                const lb = document.getElementById('ngw-lightbox');
+                const inner = document.getElementById('ngw-lightbox-inner');
+                const closeBtn = document.querySelector('.ngw-close');
+
+                function openLightbox(url) {
+                    inner.innerHTML = '';
+                    const img = new Image(); img.src = url;
+                    inner.appendChild(img);
+                    lb.style.display = 'flex';
+                    document.body.classList.add('lightbox-open');
+                }
+
+                function closeLightbox() {
+                    lb.style.display = 'none';
+                    document.body.classList.remove('lightbox-open');
+                }
+
+                containers.forEach(c => {
+                    // Setup structure
+                    const img1 = c.getAttribute('data-img1') || '';
+                    c.style.position = 'relative';
+                    c.innerHTML = `<div class="ngw-bg" style="background-image:url('${img1}')"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+                    
+                    // Click Event
+                    c.addEventListener('click', function () {
+                        const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                        if(fullImg) openLightbox(fullImg);
+                    });
+                });
+
+                if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+                if(lb) {
+                    lb.addEventListener('click', function(e) {
+                        if (e.target === this) closeLightbox();
+                    });
+                }
+                document.addEventListener('keydown', function (e) { 
+                    if (e.key === 'Escape') closeLightbox(); 
+                });
+            }
+
+            // --- PAGE SPECIFIC LOGIC (Therapy Bot) ---
+
             // 1. Shared Logic: Mobile Tabs
             const module = document.querySelector('.simulation-root');
             if(module) {

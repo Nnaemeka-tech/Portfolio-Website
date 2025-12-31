@@ -54,11 +54,14 @@
             }
         }
     </script>
+    
+    <link rel="stylesheet" href="style.css?v=1">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
@@ -123,60 +126,126 @@
 </head>
 <body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
 
-   <nav class="fixed w-full z-50 glass-panel">
-        <div class="max-w-7xl mx-auto px-5 md:px-6 h-16 flex items-center justify-between">
-            <a href="/" class="group flex items-center gap-2 code-font font-bold text-lg hover:text-white transition-colors text-cyan-400">
-                Nnaemeka <span class="text-slate-600 group-hover:text-slate-400 transition-colors">//</span> Workflow_Drafter 
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse group-hover:shadow-[0_0_10px_#4ade80]"></span>
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            
+            <a href="index.html" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
             </a>
 
-            <div class="hidden md:flex space-x-8 font-mono text-xs tracking-wide text-slate-400">
-                <a href="#framework" class="nav-link transition-all">Framework</a>
-                <a href="lab.html" class="nav-link transition-all">The_Lab</a>
-                <a href="#interface" class="nav-link transition-all">Interfaces</a>
-                <a href="#about" class="nav-link transition-all">About_Me</a>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="index.html#framework" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Framework</span>
+                </a>
+                <a href="lab.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">The_Lab</span>
+                </a>
+                <a href="index.html#interface" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Interfaces</span>
+                </a>
+                <a href="index.html#about" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About_Me</span>
+                </a>
             </div>
+
             <div class="hidden md:block">
-                <a href="#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                <a href="index.html#contact" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
                     Book Strategy Call
                 </a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-cyan-400 p-2"><i class="fa-solid fa-bars"></i></button>
+
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-cyan-400 bg-slate-900/50 backdrop-blur hover:border-cyan-500 hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
         </div>
+
         <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-white/10 absolute w-full font-mono text-sm z-50">
-            <div class="px-5 md:px-6 py-6 space-y-4">
-                <a href="#framework" class="block text-slate-300 hover:text-cyan-400">// Framework</a>
-                <a href="lab.html" class="block text-slate-300 hover:text-cyan-400">// The_Lab</a>
-                <a href="#interface" class="block text-slate-300 hover:text-cyan-400">// Interfaces</a>
-                <a href="#contact" class="block text-brand-accent font-bold">Book Strategy Call</a>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="index.html#framework" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Framework</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="lab.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">The_Lab</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#interface" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Interfaces</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="index.html#about" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About_Me</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="index.html#contact" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold font-mono text-sm rounded-lg shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-[1.02]">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden bg-slate-950 bg-grid-slate">
+    <section class="relative pt-32 pb-20 lg:pt-32 lg:pb-32 overflow-hidden bg-slate-950 bg-grid-slate">
         <div class="absolute inset-0 bg-slate-950/80"></div>
-        <div class="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
+        
+        <div class="max-w-7xl site-container relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+                   
                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono mb-6">
                         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-2"></span>
                         SYSTEM ONLINE
                     </div>
 
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-white leading-tight text-center lg:text-left">
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 text-white leading-tight">
                         Put Business Growth on Autopilot <br>
                         <span class="text-cyan-400">With Intelligent Automation.</span>
                     </h1>
 
-                   <div class="text-xs md:text-sm font-mono text-slate-500 uppercase tracking-widest mb-6 text-center lg:text-left">
-                 Workflow & AI Specialist
-                  </div>
+                   <div class="text-xs md:text-sm font-mono text-slate-500 uppercase tracking-widest mb-6">
+                        Workflow & AI Specialist
+                   </div>
 
-                    <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
+                    <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
                         I build the digital infrastructure that powers high-growth companies. From lead capture to invoicing, I replace manual admin work with <strong>custom workflow automation</strong> that runs 24/7.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                         <a href="lab.html" class="inline-flex justify-center items-center px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20 group">
                             Access The Lab <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
@@ -186,11 +255,16 @@
                     </div>
                 </div>
                 
-                <div class="relative">
+                <div class="lg:col-span-5 w-full mt-12 lg:mt-0 relative">
                     <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl blur opacity-20"></div>
+                    
                     <div class="relative bg-slate-900 rounded-xl border border-slate-800 shadow-2xl overflow-hidden h-[350px] flex flex-col font-mono text-xs">
                         <div class="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
-                            <div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><div class="w-2.5 h-2.5 rounded-full bg-green-500"></div></div>
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                            </div>
                             <span class="ml-2 text-slate-500">terminal -- zsh -- 80x24</span>
                         </div>
                         <div class="p-6 text-slate-300 space-y-2 overflow-hidden">
@@ -208,6 +282,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -238,14 +313,14 @@
     </section>
 
     <section id="framework" class="py-24 bg-slate-900 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto px-5 md:px-6">
+        <div class="max-w-6xl site-container">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Zero-Latency Automation Framework</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto">How I turn a website visitor into a paid client without manual intervention.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-950 p-4 md:p-8 rounded-2xl border border-slate-800 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                <div class="bg-slate-950 card-padding rounded-2xl border border-slate-800 hover:border-cyan-500 transition-colors group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-bold text-6xl text-slate-700">1</div>
                     <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-magnet text-xl"></i>
@@ -253,7 +328,7 @@
                     <h3 class="text-xl font-bold text-white mb-3">Capture</h3>
                     <p class="text-slate-400 text-sm leading-relaxed">Smart interfaces that validate data before it hits your database.</p>
                 </div>
-                <div class="bg-slate-950 p-4 md:p-8 rounded-2xl border border-slate-800 hover:border-purple-500 transition-colors group relative overflow-hidden">
+                <div class="bg-slate-950 card-padding rounded-2xl border border-slate-800 hover:border-purple-500 transition-colors group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-bold text-6xl text-slate-700">2</div>
                     <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-network-wired text-xl"></i>
@@ -261,7 +336,7 @@
                     <h3 class="text-xl font-bold text-white mb-3">Route</h3>
                     <p class="text-slate-400 text-sm leading-relaxed">Logic engines (n8n/Make) that filter, score, and direct leads instantly.</p>
                 </div>
-                <div class="bg-slate-950 p-4 md:p-8 rounded-2xl border border-slate-800 hover:border-green-500 transition-colors group relative overflow-hidden">
+                <div class="bg-slate-950 card-padding rounded-2xl border border-slate-800 hover:border-green-500 transition-colors group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-bold text-6xl text-slate-700">3</div>
                     <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-green-400 mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-rocket text-xl"></i>
@@ -276,7 +351,7 @@
     <section class="py-24 border-b border-slate-900 bg-slate-950 relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"></div>
         
-        <div class="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
+        <div class="max-w-7xl site-container relative z-10">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-4">
                     <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
@@ -293,7 +368,7 @@
                         <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
                         <img src="images/n8n-landscaping.webp" alt="Landscaping Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div class="p-8 flex-1 flex flex-col">
+                    <div class="card-padding flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-xl font-bold text-white">Lead Triage Automation for Field Services</h3>
                             <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
@@ -320,7 +395,7 @@
                         <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
                         <img src="images/movers-n8n.webp" alt="Movers Automation Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div class="p-8 flex-1 flex flex-col">
+                    <div class="card-padding flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-xl font-bold text-white">Booking & Operations Automation for Logistics Company</h3>
                             <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2025</span>
@@ -354,13 +429,13 @@
     </section>
 
     <section class="py-24 bg-slate-900 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto px-5 md:px-6">
+        <div class="max-w-5xl site-container">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-white mb-4">System Benchmark</h2>
                 <p class="text-slate-400">Why automation costs less than a payroll.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-slate-800 rounded-xl overflow-hidden">
-                <div class="bg-slate-900/50 p-4 md:p-10 border-r border-slate-800">
+                <div class="bg-slate-900/50 card-padding border-r border-slate-800">
                     <div class="flex items-center gap-2 mb-6">
                         <span class="w-2 h-2 rounded-full bg-red-500"></span>
                         <h3 class="text-white font-mono uppercase tracking-widest text-sm">Human Admin</h3>
@@ -372,7 +447,7 @@
                         <li class="flex justify-between"><span>Error Rate:</span> <span class="text-red-400">5 - 10%</span></li>
                     </ul>
                 </div>
-                <div class="bg-slate-900/80 p-4 md:p-10 relative overflow-hidden">
+                <div class="bg-slate-900/80 card-padding relative overflow-hidden">
                     <div class="absolute inset-0 bg-green-500/5 pointer-events-none"></div>
                     <div class="flex items-center gap-2 mb-6">
                         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -390,14 +465,14 @@
     </section>
 
     <section id="stack" class="py-24 bg-slate-950 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-5 md:px-6">
+        <div class="max-w-7xl site-container">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-white mb-4">Core Specialties</h2>
                 <p class="text-slate-400">The tools are different. The logic is universal.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-4 md:p-8 rounded-2xl bg-slate-800/30 border border-brand-crm/30 hover:border-brand-crm/60 transition-colors">
+                <div class="card-padding rounded-2xl bg-slate-800/30 border border-brand-crm/30 hover:border-brand-crm/60 transition-colors">
                     <h3 class="text-2xl font-bold text-white mb-6 flex items-center"><i class="fa-solid fa-server text-brand-crm mr-3"></i> Backend Automation</h3>
                     <ul class="space-y-4 text-slate-300">
                         <li class="flex items-start">
@@ -419,7 +494,7 @@
                     </ul>
                 </div>
 
-                <div class="p-4 md:p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-colors">
+                <div class="card-padding rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-colors">
                     <h3 class="text-2xl font-bold text-white mb-6 flex items-center"><i class="fa-solid fa-code text-cyan-400 mr-3"></i> Front-End Architecture</h3>
                     <ul class="space-y-4 text-slate-300">
                         <li class="flex items-start"><i class="fa-solid fa-check text-cyan-500 mt-1 mr-3"></i><span>High-conversion <strong>Elementor</strong> interfaces.</span></li>
@@ -433,7 +508,7 @@
     </section>
 
     <section id="interface" class="py-24 bg-slate-900 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-5 md:px-6">
+        <div class="max-w-7xl site-container">
              <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-white mb-4">The Interface Layer</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto">Automation needs input. I build high-fidelity interfaces designed to feed clean data into the system.</p>
@@ -479,12 +554,12 @@
     <section id="about" class="py-24 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-5 md:px-6">
+        <div class="max-w-7xl site-container">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                 
                 <div class="lg:col-span-5 relative group w-full max-w-md mx-auto">
                     <div class="absolute -inset-0.5 bg-gradient-to-b from-cyan-500 to-slate-900 rounded-2xl opacity-30 blur group-hover:opacity-50 transition duration-1000"></div>
-                    <div class="relative bg-slate-950 rounded-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
+                    <div class="relative bg-slate-950 rounded-2xl border border-slate-800 card-padding overflow-hidden">
                         <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-4">
                             <div class="text-xs font-mono text-slate-500">OP_ID: #NNAEMEKA_01</div>
                             <div class="px-2 py-0.5 bg-green-500/10 border border-green-500/20 rounded text-[10px] text-green-400 font-mono animate-pulse">STATUS: ACTIVE</div>
@@ -523,22 +598,26 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-slate-800 pt-8">
-                        <div>
-                            <i class="fa-solid fa-bolt text-yellow-400 mb-2"></i>
-                            <h4 class="text-white font-bold text-sm">Speed First</h4>
-                            <p class="text-xs text-slate-500 mt-1">Leads are contacted in < 60s.</p>
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-network-wired text-cyan-400 mb-2"></i>
-                            <h4 class="text-white font-bold text-sm">Logic Over Fluff</h4>
-                            <p class="text-xs text-slate-500 mt-1">If it doesn't save time, I don't build it.</p>
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-lock text-green-400 mb-2"></i>
-                            <h4 class="text-white font-bold text-sm">You Own It</h4>
-                            <p class="text-xs text-slate-500 mt-1">No locked-in monthly agency fees.</p>
-                        </div>
-                    </div>
+    
+    <div class="text-center sm:text-left">
+        <i class="fa-solid fa-bolt text-yellow-400 mb-2 text-xl"></i>
+        <h4 class="text-white font-bold text-sm">Speed First</h4>
+        <p class="text-xs text-slate-500 mt-1">Leads are contacted in < 60s.</p>
+    </div>
+
+    <div class="text-center sm:text-left">
+        <i class="fa-solid fa-network-wired text-cyan-400 mb-2 text-xl"></i>
+        <h4 class="text-white font-bold text-sm">Logic Over Fluff</h4>
+        <p class="text-xs text-slate-500 mt-1">If it doesn't save time, I don't build it.</p>
+    </div>
+
+    <div class="text-center sm:text-left">
+        <i class="fa-solid fa-lock text-green-400 mb-2 text-xl"></i>
+        <h4 class="text-white font-bold text-sm">You Own It</h4>
+        <p class="text-xs text-slate-500 mt-1">No locked-in monthly agency fees.</p>
+    </div>
+
+</div>
                 </div>
 
             </div>
@@ -547,14 +626,14 @@
 
     <section id="contact" class="py-24 bg-black border-t border-slate-900 relative">
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900 to-black opacity-90"></div>
-        <div class="max-w-3xl mx-auto px-5 md:px-6 relative z-10">
+        <div class="max-w-3xl site-container relative z-10">
             <div class="text-center mb-12">
                 <div class="font-mono text-cyan-400 mb-4 text-sm">> SYSTEM_ALERT: Manual Mode Detected<span class="animate-cursor">_</span></div>
                 <h2 class="text-4xl font-bold text-white mb-4">Stop Running Your Business <br> on Manual Mode.</h2>
                 <p class="text-slate-400">You are losing leads to speed. Book a logic audit to fix your process.</p>
             </div>
 
-            <div id="form-container" class="bg-slate-900 p-4 md:p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+            <div id="form-container" class="bg-slate-900 card-padding rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
                 <form id="logic-intake-form" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -605,7 +684,7 @@
     </section>
 
     <section class="py-24 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-5 md:px-6">
+        <div class="max-w-7xl site-container">
             <h2 class="text-2xl font-bold text-white mb-10">Insights and Blog Posts</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -632,11 +711,31 @@
     </section>
 
     <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
-        <div class="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="max-w-7xl site-container grid grid-cols-1 md:grid-cols-3 gap-12">
             <div class="space-y-4">
-                <div class="code-font text-cyan-400 font-bold text-lg">
-                    Nnaemeka <span class="text-slate-600">//</span> Workflow_Drafter
-                </div>
+                <a href="/" class="group flex items-center gap-0.5 select-none w-fit" aria-label="Nnaemeka Logic Architect">
+    
+    <div class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+    </div>
+
+    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+
+    <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+        <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+        <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+        
+        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+    </div>
+
+    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+
+    <div class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+    </div>
+</a>
                 <p class="text-slate-500">Business Automation Designer.</p>
             <div class="flex gap-4 pt-2">
                     <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
@@ -666,10 +765,26 @@
     </div>
 
     <script>
-        // 1. Mobile Menu
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if(btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); }); }
+        // 1. Mobile Menu Toggle & Icon Swap
+const btn = document.getElementById('mobile-menu-btn');
+const menu = document.getElementById('mobile-menu');
+const icon = document.getElementById('menu-icon');
+
+if(btn && menu && icon) { 
+    btn.addEventListener('click', () => { 
+        // Toggle the menu visibility
+        menu.classList.toggle('hidden');
+        
+        // Swap the Icon (Bars <-> Xmark)
+        if (menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-xmark', 'rotate-90');
+            icon.classList.add('fa-bars', 'rotate-0');
+        } else {
+            icon.classList.remove('fa-bars', 'rotate-0');
+            icon.classList.add('fa-xmark', 'rotate-90');
+        }
+    }); 
+}
 
         // 2. Lagos Time Clock
         function updateTime() {
