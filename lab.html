@@ -23,6 +23,7 @@
                         slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
                         cyan: { 400: '#22d3ee', 500: '#06b6d4' },
                         indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+                        amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
                         brand: { accent: '#00dc82', crm: '#6366f1' }
                     },
                     fontFamily: {
@@ -61,6 +62,9 @@
         
         .project-card { transition: all 0.3s ease; }
         .project-card:hover { transform: translateY(-5px); }
+        
+        /* Ensure card padding is consistent if missing from style.css */
+        .card-padding { padding: 1.5rem; }
     </style>
 </head>
 <body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
@@ -176,10 +180,48 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <article class="project-card bg-slate-900 border border-slate-800 hover:border-indigo-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
+            <article class="project-card bg-slate-900 border border-slate-800 hover:border-amber-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
                 <div class="absolute top-4 right-4 z-10">
-                    <span class="text-[10px] font-bold bg-indigo-500 text-white px-2 py-1 rounded shadow-lg animate-pulse">NEW</span>
+                    <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-1 rounded shadow-lg animate-pulse">NEW</span>
                 </div>
+                <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
+                    <img src="images/exec.webp" onerror="this.style.display='none'" alt="Paid-First Booking Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-700 opacity-20 -z-10">
+                        <i class="fa-solid fa-file-invoice-dollar text-9xl"></i>
+                    </div>
+                </div>
+                <div class="card-padding flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white leading-tight">Automated Lead Capture, Invoice & Booking System</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2026</span>
+                    </div>
+                    <p class="text-sm text-amber-500 font-medium mb-4">High-Ticket Infrastructure • Payment Logic</p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        A "Paid-First" defensive architecture. It uses n8n and a State Machine Ledger to ensure no one touches your calendar until the invoice is paid. Zero ghost bookings.
+                    </p>
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-amber-500"></i> System Defense
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>Eliminates unpaid "tentative" holds</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>Auto-generates PDF Invoices</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Gemini AI</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Google Sheets</span>
+                        </div>
+                        <a href="case-study-booking-system.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-amber-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-amber-500">
+                            Read Case Study
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card bg-slate-900 border border-slate-800 hover:border-indigo-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="images/adhoc6.webp" alt="AI Intake Assistant Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
@@ -408,25 +450,25 @@
 
     <script>
         // 1. Mobile Menu Toggle & Icon Swap
-const btn = document.getElementById('mobile-menu-btn');
-const menu = document.getElementById('mobile-menu');
-const icon = document.getElementById('menu-icon');
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
 
-if(btn && menu && icon) { 
-    btn.addEventListener('click', () => { 
-        // Toggle the menu visibility
-        menu.classList.toggle('hidden');
-        
-        // Swap the Icon (Bars <-> Xmark)
-        if (menu.classList.contains('hidden')) {
-            icon.classList.remove('fa-xmark', 'rotate-90');
-            icon.classList.add('fa-bars', 'rotate-0');
-        } else {
-            icon.classList.remove('fa-bars', 'rotate-0');
-            icon.classList.add('fa-xmark', 'rotate-90');
+        if(btn && menu && icon) { 
+            btn.addEventListener('click', () => { 
+                // Toggle the menu visibility
+                menu.classList.toggle('hidden');
+                
+                // Swap the Icon (Bars <-> Xmark)
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark', 'rotate-90');
+                    icon.classList.add('fa-bars', 'rotate-0');
+                } else {
+                    icon.classList.remove('fa-bars', 'rotate-0');
+                    icon.classList.add('fa-xmark', 'rotate-90');
+                }
+            }); 
         }
-    }); 
-}
 
 
         // 2. Lagos Time Clock (For Footer)
