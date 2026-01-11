@@ -2,28 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    
    <url>
-      <loc>https://nnaemeka.website/</loc>
-      <lastmod>2025-12-12</lastmod>
+      <loc>https://nnaemekasystems.com/</loc>
+      <lastmod>2026-01-11</lastmod>
       <priority>1.00</priority>
    </url>
 
    <url>
-      <loc>https://www.nnaemeka.website/lab</loc>
-      <lastmod>2025-12-12</lastmod>
-      <priority>0.80</priority>
+      <loc>https://nnaemekasystems.com/lab</loc>
+      <lastmod>2026-01-11</lastmod>
+      <priority>0.90</priority>
    </url>
 
    <url>
-      <loc>https://www.nnaemeka.website/case-study-lead-engine</loc>
-      <lastmod>2025-12-12</lastmod>
+      <loc>https://nnaemekasystems.com/case-study-legal</loc>
+      <lastmod>2026-01-11</lastmod>
       <priority>0.80</priority>
    </url>
  
    <url>
-      <loc>https://www.nnaemeka.website/case-study-landscaping</loc>
-      <lastmod>2025-12-16</lastmod>
+      <loc>https://nnaemekasystems.com/case-study-landscaping</loc>
+      <lastmod>2026-01-11</lastmod>
       <priority>0.80</priority>
    </url>
 
+   <url>
+      <loc>https://nnaemekasystems.com/case-study-therapy</loc>
+      <lastmod>2026-01-11</lastmod>
+      <priority>0.80</priority>
+   </url>
+
+   <url>
+      <loc>https://nnaemekasystems.com/case-study-gatekeeper</loc>
+      <lastmod>2026-01-11</lastmod>
+      <priority>0.80</priority>
+   </url>
+
+   <url>
+      <loc>https://nnaemekasystems.com/case-study-movers</loc>
+      <lastmod>2026-01-11</lastmod>
+      <priority>0.80</priority>
+   </url>
+
+   <url>
+      <loc>https://nnaemekasystems.com/case-study-booking-system</loc>
+      <lastmod>2026-01-11</lastmod>
+      <priority>0.80</priority>
+   </url>
 
 </urlset>
