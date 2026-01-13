@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SZXRJSQ1KS');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Process Automation Services | Nnaemeka Systems</title>
+    <meta name="description" content="I architect self-healing business systems that handle data entry, financial reporting, and client onboarding automatically. Operational infrastructure for scaling companies.">
+    <meta name="keywords" content="business process automation, n8n developer, automated workflows, operations consultant, workflow automation agency">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#22c55e', crm: '#6366f1' } /* Green for Efficiency */
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2322c55e' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-link:hover { color: #22d3ee; }
+        .card-padding { padding: 2rem; }
+        
+        .calc-input { background: #0f172a; border: 1px solid #1e293b; color: white; padding: 0.5rem; border-radius: 0.25rem; width: 100%; font-family: 'Fira Code', monospace; }
+        .calc-input:focus { border-color: #22c55e; outline: none; }
+        
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); border-color: #22c55e; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka_Sys</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="/services" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-arrow-left text-slate-500 group-hover:text-white text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Back_to_Hub</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="/book" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Deploy System
+                </a>
+            </div>
+             <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="/services" class="block p-3 font-mono text-slate-300 hover:text-white">/Back_to_Services</a>
+                <a href="/case-studies" class="block p-3 font-mono text-slate-300 hover:text-white">/Case_Studies</a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="/book" class="flex items-center justify-center w-full py-4 bg-brand-accent text-white font-bold font-mono text-sm rounded-lg">
+                        Deploy System
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center px-3 py-1 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent inline-block mr-2 animate-pulse"></span>
+                MODULE: OPERATIONS
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Business Process Automation Services
+            </h1>
+            <p class="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+                I replace manual admin work with self-healing, automated systems. Stop hiring humans for robot work and deploy an invisible workforce that runs 24/7.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="/book" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                    Consult on a Workflow
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">The "Admin Tax" is Killing Your Margins.</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Businesses often hit a revenue plateau because their operations rely on linear human effort. Every new client creates linear work, meaning you cannot scale without hiring more staff.
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Copying data between spreadsheets, manually sending invoices, and chasing updates are tasks that feel necessary but add zero value to the customer. SaaS tools alone don't solve this; without a unified logic layer, your team becomes the "human bridge" between disconnected software.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0"><i class="fa-solid fa-arrows-rotate"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Context Switching</h4>
+                                <p class="text-sm text-slate-500">It takes 23 minutes to refocus after an admin interruption.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Data Decay</h4>
+                                <p class="text-sm text-slate-500">Manual entry has a 4% error rate. Automated logic has 0%.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fa-solid fa-calculator text-6xl text-brand-accent"></i></div>
+                    
+                    <h3 class="text-white font-bold mb-6 font-mono text-lg">> Calculate Admin Cost</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-slate-500 text-xs font-bold mb-2">Hours spent on Admin / Week</label>
+                            <input type="number" id="calc-hours" class="calc-input" value="10">
+                        </div>
+                        <div>
+                            <label class="block text-slate-500 text-xs font-bold mb-2">Your Hourly Value ($)</label>
+                            <input type="number" id="calc-rate" class="calc-input" value="100">
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-4 text-center">
+                        <p class="text-slate-400 text-xs uppercase mb-1">Annual Resource Drain</p>
+                        <p class="text-3xl font-bold text-brand-accent font-mono">$<span id="calc-total">52,000</span></p>
+                    </div>
+
+                    <p class="text-center text-xs text-slate-600 mt-4">
+                        *This capital can be reclaimed through automation.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+             <h2 class="text-3xl font-bold text-white mb-6">We Build Logic Engines, Not Just Scripts.</h2>
+             <p class="text-slate-400 leading-relaxed text-lg">
+                 Most consultants sell "tasks." I sell systems. I assume the role of an Operational Architect to identify where data leaks, where time is wasted, and where human decision-making is slowing down the pipeline.
+             </p>
+             <p class="text-slate-400 leading-relaxed mt-4">
+                 We then deploy invisible "robots" (workflows) that execute these tasks 24/7 with perfect accuracy.
+             </p>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-xl font-bold text-white mb-8 border-l-4 border-brand-accent pl-4">Common Automation Architectures</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <h3 class="text-white font-bold mb-2">Finance Operations</h3>
+                    <p class="text-slate-400 text-sm mb-4">From contract signature to cash in bank.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-green-500">IF</span> contract_signed<br>
+                            <span class="text-green-500">THEN</span> generate_stripe_invoice<br>
+                            <span class="text-green-500">WAIT</span> 3_days<br>
+                            <span class="text-green-500">IF</span> unpaid -> send_reminder
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-users-gear"></i></div>
+                    <h3 class="text-white font-bold mb-2">Client Onboarding</h3>
+                    <p class="text-slate-400 text-sm mb-4">Instant access without manual setup.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-purple-400">TRIGGER</span> payment_received<br>
+                            <span class="text-purple-400">ACTION</span> create_drive_folder<br>
+                            <span class="text-purple-400">ACTION</span> invite_to_slack<br>
+                            <span class="text-purple-400">ACTION</span> email_welcome_kit
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <h3 class="text-white font-bold mb-2">Management Reporting</h3>
+                    <p class="text-slate-400 text-sm mb-4">Visibility without the spreadsheet.</p>
+                     <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-cyan-400">EVERY</span> friday_9am<br>
+                            <span class="text-cyan-400">FETCH</span> metrics_from_hubspot<br>
+                            <span class="text-cyan-400">CALC</span> week_over_week_growth<br>
+                            <span class="text-cyan-400">POST</span> to_slack_channel
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6">
+             <h2 class="text-3xl font-bold text-white mb-12 text-center">Deployment Protocol</h2>
+             
+             <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                 
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:border-brand-accent shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 text-slate-500 group-hover:text-brand-accent font-mono font-bold">01</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-800 bg-slate-950 shadow">
+                        <div class="font-bold text-white mb-1">Process Audit (The Map)</div>
+                        <div class="text-slate-400 text-sm">We don't guess. I record your screen as you execute the task manually to document every click, decision, edge case, and exception.</div>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:border-brand-accent shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 text-slate-500 group-hover:text-brand-accent font-mono font-bold">02</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-800 bg-slate-950 shadow">
+                        <div class="font-bold text-white mb-1">Logic Architecture & Build</div>
+                        <div class="text-slate-400 text-sm">I design the system in n8n. This isn't just "connecting apps." We build error handlers, data sanitization nodes, and retry logic to ensure 99.9% reliability.</div>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-900 group-hover:border-brand-accent shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 text-slate-500 group-hover:text-brand-accent font-mono font-bold">03</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-800 bg-slate-950 shadow">
+                        <div class="font-bold text-white mb-1">Testing & Stabilization</div>
+                        <div class="text-slate-400 text-sm">We don't just "turn it on." We run the automation in "Shadow Mode" alongside your manual process to verify accuracy before full handover.</div>
+                    </div>
+                </div>
+
+             </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-8">Implementation Layer</h2>
+            <p class="text-slate-400 mb-12 max-w-2xl mx-auto">We use best-in-class tools to build robust infrastructure. We avoid fragile, proprietary code in favor of visual, maintainable workflows.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <span class="px-4 py-2 border border-slate-700 rounded-full text-slate-300 font-mono text-sm bg-slate-900">n8n (Self-Hosted)</span>
+                <span class="px-4 py-2 border border-slate-700 rounded-full text-slate-300 font-mono text-sm bg-slate-900">Make.com</span>
+                <span class="px-4 py-2 border border-slate-700 rounded-full text-slate-300 font-mono text-sm bg-slate-900">Airtable</span>
+                <span class="px-4 py-2 border border-slate-700 rounded-full text-slate-300 font-mono text-sm bg-slate-900">Stripe API</span>
+                <span class="px-4 py-2 border border-slate-700 rounded-full text-slate-300 font-mono text-sm bg-slate-900">OpenAI</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-brand-accent mb-2">15h+</div>
+                    <div class="text-sm text-slate-400">Average weekly hours saved per client.</div>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-white mb-2">100%</div>
+                    <div class="text-sm text-slate-400">Data accuracy on automated tasks.</div>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">0</div>
+                    <div class="text-sm text-slate-400">Missed invoices or follow-ups.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Relevant Deployments</h2>
+                    <p class="text-slate-400">Recent automation systems deployed for clients.</p>
+                </div>
+                <a href="/case-studies" class="text-brand-accent text-sm font-bold hover:text-white transition-colors hidden md:block">View All Case Studies -></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a href="/case-studies/moving-company-booking-system.html" class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/movers-n8n.webp" alt="Logistics Automation" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">LOGISTICS SECTOR</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Booking & Dispatch Engine</h3>
+                        <p class="text-slate-400 text-sm">Reduced admin time by 15 hours/week for a moving company by automating quote calculation and crew assignment.</p>
+                    </div>
+                </a>
+
+                <a href="/case-studies/legal-client-onboarding.html" class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/legal-zapier-workflow.webp" alt="Legal Automation" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">LEGAL SECTOR</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Zero-Touch Client Intake</h3>
+                        <p class="text-slate-400 text-sm">Eliminated manual data entry for a law firm using OpenAI to parse emails and update Clio automatically.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-800 bg-black">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Who This Is For</h2>
+            <div class="flex flex-col md:flex-row gap-8 mb-12 text-left">
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-green-900/30">
+                    <h4 class="text-green-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-check mr-2"></i> Good Fit</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Service businesses earning $20k+/mo</li>
+                        <li>• Teams drowning in repetitive admin</li>
+                        <li>• Operations that use standard tools (Gmail, Stripe, Slack)</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-red-900/30">
+                    <h4 class="text-red-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-xmark mr-2"></i> Not a Fit</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Idea-stage startups (You need process before automation)</li>
+                        <li>• Businesses without a defined offer</li>
+                        <li>• Those looking for a cheap "virtual assistant"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-4">Ready to automate your operations?</h3>
+            <p class="text-slate-400 mb-8">
+                Book a consultation to map your process and receive a fixed-price proposal.
+            </p>
+            <a href="/book" class="inline-flex justify-center items-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-900 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                Book Automation Audit
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm text-center text-slate-500">
+        <p>&copy; 2025 Nnaemeka Systems. All Logic Protected.</p>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        if(btn && menu) { 
+            btn.addEventListener('click', () => { 
+                menu.classList.toggle('hidden');
+                if(icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
+                    }
+                }
+            }); 
+        }
+
+        // 2. ROI Calculator Logic
+        const hoursInput = document.getElementById('calc-hours');
+        const rateInput = document.getElementById('calc-rate');
+        const totalOutput = document.getElementById('calc-total');
+
+        function calculate() {
+            const h = parseFloat(hoursInput.value) || 0;
+            const r = parseFloat(rateInput.value) || 0;
+            const yearly = (h * r) * 52;
+            totalOutput.innerText = yearly.toLocaleString();
+        }
+
+        if(hoursInput && rateInput) {
+            hoursInput.addEventListener('input', calculate);
+            rateInput.addEventListener('input', calculate);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZXRJSQ1KS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SZXRJSQ1KS');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Systems Design & Architecture | Nnaemeka Systems</title>
+    <meta name="description" content="I map, architect, and optimize complex business logic. Move from a chaotic 'Frankenstein' stack to a streamlined operational blueprint.">
+    <meta name="keywords" content="workflow design, systems architect, business logic mapping, n8n workflow design, operations blueprinting">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e', 900: '#0f172a', 950: '#020617' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        brand: { accent: '#a855f7', crm: '#6366f1' } /* Purple for Architecture/Design */
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%23a855f7' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-link:hover { color: #22d3ee; }
+        .card-padding { padding: 2rem; }
+        
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); border-color: #a855f7; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka_Sys</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="/services" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-arrow-left text-slate-500 group-hover:text-white text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Back_to_Hub</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="/book" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Deploy System
+                </a>
+            </div>
+             <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="/services" class="block p-3 font-mono text-slate-300 hover:text-white">/Back_to_Services</a>
+                <a href="/case-studies" class="block p-3 font-mono text-slate-300 hover:text-white">/Case_Studies</a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="/book" class="flex items-center justify-center w-full py-4 bg-brand-accent text-white font-bold font-mono text-sm rounded-lg">
+                        Deploy System
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center px-3 py-1 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent inline-block mr-2 animate-pulse"></span>
+                MODULE: ARCHITECTURE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Workflow Systems Design
+            </h1>
+            <p class="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+                I map, architect, and optimize complex business logic. Move from a chaotic "Frankenstein" stack to a streamlined operational blueprint.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="/book" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                    Design My System
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">The "Frankenstein" Stack Problem</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        As businesses grow, they often patch together tools reactively. You start with Gmail, then add Trello, then Zapier, then Slack. Without a master plan, these tools don't talk to each other correctly.
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        This results in "Data Silos"—where your Sales team's data doesn't match your Operations team's reality. Buying more software won't fix a broken process; it just speeds up the chaos.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0"><i class="fa-solid fa-project-diagram"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Fragile Dependencies</h4>
+                                <p class="text-sm text-slate-500">If one person leaves, the whole process breaks because the logic is in their head, not the system.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0"><i class="fa-solid fa-link-slash"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Leaky Funnels</h4>
+                                <p class="text-sm text-slate-500">Leads and tasks fall into the "void" between applications because the handoff logic is undefined.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                    <div class="font-mono text-xs text-slate-500 mb-2">// VISUALIZATION</div>
+                    <h3 class="text-white font-bold text-lg mb-6">System Health Diagnostic</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Tool Connectivity</span>
+                                <span class="text-red-400">Low (Disconnected)</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[20%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Process Documentation</span>
+                                <span class="text-yellow-400">Partial (In Heads)</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-yellow-500 w-[45%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Error Rate</span>
+                                <span class="text-red-400">High (Manual Fixes)</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[85%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+                        <p class="text-xs text-slate-500">
+                            We shift these metrics to <span class="text-green-400">Green</span> by treating your business logic as code.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+             <h2 class="text-3xl font-bold text-white mb-6">The Blueprint First Approach.</h2>
+             <p class="text-slate-400 leading-relaxed text-lg">
+                 You wouldn't build a house without blueprints. You shouldn't build a business without a System Architecture.
+             </p>
+             <p class="text-slate-400 leading-relaxed mt-4">
+                 My service delivers the engineering diagram for your operations. I map the flow of data, identify decision points, and structure the logic so that the system works regardless of who is operating it.
+             </p>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-xl font-bold text-white mb-8 border-l-4 border-brand-accent pl-4">Architectural Deliverables</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-filter"></i></div>
+                    <h3 class="text-white font-bold mb-2">Routing Logic</h3>
+                    <p class="text-slate-400 text-sm mb-4">Sophisticated "Traffic Cop" systems that analyze inputs (Leads, Tickets) and route them to the correct destination based on value, urgency, or type.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3 class="text-white font-bold mb-2">Fulfillment Chains</h3>
+                    <p class="text-slate-400 text-sm mb-4">End-to-end delivery pipelines. From "Order Received" to "Project Completed," ensuring every step (Contract, Deposit, Onboarding) happens in sequence.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-white font-bold mb-2">Approval Matrices</h3>
+                    <p class="text-slate-400 text-sm mb-4">Human-in-the-loop safeguards. Systems that pause for approval on high-stakes actions (Refunds, Contracts) before proceeding automatically.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6">
+             <h2 class="text-3xl font-bold text-white mb-12 text-center">Engineering Methodology</h2>
+             
+             <div class="space-y-12">
+                 
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">01</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Discovery & Mapping</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            I don't start building until I understand the terrain. We conduct a deep-dive audit of your current stack. I interview your team to find the "hidden" steps they do manually that aren't documented anywhere.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">02</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Visual Architecture</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            
+                            I create a visual schematic (Miro/LucidChart) of the "Ideal State." This blueprint defines every trigger, filter, and action. You approve the logic before a single line of code is written.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">03</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Edge Case Stress Testing</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Happy paths are easy. I design for failure. What if the API is down? What if the email is invalid? I build "Error Handler" routes that alert you to issues without crashing the whole system.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">04</div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Deployment & SOPs</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            We push to production. I provide video documentation and written SOPs (Standard Operating Procedures) so your team knows exactly how to interact with the new system.
+                        </p>
+                    </div>
+                </div>
+
+             </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-8">The Architect's Toolkit</h2>
+            <p class="text-slate-400 mb-12 max-w-2xl mx-auto">Tools are just the hammer; the design is the house. However, I specialize in low-code, high-reliability infrastructure.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">n8n</div>
+                    <div class="text-xs text-slate-500">Orchestration</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">Miro</div>
+                    <div class="text-xs text-slate-500">Mapping</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">Airtable</div>
+                    <div class="text-xs text-slate-500">Database</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">APIs / Webhooks</div>
+                    <div class="text-xs text-slate-500">Connectivity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-brand-accent mb-2">Clarity</div>
+                    <p class="text-sm text-slate-400">Total visibility into where every lead, dollar, and task is currently sitting in your pipeline.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-white mb-2">Scalability</div>
+                    <p class="text-sm text-slate-400">Handle 10x the volume without 10x the chaos. The system scales horizontally.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">Resilience</div>
+                    <p class="text-sm text-slate-400">Reduced "Bus Factor." The business process lives in the code, not in an employee's memory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Proven Architecture</h2>
+                    <p class="text-slate-400">See how we designed logic flows for other high-performance businesses.</p>
+                </div>
+                <a href="/case-studies" class="text-brand-accent text-sm font-bold hover:text-white transition-colors hidden md:block">View Case Studies -></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a href="/case-studies/lead-generation-engine.html" class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/n8n2.webp" alt="Sales Logic" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">SALES SYSTEMS</div>
+                        <h3 class="text-xl font-bold text-white mb-2">The "Gatekeeper" Logic</h3>
+                        <p class="text-slate-400 text-sm">Designed a branching qualification workflow that scores leads in real-time, routing only the top 10% to the sales team.</p>
+                    </div>
+                </a>
+
+                <a href="/case-studies/landscaping-job-management.html" class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/n8n-landscaping.webp" alt="Triage Logic" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">FIELD OPERATIONS</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Emergency Triage Architecture</h3>
+                        <p class="text-slate-400 text-sm">Architected a priority-based dispatch system that filters emergency jobs from routine maintenance requests automatically.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-800 bg-black">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Who This Is For</h2>
+            <div class="flex flex-col md:flex-row gap-8 mb-12 text-left">
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-green-900/30">
+                    <h4 class="text-green-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-check mr-2"></i> Good Fit</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Scaling Agencies (10+ Employees)</li>
+                        <li>• Operations Managers needing backup</li>
+                        <li>• Founders tired of being the bottleneck</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-red-900/30">
+                    <h4 class="text-red-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-xmark mr-2"></i> Not a Fit</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Solopreneurs with simple needs</li>
+                        <li>• Teams resistant to new software</li>
+                        <li>• "I just need a quick Zap" requests</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-4">Let's Blueprint Your Operations</h3>
+            <p class="text-slate-400 mb-8">
+                Book a consultation. We will map your current process and identify the architectural bottlenecks holding you back.
+            </p>
+            <a href="/book" class="inline-flex justify-center items-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                Book Systems Audit
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm text-center text-slate-500">
+        <p>&copy; 2025 Nnaemeka Systems. All Logic Protected.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        if(btn && menu) { 
+            btn.addEventListener('click', () => { 
+                menu.classList.toggle('hidden');
+                if(icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
+                    }
+                }
+            }); 
+        }
+    </script>
+</body>
+</html>
