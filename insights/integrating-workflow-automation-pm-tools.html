@@ -74,6 +74,7 @@
         .prose-custom li::before { content: "→"; color: #22d3ee; position: absolute; left: 0; }
         
         .highlight-box { background: rgba(6, 182, 212, 0.05); border-left: 4px solid #22d3ee; padding: 2rem; margin: 2.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .warning-box { background: rgba(244, 63, 94, 0.05); border-left: 4px solid #f43f5e; padding: 2rem; margin: 2.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
         .stat-card { background: #0f172a; border: 1px solid #1e293b; padding: 2rem; border-radius: 1rem; text-align: center; transition: transform 0.3s; }
         .stat-card:hover { transform: translateY(-5px); border-color: #22d3ee; }
     </style>
@@ -219,8 +220,8 @@
             <ul class="!mb-0 text-sm">
                 <li><strong>The 3 Methods:</strong> Native features vs. Middleware vs. APIs.</li>
                 <li><strong>The Toolbelt:</strong> When to use Zapier, Make, or n8n.</li>
+                <li><strong>Architecture:</strong> How to design a Single Source of Truth (SSOT).</li>
                 <li><strong>Real Examples:</strong> Syncing Trello to Jira and auto-notifications.</li>
-                <li><strong>How to Start:</strong> A 6-step implementation plan.</li>
             </ul>
         </div>
 
@@ -332,7 +333,76 @@
             <li><strong>CRM Handoff:</strong> When a lead in Salesforce or HubSpot is marked "Closed-Won," a new project template is automatically generated in Monday.com or Asana for the onboarding team.</li>
         </ul>
 
-        <h2>4. The Benefits of Automation</h2>
+        <h2>4. Single Source of Truth: How It Works in Practice</h2>
+        <p>
+            While syncing data across tools sounds straightforward, implementing a true "Single Source of Truth" requires deliberate system design. Without clear rules, integrations can create conflicts, duplication, or automation loops that undermine reliability.
+        </p>
+
+        <div class="bg-slate-900/50 border border-slate-700 p-6 rounded-lg my-8">
+            <h4 class="text-white font-bold mb-2">What is SSOT?</h4>
+            <p class="text-sm text-slate-400 !mb-0">
+                A <strong>Single Source of Truth (SSOT)</strong> means one system is designated as the authoritative record, while others act as mirrors or downstream consumers of that data.
+            </p>
+        </div>
+
+        <h3>Step 1: Define the Canonical System</h3>
+        <p>Before building any automation, decide which platform owns the data.</p>
+        <ul>
+            <li><strong>Jira:</strong> Authority for issue status and priority.</li>
+            <li><strong>Asana:</strong> Authority for task deadlines and assignments.</li>
+            <li><strong>Trello:</strong> Used only as a visual execution board.</li>
+        </ul>
+        <p>Only the canonical system should be allowed to write to critical fields. Other tools should primarily read and reflect updates.</p>
+
+        <h3>Step 2: Choose the Sync Direction</h3>
+        <p>Not all syncs should be bidirectional. Common patterns include:</p>
+        <ul>
+            <li><strong>One-way sync (Recommended):</strong> Jira → Trello. Great for execution boards.</li>
+            <li><strong>Two-way sync:</strong> Asana ↔ Jira. Only use when ownership rules are strict.</li>
+            <li><strong>Event-driven sync:</strong> Updates happen only on defined triggers, not continuously.</li>
+        </ul>
+
+        <div class="warning-box">
+            <h3 class="!mt-0 !text-red-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Step 3: Prevent Update Loops</h3>
+            <p class="text-slate-300">
+                Automation loops occur when System A updates System B, which then triggers an update back to System A. To prevent this:
+            </p>
+            <ul class="text-slate-400 text-sm">
+                <li>Use hidden metadata fields such as <code>automation_source</code>.</li>
+                <li>Add conditional logic like “Only update if last modified by a human”.</li>
+                <li>Store external IDs to detect duplicate updates.</li>
+            </ul>
+        </div>
+
+        <h3>Step 4: Handle Conflicts and Failures</h3>
+        <p>No integration is failure-proof. APIs time out, permissions change, and data formats evolve. Best practices include:</p>
+        <ul>
+            <li>Logging every automation run.</li>
+            <li>Alerting when sync failures occur.</li>
+            <li>Designing workflows to fail safely (no partial updates).</li>
+        </ul>
+
+        <a href="https://www.nnaemekasystems.com/case-studies/automated-booking-invoicing" target="_blank" class="block group mt-12 no-underline">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 hover:border-cyan-500 rounded-xl p-6 transition-all relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i class="fa-solid fa-network-wired text-9xl text-cyan-400 transform rotate-12"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-mono text-cyan-400 bg-cyan-950/30 px-2 py-1 rounded border border-cyan-900">REAL WORLD ARCHITECTURE</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">See SSOT in Action: The "Paid-First" Ledger</h4>
+                    <p class="text-slate-400 text-sm mb-4 max-w-xl">
+                        See how we used a "State Machine Ledger" as the Single Source of Truth to eliminate unpaid bookings and sync data between Stripe, Google Sheets, and Calendar APIs without conflicts.
+                    </p>
+                    <span class="text-sm font-bold text-white flex items-center gap-2">
+                        Read the Case Study <i class="fa-solid fa-arrow-right text-cyan-400 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </div>
+            </div>
+        </a>
+       
+        <h2>5. The Benefits of Integration</h2>
         <p>
             Implementing these integrations is not just about "cool tech"—it has a measurable impact on business performance.
         </p>
@@ -355,11 +425,7 @@
             </div>
         </div>
 
-        <p>
-            Additionally, automated systems handle dependencies and alerts automatically. Whether you have 10 tasks or 10,000, the automation runs without needing to hire more administrative staff, allowing your business to scale efficiently.
-        </p>
-
-        <h2>5. Implementation Steps: How to Start</h2>
+        <h2>6. Implementation Steps: How to Start</h2>
         <p>
             If you are ready to integrate workflow automation, start with "quick wins" using no-code tools. Follow this step-by-step framework:
         </p>
