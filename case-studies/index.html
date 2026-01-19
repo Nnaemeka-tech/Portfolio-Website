@@ -186,11 +186,49 @@
     <div class="max-w-7xl site-container pb-24">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <article class="project-card bg-slate-900 border border-slate-800 hover:border-amber-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
+            
+            <article class="project-card bg-slate-900 border border-slate-800 hover:border-indigo-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
                 <div class="absolute top-4 right-4 z-10">
                     <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-1 rounded shadow-lg animate-pulse">NEW</span>
                 </div>
+                <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
+                    <img src="../images/payment_sys.webp" onerror="this.style.display='none'" alt="Automated Invoicing Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-700 opacity-20 -z-10">
+                         <i class="fa-solid fa-file-invoice-dollar text-9xl"></i>
+                    </div>
+                </div>
+                <div class="card-padding flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white leading-tight">Automated Invoicing & Payment System (Postpay)</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2026</span>
+                    </div>
+                    <p class="text-sm text-indigo-400 font-medium mb-4">Financial Operations • Revenue Recovery</p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        A background monitoring engine that detects job completion, issues invoices instantly via Stripe, and handles all follow-up reminders automatically.
+                    </p>
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-accent"></i> Key Results
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>&lt; 30s Issuance Time</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>0 Missed Follow-ups</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Stripe</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Airtable</span>
+                        </div>
+                        <a href="case-studies/automated-invoicing-payment-system.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-indigo-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-indigo-500">
+                            Read Case Study
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card bg-slate-900 border border-slate-800 hover:border-amber-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="../images/exec.webp" onerror="this.style.display='none'" alt="Paid-First Booking Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                     <div class="absolute inset-0 flex items-center justify-center text-slate-700 opacity-20 -z-10">
@@ -199,7 +237,7 @@
                 </div>
                 <div class="card-padding flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white leading-tight">Automated Lead Capture, Invoice & Booking System</h3>
+                        <h3 class="text-xl font-bold text-white leading-tight">Automated Lead Capture, Invoice & Booking System (Prepay)</h3>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2026</span>
                     </div>
                     <p class="text-sm text-amber-500 font-medium mb-4">High-Ticket Infrastructure • Payment Logic</p>
@@ -447,8 +485,6 @@
                 <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
             </div>
 
-
-
             <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
                 <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
                 <div>System Status: <span class="text-green-500">● Operational</span></div>               
@@ -475,7 +511,7 @@
                 }
             }); 
         }
-         </script>
+    </script>
 
 </body>
 </html>
