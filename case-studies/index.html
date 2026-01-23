@@ -24,6 +24,7 @@
                         cyan: { 400: '#22d3ee', 500: '#06b6d4' },
                         indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
                         amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+                        green: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
                         brand: { accent: '#00dc82', crm: '#6366f1' }
                     },
                     fontFamily: {
@@ -187,9 +188,55 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
+            <article class="project-card bg-slate-900 border border-slate-800 hover:border-green-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
+                <div class="absolute top-4 right-4 z-10">
+                    <span class="text-[10px] font-bold bg-green-500 text-slate-950 px-2 py-1 rounded shadow-lg animate-pulse">AI POWERED</span>
+                </div>
+                <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
+                    <img src="../images/ai-main-agent-workflow.webp" onerror="this.style.display='none'" alt="AI Pre-Sales Assistant" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-700 opacity-20 -z-10">
+                         <i class="fa-solid fa-robot text-9xl"></i>
+                    </div>
+                </div>
+
+                <div class="card-padding flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white leading-tight">AI Pre-Sales Online Assistant for Home & Field Services</h3>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">2026</span>
+                    </div>
+                    
+                    <p class="text-sm text-green-400 font-medium mb-4">Sales Automation • Lead Qualification</p>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        An AI Pre-Sales Assistant that qualifies leads, recommends service packages, and routes customers to specialists for home and field service businesses.
+                    </p>
+
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-brand-accent"></i> Key Results
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>24/7 Qualification</span></li>
+                            <li class="flex items-start text-sm text-slate-400"><i class="fa-solid fa-check text-green-500 mt-1 mr-2.5"></i><span>100% Structured Data</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">n8n</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Gemini</span>
+                            <span class="px-3 py-1 bg-slate-950 border border-slate-700 rounded-full text-xs text-slate-300">Pinecone</span>
+                        </div>
+                        <a href="case-studies/ai-presales-assistant.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-green-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700 hover:border-green-500">
+                            Read Case Study
+                        </a>
+                    </div>
+                </div>
+            </article>
+
             <article class="project-card bg-slate-900 border border-slate-800 hover:border-indigo-500 rounded-xl overflow-hidden flex flex-col shadow-2xl relative">
                 <div class="absolute top-4 right-4 z-10">
-                    <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-1 rounded shadow-lg animate-pulse">NEW</span>
+                    <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-1 rounded shadow-lg">UPDATED</span>
                 </div>
                 <div class="h-80 w-full img-pattern relative border-b border-slate-800 group">
                     <img src="../images/payment_sys.webp" onerror="this.style.display='none'" alt="Automated Invoicing Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
@@ -487,7 +534,7 @@
 
             <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
                 <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
-                <div>System Status: <span class="text-green-500">● Operational</span></div>               
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
                 <div>Loc: Lagos, NG [Remote]</div>
             </div>
         </div>
