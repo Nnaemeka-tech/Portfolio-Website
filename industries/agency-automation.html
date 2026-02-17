@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Operations Automation | The Agency OS Architecture</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/industries/agency-automation.html" />
+    <meta name="description"
+        content="We re-engineer agency operations. From zero-touch client onboarding to automated reporting and scope creep defense. Scale your agency without hiring more project managers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nnaemekasystems.com/industries/agency-automation.html">
+    <meta property="og:title" content="Agency Operations Automation | The Agency OS Architecture">
+    <meta property="og:description"
+        content="We re-engineer agency operations. From zero-touch client onboarding to automated reporting and scope creep defense. Scale your agency without hiring more project managers.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+    <style>:root { --brand-accent: #8b5cf6; }</style>
+
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%238b5cf6' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:hover {
+            color: #8b5cf6;
+        }
+
+        .card-padding {
+            padding: 3rem;
+        }
+
+        /* Increased padding for denser text */
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-violet-500 selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-violet-500 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-violet-500 transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-violet-500 group-hover:shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-violet-500 transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-violet-500 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-violet-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-violet-500 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-city text-blue-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Industries</span>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Case
+                        Studies</span>
+                </a>
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-violet-500 text-violet-500 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-violet-900/20">
+                    Audit My Agency
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <div
+                    class="inline-flex items-center px-3 py-1 border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 inline-block mr-2 animate-pulse"></span>
+                    INDUSTRY: CREATIVE & MARKETING
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Scale Strategy.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-500">Automate
+                        Execution.</span>
+                </h1>
+                <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                    The modern agency is drowning in "work about work." We build the <strong>Agency Operating System
+                        (AOS)</strong>—a unified infrastructure that handles client onboarding, consolidated reporting,
+                    and scope management automatically. Stop forcing your high-value strategists to do low-value data
+                    entry.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="../book.html"
+                        class="inline-flex items-center justify-center px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-violet-900/20">
+                        Book Operations Audit
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 shadow-2xl relative overflow-hidden group">
+                <div class="font-mono text-xs text-slate-500 mb-6 flex justify-between border-b border-slate-800 pb-2">
+                    <span>// SYSTEM_LOG: ONBOARDING</span>
+                    <span class="text-green-400">● EXECUTION_SUCCESS</span>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="w-8 h-8 bg-slate-800 border border-green-500 text-green-500 rounded-full flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <div class="h-full w-px bg-slate-800 my-1"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Contract Signed</h4>
+                            <p class="text-slate-500 text-xs mt-1">Webhook received from PandaDoc. Client: "TechFlow
+                                Inc". Value: $12k/mo.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="w-8 h-8 bg-violet-900/20 border border-violet-500 text-violet-400 rounded-full flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <div class="h-full w-px bg-slate-800 my-1"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Asset Provisioning</h4>
+                            <p class="text-slate-500 text-xs mt-1">
+                                > Created Slack Channel #client-techflow<br>
+                                > Generated G-Drive Folder Architecture<br>
+                                > Cloned "SEO Onboarding" List in ClickUp
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="w-8 h-8 bg-slate-800 border border-slate-600 text-slate-400 rounded-full flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Welcome Sequence</h4>
+                            <p class="text-slate-500 text-xs mt-1">Sent personalized email to CEO with Portal Access.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">The "Agency Doom Loop"</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Agencies typically excel at two things: <strong>Selling</strong> (The Front End) and
+                        <strong>Doing the Work</strong> (The Back End). But they almost always die in the "Middle."
+                    </p>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        The "Middle" is where the operational friction lives. It's the chaos of setting up projects,
+                        chasing clients for assets, manually aggregating data for monthly reports, and debating scope
+                        creep via email.
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        When you scale from 5 to 20 clients, this friction doesn't just double; it compounds. Your
+                        Account Managers (AMs) end up spending 40% of their week on non-billable admin instead of
+                        strategy. This burns out your best talent and erodes your profit margins to near zero.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-stopwatch"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">The Onboarding Lag</h4>
+                                <p class="text-sm text-slate-500">It typically takes agencies 5-7 days to get a new
+                                    client "active" due to manual setup. We cut this to 5 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-chart-area"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Reporting Hell</h4>
+                                <p class="text-sm text-slate-500">End-of-month reporting is a nightmare of CSV exports
+                                    and screenshots. It should be a live, automated dashboard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                    <h3 class="text-white font-bold text-lg mb-6">Why Project Management Tools Aren't Enough</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        You probably use ClickUp, Asana, or Monday.com. While these are great tools, they are passive
+                        containers. They wait for a human to update them.
+                    </p>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        <strong>The Problem:</strong> A tool cannot enforce a process. If an AM forgets to tick a box or
+                        move a card, the automation fails.
+                    </p>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        <strong>My Solution:</strong> I build an external "Logic Layer" (using n8n) that sits
+                        <em>above</em> your PM tools. It watches for triggers (Contract Signed, Payment Failed, Ticket
+                        Submitted) and forces the tools to update themselves. It removes human error from the
+                        operational chain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-16 text-center">The Agency Operating System (AOS)</h2>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-start mb-24">
+                <div class="lg:w-1/2">
+                    <div
+                        class="inline-block px-3 py-1 bg-violet-900/20 text-violet-400 rounded-full text-xs font-bold mb-4 border border-violet-500/30">
+                        SYSTEM 01</div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Zero-Touch Onboarding</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The moment a contract is signed, the "machine" wakes up. We eliminate the 48-hour gap between
+                        "Signature" and "Kickoff."
+                    </p>
+                    <h4 class="text-white font-bold text-sm mb-2">The Workflow:</h4>
+                    <ul class="space-y-4 text-sm text-slate-300 border-l border-slate-800 pl-4">
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-violet-500 rounded-full"></span>
+                            <strong>Trigger:</strong> PandaDoc/DocuSign envelope status changes to "Completed."
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Infrastructure Build:</strong> The system creates a dedicated Slack channel, a
+                            specific Google Drive folder hierarchy (Strategy, Creative, Reports), and a Notion Client
+                            Portal.
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Project Setup:</strong> It creates the project in ClickUp/Asana and applies the
+                            correct template based on the package sold (e.g., SEO vs. PPC).
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Finance Sync:</strong> It creates the customer in QuickBooks/Xero and schedules the
+                            recurring invoice.
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 h-full">
+                        <h4 class="text-white font-bold mb-4">Outcome</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-950 p-4 rounded border border-slate-800">
+                                <div class="text-2xl font-bold text-violet-400">95%</div>
+                                <div class="text-xs text-slate-500">Reduction in Setup Time</div>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded border border-slate-800">
+                                <div class="text-2xl font-bold text-white">Zero</div>
+                                <div class="text-xs text-slate-500">Missing Folders/Permissions</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mt-6">
+                            "Before Nnaemeka, it took us 3 days to onboard a client. Now, the client has their welcome
+                            email and portal access 30 seconds after signing."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row-reverse gap-12 items-start mb-24">
+                <div class="lg:w-1/2">
+                    <div
+                        class="inline-block px-3 py-1 bg-fuchsia-900/20 text-fuchsia-400 rounded-full text-xs font-bold mb-4 border border-fuchsia-500/30">
+                        SYSTEM 02</div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Live Consolidated Reporting</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Stop paying AMs to take screenshots of Facebook Ads Manager. We build live data pipelines that
+                        aggregate performance metrics into a client-facing portal.
+                    </p>
+                    <h4 class="text-white font-bold text-sm mb-2">The Architecture:</h4>
+                    <ul class="space-y-4 text-sm text-slate-300 border-l border-slate-800 pl-4">
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-fuchsia-500 rounded-full"></span>
+                            <strong>Data Fetching:</strong> Daily scheduled tasks pull data from Meta Ads, Google Ads,
+                            TikTok, and Shopify APIs.
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Normalization:</strong> We standardize the data (e.g., matching "Purchases" in FB to
+                            "Orders" in Shopify) to calculate a True ROAS.
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Presentation:</strong> Data is pushed to a secure Looker Studio or Softr portal
+                            where the client can view it 24/7.
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 h-full">
+                        <h4 class="text-white font-bold mb-4">Key Benefit</h4>
+                        <p class="text-slate-400 leading-relaxed text-sm mb-6">
+                            When clients have transparency, they ask fewer "What is happening?" questions. This reduces
+                            churn and builds trust.
+                        </p>
+                        <div class="p-4 bg-slate-950 rounded border border-slate-800 font-mono text-xs text-slate-400">
+                            > API_CALL: GET /insights<br>
+                            > STATUS: 200 OK<br>
+                            > DATA_SYNC: 14,203 Records Processed<br>
+                            > DASHBOARD: Updated 1m ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-1/2">
+                    <div
+                        class="inline-block px-3 py-1 bg-blue-900/20 text-blue-400 rounded-full text-xs font-bold mb-4 border border-blue-500/30">
+                        SYSTEM 03</div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Scope Creep Defense</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Agencies lose money when clients ask for "just one quick thing" via email. We implement a formal
+                        Request System that tracks scope against retainer limits.
+                    </p>
+                    <h4 class="text-white font-bold text-sm mb-2">The Logic:</h4>
+                    <ul class="space-y-4 text-sm text-slate-300 border-l border-slate-800 pl-4">
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-blue-500 rounded-full"></span>
+                            <strong>Input:</strong> Clients submit requests via a dedicated form (not email).
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Assessment:</strong> The system checks the request against the client's remaining
+                            hours/points for the month in Airtable.
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[21px] top-1.5 w-2 h-2 bg-slate-700 rounded-full"></span>
+                            <strong>Decision:</strong> If within scope -> Auto-add to ClickUp. If out of scope ->
+                            Auto-draft an "Upsell Estimate" for the AM to send.
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div
+                        class="bg-slate-900 border border-slate-800 rounded-xl p-8 h-full flex flex-col justify-center text-center">
+                        <div
+                            class="w-16 h-16 bg-red-900/20 text-red-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                            <i class="fa-solid fa-hand"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">Stop Working for Free</h4>
+                        <p class="text-slate-400 text-sm">
+                            This system politely but firmly enforces your contract boundaries, turning scope creep into
+                            new revenue.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Deployed Architecture</h2>
+                    <p class="text-slate-400">See how we implemented a lead qualification engine for a marketing agency.
+                    </p>
+                </div>
+                <a href="/case-studies"
+                    class="text-violet-400 text-sm font-bold hover:text-white transition-colors hidden md:block">View
+                    All Case Studies -></a>
+            </div>
+
+            <a href="/case-studies/lead-generation-engine.html"
+                class="block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-violet-500 transition-all text-left group">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="h-64 relative">
+                        <img src="../images/n8n2.webp" alt="Agency Automation Case Study"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex flex-col justify-center">
+                        <div class="text-violet-500 font-mono text-xs mb-2">CASE STUDY: LEAD OPS</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">The "Gatekeeper" Engine</h3>
+                        <p class="text-slate-400 mb-6">How we built an automated qualification system that scores leads
+                            and routes them to the right sales rep, increasing close rates by 22%.</p>
+                        <span class="text-white font-bold border-b border-violet-500 w-fit pb-1">Read The Analysis
+                            -></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-800 bg-black">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Is Your Agency Ready for Automation?</h2>
+
+            <div class="flex flex-col md:flex-row gap-8 mb-12 text-left">
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-green-900/30">
+                    <h4 class="text-green-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-check mr-2"></i>
+                        Best Fit For:</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Agencies with 5-50 Employees</li>
+                        <li>• Services with repeatable processes (SEO, PPC, Dev)</li>
+                        <li>• Teams using Slack, ClickUp/Asana, and G-Suite</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-red-900/30">
+                    <h4 class="text-red-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-xmark mr-2"></i> Not
+                        For:</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• Freelancers with 1-2 clients</li>
+                        <li>• Highly bespoke/artistic studios (non-repeatable)</li>
+                        <li>• Agencies without defined offers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-4">Build Your Operating System.</h3>
+            <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+                Stop relying on heroic effort. Build the infrastructure that allows you to scale without breaking.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="../book.html"
+                    class="inline-flex justify-center items-center px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-violet-900/20">
+                    Book Agency Audit
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-brand-accent transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

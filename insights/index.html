@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Engineering Logs | Nnaemeka Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/insights/" />
+    <meta name="description"
+        content="Technical deep dives on business automation, system architecture, and operational efficiency.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nnaemekasystems.com/insights/">
+    <meta property="og:title" content="Insights &amp; Engineering Logs | Nnaemeka Systems">
+    <meta property="og:description"
+        content="Technical deep dives on business automation, system architecture, and operational efficiency.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .article-card:hover h3 {
+            color: #22d3ee;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 transition-all duration-300 z-10">
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Case-Studies</span>
+                </a>
+
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-lightbulb text-yellow-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Insights</span>
+                </a>
+
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    Get Advice
+                </a>
+            </div>
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Engineering Logs.</h1>
+            <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
+                I write about the messy reality of business automation. No fluff, just code, logic, and lessons learned
+                from the field.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6 space-y-12">
+
+            <a href="insights/integrating-workflow-automation-pm-tools.html" class="article-card block group">
+                <div class="flex flex-col md:flex-row gap-6 items-baseline">
+                    <div class="text-xs font-mono text-slate-500 w-32 shrink-0">JAN 15, 2026</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-3 transition-colors">Can You Integrate Workflow
+                            Automation with PM Tools?</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                            A comprehensive guide on syncing Jira, Asana, and Trello using No-Code platforms like Zapier
+                            and n8n to reduce manual work by 90%.
+                        </p>
+                        <div class="flex gap-2">
+                            <span
+                                class="text-[10px] font-mono border border-slate-800 bg-slate-950 text-slate-400 px-2 py-1 rounded">AUTOMATION</span>
+                            <span
+                                class="text-[10px] font-mono border border-slate-800 bg-slate-950 text-slate-400 px-2 py-1 rounded">TECH
+                                GUIDE</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            <a href="insights/true_cost-manual-data-entry.html" class="article-card block group">
+                <div class="flex flex-col md:flex-row gap-6 items-baseline">
+                    <div class="text-xs font-mono text-slate-500 w-32 shrink-0">DEC 31, 2025</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-3 transition-colors">The True Cost of Manual Data
+                            Entry</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                            Manual data entry has a hidden cost of $1-10-100 per record. Discover why automation is the
+                            only way to scale without burning cash on admin.
+                        </p>
+                        <div class="flex gap-2">
+                            <span
+                                class="text-[10px] font-mono border border-slate-800 bg-slate-950 text-slate-400 px-2 py-1 rounded">OPERATIONS</span>
+                            <span
+                                class="text-[10px] font-mono border border-slate-800 bg-slate-950 text-slate-400 px-2 py-1 rounded">COST
+                                ANALYSIS</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 transition-all duration-300 z-10">
+                        <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">>
+                    /view_case-studies</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">â— Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

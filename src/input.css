@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@source "../*.html";
+@source "../case-studies/**/*.html";
+@source "../industries/**/*.html";
+@source "../services/**/*.html";
+@source "../insights/**/*.html";
+
+@theme {
+    /* Slate extensions */
+    --color-slate-850: #151b2e;
+    --color-slate-900: #0f172a;
+    --color-slate-950: #020617;
+
+    /* Cyan */
+    --color-cyan-400: #22d3ee;
+    --color-cyan-500: #06b6d4;
+
+    /* Teal */
+    --color-teal-400: #2dd4bf;
+    --color-teal-500: #14b8a6;
+
+    /* Brand colors — accent uses CSS custom property for per-page theming */
+    --color-brand-accent: var(--brand-accent, #00dc82);
+    --color-brand-crm: #6366f1;
+    --color-brand-error: #ef4444;
+
+    /* Font families */
+    --font-mono: "Fira Code", "Courier New", monospace;
+    --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+    /* Animations */
+    --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-cursor: cursor 1s step-end infinite;
+    --animate-scroll: scroll 20s linear infinite;
+
+    /* Keyframes */
+    @keyframes cursor {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}

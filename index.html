@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <link rel="canonical" href="https://nnaemekasystems.com/" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nnaemekasystems.com/#organization",
+          "name": "Nnaemeka Systems",
+          "url": "https://nnaemekasystems.com/",
+          "logo": "https://nnaemekasystems.com/images/social-preview.webp",
+          "image": "https://nnaemekasystems.com/images/social-preview.webp",
+          "description": "Business Process Automation Architect & Workflow Systems Designer. I build self-healing, automated operations for service-based enterprises.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lagos",
+            "addressCountry": "NG"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "6.5244",
+            "longitude": "3.3792"
+          },
+          "priceRange": "$$$",
+          "areaServed": "Global",
+          "founder": {
+            "@type": "Person",
+            "name": "Nnaemeka"
+          },
+          "sameAs": [
+            "https://x.com/Nnaemeka_20",
+            "https://github.com/Nnaemeka-tech",
+            "https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://nnaemekasystems.com/#website",
+          "url": "https://nnaemekasystems.com/",
+          "name": "Nnaemeka Systems | Automation Architect",
+          "publisher": {
+            "@id": "https://nnaemekasystems.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Process Automation Architect | Nnaemeka Systems</title>
+    <meta name="description" content="I replace manual admin work with self-healing, automated systems. Business process automation for service-based enterprises, therapy practices, and agencies.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nnaemekasystems.com/">
+    <meta property="og:title" content="Business Process Automation Architect | Nnaemeka">
+    <meta property="og:description" content="Chaos is a choice. Order is a system. I build the logic engines that run your business on autopilot.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp"> 
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="dist/output.css">
+      
+    <link rel="stylesheet" href="style.css?v=6">
+      
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .bg-grid-slate { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px); }
+        .nav-link:hover { color: #22d3ee; }
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); border-color: #22d3ee; }
+        .card-padding { padding: 1.5rem; }
+        @media (min-width: 768px) { .card-padding { padding: 2rem; } }
+
+        /* Lightbox Logic */
+        .ngw-window-effect { position: relative; overflow: hidden; width: 100%; background: #1e293b; cursor: zoom-in; transition: border-color 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .ngw-bg { position: absolute; inset: 0; background-size: cover; background-position: top; transition: transform 0.5s ease; }
+        .ngw-window-effect:hover .ngw-bg { transform: scale(1.05); }
+        .ngw-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .ngw-window-effect:hover .ngw-overlay { opacity: 1; }
+
+        .ngw-lightbox { 
+            position: fixed; inset: 0; z-index: 99999; 
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(8px); 
+            display: none; 
+            align-items: flex-start; 
+            justify-content: center; 
+            overflow-y: auto; 
+            padding-top: 80px; padding-bottom: 80px; 
+        }
+
+        #ngw-lightbox-inner {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ngw-lightbox img { 
+            width: 95%; 
+            height: auto; 
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 0 50px rgba(0,0,0,0.8); 
+            display: block; 
+            margin: 0 auto; 
+        }
+
+        @media (min-width: 768px) {
+            .ngw-lightbox img { width: 80%; max-width: 1400px; } 
+        }
+        .ngw-close { 
+            position: fixed; top: 20px; right: 20px; 
+            width: 40px; height: 40px; background: rgba(30,41,59,0.5); 
+            border-radius: 50%; color: white; display: flex; 
+            align-items: center; justify-content: center; cursor: pointer; 
+            border: 1px solid rgba(255,255,255,0.2); z-index: 100000; 
+            transition: all 0.2s;
+        }
+        .ngw-close:hover { background: #ef4444; border-color: #ef4444; }
+        body.lightbox-open { overflow: hidden; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            <a href="../case-studies/index.html" class="group flex items-center gap-0.5 select-none" aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                    <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="services/index.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="industries/index.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+                <a href="case-studies/index.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Case Studies</span>
+                </a>               
+                <a href="../insights/index.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="about.html" class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+            <div class="hidden md:block">
+                <a href="book.html" class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-cyan-500 text-cyan-400 hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-cyan-900/20">
+                    Book Strategy Call
+                </a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-cyan-400 bg-slate-900/50 backdrop-blur hover:border-cyan-500 hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-pulse"></div>
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="services/index.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                </a>
+                <a href="industries/index.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                </a>
+                <a href="case-studies/index.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case Studies</span>
+                    </div>
+                </a>
+               <a href="insights/index.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a> 
+                <a href="about.html" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="book.html" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold font-mono text-sm rounded-lg shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-[1.02]">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-32 lg:pb-32 overflow-hidden bg-slate-950 bg-grid-slate">
+        <div class="absolute inset-0 bg-slate-950/80"></div>
+        <div class="max-w-7xl site-container relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+                   <div class="inline-flex items-center px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-2"></span>
+                        SYSTEM ONLINE
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-white leading-tight">
+                        Business Process <br>
+                        <span class="text-cyan-400">Automation Architect.</span>
+                    </h1>
+                    <div class="text-xs md:text-sm font-mono text-slate-500 uppercase tracking-widest mb-6">
+                        Workflow & AI Specialist
+                    </div>
+                    <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
+                        From lead capture to invoicing, I build the Business Process Automation Engines that run your business operations 24/7. No extra employees, no errors, just code.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                        <a href="case-studies/index.html" class="inline-flex justify-center items-center px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20 group">
+                            View The Systems <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="book.html" class="inline-flex justify-center items-center px-8 py-4 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white font-mono text-sm rounded-lg transition-all">
+                            Book Free Audit
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 w-full mt-12 lg:mt-0 relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl blur opacity-20"></div>
+                    <div class="relative bg-slate-900 rounded-xl border border-slate-800 shadow-2xl overflow-hidden h-[380px] flex flex-col font-mono text-xs">
+                        <div class="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="ml-2 text-slate-500">nnaemeka_logic_engine -- zsh</span>
+                        </div>
+                        <div class="p-6 text-slate-300 space-y-3 overflow-hidden">
+                            <div class="flex"><span class="text-green-400 mr-2">➜</span> <span>~ init_workflow --type="lead_intake"</span></div>
+                            <div class="text-slate-500">Listening for webhooks...</div>
+                            <div>[INFO] New Lead Detected: { sector: "Moving_Company", urgency: "High" }</div>
+                            <div class="pl-4 border-l-2 border-slate-700 my-2 text-cyan-300">
+                                if (lead.budget > 5000 && lead.timeline == "Immediate") {<br>
+                                &nbsp;&nbsp;crm.tag("VIP_HOT");<br>
+                                &nbsp;&nbsp;sms.dispatch(sales_team, "CALL NOW: " + lead.phone);<br>
+                                &nbsp;&nbsp;return "Routed to Fast Lane";<br>
+                                } else {<br>
+                                &nbsp;&nbsp;email.drip_campaign("Nurture_Seq_01");<br>
+                                &nbsp;&nbsp;return "Routed to Nurture";<br>
+                                }
+                            </div>
+                            <div><span class="text-green-500">✓ Execution Complete.</span> Latency: 400ms.</div>
+                            <div class="text-purple-400">>> Admin hours saved: 0.5 hrs</div>
+                            <div class="mt-4 animate-pulse">_</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-slate-950 border-b border-slate-800 overflow-hidden relative">
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
+        <div class="flex w-full">
+            <div class="flex w-max gap-16 items-center animate-scroll whitespace-nowrap">
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-share-nodes text-pink-500"></i> n8n</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><span class="bg-purple-600 text-white rounded px-2 text-sm font-black">M</span> Make</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-brands fa-hubspot text-orange-500"></i> HubSpot</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-bolt text-orange-400"></i> Zapier</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-database text-yellow-400"></i> Airtable</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-chart-line text-blue-500"></i> GoHighLevel</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-brands fa-stripe text-indigo-400"></i> Stripe</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-microchip text-green-400"></i> OpenAI</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-share-nodes text-pink-500"></i> n8n</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><span class="bg-purple-600 text-white rounded px-2 text-sm font-black">M</span> Make</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-brands fa-hubspot text-orange-500"></i> HubSpot</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-bolt text-orange-400"></i> Zapier</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-database text-yellow-400"></i> Airtable</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-chart-line text-blue-500"></i> GoHighLevel</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-brands fa-stripe text-indigo-400"></i> Stripe</div>
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-xl"><i class="fa-solid fa-microchip text-green-400"></i> OpenAI</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-b border-slate-800">
+        <div class="max-w-5xl site-container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">The Cost of Not Automating</h2>
+                
+                <div class="max-w-3xl mx-auto space-y-4 text-slate-400 text-lg leading-relaxed mb-10">
+                    <ul class="list-none space-y-3 text-left md:text-center inline-block">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> Leads falling through cracks</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> Revenue delayed due to manual invoicing</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> Team time wasted on repeat tasks</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> Errors that scale as the business grows</li>
+                    </ul>
+                    <p class="font-medium text-cyan-400 pt-4">If this sounds familiar, automation is not a luxury. It’s infrastructure.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-900/50 card-padding border-r border-slate-800">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <h3 class="text-white font-mono uppercase tracking-widest text-sm">Human Admin</h3>
+                    </div>
+                    <ul class="space-y-4 font-mono text-sm text-slate-400">
+                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>Monthly Cost:</span> <span class="text-red-400">$2,500+</span></li>
+                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>Availability:</span> <span class="text-slate-200">40h / week</span></li>
+                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>Response Time:</span> <span class="text-slate-200">~2 Hours</span></li>
+                        <li class="flex justify-between"><span>Error Rate:</span> <span class="text-red-400">5 - 10%</span></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-900/80 card-padding relative overflow-hidden">
+                    <div class="absolute inset-0 bg-green-500/5 pointer-events-none"></div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <h3 class="text-white font-mono uppercase tracking-widest text-sm">Logic Engine</h3>
+                    </div>
+                    <ul class="space-y-4 font-mono text-sm text-slate-300">
+                        <li class="flex justify-between border-b border-slate-700 pb-2"><span>Monthly Cost:</span> <span class="text-green-400">$0 (You Own It)</span></li>
+                        <li class="flex justify-between border-b border-slate-700 pb-2"><span>Availability:</span> <span class="text-white">168h / week</span></li>
+                        <li class="flex justify-between border-b border-slate-700 pb-2"><span>Response Time:</span> <span class="text-white">< 3 Seconds</span></li>
+                        <li class="flex justify-between"><span>Error Rate:</span> <span class="text-green-400">0%</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-7xl site-container">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Outcome-Based Services</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">I position systems, not tasks.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <a href="services/ai-lead-capture.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-cyan-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-cyan-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-cyan-400 mb-4 group-hover:bg-cyan-900/20 transition-colors">
+                        <i class="fa-solid fa-magnet"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-cyan-400 transition-colors">Lead capture, qualification, and routing systems</p>
+                </a>
+
+                <a href="services/booking-invoicing-automation.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-green-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-green-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-green-400 mb-4 group-hover:bg-green-900/20 transition-colors">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-green-400 transition-colors">Booking, payment, and invoicing automation</p>
+                </a>
+
+                <a href="services/internal-workflow-architecture.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-purple-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-purple-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-purple-400 mb-4 group-hover:bg-purple-900/20 transition-colors">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-purple-400 transition-colors">Internal approval and notification workflows</p>
+                </a>
+
+                <a href="services/custom-api-integrations.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-orange-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-orange-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-orange-400 mb-4 group-hover:bg-orange-900/20 transition-colors">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-orange-400 transition-colors">Cross-tool integrations with custom logic</p>
+                </a>
+
+                <a href="services/system-maintenance-reliability.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-red-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-red-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-red-400 mb-4 group-hover:bg-red-900/20 transition-colors">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-red-400 transition-colors">Monitoring, error handling, and maintenance</p>
+                </a>
+
+                <a href="services/custom-frontend-interfaces.html" class="block bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-blue-500 transition-all group hover:bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-arrow-right -rotate-45 text-blue-500"></i></div>
+                    <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-blue-400 mb-4 group-hover:bg-blue-900/20 transition-colors">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <p class="text-white font-medium group-hover:text-blue-400 transition-colors">Frontend Interface Architecture</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="interface" class="py-24 bg-slate-900 border-b border-slate-800">
+        <div class="max-w-7xl site-container">
+             <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">The Interface Layer</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Automation needs input. I build high-fidelity interfaces designed to feed clean data into the system.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group">
+                    <div class="ngw-window-effect rounded-lg" style="aspect-ratio: 604/349;" 
+                         data-img1="images/smart-terminal.webp" 
+                         data-full="images/smart-terminal-full.webp">
+                        <div class="ngw-bg" style="background-image:url('images/smart-terminal.webp')"></div>
+                        <div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Smart Capture Terminal</h3>
+                </div>
+                <div class="group">
+                    <div class="ngw-window-effect rounded-lg" style="aspect-ratio: 604/349;" 
+                         data-img1="images/cal.webp" 
+                         data-full="images/cal.webp">
+                        <div class="ngw-bg" style="background-image:url('images/calculator-thumb.webp')"></div>
+                        <div class="ngw-overlay"><i class="fa-solid fa-calculator text-white text-3xl"></i></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">Dynamic Quote Engine</h3>
+                </div>
+                <div class="group">
+                    <div class="ngw-window-effect rounded-lg" style="aspect-ratio: 604/349;" 
+                         data-img1="images/Atlas4.webp" 
+                         data-full="images/Atlas_3.webp">
+                        <div class="ngw-bg" style="background-image:url('images/landing-page.webp')"></div>
+                        <div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2 group-hover:text-cyan-400 transition-colors">High Performance Landing Page</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="live-deployments" class="py-24 bg-slate-950 relative overflow-hidden">
+        <div class="max-w-7xl site-container relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-4">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                    LIVE DEPLOYMENTS
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Logic That Prints Money.</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">I don't just design websites; I architect the logic that runs them.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <article class="project-card bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-2xl hover:border-cyan-500/50 transition-all duration-300">
+                    <div class="h-56 w-full relative border-b border-slate-800 group bg-slate-950">
+                        <img src="images/n8n-landscaping.webp" alt="Landscaping Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="card-padding flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">Lead Triage Automation</h3>
+                            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">Landscaping</span>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Intercepts Google Ads traffic. Detects urgency keywords (e.g., "Tree Fell") and triggers an instant SMS to the field crew.
+                        </p>
+                        <div class="mt-auto">
+                            <a href="case-studies/landscaping-job-management.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700">
+                                Read Case Study
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-2xl hover:border-cyan-500/50 transition-all duration-300">
+                    <div class="h-56 w-full relative border-b border-slate-800 group bg-slate-950">
+
+                        <img src="images/exec.webp" alt="lead capture Workflow" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+
+                    <div class="card-padding flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">Automated Lead Capture, Invoice & Booking System</h3>
+                            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono border border-slate-700">Consulting</span>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Eliminated unpaid calendar holds. A state-machine ledger that verifies Stripe payment before creating a Google Calendar event.
+                        </p>
+                        <div class="mt-auto">
+                            <a href="case-studies/automated-booking-invoicing.html" class="block w-full text-center py-3 bg-slate-800 hover:bg-cyan-600 hover:text-white text-white font-bold rounded-lg transition-colors text-sm border border-slate-700">
+                                Read Case Study
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl site-container">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Why Nnaemeka?</h2>
+                <p class="text-slate-400">Not a tool user. An Architect.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold mb-2">Process First</h3>
+                        <p class="text-slate-400 text-sm">I map processes before automating. Logic beats tools.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 text-red-400">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold mb-2">Defensive Design</h3>
+                        <p class="text-slate-400 text-sm">I design for edge cases and failure states. Systems shouldn't break silently.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 text-green-400">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold mb-2">Documentation</h3>
+                        <p class="text-slate-400 text-sm">I document systems so they’re maintainable. You own the manual.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 text-purple-400">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold mb-2">Reliability</h3>
+                        <p class="text-slate-400 text-sm">I optimize for reliability, not just speed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-900">
+        <div class="max-w-7xl site-container">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">How the Engagement Works</h2>
+                <p class="text-slate-400">Clear steps. No surprises.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 relative">
+                
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 text-center relative w-full md:w-1/5 hover:border-cyan-500/50 transition-colors z-10">
+                    <div class="text-cyan-500 font-mono text-xl mb-4">01</div>
+                    <h3 class="text-white font-bold text-sm">Free automation audit</h3>
+                </div>
+
+                <div class="text-slate-700 text-xl"><i class="fa-solid fa-chevron-right rotate-90 md:rotate-0"></i></div>
+
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 text-center relative w-full md:w-1/5 hover:border-cyan-500/50 transition-colors z-10">
+                    <div class="text-cyan-500 font-mono text-xl mb-4">02</div>
+                    <h3 class="text-white font-bold text-sm">System design proposal</h3>
+                </div>
+
+                 <div class="text-slate-700 text-xl"><i class="fa-solid fa-chevron-right rotate-90 md:rotate-0"></i></div>
+
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 text-center relative w-full md:w-1/5 hover:border-cyan-500/50 transition-colors z-10">
+                    <div class="text-cyan-500 font-mono text-xl mb-4">03</div>
+                    <h3 class="text-white font-bold text-sm">Build and testing</h3>
+                </div>
+
+                 <div class="text-slate-700 text-xl"><i class="fa-solid fa-chevron-right rotate-90 md:rotate-0"></i></div>
+
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 text-center relative w-full md:w-1/5 hover:border-cyan-500/50 transition-colors z-10">
+                    <div class="text-cyan-500 font-mono text-xl mb-4">04</div>
+                    <h3 class="text-white font-bold text-sm">Deployment and documentation</h3>
+                </div>
+
+                 <div class="text-slate-700 text-xl"><i class="fa-solid fa-chevron-right rotate-90 md:rotate-0"></i></div>
+
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 text-center relative w-full md:w-1/5 hover:border-cyan-500/50 transition-colors z-10">
+                    <div class="text-cyan-500 font-mono text-xl mb-4">05</div>
+                    <h3 class="text-white font-bold text-sm">Optional ongoing optimization</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl site-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-white border-b border-green-500/30 pb-4 inline-block">This is for you if:</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3 text-slate-300">
+                            <i class="fa-solid fa-check text-green-400 mt-1"></i>
+                            You run repeatable operations
+                        </li>
+                        <li class="flex gap-3 text-slate-300">
+                            <i class="fa-solid fa-check text-green-400 mt-1"></i>
+                            Manual work is costing time or money
+                        </li>
+                        <li class="flex gap-3 text-slate-300">
+                            <i class="fa-solid fa-check text-green-400 mt-1"></i>
+                            You want systems that scale cleanly
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-white border-b border-red-500/30 pb-4 inline-block">Not for you if:</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3 text-slate-400">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            You want a quick hack with no structure
+                        </li>
+                        <li class="flex gap-3 text-slate-400">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            You’re not ready to improve internal processes
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div class="max-w-7xl site-container">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                <div class="lg:col-span-5 relative group w-full max-w-md mx-auto">
+                    <div class="absolute -inset-0.5 bg-gradient-to-b from-cyan-500 to-slate-900 rounded-2xl opacity-30 blur group-hover:opacity-50 transition duration-1000"></div>
+                    <div class="relative bg-slate-950 rounded-2xl border border-slate-800 card-padding overflow-hidden">
+                        <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-4">
+                            <div class="text-xs font-mono text-slate-500">OP_ID: #NNAEMEKA_01</div>
+                            <div class="px-2 py-0.5 bg-green-500/10 border border-green-500/20 rounded text-[10px] text-green-400 font-mono animate-pulse">STATUS: ACTIVE</div>
+                        </div>
+                        <div class="relative w-full aspect-square bg-slate-800 rounded-xl overflow-hidden mb-6 grayscale hover:grayscale-0 transition-all duration-500">
+                            <img src="images/Profile_pic.webp" alt="Nnaemeka" class="w-full h-full object-cover">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                                <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Focus</div>
+                                <div class="text-cyan-400 font-mono text-xs font-bold">Logic Architecture</div>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                                <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Location</div>
+                                <div class="text-white font-mono text-xs">Lagos <span class="text-slate-600">/ Remote</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 pt-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+                        Architecting Logic <br>
+                        <span class="text-cyan-400">Not Just Layouts.</span>
+                    </h2>
+                    <div class="space-y-6 text-slate-400 leading-relaxed text-lg mb-8">
+                        <p>I grew up in a service-based family. I know that a "slow week" isn't just a spreadsheet error, it's a family problem.</p>
+                        <p>Most businesses have websites that look good but fail operationally. Leads get lost in emails, contracts take too long to draft, and clients ghost you.</p>
+                        <p>
+                            That is why I pivoted. I don't just design websites; I build <strong>automated revenue systems</strong> that handle the admin, chasing, and booking, so you can get off the phone and get back to the job site.
+                        </p>
+                    </div>
+                    <div class="mt-8">
+                         <a href="about.html" class="inline-flex items-center text-cyan-400 font-bold hover:text-white transition-colors">
+                            Read Full Operator Profile <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights" class="py-24 bg-slate-950 relative border-t border-slate-900">
+        <div class="max-w-4xl site-container">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Blog & Insights</h2>
+                    <p class="text-slate-400">Notes on automation, logic, and scale.</p>
+                </div>
+                <a href="insights/index.html" class="text-cyan-400 font-mono text-sm hover:text-white transition-colors">
+                    View_All() <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <div class="space-y-4">
+                <a href="insights/true_cost-manual-data-entry.html" class="group block p-6 bg-slate-900 border-l-2 border-slate-800 hover:border-cyan-500 transition-all hover:bg-slate-800 rounded-r-lg">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
+        <span class="text-cyan-400 font-mono text-xs">2025-12-31</span>
+        <div class="flex gap-2">
+            <span class="text-slate-600 font-mono text-xs px-2 py-1 bg-slate-950 rounded">OPERATIONS</span>
+            <span class="text-slate-600 font-mono text-xs px-2 py-1 bg-slate-950 rounded">COST_ANALYSIS</span>
+        </div>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">The True Cost of Manual Data Entry</h3>
+    <p class="text-slate-400 text-sm line-clamp-2">Manual data entry has a hidden cost of $1-10-100 per record. Discover why automation is the only way to scale without burning cash on admin.</p>
+</a>
+
+<a href="insights/integrating-workflow-automation-pm-tools.html" class="group block p-6 bg-slate-900 border-l-2 border-slate-800 hover:border-cyan-500 transition-all hover:bg-slate-800 rounded-r-lg">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
+        <span class="text-cyan-400 font-mono text-xs">2026-01-15</span>
+        <div class="flex gap-2">
+            <span class="text-slate-600 font-mono text-xs px-2 py-1 bg-slate-950 rounded">AUTOMATION</span>
+            <span class="text-slate-600 font-mono text-xs px-2 py-1 bg-slate-950 rounded">TECH_GUIDE</span>
+        </div>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Can You Integrate Workflow Automation with PM Tools?</h3>
+    <p class="text-slate-400 text-sm line-clamp-2">A comprehensive guide on syncing Jira, Asana, and Trello using No-Code platforms like Zapier and n8n to reduce manual work by 90%.</p>
+</a>
+             
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-black border-t border-slate-900 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900 to-black opacity-90"></div>
+        
+        <div class="max-w-4xl site-container relative z-10">
+            <div class="text-center mb-12">
+                <div class="font-mono text-cyan-400 mb-4 text-sm">> SYSTEM_ALERT: Manual Mode Detected<span class="animate-cursor">_</span></div>
+                <h2 class="text-4xl font-bold text-white mb-4">Stop Running Your Business <br> on Manual Mode.</h2>
+                <p class="text-slate-400">You are losing leads to speed. Let's fix your process logic.</p>
+            </div>
+
+            <div class="bg-slate-900 card-padding rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    
+                    <div class="space-y-6">
+                        <h3 class="text-white font-bold text-lg border-b border-slate-800 pb-2">What happens on the call?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400 text-xs">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white text-sm block">Bottleneck Analysis</strong>
+                                    <span class="text-slate-400 text-xs">We identify exactly where you are leaking time and revenue.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-green-400 text-xs">
+                                    <i class="fa-solid fa-map"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white text-sm block">Automation Roadmap</strong>
+                                    <span class="text-slate-400 text-xs">I'll map out which manual tasks can be replaced by logic immediately.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-purple-400 text-xs">
+                                    <i class="fa-solid fa-ban"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white text-sm block">No Sales Pressure</strong>
+                                    <span class="text-slate-400 text-xs">This is an engineering consultation, not a sales pitch.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center text-center md:border-l md:border-slate-800 md:pl-8">
+                        <a href="book.html" class="w-full py-5 bg-brand-accent hover:bg-white text-slate-900 font-bold text-lg rounded-xl shadow-lg shadow-green-900/20 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:shadow-green-500/20">
+                            Book Strategy Call
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <p class="mt-4 text-xs text-slate-500 font-mono">
+                            <i class="fa-regular fa-clock mr-1"></i> Duration: 30 Minutes
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <a href="/" class="group flex items-center gap-0.5 select-none w-fit" aria-label="Nnaemeka Logic Architect">
+                    <div class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                        <div class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors"></div>
+                        <div class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors"></div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300"></div>
+                    <div class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+                <p class="text-slate-500">Business Process Automation Architect.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="industries/index.html" class="block hover:text-white transition-colors">> /view_industries</a>
+                <a href="case-studies/index.html" class="block hover:text-white transition-colors">> /view_case-studies</a>
+                <a href="book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+      <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if(btn && menu && icon) { 
+            btn.addEventListener('click', () => { 
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark', 'rotate-90');
+                    icon.classList.add('fa-bars', 'rotate-0');
+                } else {
+                    icon.classList.remove('fa-bars', 'rotate-0');
+                    icon.classList.add('fa-xmark', 'rotate-90');
+                }
+            }); 
+        }
+
+        // 3. Lightbox Logic
+        (function () {
+          const containers = document.querySelectorAll('.ngw-window-effect');
+          if (!containers.length) return;
+          
+          containers.forEach(c => {
+            const img1 = c.getAttribute('data-img1') || '';
+            c.style.position = 'relative';
+            c.innerHTML = `<div class="ngw-bg" style="background-image:url('${img1}')"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+          });
+
+          function openLightbox(url) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            if (!lb || !inner) return;
+            inner.innerHTML = '';
+            const img = new Image(); img.src = url;
+            inner.appendChild(img);
+            lb.style.display = 'flex';
+            document.body.classList.add('lightbox-open');
+          }
+
+          function closeLightbox() {
+            document.getElementById('ngw-lightbox').style.display = 'none';
+            document.body.classList.remove('lightbox-open');
+          }
+
+          const triggers = document.querySelectorAll('.ngw-window-effect');
+          triggers.forEach(trig => {
+              trig.addEventListener('click', function () {
+                  const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                  if(fullImg) openLightbox(fullImg);
+              });
+          });
+
+          const closeBtn = document.querySelector('.ngw-close');
+          if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+          
+          const lb = document.getElementById('ngw-lightbox');
+          if(lb) {
+              lb.addEventListener('click', function(e) {
+                  if (e.target === this) closeLightbox();
+              });
+          }
+          document.addEventListener('keydown', function (e) { 
+              if (e.key === 'Escape') closeLightbox(); 
+          });
+        })();
+    </script>
+</body>
+</html>

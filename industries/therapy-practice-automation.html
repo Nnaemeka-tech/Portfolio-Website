@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation for Therapy Practices | HIPAA-Compliant Intake Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/industries/therapy-practice-automation.html" />
+    <meta name="description"
+        content="Operational infrastructure for private practices. Automate patient intake, scheduling, and retention without sacrificing the human connection or HIPAA compliance.">
+    <meta name="keywords"
+        content="automation for therapists, private practice intake system, hipaa compliant automation, therapy practice operations, n8n for healthcare">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nnaemekasystems.com/industries/therapy-practice-automation.html">
+    <meta property="og:title" content="Automation for Therapy Practices | HIPAA-Compliant Intake Systems">
+    <meta property="og:description"
+        content="Operational infrastructure for private practices. Automate patient intake, scheduling, and retention without sacrificing the human connection or HIPAA compliance.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+    <style>:root { --brand-accent: #2dd4bf; }</style>
+
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%232dd4bf' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        .nav-link:hover {
+            color: #2dd4bf;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-slate-900">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(45,212,191,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-city text-blue-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Industries</span>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Case
+                        Studies</span>
+                </a>
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Audit My Practice
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div
+                class="inline-flex items-center px-3 py-1 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent inline-block mr-2 animate-pulse"></span>
+                INDUSTRY: HEALTHCARE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Operational Systems for Private Practices.
+            </h1>
+            <p class="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+                Stop trading billing hours for admin hours. I architect patient intake, scheduling, and retention
+                systems that run securely in the background.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="../book.html"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                    Audit My Workflow
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">The "Admin Trap" in Therapy</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Therapists and private practice owners often hit a hard revenue ceiling. You sell your time, but
+                        every new patient adds non-billable administrative weight.
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Manual intake forms, back-and-forth scheduling emails, and chasing insurance details create a
+                        "Context Switch" penalty. You cannot be fully present for a client if you are mentally tracking
+                        an unpaid invoice.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-user-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">The "Gap"</h4>
+                                <p class="text-sm text-slate-500">Clients reach out when vulnerable. If you take 24
+                                    hours to reply because you're in session, they move on.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-lock-open"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Privacy Risks</h4>
+                                <p class="text-sm text-slate-500">Using standard tools (Gmail, random form builders)
+                                    without proper encryption risks HIPAA/GDPR compliance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                    <h3 class="text-white font-bold text-lg mb-6">Operational Health Check</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Speed to Lead (New Inquiry)</span>
+                                <span class="text-red-400">Avg: 6 Hours</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[25%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Intake Completion Rate</span>
+                                <span class="text-yellow-400">Avg: 60%</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-yellow-500 w-[60%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-slate-400 mb-1">
+                                <span>Admin Hours / Week</span>
+                                <span class="text-red-400">Avg: 10+ Hours</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[80%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+                        <p class="text-xs text-slate-500">
+                            We reverse these metrics using automation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center">What We Build</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl">
+                        <i class="fa-solid fa-hospital-user"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">The Digital Front Desk</h3>
+                    <p class="text-slate-400 text-sm mb-4">An intelligent intake system that captures inquiries, creates
+                        secure patient records, and sends welcome kits instantly.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-brand-accent">TRIGGER</span> Form Submission<br>
+                            <span class="text-brand-accent">CREATE</span> Encrypted Record<br>
+                            <span class="text-brand-accent">SEND</span> Welcome Email
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Retention Engine</h3>
+                    <p class="text-slate-400 text-sm mb-4">Automated "Gentle Nudges." If a potential client starts
+                        intake but doesn't finish, the system sends a supportive check-in after 24 hours.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-purple-400">WAIT</span> 24 Hours<br>
+                            <span class="text-purple-400">CHECK</span> Form Status<br>
+                            <span class="text-purple-400">IF</span> Incomplete -> Email
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Privacy-First AI</h3>
+                    <p class="text-slate-400 text-sm mb-4">Local AI models (running on your server, not the cloud) that
+                        summarize patient notes and draft strategy plans without data leaks.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-green-400">INPUT</span> Raw Notes<br>
+                            <span class="text-green-400">PROCESS</span> Local LLM<br>
+                            <span class="text-green-400">OUTPUT</span> Clinical Summary
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">The Result: Clinical Focus</h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        When your operations are automated, you stop being a "Office Manager" and go back to being a
+                        Clinician.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check text-brand-accent mr-3"></i> 15+ Hours Saved Weekly
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check text-brand-accent mr-3"></i> 100% HIPAA Compliance
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-check text-brand-accent mr-3"></i> Zero Missed Inquiries
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-8 rounded-xl text-center">
+                    <p class="text-6xl font-bold text-white mb-2">0s</p>
+                    <p class="text-slate-500 uppercase tracking-widest text-sm">Latency</p>
+                    <p class="text-slate-400 mt-4 text-sm">
+                        The time between a patient asking for help and receiving a branded, supportive welcome packet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-6">Why "All-in-One" Tools Fail</h2>
+            <p class="text-slate-400 leading-relaxed mb-8">
+                Generic practice management software is often rigid. It forces you to work *their* way. By building a
+                custom logic layer (using tools like n8n and NocoDB), we create a system that adapts to *your*
+                therapeutic modality and intake process, not the other way around.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Deployed Architecture</h2>
+                    <p class="text-slate-400">See a live example of a therapy automation system.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a href="/case-studies/therapy-patient-intake.html"
+                    class="block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group hover:border-brand-accent transition-all">
+                    <div class="h-64 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/adhoc6.webp" alt="Therapy Bot Interface"
+                            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-xs font-mono text-brand-accent mb-2">CASE STUDY</div>
+                        <h3 class="text-2xl font-bold text-white mb-3">The "Adhoc" Assistant</h3>
+                        <p class="text-slate-400 mb-6">
+                            How we built a local, privacy-first AI agent that reads patient forms and drafts clinical
+                            strategy plans in under 60 seconds.
+                        </p>
+                        <span class="text-white text-sm font-bold border-b border-brand-accent pb-1">Read Analysis
+                            -></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-800 bg-black">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Is this right for your practice?</h2>
+            <div class="flex flex-col md:flex-row gap-8 mb-12 text-left">
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-green-900/30">
+                    <h4 class="text-green-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-check mr-2"></i>
+                        For You If:</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• You run a private practice or small clinic.</li>
+                        <li>• You are overwhelmed by non-billable admin.</li>
+                        <li>• You care deeply about patient experience.</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-red-900/30">
+                    <h4 class="text-red-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-xmark mr-2"></i> Not
+                        For You If:</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• You are a large hospital system (Enterprise).</li>
+                        <li>• You want a generic "Chatbot" on your site.</li>
+                        <li>• You don't have a defined intake process yet.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-4">Secure Your Operations.</h3>
+            <p class="text-slate-400 mb-8">
+                Book a confidential audit. We will map your patient flow and identify where automation can protect your
+                time.
+            </p>
+            <a href="../book.html"
+                class="inline-flex justify-center items-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-900 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                Book Practice Audit
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(45,212,191,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

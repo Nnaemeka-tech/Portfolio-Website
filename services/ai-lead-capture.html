@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Capture & AI Automation | Nnaemeka Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/services/ai-lead-capture.html" />
+    <meta name="description"
+        content="Intelligent agents that read, write, and decide so your business doesn’t have to. Turn raw leads into qualified actions automatically.">
+    <meta name="keywords"
+        content="ai lead capture, automated lead qualification, ai agents, business automation, n8n workflows">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nnaemekasystems.com/services/ai-lead-capture.html">
+    <meta property="og:title" content="Lead Capture & AI Automation | Nnaemeka Systems">
+    <meta property="og:description"
+        content="Intelligent agents that read, write, and decide so your business doesn't have to. Turn raw leads into qualified actions automatically.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+    <style>:root { --brand-accent: #6366f1; }</style>
+
+    <link rel="stylesheet" href="../style.css?v=1">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%236366f1' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:hover {
+            color: #22d3ee;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Services</span>
+                </a>
+
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Case
+                        Studies</span>
+                </a>
+
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Book Automation Audit
+                </a>
+            </div>
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div
+                class="inline-flex items-center px-3 py-1 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent inline-block mr-2 animate-pulse"></span>
+                MODULE: INTELLIGENCE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Lead Capture & <br>AI Automation
+            </h1>
+            <p class="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+                Intelligent agents that read, write, and decide so your business doesn’t have to.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="../book.html"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                    Book Your Free Automation Audit
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Turn raw leads into qualified actions</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Most businesses collect leads but still rely on manual work to understand, respond, and act on
+                        them. That delay costs time, opportunities, and revenue.
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        I design AI-powered lead capture systems that don’t just store data, but interpret it, respond
+                        intelligently, and trigger the right next action automatically.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">The Delay Problem</h4>
+                                <p class="text-sm text-slate-500">Leads come in, but no one responds fast or
+                                    consistently. Manual analysis slows down your response time.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-8 h-8 rounded bg-red-900/20 text-red-500 flex items-center justify-center mr-4 shrink-0">
+                                <i class="fa-solid fa-filter"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Indiscriminate Data</h4>
+                                <p class="text-sm text-slate-500">You can’t tell which leads are serious and which are
+                                    noise. Decisions depend on human interpretation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                    <div class="font-mono text-xs text-slate-500 mb-2">// WORKFLOW COMPARISON</div>
+                    <h3 class="text-white font-bold text-lg mb-6">Data → Decision → Action</h3>
+
+                    <div class="space-y-6">
+                        <div class="p-4 rounded bg-slate-900 border border-slate-800 opacity-50">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-bold text-slate-400">Standard Workflow</span>
+                                <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-500">Bottleneck</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Form Submission → Human Reads Email → Human Decides →
+                                Manual Reply</p>
+                        </div>
+
+                        <div class="flex justify-center -my-3 relative z-10">
+                            <div class="bg-slate-800 rounded-full p-1"><i
+                                    class="fa-solid fa-arrow-down text-slate-500"></i></div>
+                        </div>
+
+                        <div class="p-4 rounded bg-brand-accent/10 border border-brand-accent/30 relative">
+                            <div
+                                class="absolute -top-2 -right-2 bg-brand-accent text-white text-[10px] px-2 py-1 rounded font-bold">
+                                AUTOMATED</div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-bold text-white">AI Agent Workflow</span>
+                                <span
+                                    class="text-xs bg-brand-accent/20 px-2 py-1 rounded text-brand-accent">Instant</span>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                Capture → <span class="text-brand-accent">Detect Intent</span> → <span
+                                    class="text-brand-accent">Enrich Data</span> → <span class="text-brand-accent">Draft
+                                    Personal Response</span> → Trigger CRM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-3xl font-bold text-white mb-6">How the AI Actually Works</h2>
+            <p class="text-slate-400 leading-relaxed text-lg">
+                This is not “AI for the sake of AI.” At the core of these systems are LLMs and agents that are tightly
+                controlled and purpose-built.
+            </p>
+            <p class="text-slate-400 leading-relaxed mt-4">
+                They analyze sentiment, intent, and meaning instead of just keywords, with guardrails to ensure
+                reliability.
+            </p>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-xl font-bold text-white mb-8 border-l-4 border-brand-accent pl-4">What I Build</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-magnet"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Intelligent Lead Capture</h3>
+                    <p class="text-slate-400 text-sm mb-4">Capture leads from forms, emails, and chats. Detect intent,
+                        urgency, or sentiment and enrich leads automatically with external data.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-brand-accent">INPUT</span> Raw Form Data<br>
+                            <span class="text-brand-accent">ENRICH</span> Fetch LinkedIn/Web<br>
+                            <span class="text-brand-accent">OUTPUT</span> High-Value Profile
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">AI-Powered Communication</h3>
+                    <p class="text-slate-400 text-sm mb-4">Draft personalized client emails automatically. Generate
+                        follow-ups based on lead behavior or tone, routing conversations based on context.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-purple-400">READ</span> Incoming Inquiry<br>
+                            <span class="text-purple-400">DECIDE</span> Needs Booking?<br>
+                            <span class="text-purple-400">DRAFT</span> Custom Invite
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-brand-accent transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center text-brand-accent mb-4 text-xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Market & Data Intelligence</h3>
+                    <p class="text-slate-400 text-sm mb-4">Scrape and summarize market or competitor data. Monitor
+                        changes, trigger alerts, and convert unstructured data into usable insights.</p>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <p class="text-xs font-mono text-slate-400">
+                            <span class="text-green-400">SCRAPE</span> Competitor Site<br>
+                            <span class="text-green-400">SUMMARIZE</span> Pricing Changes<br>
+                            <span class="text-green-400">ALERT</span> Slack Notification
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center">Why This Is Different</h2>
+
+            <div class="space-y-12">
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">
+                            01</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Process Clarity First</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Most AI automations fail because they are bolted onto broken processes. My approach focuses
+                            on process clarity before automation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">
+                            02</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Leverage, Not Risk</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            AI is used where it adds leverage, not where it creates liability. We define clear
+                            boundaries on what the AI can and cannot do to prevent unpredictable behavior.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full border border-brand-accent bg-brand-accent/10 flex items-center justify-center text-brand-accent font-bold font-mono">
+                            03</div>
+                        <div class="h-full w-px bg-slate-800 my-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Documented & Extensible</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Systems that are documented, testable, and extensible. You get intelligence that supports
+                            decisions, not replaces accountability.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-8">The AI Stack</h2>
+            <p class="text-slate-400 mb-12 max-w-2xl mx-auto">Deterministic logic layered on top of AI decisions ensures
+                useful intelligence.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">LLMs</div>
+                    <div class="text-xs text-slate-500">Analysis</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">Agents</div>
+                    <div class="text-xs text-slate-500">Autonomous Tasks</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">Guardrails</div>
+                    <div class="text-xs text-slate-500">Reliability</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded text-center">
+                    <div class="font-bold text-white">Logs</div>
+                    <div class="text-xs text-slate-500">Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-brand-accent mb-2">24/7</div>
+                    <p class="text-sm text-slate-400">Responsiveness. Leads don't wait for office hours.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-white mb-2">Scale</div>
+                    <p class="text-sm text-slate-400">Handle consistent inbound leads without increasing headcount.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">Insight</div>
+                    <p class="text-sm text-slate-400">Convert unstructured data into usable insights instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Example Use Cases</h2>
+                    <p class="text-slate-400">Real operational scenarios where this system shines.</p>
+                </div>
+                <a href="/case-studies"
+                    class="text-brand-accent text-sm font-bold hover:text-white transition-colors hidden md:block">View
+                    All Case Studies -></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a href="/case-studies/automated-booking-invoicing.html"
+                    class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/exec.webp" alt="Automated Booking"
+                            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">HIGH-TICKET INFRASTRUCTURE</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Automated Lead Capture & Booking</h3>
+                        <p class="text-slate-400 text-sm mb-4">A "Paid-First" defensive architecture. It uses n8n and a
+                            State Machine Ledger to ensure no one touches your calendar until the invoice is paid.</p>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-500">Payment Logic</span>
+                            <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-500">n8n</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/case-studies/lead-generation-engine.html"
+                    class="project-card block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800"></div>
+                        <img src="../images/n8n2.webp" alt="Sales Pipeline"
+                            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-mono text-brand-accent mb-2">SALES OPERATIONS</div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sales Pipeline Automation</h3>
+                        <p class="text-slate-400 text-sm mb-4">A logic-based application funnel that audits prospects
+                            before they can book a call. It calculates a "Fit Score" in real-time.</p>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-500">Scoring</span>
+                            <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-500">HubSpot</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-800 bg-black">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Who This Is Best For</h2>
+            <div class="flex flex-col md:flex-row gap-8 mb-12 text-left">
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-green-900/30">
+                    <h4 class="text-green-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-check mr-2"></i>
+                        Ideal If</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• You receive consistent inbound leads</li>
+                        <li>• Decisions depend on text/intent</li>
+                        <li>• Manual analysis slows response time</li>
+                        <li>• You want AI in real operations</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-slate-900 p-6 rounded-xl border border-red-900/30">
+                    <h4 class="text-red-400 font-bold mb-3 flex items-center"><i class="fa-solid fa-xmark mr-2"></i> Not
+                        Ideal If</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>• You want a quick AI demo</li>
+                        <li>• No long-term system thinking</li>
+                        <li>• You have no clear process yet</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-4">Let’s Design the Right AI System</h3>
+            <p class="text-slate-400 mb-8">
+                If you’re unsure where AI fits into your operations, that’s normal. The first step is clarity. Book a
+                free AI & automation audit.
+            </p>
+            <a href="../book.html"
+                class="inline-flex justify-center items-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                Book Your Free Automation Audit
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-brand-accent transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

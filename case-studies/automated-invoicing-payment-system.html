@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Automated Invoicing & Payment Architecture | Nnaemeka Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/case-studies/automated-invoicing-payment-system.html" />
+    <meta name="description"
+        content="How we eliminated manual billing and reduced payment delays using n8n, Stripe, and Airtable.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nnaemekasystems.com/case-studies/automated-invoicing-payment-system.html">
+    <meta property="og:title" content="Case Study: Automated Invoicing &amp; Payment Architecture | Nnaemeka Systems">
+    <meta property="og:description"
+        content="How we eliminated manual billing and reduced payment delays using n8n, Stripe, and Airtable.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+    <style>:root { --brand-accent: #f59e0b; }</style>
+
+    <link rel="stylesheet" href="../style.css?v=1">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%23f59e0b' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        pre::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .site-container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        .nav-link:hover {
+            color: #22d3ee;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            w-full;
+            h-full;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.05);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+
+            .card-padding {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-purple-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Case Studies</span>
+                </a>
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 site-container">
+
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse mr-2"></span>
+                PROJECT: REVENUE AUTOMATION
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Automated Invoicing & Payment Reminder System
+            </h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                Designed and implemented a fully automated invoicing, payment tracking, and reminder system for a
+                service-based business using n8n, Stripe, Airtable, and Gmail.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 card-padding sticky top-24 shadow-xl">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+
+                    <div class="space-y-6">
+                        <div class="pb-4 border-b border-slate-800/50">
+                            <div class="text-xs text-brand-accent uppercase font-mono mb-1 font-bold">Primary Outcome
+                            </div>
+                            <div class="text-white text-xl font-bold leading-tight">Zero Manual Follow-ups</div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Reliability</div>
+                            <div class="flex text-green-500 text-xs font-bold items-center">
+                                <i class="fa-solid fa-check-circle mr-2"></i>
+                                <span>Real-Time Payment Status</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Infrastructure Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-cyan-400 border border-slate-700">n8n</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-indigo-400 border border-slate-700">Stripe</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-green-400 border border-slate-700">Airtable</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-red-400 border border-slate-700">Gmail</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="../book.html"
+                            class="block w-full py-3 bg-brand-accent hover:bg-white text-slate-900 text-center font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                            Book System Review
+                        </a>
+                        <p class="text-center text-xs text-slate-500 mt-3">See if this architecture fits your workflow
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4">Project Overview</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        This project involved designing and implementing a fully automated invoicing, payment tracking,
+                        and reminder system for a service-based business using n8n, Stripe, Airtable, and Gmail.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The goal was to eliminate manual invoicing, reduce payment delays, and give the business
+                        real-time visibility into invoice status without adding operational overhead. The system is
+                        triggered the moment a job is completed and continues working in the background until payment is
+                        received or escalated.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-6">The Problem</h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        The client faced several recurring issues:
+                    </p>
+                    <ul class="list-disc pl-5 text-slate-400 space-y-2 mb-6">
+                        <li>Invoices were created manually after jobs were completed, leading to delays</li>
+                        <li>Follow-ups depended on memory and manual checks</li>
+                        <li>No central source of truth for invoice status</li>
+                        <li>Late payments often went unnoticed until they became critical</li>
+                        <li>No structured escalation process for overdue invoices</li>
+                    </ul>
+                    <p class="text-slate-400 leading-relaxed border-l-4 border-brand-accent pl-4 italic">
+                        As the volume of completed jobs increased, these issues began to directly affect cash flow.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-6">Objectives</h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">The automation was designed to achieve the following:
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-slate-400">
+                            <i class="fa-solid fa-check text-green-400 mt-1 mr-3 text-xs"></i>
+                            <span>Automatically generate and send invoices when a job is completed</span>
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <i class="fa-solid fa-check text-green-400 mt-1 mr-3 text-xs"></i>
+                            <span>Track payment status in real time using Stripe</span>
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <i class="fa-solid fa-check text-green-400 mt-1 mr-3 text-xs"></i>
+                            <span>Store all invoice records in a structured database</span>
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <i class="fa-solid fa-check text-green-400 mt-1 mr-3 text-xs"></i>
+                            <span>Send intelligent, timed reminders without manual intervention</span>
+                        </li>
+                        <li class="flex items-start text-slate-400">
+                            <i class="fa-solid fa-check text-green-400 mt-1 mr-3 text-xs"></i>
+                            <span>Escalate overdue invoices internally before they became defaults</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span
+                            class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">01</span>
+                        System Architecture Overview
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        The solution was built as a modular automation system with three core engines. Each engine runs
+                        independently but shares a common data layer in Airtable.
+                    </p>
+
+                    <div class="mb-8">
+                        <div class="ngw-window-effect shadow-2xl group mb-2" data-img1="../images/payment_sys.webp"
+                            data-full="../images/payment_sys.webp">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 1: Modular Automation
+                            Architecture</p>
+                    </div>
+
+                    <div class="space-y-12">
+
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Invoice Creation Engine</h3>
+                            <div
+                                class="inline-block px-2 py-1 bg-brand-accent/10 border border-brand-accent/20 rounded text-brand-accent text-xs font-mono mb-4">
+                                Trigger: Job Completion Webhook
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                When a job is marked as completed, the workflow is triggered via a webhook containing
+                                client and job details.
+                            </p>
+
+                            <div class="mb-6 mt-4">
+                                <div class="ngw-window-effect shadow-xl group mb-2"
+                                    data-img1="../images/payment-sys1.webp" data-full="../images/payment-sys1.webp">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 text-center font-mono">Figure 2: Invoice Creation Logic
+                                </p>
+                            </div>
+
+                            <div class="bg-slate-900/50 p-5 rounded border border-slate-800">
+                                <h4 class="text-white font-bold text-sm mb-2">Key Steps</h4>
+                                <ul class="list-decimal pl-5 text-slate-400 text-sm space-y-1">
+                                    <li>Validate incoming job and client data</li>
+                                    <li>Create or fetch the customer in Stripe</li>
+                                    <li>Generate a draft invoice & add service line items dynamically</li>
+                                    <li>Finalize the invoice & store metadata in Airtable</li>
+                                    <li>Email the invoice link to the client automatically</li>
+                                </ul>
+                                <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/50">
+                                    This ensures invoices are issued immediately after service delivery.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Payment Monitoring Engine</h3>
+                            <div
+                                class="inline-block px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 text-xs font-mono mb-4">
+                                Trigger: Scheduled Check (Every Minute)
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                This engine continuously monitors unpaid invoices stored in Airtable.
+                            </p>
+
+                            <div class="mb-6 mt-4">
+                                <div class="ngw-window-effect shadow-xl group mb-2"
+                                    data-img1="../images/payment_sys2.webp" data-full="../images/payment_sys2.webp">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 text-center font-mono">Figure 3: Payment Status Polling
+                                    Loop</p>
+                            </div>
+
+                            <div class="bg-slate-900/50 p-5 rounded border border-slate-800">
+                                <h4 class="text-white font-bold text-sm mb-2">How It Works</h4>
+                                <ul class="list-disc pl-5 text-slate-400 text-sm space-y-1">
+                                    <li>Fetch all invoices marked as Pending</li>
+                                    <li>Query Stripe for the latest invoice status</li>
+                                    <li>Automatically update Airtable when payment is confirmed</li>
+                                </ul>
+                                <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/50">
+                                    This removes the need for manual payment checks while keeping records accurate.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Reminder and Escalation Engine</h3>
+                            <div
+                                class="inline-block px-2 py-1 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-xs font-mono mb-4">
+                                Trigger: Scheduled Daily Run
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                This engine handles follow-ups and internal alerts based on how long an invoice has been
+                                unpaid. It calculates the days since issue and routes invoices through a reminder
+                                decision engine.
+                            </p>
+
+                            <div class="mb-6 mt-4">
+                                <div class="ngw-window-effect shadow-xl group mb-2"
+                                    data-img1="../images/payment_sys3.webp" data-full="../images/payment_sys3.webp">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 text-center font-mono">Figure 4: Automated Escalation
+                                    Logic</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
+                                <div class="bg-slate-900 border border-slate-800 p-3 rounded text-center">
+                                    <div class="text-green-400 font-bold text-sm mb-1">Day 7</div>
+                                    <div class="text-slate-500 text-xs">Friendly Reminder</div>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-3 rounded text-center">
+                                    <div class="text-yellow-400 font-bold text-sm mb-1">Day 14</div>
+                                    <div class="text-slate-500 text-xs">Overdue Notice</div>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-3 rounded text-center">
+                                    <div class="text-red-400 font-bold text-sm mb-1">Day 30+</div>
+                                    <div class="text-slate-500 text-xs">Internal Alert</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="border-t border-slate-800 pt-12">
+                    <h2 class="text-2xl font-bold text-white mb-4">Data Management</h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Airtable acts as the system of record, storing:
+                    </p>
+
+                    <div class="mb-6 mt-4">
+                        <div class="ngw-window-effect shadow-xl group mb-2" data-img1="../images/payment_sys4.webp"
+                            data-full="../images/payment_sys4.webp">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 5: The Single Source of Truth</p>
+                    </div>
+
+                    <ul class="list-disc pl-5 text-slate-400 mb-6">
+                        <li>Invoice ID</li>
+                        <li>Client information</li>
+                        <li>Amount and currency</li>
+                        <li>Status (Pending, Paid, Overdue)</li>
+                        <li>Reminder stage</li>
+                        <li>Stripe hosted invoice link</li>
+                    </ul>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        This allows both automation and humans to reference the same data source.
+                    </p>
+
+                    <a href="https://www.nnaemekasystems.com/insights/integrating-workflow-automation-pm-tools"
+                        class="flex items-center p-4 bg-slate-900/50 border-l-4 border-brand-accent rounded-r hover:bg-slate-900 transition-colors group">
+                        <i
+                            class="fa-solid fa-link text-slate-500 mr-4 group-hover:text-brand-accent transition-colors"></i>
+                        <div>
+                            <div class="text-white font-bold text-sm mb-1">Read why this is important</div>
+                            <div class="text-slate-400 text-xs group-hover:text-slate-300">Insight: Integrating Workflow
+                                Automation with PM Tools</div>
+                        </div>
+                        <i
+                            class="fa-solid fa-arrow-right ml-auto text-slate-600 group-hover:text-white transition-colors"></i>
+                    </a>
+                </section>
+
+                <section class="border-t border-slate-800 pt-12">
+                    <h2 class="text-2xl font-bold text-white mb-6">Tools & Technologies Used</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+                            <div class="text-brand-accent font-mono text-xs font-bold mb-1">ORCHESTRATION</div>
+                            <div class="text-white font-bold">n8n</div>
+                            <div class="text-slate-500 text-xs mt-1">Workflow orchestration.</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+                            <div class="text-indigo-500 font-mono text-xs font-bold mb-1">BILLING</div>
+                            <div class="text-white font-bold">Stripe API</div>
+                            <div class="text-slate-500 text-xs mt-1">Billing and payments.</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+                            <div class="text-green-500 font-mono text-xs font-bold mb-1">DATABASE</div>
+                            <div class="text-white font-bold">Airtable</div>
+                            <div class="text-slate-500 text-xs mt-1">Structured invoice tracking.</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+                            <div class="text-red-500 font-mono text-xs font-bold mb-1">NOTIFICATIONS</div>
+                            <div class="text-white font-bold">Gmail API</div>
+                            <div class="text-slate-500 text-xs mt-1">Automated notifications.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mt-12 mb-12">
+                    <h2 class="text-2xl font-bold text-white mb-6">Before vs After</h2>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4 overflow-hidden rounded-xl border border-slate-800">
+                        <div class="bg-red-950/20 p-6 border-b md:border-b-0 md:border-r border-slate-800">
+                            <div class="text-red-400 font-bold uppercase tracking-wider text-xs mb-4">Before</div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-slate-400 text-sm">
+                                    <i class="fa-solid fa-xmark text-red-500 mr-3 w-4"></i> Manual invoice creation
+                                </li>
+                                <li class="flex items-center text-slate-400 text-sm">
+                                    <i class="fa-solid fa-xmark text-red-500 mr-3 w-4"></i> Missed follow-ups
+                                </li>
+                                <li class="flex items-center text-slate-400 text-sm">
+                                    <i class="fa-solid fa-xmark text-red-500 mr-3 w-4"></i> No visibility
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-950/20 p-6">
+                            <div class="text-green-400 font-bold uppercase tracking-wider text-xs mb-4">After</div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-white text-sm">
+                                    <i class="fa-solid fa-check text-green-500 mr-3 w-4"></i> Event-driven billing
+                                </li>
+                                <li class="flex items-center text-white text-sm">
+                                    <i class="fa-solid fa-check text-green-500 mr-3 w-4"></i> Automated escalation
+                                </li>
+                                <li class="flex items-center text-white text-sm">
+                                    <i class="fa-solid fa-check text-green-500 mr-3 w-4"></i> Centralized tracking
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-t border-slate-800 pt-12">
+                    <h2 class="text-2xl font-bold text-white mb-6">Results & Impact</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
+                            <div class="text-3xl font-bold text-brand-accent mb-1">&lt; 30s</div>
+                            <div class="text-xs text-slate-500 uppercase">Invoice Issuance Time</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
+                            <div class="text-3xl font-bold text-white mb-1">~100%</div>
+                            <div class="text-xs text-slate-500 uppercase">Effort Reduction</div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 rounded-lg text-center card-padding">
+                            <div class="text-3xl font-bold text-blue-400 mb-1">0</div>
+                            <div class="text-xs text-slate-500 uppercase">Missed Follow-ups</div>
+                        </div>
+                    </div>
+
+                    <ul class="list-disc pl-5 text-slate-400 space-y-2 mb-6">
+                        <li><strong>Invoice issuance time:</strong> Reduced from manual delays to < 30 seconds after job
+                                completion</li>
+                        <li><strong>Manual billing effort:</strong> Reduced by ~90–100%</li>
+                        <li><strong>Average payment turnaround:</strong> Improved by 25–45%</li>
+                        <li><strong>Missed follow-ups:</strong> Reduced to 0 due to automated reminders</li>
+                        <li><strong>Invoice visibility:</strong> 100% real-time status tracking across all open invoices
+                        </li>
+                        <li><strong>Overdue detection time:</strong> Reduced from weeks to same-day awareness</li>
+                    </ul>
+                    <p class="text-slate-400">These improvements directly impact cash flow predictability and
+                        operational efficiency.</p>
+                </section>
+
+                <section class="border-t border-slate-800 pt-12">
+                    <h2 class="text-2xl font-bold text-white mb-6">Why This System Scales</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-slate-400 text-sm">
+                            <i class="fa-solid fa-expand text-brand-accent mt-1 mr-3"></i>
+                            <span>Modular engines allow easy expansion</span>
+                        </li>
+                        <li class="flex items-start text-slate-400 text-sm">
+                            <i class="fa-solid fa-expand text-brand-accent mt-1 mr-3"></i>
+                            <span>New reminder rules can be added without breaking core logic</span>
+                        </li>
+                        <li class="flex items-start text-slate-400 text-sm">
+                            <i class="fa-solid fa-expand text-brand-accent mt-1 mr-3"></i>
+                            <span>Supports additional channels such as SMS or WhatsApp</span>
+                        </li>
+                        <li class="flex items-start text-slate-400 text-sm">
+                            <i class="fa-solid fa-expand text-brand-accent mt-1 mr-3"></i>
+                            <span>Can be adapted to any service-based business model</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="border-t border-slate-800 pt-12">
+                    <h2 class="text-2xl font-bold text-white mb-6">Suggested Enhancements (Next Iteration)</h2>
+                    <div class="bg-slate-900/50 p-6 rounded-lg border border-slate-800">
+                        <ul class="list-disc pl-5 text-slate-400 space-y-2">
+                            <li>Automatic late fee application after a defined threshold</li>
+                            <li>Client-specific payment terms</li>
+                            <li>Partial payment handling</li>
+                            <li>Stripe webhook-based payment confirmation</li>
+                            <li>Dashboard visualization for outstanding invoices</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="mt-16 mb-16">
+                    <h2 class="text-2xl font-bold text-white mb-4">Conclusion</h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        This automation replaces an error-prone manual billing process with a reliable, always-on
+                        system. By combining event-driven triggers, scheduled monitoring, and intelligent escalation
+                        logic, the business gains control over invoicing and payments without increasing operational
+                        workload.
+                    </p>
+                </section>
+
+                <div id="contact"
+                    class="mt-16 card-padding bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Build Your Infrastructure?
+                        </h3>
+                        <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+                            If you are tired of patching together tools and want a system that defends your time as
+                            aggressively as you do, let's review your current stack.
+                        </p>
+                        <a href="../book.html"
+                            class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                            Book System Review
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-brand-accent transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+
+        // Lightbox
+        const containers = document.querySelectorAll('.ngw-window-effect');
+        if (containers.length) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            const closeBtn = document.querySelector('.ngw-close');
+
+            function openLightbox(url) {
+                inner.innerHTML = '';
+                const img = new Image(); img.src = url;
+                inner.appendChild(img);
+                lb.style.display = 'flex';
+                document.body.classList.add('lightbox-open');
+            }
+
+            function closeLightbox() {
+                lb.style.display = 'none';
+                document.body.classList.remove('lightbox-open');
+            }
+
+            containers.forEach(c => {
+                const img1 = c.getAttribute('data-img1') || '';
+                c.style.position = 'relative';
+                // Placeholder check for background
+                const bgStyle = img1 ? `background-image:url('${img1}')` : 'background: #0f172a';
+                c.innerHTML += `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+
+                c.addEventListener('click', function () {
+                    const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                    if (fullImg) openLightbox(fullImg);
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lb) {
+                lb.addEventListener('click', function (e) {
+                    if (e.target === this) closeLightbox();
+                });
+            }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        }
+    </script>
+</body>
+
+</html>

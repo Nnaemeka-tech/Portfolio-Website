@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: AI Pre-Sales Assistant | Nnaemeka Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/case-studies/ai-presales-assistant.html" />
+    <meta name="description"
+        content="A digital receptionist that qualifies leads, answers questions without hallucinating, and integrates with Airtable CRM using n8n and RAG.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nnaemekasystems.com/case-studies/ai-presales-assistant.html">
+    <meta property="og:title" content="Case Study: AI Pre-Sales Assistant | Nnaemeka Systems">
+    <meta property="og:description"
+        content="A digital receptionist that qualifies leads, answers questions without hallucinating, and integrates with Airtable CRM using n8n and RAG.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+    <style>:root { --brand-accent: #f59e0b; }</style>
+
+    <link rel="stylesheet" href="../style.css?v=1">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%23f59e0b' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        pre::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .site-container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        .nav-link:hover {
+            color: #22d3ee;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            w-full;
+            h-full;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.05);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+
+            .card-padding {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div
+                    class="flex items-center text-slate-600 group-hover:text-brand-accent transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-purple-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Case Studies</span>
+                </a>
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 site-container">
+
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse mr-2"></span>
+                PROJECT: AI RECEPTIONIST & LEAD QUALIFICATION
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">AI Pre-Sales Assistant for Home & Field Services
+            </h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                Designed and deployed "Ada," an AI Pre-Sales Assistant designed to act not as a generic chatbot, but as
+                a competent Digital Receptionist. Unlike standard bots that hallucinate answers or push for sales too
+                early, Ada uses a strict architectural framework to answer questions accurately, qualify prospects based
+                on specific business rules, and route structured data directly to a CRM (Airtable) for human follow-up.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 card-padding sticky top-24 shadow-xl">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+
+                    <div class="space-y-6">
+                        <div class="pb-4 border-b border-slate-800/50">
+                            <div class="text-xs text-brand-accent uppercase font-mono mb-1 font-bold">Primary Outcome
+                            </div>
+                            <div class="text-white text-xl font-bold leading-tight">24/7 Qualified Lead Capture</div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Reliability</div>
+                            <div class="flex text-green-500 text-xs font-bold items-center">
+                                <i class="fa-solid fa-check-circle mr-2"></i>
+                                <span>Zero Hallucinations (RAG)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Infrastructure Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-cyan-400 border border-slate-700">n8n</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-indigo-400 border border-slate-700">Google
+                                    Gemini</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-green-400 border border-slate-700">Pinecone</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-yellow-400 border border-slate-700">Airtable</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="../book.html"
+                            class="block w-full py-3 bg-brand-accent hover:bg-white text-slate-900 text-center font-bold rounded-lg transition-all shadow-lg shadow-brand-accent/20">
+                            Book Strategy Call
+                        </a>
+                        <p class="text-center text-xs text-slate-500 mt-3">Discuss implementing this for your team</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4">1. Executive Summary</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        For home and field service businesses (HVAC, Security, Plumbing), the pre-sales process is often
+                        plagued by friction. High volumes of repetitive questions ("How much is it?", "Do you serve my
+                        area?") clog up communication channels, leading to delayed responses and missed opportunities.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        This project deployed "Ada," an AI Pre-Sales Assistant designed to act not as a generic chatbot,
+                        but as a competent Digital Receptionist. Unlike standard bots that hallucinate answers or push
+                        for sales too early, Ada uses a strict architectural framework to answer questions accurately,
+                        qualify prospects based on specific business rules, and route structured data directly to a CRM
+                        (Airtable) for human follow-up.
+                    </p>
+                </section>
+
+                <section class="border border-slate-800 rounded-xl overflow-hidden bg-slate-900/30">
+                    <div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50 flex items-center justify-between">
+                        <h3 class="text-white font-bold text-sm uppercase tracking-wide flex items-center">
+                            <i class="fa-solid fa-play-circle text-brand-accent mr-2"></i> System In Action
+                        </h3>
+                        <div class="flex space-x-1">
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full" style="padding-bottom: 56.25%;">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/VkmzwNVMMkY?rel=0&modestbranding=1" title="Ada Demo"
+                            frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <div class="p-4 text-xs text-slate-500 font-mono text-center bg-slate-950">
+                        Watch Ada qualify a lead and save it in CRM (Airtable).
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-6">2. The Challenge: The "Pre-Sales Noise" Problem</h2>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Home service businesses face a specific set of challenges that traditional "dumb" chatbots fail
+                        to address:
+                    </p>
+                    <ul class="list-disc pl-5 text-slate-400 space-y-4 mb-6">
+                        <li>
+                            <strong class="text-white">Inconsistent Qualification:</strong> Human agents might forget to
+                            ask about property size or budget, leading to site visits for unqualified leads.
+                        </li>
+                        <li>
+                            <strong class="text-white">Premature Selling:</strong> Most AI bots try to "close" the deal
+                            in the first message, which feels robotic and pushes customers away.
+                        </li>
+                        <li>
+                            <strong class="text-white">Hallucination Risks:</strong> AI models often invent prices or
+                            inventory (e.g., promising "Solar Cameras" when none exist) to please the user.
+                        </li>
+                        <li>
+                            <strong class="text-white">Data Silos:</strong> Leads from WhatsApp, email, and chat often
+                            end up in messy inboxes rather than a structured database.
+                        </li>
+                    </ul>
+                    <p class="text-slate-400 leading-relaxed border-l-4 border-brand-accent pl-4 italic">
+                        The goal was to build a system that behaves with the discipline of a trained senior
+                        receptionist: helpful, guarded, and process-driven.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span
+                            class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">03</span>
+                        Solution Architecture
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        The solution was engineered as a modular automation system using n8n as the orchestrator. It
+                        consists of three distinct layers:
+                    </p>
+
+                    <div class="space-y-12">
+
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">A. The Knowledge Layer (Ingestion Workflow)
+                            </h3>
+                            <div
+                                class="inline-block px-2 py-1 bg-brand-accent/10 border border-brand-accent/20 rounded text-brand-accent text-xs font-mono mb-4">
+                                Engine: Learning
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                To prevent hallucinations, the AI is not allowed to rely solely on its training data.
+                                Instead, a dedicated Retrieval-Augmented Generation (RAG) pipeline was built.
+                            </p>
+                            <ul class="list-disc pl-5 text-slate-400 text-sm space-y-2 mb-4">
+                                <li><strong>Process:</strong> Company policy documents, pricing guides, and service
+                                    descriptions are ingested via n8n.</li>
+                                <li><strong>Chunking Strategy:</strong> Data is split into semantic chunks (1000
+                                    characters with 150-character overlap) to ensure complex concepts like "Full Smart
+                                    Home Packages" are retrieved in their entirety.</li>
+                                <li><strong>Storage:</strong> These chunks are embedded using Google Gemini and stored
+                                    in a Pinecone vector database, creating a "frozen" source of truth that the AI must
+                                    cite.</li>
+                            </ul>
+
+                            <div class="mb-6 mt-4">
+                                <div class="ngw-window-effect shadow-xl group mb-2"
+                                    data-img1="../images/ai-ingestion-workflow.webp"
+                                    data-full="../images/ai-ingestion-workflow.webp">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 text-center font-mono">Figure 1: Knowledge Ingestion
+                                    Pipeline</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">B. The Reasoning Layer (The "Gatekeeper"
+                                Logic)</h3>
+                            <div
+                                class="inline-block px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 text-xs font-mono mb-4">
+                                Engine: Reasoning
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                This is the core innovation of the project. Rather than a simple Q&A bot, the AI Agent
+                                is governed by a strict System Prompt that enforces business logic:
+                            </p>
+                            <ul class="list-disc pl-5 text-slate-400 text-sm space-y-2 mb-4">
+                                <li><strong>The Recommendation Gatekeeper:</strong> The AI is legally forbidden from
+                                    recommending a package until it has collected four specific data points: Property
+                                    Type, Size, Primary Goal, and Preference Level. If a user asks "What should I buy?"
+                                    early, the AI politely deflects and pivots back to qualification.</li>
+                                <li><strong>The "Soft Pivot":</strong> When users ask about out-of-scope items (e.g.,
+                                    "Do you have solar cameras?"), the AI does not hallucinate a "Yes." Instead, it
+                                    flags the item for human review ("That’s a great question for the specialist...")
+                                    and immediately returns to the qualification flow.</li>
+                                <li><strong>Memory Management:</strong> A sliding context window (10 messages) ensures
+                                    the AI remembers details provided early in the chat, preventing repetitive
+                                    questions.</li>
+                            </ul>
+
+                            <div class="mb-6 mt-4">
+                                <div class="ngw-window-effect shadow-xl group mb-2"
+                                    data-img1="../images/ai-main-agent-workflow.webp"
+                                    data-full="../images/ai-main-agent-workflow.webp" <div
+                                    class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 text-center font-mono">Figure 2: The Logic Engine &
+                                Gatekeeper</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">C. The Operations Layer (CRM Integration)</h3>
+                        <div
+                            class="inline-block px-2 py-1 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-xs font-mono mb-4">
+                            Engine: Operations
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Once a lead is fully qualified and requests a consultation, the system transitions from
+                            "Chat" to "Data Entry":
+                        </p>
+                        <ul class="list-disc pl-5 text-slate-400 text-sm space-y-2 mb-4">
+                            <li><strong>Data Formatting:</strong> The AI converts conversational dates ("Next Tuesday at
+                                2 PM") into structured ISO timestamps (2023-10-24 14:00).</li>
+                            <li><strong>CRM Handoff:</strong> The lead is saved to Airtable via API. The record includes
+                                not just contact info, but the full qualification profile (Goal, Budget, Property Size),
+                                giving the human sales team a "warm" lead to close.</li>
+                        </ul>
+
+                        <div class="mb-6 mt-4">
+                            <div class="ngw-window-effect shadow-xl group mb-2"
+                                data-img1="../images/ai-airtable-crm.webp" data-full="../images/ai-airtable-crm.webp"
+                                <div
+                                class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-xs bg-slate-900/50">
+
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 3: Structured Lead Data</p>
+                    </div>
+            </div>
+
+        </div>
+        </section>
+
+        <section class="border-t border-slate-800 pt-12">
+            <h2 class="text-2xl font-bold text-white mb-6">4. Operational Outcomes</h2>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                The system was deployed with a custom web-frontend connected via secure webhook tunnels.
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse border border-slate-800">
+                    <thead>
+                        <tr class="bg-slate-900">
+                            <th class="p-4 text-white font-bold border-b border-slate-800">Metric</th>
+                            <th class="p-4 text-white font-bold border-b border-slate-800">Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-4 text-slate-400 border-b border-slate-800">Response Time</td>
+                            <td class="p-4 text-white border-b border-slate-800">Reduced from hours/minutes to Instant
+                                (24/7)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-400 border-b border-slate-800">Lead Quality</td>
+                            <td class="p-4 text-white border-b border-slate-800">100% of CRM entries contain required
+                                qualification fields</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-400 border-b border-slate-800">Hallucinations</td>
+                            <td class="p-4 text-white border-b border-slate-800">Eliminated via strict RAG + "Soft
+                                Pivot" logic</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-400 border-b border-slate-800">Staff Efficiency</td>
+                            <td class="p-4 text-white border-b border-slate-800">Sales team only speaks to leads who
+                                have passed the "Gatekeeper"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="border-t border-slate-800 pt-12">
+            <h2 class="text-2xl font-bold text-white mb-6">5. Why It Works (The "System" Approach)</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                The success of this project lies in treating AI as infrastructure, not a novelty. By separating
+                Knowledge (Pinecone) from Reasoning (Gemini + n8n) and Storage (Airtable), the system avoids the common
+                pitfalls of "black box" AI.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+                It does not try to replace the human expert; it replaces the friction of getting to the expert.
+            </p>
+        </section>
+
+        <section class="border-t border-slate-800 pt-12">
+            <h2 class="text-2xl font-bold text-white mb-6">6. Future Applicability</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                While built for Sentinel Smart Homes, this architecture is domain-agnostic. By simply swapping the PDF
+                documents in the Ingestion Workflow, this exact system can be redeployed for:
+            </p>
+            <ul class="list-disc pl-5 text-slate-400 text-sm space-y-2 mb-6">
+                <li><strong>HVAC & Plumbing:</strong> Qualifying emergency vs. maintenance calls.</li>
+                <li><strong>Legal & Consulting:</strong> Intake forms for new client case evaluations.</li>
+                <li><strong>Real Estate:</strong> Pre-screening tenants before scheduling viewings.</li>
+            </ul>
+            <p class="text-slate-400 leading-relaxed">
+                This project demonstrates that with the right guardrails—specifically the Gatekeeper and RAG patterns—AI
+                can be safely and effectively trusted with the front door of a business.
+            </p>
+        </section>
+
+        <div id="contact"
+            class="mt-16 card-padding bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+            <div class="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Automate Your Front Desk?</h3>
+                <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+                    If you want a system that defends your time and qualifies your leads automatically, let's discuss
+                    your requirements.
+                </p>
+                <a href="../book.html"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                    Book System Review
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-brand-accent transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-brand-accent transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-brand-accent group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-brand-accent transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Designer.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (icon) {
+                    if (menu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-xmark', 'rotate-90');
+                        icon.classList.add('fa-bars', 'rotate-0');
+                    } else {
+                        icon.classList.remove('fa-bars', 'rotate-0');
+                        icon.classList.add('fa-xmark', 'rotate-90');
+                    }
+                }
+            });
+        }
+
+        // Lightbox
+        const containers = document.querySelectorAll('.ngw-window-effect');
+        if (containers.length) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            const closeBtn = document.querySelector('.ngw-close');
+
+            function openLightbox(url) {
+                inner.innerHTML = '';
+                const img = new Image(); img.src = url;
+                inner.appendChild(img);
+                lb.style.display = 'flex';
+                document.body.classList.add('lightbox-open');
+            }
+
+            function closeLightbox() {
+                lb.style.display = 'none';
+                document.body.classList.remove('lightbox-open');
+            }
+
+            containers.forEach(c => {
+                const img1 = c.getAttribute('data-img1') || '';
+                c.style.position = 'relative';
+                // Placeholder check for background
+                const bgStyle = img1 && !img1.includes('[PLACEHOLDER') ? `background-image:url('${img1}')` : 'background: #0f172a';
+                c.innerHTML += `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+
+                c.addEventListener('click', function () {
+                    const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                    if (fullImg && !fullImg.includes('[PLACEHOLDER')) openLightbox(fullImg);
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lb) {
+                lb.addEventListener('click', function (e) {
+                    if (e.target === this) closeLightbox();
+                });
+            }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        }
+    </script>
+</body>
+
+</html>

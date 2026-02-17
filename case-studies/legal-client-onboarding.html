@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: AI-Assisted Legal Intake Automation | Nnaemeka Systems</title>
+    <link rel="canonical" href="https://nnaemekasystems.com/case-studies/legal-client-onboarding.html" />
+    <meta name="description"
+        content="Eliminating manual data entry for high-volume law firms using Zapier, OpenAI, and Clio.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nnaemekasystems.com/case-studies/legal-client-onboarding.html">
+    <meta property="og:title" content="Case Study: AI-Assisted Legal Intake Automation | Nnaemeka Systems">
+    <meta property="og:description"
+        content="Eliminating manual data entry for high-volume law firms using Zapier, OpenAI, and Clio.">
+    <meta property="og:image" content="https://nnaemekasystems.com/images/social-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <link rel="stylesheet" href="../style.css?v=1">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%2300dc82' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Scrollbar Styling */
+        pre::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        /* Glass Panel Header */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Layout Utilities */
+        .site-container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .card-padding {
+            padding: 2rem;
+        }
+
+        .nav-link:hover {
+            color: #22d3ee;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            w-full;
+            h-full;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 220, 130, 0.2);
+        }
+
+        /* Interactive Image Container */
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.05);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+
+            .card-padding {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel">
+        <div class="max-w-7xl site-container h-16 flex items-center justify-between">
+            <a href="../index.html" class="group flex items-center gap-0.5 select-none"
+                aria-label="Nnaemeka Logic Architect">
+                <div class="flex items-center text-slate-600 group-hover:text-cyan-400 transition-colors duration-300">
+                    <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300">
+                </div>
+                <div
+                    class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                    <div
+                        class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors">
+                    </div>
+                    <div
+                        class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                    </div>
+                    <span class="text-white font-bold font-mono text-sm sm:text-base tracking-tight">Nnaemeka</span>
+                </div>
+                <div
+                    class="w-3 sm:w-6 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                </div>
+                <div class="flex items-center text-slate-600 group-hover:text-green-400 transition-colors duration-300">
+                    <span class="hidden sm:block text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                    <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="../services/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Services</span>
+                </a>
+                <a href="../industries/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors text-[10px]"></i>
+                    <span
+                        class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Industries</span>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded bg-white/5 border border-white/5 transition-all">
+                    <i class="fa-solid fa-flask text-purple-400 text-[10px]"></i>
+                    <span class="font-mono text-xs text-white tracking-wide">Case Studies</span>
+                </a>
+                <a href="../insights/index.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">Insights</span>
+                </a>
+                <a href="../about.html"
+                    class="group flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-all">
+                    <i
+                        class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors text-[10px]"></i>
+                    <span class="font-mono text-xs text-slate-400 group-hover:text-white tracking-wide">About</span>
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="../book.html"
+                    class="px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-accent text-brand-accent hover:text-white rounded text-xs font-bold font-mono transition-all shadow-lg hover:shadow-brand-accent/20">
+                    Book Strategy Call
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded border border-slate-700 text-brand-accent bg-slate-900/50 backdrop-blur hover:border-brand-accent hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-300">
+                <i id="menu-icon" class="fa-solid fa-bars text-lg transform transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent animate-pulse">
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../services/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-screwdriver-wrench text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Services</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../industries/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-city text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Industries</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../case-studies/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Case
+                            Studies</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-purple-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../insights/index.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-lightbulb text-slate-500 group-hover:text-yellow-400 transition-colors"></i>
+                        <span
+                            class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">Insights</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-yellow-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <a href="../about.html"
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-all group border border-transparent hover:border-white/5">
+                    <div class="flex items-center gap-3">
+                        <i
+                            class="fa-solid fa-user-astronaut text-slate-500 group-hover:text-green-400 transition-colors"></i>
+                        <span class="font-mono text-slate-300 group-hover:text-white text-sm tracking-wide">About</span>
+                    </div>
+                    <i
+                        class="fa-solid fa-chevron-right text-xs text-slate-700 group-hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <div class="pt-4 mt-2 border-t border-slate-800/50">
+                    <a href="../book.html"
+                        class="flex items-center justify-center w-full py-4 bg-brand-accent hover:bg-white text-slate-950 font-bold font-mono text-sm rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                        Book Strategy Call <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="pt-32 pb-24 site-container">
+
+        <div class="mb-16 border-b border-slate-800 pb-12">
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                PROJECT: LEGAL INTAKE AUTOMATION
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">From Unstructured Email to Verified Case File.
+            </h1>
+            <p class="text-xl text-slate-400 max-w-3xl leading-relaxed">
+                How we eliminated manual data entry for a high-volume law firm using Zapier, OpenAI, and Clio.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 card-padding sticky top-24 shadow-xl">
+                    <h3 class="text-white font-bold mb-6 border-b border-slate-800 pb-2">Technical Brief</h3>
+
+                    <div class="space-y-6">
+                        <div class="pb-4 border-b border-slate-800/50">
+                            <div class="text-xs text-brand-accent uppercase font-mono mb-1 font-bold">Primary Outcome
+                            </div>
+                            <div class="text-white text-xl font-bold leading-tight">Zero-Touch Intake</div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Efficiency</div>
+                            <div class="flex text-green-500 text-xs font-bold items-center">
+                                <i class="fa-solid fa-bolt mr-2"></i>
+                                <span>Instant Case Creation</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono mb-1">Stack</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-orange-400 border border-slate-700">Zapier</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-green-400 border border-slate-700">OpenAI</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-blue-400 border border-slate-700">Clio</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-800 rounded text-xs text-yellow-400 border border-slate-700">Drive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <a href="../book.html"
+                            class="block w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-center font-bold rounded-lg transition-all shadow-lg shadow-cyan-900/20">
+                            Book System Audit
+                        </a>
+                        <p class="text-center text-xs text-slate-500 mt-3">Free 15-min intake analysis</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-16">
+
+                <section class="mb-16 border-b border-slate-800 pb-12">
+                    <h2 class="text-2xl font-bold text-white mb-4">The "Bleeding Neck" Problem</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Legal intake relies on speed and accuracy. However, this firm was drowning in unstructured
+                        emails. Staff had to manually read every inquiry, download attachments, check for existing
+                        clients, and type data into Clio.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        This manual friction caused three critical failures:
+                    </p>
+
+                    <div class="card-padding bg-slate-900 border border-slate-800 rounded-lg">
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i
+                                        class="fa-solid fa-triangle-exclamation"></i></span>
+                                <strong>Data Entry Errors:</strong>&nbsp;Typos in names and phone numbers created broken
+                                contact records.
+                            </li>
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-clone"></i></span>
+                                <strong>Duplicate Conflicts:</strong>&nbsp;Staff often created new contacts for existing
+                                clients, fragmenting case history.
+                            </li>
+                            <li class="flex items-start text-slate-400">
+                                <span class="text-red-400 mr-3 mt-1"><i class="fa-solid fa-folder-open"></i></span>
+                                <strong>Lost Files:</strong>&nbsp;Attachments were left in Outlook instead of being
+                                properly filed in the matter folder.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span
+                            class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">01</span>
+                        The Intelligence Layer (Zapier + AI)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        We built a logic-based listener on the Outlook inbox. Instead of just forwarding emails, we pipe
+                        the body text into <strong>OpenAI</strong> via Zapier.
+                    </p>
+                    <div class="mb-12">
+                        <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-brain text-brand-accent mr-2"></i> Structured Extraction
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            The AI doesn't just summarize; it extracts specific entities (Client Name, Urgency, Case
+                            Type) into strict JSON format, ensuring clean data for the CRM.
+                        </p>
+
+                        <div class="ngw-window-effect shadow-2xl group mb-3"
+                            data-img1="../images/legal-zapier-workflow.webp"
+                            data-full="../images/legal-zapier-workflow.webp">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 1: The Logic Map (Outlook -> AI
+                            -> Database)</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span
+                            class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">02</span>
+                        Automated Compliance (Google Drive)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        A clean file system is a lawyer's best friend. The automation creates a standardized folder
+                        structure for every new intake instantly.
+                    </p>
+                    <div class="mb-12">
+                        <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-folder-tree text-brand-accent mr-2"></i> No More Lost PDFs
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            Folder names are auto-generated: <code>[Client Email] - [Date]</code>. All attachments are
+                            stripped from the email and archived here automatically.
+                        </p>
+
+                        <div class="ngw-window-effect shadow-2xl group mb-3"
+                            data-img1="../images/legal-drive-folders.webp"
+                            data-full="../images/legal-drive-folders.webp">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 2: Automated Client Archives</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <span
+                            class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-sm mr-3 border border-slate-700">03</span>
+                        The Source of Truth (Clio)
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        The final step is the most critical: updating the Legal CRM. The system performs a "Conditional
+                        Check" before creating records.
+                    </p>
+                    <div class="mb-8">
+                        <h4 class="text-white font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-check-double text-brand-accent mr-2"></i> Duplicate Prevention
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-4">
+                            It searches for the email address first. If the client exists, it appends the new matter. If
+                            not, it creates a new Contact. This guarantees <strong>100% database hygiene</strong>.
+                        </p>
+
+                        <div class="ngw-window-effect shadow-2xl group mb-3"
+                            data-img1="../images/legal-clio-record.webp" data-full="../images/legal-clio-record.webp">
+                        </div>
+                        <p class="text-xs text-slate-500 text-center font-mono">Figure 3: The Final Result (Zero Data
+                            Entry)</p>
+                    </div>
+                </section>
+
+                <section class="mt-16 mb-16 border-b border-slate-800 pb-12">
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl card-padding">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">The Efficiency Shift</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="card-padding border border-red-900/30 bg-red-900/10 rounded-xl">
+                                <h4 class="text-red-400 font-bold mb-4 flex items-center">
+                                    <i class="fa-solid fa-xmark mr-2"></i> The Old Way
+                                </h4>
+                                <ul class="space-y-4 text-sm text-slate-400">
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Time per Intake</span>
+                                        <span class="text-red-300 font-mono">15-20 mins</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Data Accuracy</span>
+                                        <span class="text-red-300 font-mono">Human Error Risk</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-red-900/20 pb-2">
+                                        <span>Availability</span>
+                                        <span class="text-red-300 font-mono">Office Hours Only</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-padding border border-green-900/30 bg-green-900/10 rounded-xl">
+                                <h4 class="text-brand-accent font-bold mb-4 flex items-center">
+                                    <i class="fa-solid fa-check mr-2"></i> The Automated Way
+                                </h4>
+                                <ul class="space-y-4 text-sm text-slate-400">
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Time per Intake</span>
+                                        <span class="text-brand-accent font-mono">~30 Seconds</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Data Accuracy</span>
+                                        <span class="text-brand-accent font-mono">100% Normalized</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-green-900/20 pb-2">
+                                        <span>Availability</span>
+                                        <span class="text-brand-accent font-mono">24/7/365</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div
+                    class="mt-16 card-padding bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Is your intake process bleeding time?
+                        </h3>
+                        <p class="text-slate-400 mb-8 max-w-lg mx-auto">I can deploy this exact architecture for your
+                            firm in less than 48 hours.</p>
+                        <a href="../book.html"
+                            class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-green-400 text-slate-950 font-bold rounded-lg transition-all transform hover:-translate-y-1">
+                            Automate My Intake
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-sm">
+        <div class="site-container grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="space-y-4">
+                <a href="../index.html" class="group flex items-center gap-0.5 select-none w-fit"
+                    aria-label="Nnaemeka Logic Architect">
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fa-solid fa-bolt text-xs mr-2"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-wider mr-1">Input</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-slate-800 to-cyan-500 transition-all duration-300">
+                    </div>
+                    <div
+                        class="relative bg-slate-900 border border-slate-700 rounded px-3 py-1.5 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 z-10">
+                        <div
+                            class="absolute left-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors">
+                        </div>
+                        <div
+                            class="absolute right-[-3px] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-green-400 transition-colors">
+                        </div>
+                        <span class="text-white font-bold font-mono text-base tracking-tight">Nnaemeka</span>
+                    </div>
+                    <div
+                        class="w-4 h-[2px] bg-slate-800 group-hover:bg-gradient-to-r from-green-500 to-slate-800 transition-all duration-300">
+                    </div>
+                    <div
+                        class="flex items-center text-slate-500 group-hover:text-green-400 transition-colors duration-300">
+                        <span class="text-[10px] font-mono uppercase tracking-wider ml-1">Result</span>
+                        <i class="fa-solid fa-circle-check text-xs ml-2"></i>
+                    </div>
+                </a>
+
+                <p class="text-slate-500">Business Process Automation Architect.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://x.com/Nnaemeka_20"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/Nnaemeka-tech"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/"
+                        class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 transition-all"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <div class="text-slate-600 pt-4 font-mono text-xs">&lt; Design & Code by Nnaemeka /&gt;</div>
+            </div>
+
+            <div class="font-mono text-slate-400 space-y-2">
+                <div class="text-slate-600 text-xs uppercase mb-2">/commands</div>
+                <a href="../services/index.html" class="block hover:text-white transition-colors">> /view_services</a>
+                <a href="../industries/index.html" class="block hover:text-white transition-colors">>
+                    /view_industries</a>
+                <a href="../case-studies/index.html" class="block hover:text-white transition-colors">> /view_lab</a>
+                <a href="../book.html" class="block hover:text-white transition-colors">> /initiate_contact</a>
+            </div>
+
+
+            <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
+                <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
+                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>Loc: Lagos, NG [Remote]</div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    if (icon) {
+                        if (menu.classList.contains('hidden')) {
+                            icon.classList.remove('fa-xmark', 'rotate-90');
+                            icon.classList.add('fa-bars', 'rotate-0');
+                        } else {
+                            icon.classList.remove('fa-bars', 'rotate-0');
+                            icon.classList.add('fa-xmark', 'rotate-90');
+                        }
+                    }
+                });
+            }
+
+
+            // 3. Lightbox Logic
+            const containers = document.querySelectorAll('.ngw-window-effect');
+            if (containers.length) {
+                const lb = document.getElementById('ngw-lightbox');
+                const inner = document.getElementById('ngw-lightbox-inner');
+                const closeBtn = document.querySelector('.ngw-close');
+
+                function openLightbox(url) {
+                    inner.innerHTML = '';
+                    const img = new Image(); img.src = url;
+                    inner.appendChild(img);
+                    lb.style.display = 'flex';
+                    document.body.classList.add('lightbox-open');
+                }
+
+                function closeLightbox() {
+                    lb.style.display = 'none';
+                    document.body.classList.remove('lightbox-open');
+                }
+
+                containers.forEach(c => {
+                    const img1 = c.getAttribute('data-img1') || '';
+                    c.style.position = 'relative';
+                    c.innerHTML = `<div class="ngw-bg" style="background-image:url('${img1}')"></div><div class="ngw-overlay"><i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i></div>`;
+
+                    c.addEventListener('click', function () {
+                        const fullImg = this.getAttribute('data-full') || this.getAttribute('data-img1');
+                        if (fullImg) openLightbox(fullImg);
+                    });
+                });
+
+                if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+                if (lb) {
+                    lb.addEventListener('click', function (e) {
+                        if (e.target === this) closeLightbox();
+                    });
+                }
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeLightbox();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
