@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -251,6 +251,64 @@
             }
         }
     </style>
+
+    
+
+    
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://nnaemekasystems.com/case-studies/landscaping-job-management.html#webpage",
+      "url": "https://nnaemekasystems.com/case-studies/landscaping-job-management.html",
+      "name": "Case Study: Automated Lead Management System for Landscaping Businesses | Nnaemeka Systems",
+      "description": "An intelligent lead triage system that ensures zero missed emergencies for high-volume landscaping businesses.",
+      "isPartOf": {
+        "@id": "https://nnaemekasystems.com/#website"
+      }
+    },
+    {
+      "@type": "TechArticle",
+      "headline": "Case Study: Automated Lead Management System for Landscaping Businesses | Nnaemeka Systems",
+      "description": "An intelligent lead triage system that ensures zero missed emergencies for high-volume landscaping businesses.",
+      "image": "https://nnaemekasystems.com/images/social-preview.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Nnaemeka"
+      },
+      "publisher": {
+        "@id": "https://nnaemekasystems.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nnaemekasystems.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Case Studies",
+          "item": "https://nnaemekasystems.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Case Study: Automated Lead Management System for Landscaping Businesses | Nnaemeka Systems",
+          "item": "https://nnaemekasystems.com/case-studies/landscaping-job-management.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
 </head>
 
 <body class="bg-slate-950 min-h-screen">
@@ -737,7 +795,7 @@
                         <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
                             <div
                                 class="text-xs font-mono text-cyan-400 bg-cyan-900/20 border border-cyan-500/30 px-2 py-1 rounded">
-                                ● LIVE SIMULATION ACTIVE
+                                â— LIVE SIMULATION ACTIVE
                             </div>
                         </div>
 
@@ -843,7 +901,7 @@
                                             <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
                                         </div>
                                         <span class="text-xs text-slate-500 ml-2">server_log.txt</span>
-                                        <span class="ml-auto text-xs text-green-500 animate-pulse">● Live</span>
+                                        <span class="ml-auto text-xs text-green-500 animate-pulse">â— Live</span>
                                     </div>
                                     <div
                                         class="js-terminal-output terminal-scroll flex-1 card-padding overflow-y-auto space-y-2 text-slate-300">
@@ -941,7 +999,7 @@
 
             <div class="font-mono text-slate-400 space-y-2 text-right md:text-right text-left">
                 <div class="text-slate-600 text-xs uppercase mb-2">Live Metrics</div>
-                <div>System Status: <span class="text-green-500">● Operational</span></div>
+                <div>System Status: <span class="text-green-500">â— Operational</span></div>
                 <div>Loc: Lagos, NG [Remote]</div>
             </div>
         </div>
@@ -1069,9 +1127,9 @@
                 function log(msg, type = 'info') {
                     const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                     let color = 'text-slate-300'; let prefix = '>';
-                    if (type === 'highlight') { color = 'text-cyan-400 font-bold'; prefix = 'ℹ'; }
-                    if (type === 'alert') { color = 'text-yellow-400'; prefix = '⚠'; }
-                    if (type === 'success') { color = 'text-green-400'; prefix = '✓'; }
+                    if (type === 'highlight') { color = 'text-cyan-400 font-bold'; prefix = 'â„¹'; }
+                    if (type === 'alert') { color = 'text-yellow-400'; prefix = 'âš '; }
+                    if (type === 'success') { color = 'text-green-400'; prefix = 'âœ“'; }
                     terminal.innerHTML += `<div><span class="text-slate-500">[${time}]</span> <span class="${color}">${prefix} ${msg}</span></div>`;
                     terminal.scrollTop = terminal.scrollHeight;
                 }
