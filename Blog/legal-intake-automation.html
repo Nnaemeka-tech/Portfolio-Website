@@ -1,0 +1,1238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>How I Reduced a Law Firm's Client Intake from 20 Minutes to 30 Seconds | Nnaemeka</title>
+    <meta name="description"
+        content="A Lagos-based law practice was spending 20 minutes manually processing every client email - reading, extracting, filing, entering data into Clio. Here's exactly how we automated the entire thing." />
+    <meta name="keywords"
+        content="legal intake automation, law firm automation, Clio automation, n8n legal workflow, automate legal intake, AI legal intake, Zapier law firm, legal CRM automation, business process automation legal" />
+    <link rel="canonical" href="https://www.nnaemekasystems.com/insights/legal-intake-automation" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How I Reduced a Law Firm's Client Intake from 20 Minutes to 30 Seconds" />
+    <meta property="og:description"
+        content="A Lagos-based law practice was spending 20 minutes manually processing every client email. Here's exactly how we automated the entire thing." />
+    <meta property="og:url" content="https://www.nnaemekasystems.com/insights/legal-intake-automation" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How I Reduced a Law Firm's Client Intake from 20 Minutes to 30 Seconds",
+        "author": { "@type": "Person", "name": "Nnaemeka", "url": "https://www.nnaemekasystems.com" },
+        "publisher": { "@type": "Organization", "name": "Nnaemeka Systems", "url": "https://www.nnaemekasystems.com" },
+        "datePublished": "2026-02-21",
+        "description": "How automation replaced 20 minutes of manual legal intake work with a 30-second pipeline using Zapier, OpenAI, Google Drive, and Clio."
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+            --serif: 'Lora', serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent, transparent 2px,
+                    rgba(0, 67, 206, 0.005) 2px,
+                    rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* -- NAV -- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            fill: none;
+            transition: all 0.3s;
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        .nav-back {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-bright);
+        }
+
+        .nav-cta-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            border: 1px solid var(--border);
+        }
+
+        .nav-cta-btn:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* -- ARTICLE LAYOUT -- */
+        .article-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+
+        /* -- HEADER -- */
+        .article-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .article-category {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            background: rgba(74, 137, 255, 0.05);
+        }
+
+        .article-date {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+        }
+
+        .article-readtime {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+        }
+
+        .article-title {
+            font-family: var(--sans);
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .article-intro {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+            font-family: var(--serif);
+            font-style: italic;
+        }
+
+        /* -- HERO IMAGE -- */
+        .article-hero-image {
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            overflow: hidden;
+            background: var(--surface2);
+        }
+
+        .article-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            padding: 0.6rem 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-top: 1px solid var(--border);
+        }
+
+        /* -- BODY TEXT -- */
+        .article-body {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text);
+        }
+
+        .article-body p {
+            margin-bottom: 1.75rem;
+        }
+
+        .article-body h2 {
+            font-family: var(--sans);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin: 3rem 0 1.25rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .article-body h3 {
+            font-family: var(--sans);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin: 2rem 0 0.75rem;
+        }
+
+        .article-body strong {
+            color: var(--text-bright);
+            font-weight: 600;
+        }
+
+        .article-body em {
+            color: var(--text-bright);
+            font-style: italic;
+        }
+
+        .article-body a {
+            color: var(--accent-bright);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(74, 137, 255, 0.3);
+            transition: border-color 0.2s;
+        }
+
+        .article-body a:hover {
+            border-color: var(--accent-bright);
+        }
+
+        /* -- PULL QUOTE -- */
+        .pull-quote {
+            margin: 2.5rem 0;
+            padding: 2rem 2.5rem;
+            border-left: 3px solid var(--accent-bright);
+            background: rgba(74, 137, 255, 0.03);
+        }
+
+        .pull-quote p {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-bright);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* -- STEP BLOCK -- */
+        .step-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .step-header {
+            padding: 0.75rem 1.25rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .step-num-badge {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.1em;
+        }
+
+        .step-title-text {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-bright);
+            letter-spacing: 0.05em;
+        }
+
+        .step-body {
+            padding: 1.25rem 1.5rem;
+            font-size: 0.92rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .step-body strong {
+            color: var(--text-bright);
+        }
+
+        /* -- INLINE IMAGE -- */
+        .inline-image {
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            overflow: hidden;
+            background: var(--surface2);
+        }
+
+        .inline-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .inline-image .image-caption {
+            border-top: 1px solid var(--border);
+        }
+
+        /* -- RESULTS BOX -- */
+        .results-box {
+            margin: 2.5rem 0;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .results-box-header {
+            padding: 0.75rem 1.5rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .results-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .result-item {
+            padding: 1.5rem;
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .result-item:last-child {
+            border-right: none;
+        }
+
+        .result-val {
+            font-family: var(--mono);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .result-label {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* -- CALLOUT -- */
+        .callout {
+            margin: 2rem 0;
+            padding: 1.5rem 1.75rem;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-bright);
+            background: var(--surface2);
+        }
+
+        .callout-label {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .callout p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .callout p strong {
+            color: var(--text-bright);
+        }
+
+        /* -- ARTICLE CTA -- */
+        .article-cta {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            text-align: center;
+        }
+
+        .article-cta h3 {
+            font-family: var(--sans);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-cta p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            font-family: var(--sans);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 67, 206, 0.4);
+            opacity: 0.92;
+            border-bottom: none;
+        }
+
+        /* -- RELATED -- */
+        .related-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .related-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .related-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .related-link:last-child {
+            border-bottom: none;
+        }
+
+        .related-link:hover {
+            color: var(--accent-bright);
+        }
+
+        .related-link::before {
+            content: '✦';
+            color: var(--accent-bright);
+            flex-shrink: 0;
+        }
+
+        /* -- AUTHOR BIO -- */
+        .author-bio {
+            margin-top: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-bright);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .author-info p {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .article-wrapper {
+                padding: 7rem 1.25rem 4rem;
+            }
+
+            .results-row {
+                grid-template-columns: 1fr;
+            }
+
+            .result-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .result-item:last-child {
+                border-bottom: none;
+            }
+
+            .author-bio {
+                flex-direction: column;
+            }
+        }
+
+        /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logic-logo">
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div class="logo-part logo-main">
+                    <span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../case-studies/index.html">Case Studies</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../Blog/index.html">Blog</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+
+        <a href="../index.html#services">Services</a>
+        <a href="../case-studies/index.html">Case Studies</a>
+        <a href="../index.html#about">About</a>
+        <a href="../Blog/index.html">Blog</a>
+
+        <a href="../index.html#contact" class="mob-cta">FREE AUTOMATION AUDIT</a>
+    </div>
+
+
+    <!-- ARTICLE -->
+    <div class="article-wrapper">
+
+        <!-- Header -->
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="article-category">Legal Automation</span>
+                <span class="article-date">February 2026</span>
+                <span class="article-readtime">8 min read</span>
+            </div>
+            <h1 class="article-title">How I Reduced a Law Firm's Client Intake from <em>20 Minutes to 30 Seconds</em>
+            </h1>
+            <p class="article-intro">Every new client email was a 20-minute job. Read the email, extract the details,
+                download the attachments, check if they were already in the system, type everything into the CRM. By
+                hand. Every time. Here's how we fixed that.</p>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="article-hero-image">
+            <img src="../assets/08 - Legal Client Onboarding/legal-zapier-workflow.webp"
+                alt="Zapier automation pipeline for legal client intake - showing Outlook trigger, OpenAI extraction, Google Drive filing, and Clio CRM update"
+                loading="eager" />
+            <div class="image-caption">// The full intake pipeline - from inbound email to verified case file
+            </div>
+        </div>
+
+        <!-- Body -->
+        <div class="article-body">
+
+            <p>When I first spoke to this firm, they weren't sure automation was even relevant to them. They're a small
+                legal practice in Lagos - a tight team, handling a steady stream of client inquiries every week.
+                Not a
+                big operation, but a busy one.</p>
+
+            <p>The person I spoke to described their intake process the way most people describe something they've
+                stopped really seeing: "We just handle it manually. Someone reads the email, puts the details into our
+                system, makes sure the files are saved. It's fine."</p>
+
+            <p>It wasn't fine. It was just so normal to them that they'd stopped noticing how much time it was taking.
+            </p>
+
+            <h2>What "Handling It Manually" Actually Looked Like</h2>
+
+            <p>Here's what happened every time a potential client sent an email to the firm.</p>
+
+            <p>Someone on the team would open the email and read through it. If there were attachments -
+                documents,
+                evidence, contracts - they'd download those to their desktop. Then they'd open the firm's case
+                management software (they use <strong>Clio</strong>) and search for the client's email address to check
+                if they were already in the system. If they were a returning client, they'd create a new matter and link
+                it. If they were new, they'd create a contact first, then create the matter.</p>
+
+            <p>Then they'd type a summary of the case into the matter notes. Not a copy-paste - an actual typed
+                summary,
+                because the original email was usually unstructured and they needed it in a specific format. Then they'd
+                go back to the email, download the attachments again if they'd forgotten, and save them to the right
+                folder in Google Drive. If the folder didn't exist yet, they'd create it first.</p>
+
+            <p>The whole thing took <strong>15 to 20 minutes per inquiry</strong>. On a quiet day with two or three
+                inquiries, that's manageable. On a busy week, that's hours of time from someone qualified enough to be
+                doing actual legal work.</p>
+
+            <div class="pull-quote">
+                <p>"The emails don't stop coming at 5pm. But the person processing them does."</p>
+            </div>
+
+            <p>There was another problem nobody had really named yet: the process only ran during office hours. A client
+                who emailed on Friday evening waited until Monday morning. A client who emailed at midnight before a
+                hearing sat in an unread inbox. The firm had no visibility into those inquiries until someone physically
+                sat down to open their email.</p>
+
+            <h2>The Actual Cost of This</h2>
+
+            <p>Let's be straightforward about the numbers. If you're processing 10 client inquiries a week at 20 minutes
+                each, that's over 3 hours of staff time - every week - on a task that produces nothing
+                except a record
+                that should have been created automatically. Over a year, that's roughly 160 hours. That's a month of
+                working days spent copying information from emails into software.</p>
+
+            <p>And that's assuming no mistakes. In practice, manual data entry means occasional typos in names and email
+                addresses. It means sometimes a returning client gets created as a new contact because someone didn't
+                search carefully enough. It means a duplicate record in Clio with the case history split across two
+                entries. Cleaning that up takes time too.</p>
+
+            <div class="callout">
+                <span class="callout-label">// The Hidden Cost</span>
+                <p>Duplicate client records in a legal CRM aren't just inconvenient. They mean fragmented case history
+                    -
+                    past matters, notes, and billing records that don't surface when you search the client's name.
+                    <strong>The error has compounding downstream effects.</strong>
+                </p>
+            </div>
+
+            <h2>What We Built</h2>
+
+            <p>The goal was straightforward: the moment a client email arrives, everything that used to happen manually
+                should happen automatically. By the time anyone opens Clio, the work should already be done.</p>
+
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 02 //</span>
+            <span class="step-title-text">AI Reads the Email and Extracts Structured Data</span>
+        </div>
+        <div class="step-body">
+            The full email is passed to <strong>GPT-4o-mini</strong> with a carefully written prompt. The AI is
+            instructed to return one thing only: a JSON object with six fields. Client name, client email, case
+            type, urgency level, a 2-3 sentence case summary, and whether a follow-up is required. No freeform
+            text, no preamble - just the data. The prompt is specific enough that the output is consistent
+            regardless of how informally the client wrote their original email.
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 03 //</span>
+            <span class="step-title-text">Data Cleaned and Normalised</span>
+        </div>
+        <div class="step-body">
+            A formatter step extracts the case summary as a clean string from the AI's output, and normalises
+            the client's email address into plain text. That email address becomes the identifier that connects
+            every downstream step - the folder name, the Clio search, the document title. Everything traces back
+            to it.
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 04 //</span>
+            <span class="step-title-text">Case Folder Created in Google Drive</span>
+        </div>
+        <div class="step-body">
+            A new folder is created in the firm's Google Drive, named using the pattern <strong>[client email] -
+                [date received]</strong>. Every case gets the same structure. No inconsistent naming, no folders
+            in the wrong place, no manual filing.
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 05 //</span>
+            <span class="step-title-text">Attachments Filed Automatically</span>
+        </div>
+        <div class="step-body">
+            Any attachments from the original email are uploaded directly into the new case folder. PDFs, Word
+            documents, images - whatever the client sent - moved from the inbox and filed correctly without
+            anyone touching them.
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 06 //</span>
+            <span class="step-title-text">AI Summary Saved as a Google Doc</span>
+        </div>
+        <div class="step-body">
+            The case summary the AI generated gets saved as an actual Google Doc inside the case folder, titled
+            "Case Summary - [client email]." When the attorney opens the folder, they don't have to read the
+            original email thread to understand the situation. The brief is already there.
+        </div>
+    </div>
+
+    <!-- Inline image -->
+    <div class="inline-image">
+        <img src="../assets/08 - Legal Client Onboarding/legal-drive-folders.webp"
+            alt="Google Drive showing automatically created legal case folders with AI-generated case summary documents"
+            loading="lazy" />
+        <div class="image-caption">// Auto-generated case folders in Google Drive - one per client, named
+            consistently</div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 07 //</span>
+            <span class="step-title-text">Clio - Find or Create the Contact</span>
+        </div>
+        <div class="step-body">
+            Before anything is created in Clio, the system searches by email address. If the client already
+            exists - a returning client, a previous inquiry - their record is returned and used. If not, a
+            new
+            contact is created. <strong>This is the duplicate prevention step.</strong> It runs on every single
+            intake, without exception. There's no longer a "sometimes we check and sometimes we don't."
+        </div>
+    </div>
+
+    <div class="step-block">
+        <div class="step-header">
+            <span class="step-num-badge">STEP 08 //</span>
+            <span class="step-title-text">Clio - Matter Created and Note Logged</span>
+        </div>
+        <div class="step-body">
+            A new matter is created in Clio, linked to the contact, assigned to the correct practice area and
+            attorney. The AI-written case summary is logged as a note on the matter, timestamped with the
+            <strong>original email's received date</strong> - not the time the automation ran. The audit trail
+            is accurate. Open Clio, open the matter, and the intake brief is sitting there exactly when the
+            client first made contact.
+        </div>
+    </div>
+
+    <p>The whole pipeline runs in under 30 seconds. By the time anyone at the firm opens their email, Clio
+        already has the contact, the matter, and the case summary. Drive already has a folder with the
+        attachments and an AI-written brief. Nothing is waiting to be done.</p>
+
+    <h2>The Results</h2>
+
+    <div class="results-box">
+        <div class="results-box-header">// Before vs. After</div>
+        <div class="results-row">
+            <div class="result-item">
+                <span class="result-val">~30s</span>
+                <span class="result-label">Time per intake (was 20 min)</span>
+            </div>
+            <div class="result-item">
+                <span class="result-val">0</span>
+                <span class="result-label">Duplicate records since launch</span>
+            </div>
+            <div class="result-item">
+                <span class="result-val">24/7</span>
+                <span class="result-label">Intake processing (was office hours only)</span>
+            </div>
+        </div>
+    </div>
+
+    <p>The firm no longer has a backlog on Monday mornings from weekend emails. They no longer have duplicate
+        client records to clean up. Attorneys open Clio and the case context is already there - they didn't have
+        to write it, they didn't have to find it. It's just there.</p>
+
+    <p>But the result I think matters most isn't in those numbers. It's that the people doing legal work are now
+        doing legal work. Not data entry.</p>
+
+    <h2>A Few Things Worth Knowing If You're Thinking About This</h2>
+
+    <p>This system uses OpenAI's API to process the email content. For most practices, that's completely fine -
+        the data sent is no more sensitive than what you'd share with any cloud software. But if your work
+        involves particularly sensitive client matters and you'd prefer not to use a third-party AI, it's
+        possible to run a local language model instead. The output quality is slightly lower but the privacy
+        guarantee is absolute. I've built both versions.</p>
+
+    <p>The other thing worth saying: this wasn't a complex build. It took about a week from the first
+        conversation to having it running live. The technology isn't exotic - Zapier, OpenAI, Google Drive,
+        Clio. These are tools that already exist. What takes time is the logic design: figuring out the right
+        extraction prompt so the AI output is consistent, building the search-or-create step correctly so
+        duplicates genuinely can't happen, making sure the timestamps are accurate. That's the work. The tools
+        are just how you execute it.</p>
+
+    <div class="pull-quote">
+        <p>"The technology isn't the hard part. Working out exactly what needs to happen, and in what order
+            -
+            is where the real work is."</p>
+    </div>
+
+    <p>If your firm is handling more than five or six client inquiries a week and they're all being processed
+        manually, the maths are pretty simple. You're spending hours every week on a task that a system can do
+        in seconds. That time is going somewhere, and it's probably not where you'd choose to spend it if you
+        thought about it that way.</p>
+
+    <p>The system I built for this practice is <a href="../case-studies/ai-legal-intake-automation.html">documented in
+            full here</a> if you want to
+        see exactly how each step works. If you want to talk about whether something similar makes sense for
+        your firm, the contact form below is the right place to start.</p>
+
+    </div>
+    <!-- end article body -->
+
+    <!-- CTA -->
+    <div class="article-cta">
+        <h3>Still Processing Intake by Hand?</h3>
+        <p>If your team is manually reading client emails, typing into your CRM, and filing documents - this is a
+            solved problem. Let's talk about what that looks like for your practice.</p>
+        <a href="../index.html#contact" class="cta-btn">Book a Free Automation Audit</a>
+    </div>
+
+    <!-- Related -->
+    <div class="related-section">
+        <span class="related-label">// Related Reading</span>
+        <div class="related-links">
+            <a href="../case-studies/ai-legal-intake-automation.html" class="related-link">Full Technical Case
+                Study: AI-Powered Legal Intake - Email to Verified Case File in 30 Seconds</a>
+            <a href="n8n-vs-zapier-small-business.html" class="related-link">n8n vs Zapier: Which Is Better for
+                Small Business Automation in 2026?</a>
+            <a href="../case-studies/index.html" class="related-link">View All Automation Case Studies</a>
+        </div>
+    </div>
+
+    <!-- Author -->
+    <div class="author-bio">
+        <div class="author-avatar">
+            <img src="../assets/Profile_pic.webp" alt="Nnaemeka - Business Process Automation Specialist"
+                loading="lazy" />
+        </div>
+        <div class="author-info">
+            <h4>Nnaemeka</h4>
+            <p>Business process and AI workflow automation specialist based in Lagos, Nigeria. I build systems that
+                replace manual processes for small businesses - legal intake, lead routing, booking automation,
+                CRM
+                sync. n8n certified, 3 years in automation, 20+ systems built.</p>
+        </div>
+    </div>
+
+    </div>
+    <!-- end article wrapper -->
+
+    <!-- FOOTER -->
+    <footer
+        style="width:100%; padding:4rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border);">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+            SYSTEM STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;</p>
+        <div
+            style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

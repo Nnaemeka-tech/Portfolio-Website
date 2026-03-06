@@ -1,0 +1,1690 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Study: AI-Screened, Prepay-First Automated Booking System for High-Ticket Consultants | Nnaemeka Systems
+    </title>
+    <meta name="description"
+        content="How we eliminated ghost bookings for a high-ticket consultant using an AI-screened, prepay-first booking system that checks intent, verifies availability, generates invoices, and only confirms after payment - fully automated." />
+    <meta name="keywords"
+        content="automated booking system consultants, prepay booking automation, AI intent screening booking, n8n booking workflow, no-show prevention automation, high-ticket consultant booking system, Google Calendar automation, automated invoice booking" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent, transparent 2px,
+                    rgba(0, 67, 206, 0.005) 2px,
+                    rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* -- NAV -- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .nav-cta-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .nav-cta-btn:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        /* -- HERO -- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .hero h1 {
+            font-family: var(--sans);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-bright);
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-bottom: 3.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .hero-meta-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero-meta-value {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text-bright);
+        }
+
+        /* -- SNAPSHOT BAR -- */
+        .snapshot {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .snapshot-item {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .snapshot-item:hover {
+            border-color: var(--accent);
+        }
+
+        .snapshot-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .snapshot-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .snapshot-number {
+            font-family: var(--mono);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .snapshot-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        /* -- SECTIONS -- */
+        .section {
+            padding: 6rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-full {
+            padding: 6rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-full-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-tag::after {
+            content: '';
+            flex: 1;
+            max-width: 3rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        h2 {
+            font-family: var(--sans);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-family: var(--sans);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 720px;
+            line-height: 1.6;
+        }
+
+        /* -- PROBLEM SECTION -- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 1.75rem;
+            transition: transform 0.2s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .problem-card h3 {
+            color: var(--accent-bright);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
+            font-family: var(--mono);
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- FLOW -- */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .flow::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 2.5rem;
+            bottom: 2.5rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-bright));
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem 2rem 2rem 0;
+            position: relative;
+        }
+
+        .flow-number {
+            width: 4rem;
+            height: 4rem;
+            min-width: 4rem;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent-bright);
+            background: var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .flow-content {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0.75rem;
+        }
+
+        .flow-content h3 {
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-content p {
+            font-size: 0.95rem;
+            margin: 0 0 1rem;
+        }
+
+        .flow-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(0, 67, 206, 0.1);
+            color: var(--accent-bright);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- SCREENSHOT BLOCK -- */
+        .screenshot-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .screenshot-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .screenshot-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* -- CONSTRAINTS GRID -- */
+        .constraints-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .constraint-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .constraint-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .constraint-number {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .constraint-card h3 {
+            font-size: 1rem;
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .constraint-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- STATE MACHINE -- */
+        .state-flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .state-node {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            background: var(--surface2);
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .state-node.active {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+            background: rgba(74, 137, 255, 0.05);
+        }
+
+        .state-node.terminal {
+            border-color: #22c55e;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .state-node.warning {
+            border-color: #ff6b35;
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .state-arrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            padding: 0 0.5rem;
+        }
+
+        /* -- FIT / NOT FIT -- */
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .fit-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+        }
+
+        .fit-card-title {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .fit-card.good .fit-card-title {
+            color: #22c55e;
+        }
+
+        .fit-card.bad .fit-card-title {
+            color: #ff6b35;
+        }
+
+        .fit-card.good {
+            border-top: 3px solid #22c55e;
+        }
+
+        .fit-card.bad {
+            border-top: 3px solid #ff6b35;
+        }
+
+        .fit-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .fit-list li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .fit-list li::before {
+            content: '//';
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent-bright);
+            flex-shrink: 0;
+            padding-top: 0.15rem;
+        }
+
+        .fit-card.bad .fit-list li::before {
+            color: #ff6b35;
+        }
+
+        /* -- RESULTS TABLE -- */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2.5rem;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        .results-table th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .results-table td:first-child {
+            color: var(--text-dim);
+        }
+
+        .results-table td:nth-child(2) {
+            color: #ff6b35;
+        }
+
+        .results-table td:nth-child(3) {
+            color: var(--accent-bright);
+        }
+
+        .results-table tr:hover td {
+            background: var(--surface2);
+        }
+
+        /* -- TOOLS -- */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tool-badge {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            transition: all 0.2s;
+        }
+
+        .tool-badge:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        /* -- APPLY GRID -- */
+        .apply-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .apply-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .apply-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .apply-card h3 {
+            font-size: 0.9rem;
+            color: var(--accent-bright);
+            margin-bottom: 0.5rem;
+            font-family: var(--mono);
+        }
+
+        .apply-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- CTA -- */
+        .cta-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 6rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 67, 206, 0.4);
+        }
+
+        .cta-sub {
+            margin-top: 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- ANIMATIONS -- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .snapshot {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-full {
+                padding: 4rem 1.5rem;
+            }
+
+            .problem-grid,
+            .constraints-grid,
+            .fit-grid,
+            .apply-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow::before {
+                display: none;
+            }
+
+            .state-flow {
+                gap: 0.5rem;
+            }
+        }
+
+        /* -- LIGHTBOX -- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 100000;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .ngw-close:hover {
+            opacity: 1;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 6px;
+            box-shadow: 0 0 40px rgba(74, 137, 255, 0.25);
+        }
+
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 320px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.04);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        .ngw-overlay svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            stroke: #fff;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+        }
+
+        /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logic-logo">
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                </div>
+                <div class="logo-part logo-main">
+                    <span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../case-studies/index.html">Case Studies</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#insights">Blog</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+
+        <a href="../index.html#services">Services</a>
+        <a href="../case-studies/index.html">Case Studies</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#insights">Blog</a>
+
+        <a href="../index.html#contact" class="mob-cta">FREE AUTOMATION AUDIT</a>
+    </div>
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:1200px;">
+            <div class="hero-eyebrow">Case Study - High-Ticket Consulting - Booking Automation</div>
+            <h1><em>AI-Screened,</em> Prepay-First Automated Booking System for High-Ticket Consultants</h1>
+            <p class="hero-sub">
+                A strategic consultant was hemorrhaging time to ghost bookings - clients holding calendar slots
+                without
+                paying. We built a system that screens intent with AI, checks availability in real time, generates a PDF
+                invoice, and only confirms the booking after payment clears. The calendar stays clean. The revenue is
+                real.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Industry</span>
+                    <span class="hero-meta-value">Executive Consulting</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Primary Stack</span>
+                    <span class="hero-meta-value">n8n - Gemini - Google Sheets - Twilio</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Outcome</span>
+                    <span class="hero-meta-value">Zero Unpaid Bookings</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Status</span>
+                    <span class="hero-meta-value">✦ Live &amp; Operational</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNAPSHOT BAR -->
+    <div class="snapshot">
+        <div class="snapshot-item fade-up">
+            <span class="snapshot-number">0</span>
+            <span class="snapshot-label">Unpaid "ghost"<br />bookings since launch</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.1s">
+            <span class="snapshot-number">~3 hrs</span>
+            <span class="snapshot-label">Saved per week<br />on manual cross-checks</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.2s">
+            <span class="snapshot-number">100%</span>
+            <span class="snapshot-label">Payment compliance<br />before calendar confirmation</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.3s">
+            <span class="snapshot-number">Full</span>
+            <span class="snapshot-label">Audit trail on<br />every lead & booking</span>
+        </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="section">
+        <div class="section-tag">01 - The Problem</div>
+        <h2>Calendar Rot Was Costing Real Money</h2>
+        <p>
+            The client ran high-ticket executive strategy sessions - the kind where a single slot on the calendar
+            represents serious revenue. They were using a standard booking link. It looked professional. It was quietly
+            destroying their schedule.
+        </p>
+        <p>
+            Clients would pick a time, fill in their details, and then delay payment. The slot stayed blocked. No one
+            else could book it. And the consultant had no way of knowing whether the booking was real or a ghost until
+            they manually cross-referenced their Stripe account against their Google Calendar - a task that was
+            eating
+            three hours a week and still producing errors.
+        </p>
+        <p>
+            The term for this is Calendar Rot. The calendar looks busy. The bank account tells a different story.
+        </p>
+
+        <div class="problem-grid">
+            <div class="problem-card fade-up">
+                <h3>// Ghost Bookings</h3>
+                <p>Clients reserved slots without paying. The calendar filled up with tentative holds that blocked real,
+                    paying clients from ever getting through.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.1s">
+                <h3>// Manual Reconciliation</h3>
+                <p>3 hours a week spent cross-referencing Stripe payments with Google Calendar events by hand. A task
+                    that should have been zero work.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.2s">
+                <h3>// No Intent Filtering</h3>
+                <p>Inquiries from tire-kickers, price-hagglers, and out-of-scope requests all entered the same funnel.
+                    Every one of them wasted time before being turned down.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.3s">
+                <h3>// No Conflict Handling</h3>
+                <p>If two clients tried to book the same slot simultaneously, the system had no way to detect or resolve
+                    the conflict. It just double-booked.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSTRAINTS -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">02 - The Design Constraints</div>
+            <h2>Four Hard Rules the System Had to Enforce</h2>
+            <p>
+                Before writing a single node, we established the non-negotiables - the rules the system had to
+                enforce
+                with zero exceptions, regardless of what the client submitted.
+            </p>
+
+            <div class="constraints-grid">
+                <div class="constraint-card fade-up">
+                    <span class="constraint-number">// Constraint 01</span>
+                    <h3>Payment Gating</h3>
+                    <p>No Google Calendar event is created until payment is confirmed. Not after the invoice is sent.
+                        Not after the slot is reserved. After payment. Zero exceptions.</p>
+                </div>
+                <div class="constraint-card fade-up" style="transition-delay:0.1s">
+                    <span class="constraint-number">// Constraint 02</span>
+                    <h3>Human-in-the-Loop Approval</h3>
+                    <p>Even paid bookings require a final "Approve" click from the consultant in the ledger before the
+                        calendar is touched. The system does not book autonomously.</p>
+                </div>
+                <div class="constraint-card fade-up" style="transition-delay:0.2s">
+                    <span class="constraint-number">// Constraint 03</span>
+                    <h3>Double Availability Check</h3>
+                    <p>Availability is verified twice - once when the form is submitted, and again immediately
+                        before
+                        booking. A slot that opens and fills in the gap won't get double-booked.</p>
+                </div>
+                <div class="constraint-card fade-up" style="transition-delay:0.3s">
+                    <span class="constraint-number">// Constraint 04</span>
+                    <h3>AI Intent Screening</h3>
+                    <p>Every submission is scored by an AI before any action is taken. Low-confidence leads -
+                        browsers,
+                        hagglers, out-of-scope requests - are routed to manual review. No invoice is sent until
+                        intent
+                        is confirmed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <section class="section">
+        <div class="section-tag">03 - The Solution</div>
+        <h2>A Five-Layer System, Not a Simple Zap</h2>
+        <p>
+            This wasn't a matter of connecting two tools. It required a layered architecture in n8n - each layer
+            handling a distinct responsibility, with a shared state machine tracking every lead through its full
+            lifecycle.
+        </p>
+
+        <div class="flow">
+
+            <div class="flow-step fade-up">
+                <div class="flow-number">01</div>
+                <div class="flow-content">
+                    <span class="flow-tag">Ingestion &amp; Deduplication</span>
+                    <h3>Every Submission Gets One Chance</h3>
+                    <p>A client fills in the booking form and submits. The system immediately generates a unique message
+                        ID for that submission and checks the audit log. If the ID already exists - the client
+                        double-clicked, had a connection issue, or resubmitted - the duplicate is discarded
+                        instantly.
+                        No spam invoices. No confusion. One submission, one workflow.</p>
+                </div>
+            </div>
+
+            <div class="flow-step fade-up" style="transition-delay:0.1s">
+                <div class="flow-number">02</div>
+                <div class="flow-content">
+                    <span class="flow-tag">AI Intent Analysis</span>
+                    <h3>The AI Reads Between the Lines</h3>
+                    <p>Before anything else happens, Google Gemini reads the client's message and assigns a confidence
+                        level - high, medium, or low. It's not just parsing the date and time. It's reading
+                        intent. A
+                        client who writes "I need a 90-minute session and I'm ready to move forward" scores high. A
+                        client who writes "just checking what this costs" or "can we do 30 minutes for half price"
+                        scores low and gets routed to manual review before a single invoice is generated. A code-level
+                        veto layer runs on top of the AI - enforcing hard rules like missing dates automatically
+                        forcing
+                        a low confidence score, regardless of what the AI decides.</p>
+                </div>
+            </div>
+
+            <div class="flow-step fade-up" style="transition-delay:0.15s">
+                <div class="flow-number">03</div>
+                <div class="flow-content">
+                    <span class="flow-tag">Availability Check &amp; Invoice Generation</span>
+                    <h3>Slot Confirmed - Invoice Out the Door</h3>
+                    <p>For high-confidence submissions, the system pings Google Calendar in real time to verify the slot
+                        is actually open. If it is, the lead is logged in the Financial Ledger, a PDF invoice is
+                        calculated (rate &times; duration), generated, stored in Google Drive, and emailed to the client
+                        with
+                        the slot tentatively reserved - all in one automated sequence. If the slot is taken, the
+                        client
+                        gets a personalised "slot unavailable" email with a rescheduling link, and the owner receives an
+                        SMS alert via Twilio.</p>
+                </div>
+            </div>
+
+            <div class="flow-step fade-up" style="transition-delay:0.2s">
+                <div class="flow-number">04</div>
+                <div class="flow-content">
+                    <span class="flow-tag">The State Machine Ledger</span>
+                    <h3>Every Lead Has a Status. Nothing Gets Lost.</h3>
+                    <p>The Google Sheets Financial Ledger is the backbone of the entire system. It doesn't just store
+                        leads - it tracks their lifecycle state. Every lead moves through a defined sequence of
+                        statuses, and the system reads that status before taking any action. If an API call fails at
+                        step 4, the ledger remembers where the process was. The lead isn't lost - just paused at
+                        the
+                        right step.</p>
+
+                    <div class="state-flow" style="margin-top:1.5rem; margin-bottom:1.5rem;">
+                        <span class="state-node active">new_lead</span>
+                        <span class="state-arrow">&rarr;</span>
+                        <span class="state-node active">awaiting_payment</span>
+                        <span class="state-arrow">&rarr;</span>
+                        <span class="state-node terminal">booked</span>
+                        <span class="state-arrow" style="color:var(--border);">|</span>
+                        <span class="state-node warning">manual_review</span>
+                        <span class="state-arrow" style="color:var(--border);">|</span>
+                        <span class="state-node warning">booking_conflict</span>
+                    </div>
+
+                    <div class="screenshot-block">
+                        <div class="screenshot-label">// Figure 1 - Financial Ledger - Live State Tracking
+                        </div>
+                        <div class="ngw-window-effect"
+                            data-img1="../assets/03 - Automated Booking Invoicing (Prepay)/exec1.webp"
+                            data-full="../assets/03 - Automated Booking Invoicing (Prepay)/exec1.webp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-step fade-up" style="transition-delay:0.25s">
+                <div class="flow-number">05</div>
+                <div class="flow-content">
+                    <span class="flow-tag">Approval Gate &amp; Final Booking</span>
+                    <h3>Payment Confirmed - One Click - Calendar Locked</h3>
+                    <p>When the client pays the invoice, the ledger is updated to "approved." The consultant reviews it
+                        and clicks approve. Only then does the system create the Google Calendar event, send the client
+                        a booking confirmation email with the meeting details, and mark the record as permanently booked
+                        with an execution lock - preventing any duplicate calendar events from ever being created.
+                    </p>
+                    <div class="screenshot-block">
+                        <div class="screenshot-label">// Figure 2 - Approval Gate &amp; Calendar Booking Engine
+                        </div>
+                        <div class="ngw-window-effect"
+                            data-img1="../assets/03 - Automated Booking Invoicing (Prepay)/exec.webp"
+                            data-full="../assets/03 - Automated Booking Invoicing (Prepay)/exec.webp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RESULTS -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">04 - Results</div>
+            <h2>Before vs. After</h2>
+            <p>The system went live for a consultant running high-ticket executive sessions. Here's what changed from
+                day one.</p>
+
+            <table class="results-table fade-up">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Before</th>
+                        <th>After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unpaid calendar holds ("ghost bookings")</td>
+                        <td>Regular occurrence</td>
+                        <td>Zero - no payment, no calendar event</td>
+                    </tr>
+                    <tr>
+                        <td>Manual payment reconciliation time</td>
+                        <td>~3 hours/week</td>
+                        <td>Zero - ledger updates automatically</td>
+                    </tr>
+                    <tr>
+                        <td>Tire-kicker / out-of-scope inquiries processed</td>
+                        <td>All of them, manually</td>
+                        <td>Flagged by AI before any action is taken</td>
+                    </tr>
+                    <tr>
+                        <td>Double-booking risk</td>
+                        <td>Real - no conflict detection</td>
+                        <td>Eliminated - dual availability check</td>
+                    </tr>
+                    <tr>
+                        <td>Invoice generation time</td>
+                        <td>Manual, per session</td>
+                        <td>Automatic - PDF generated &amp; emailed instantly</td>
+                    </tr>
+                    <tr>
+                        <td>Booking audit trail</td>
+                        <td>Scattered across email &amp; Stripe</td>
+                        <td>100% - every state change logged in the ledger</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TOOLS -->
+    <section class="section">
+        <div class="section-tag">05 - Stack</div>
+        <h2>Tools Used</h2>
+        <p>Each tool was chosen for a specific job. Nothing is redundant - every node earns its place.</p>
+        <div class="tools-grid">
+            <span class="tool-badge">n8n (Workflow Orchestration)</span>
+            <span class="tool-badge">Google Gemini (AI Intent Scoring)</span>
+            <span class="tool-badge">Google Sheets (State Machine Ledger)</span>
+            <span class="tool-badge">Google Calendar (Availability & Booking)</span>
+            <span class="tool-badge">Google Drive (Invoice PDF Storage)</span>
+            <span class="tool-badge">HTML-to-PDF (Invoice Generation)</span>
+            <span class="tool-badge">Gmail API (Client & Internal Emails)</span>
+            <span class="tool-badge">Twilio (SMS Conflict Alerts)</span>
+            <span class="tool-badge">Webhook (Form Submission Trigger)</span>
+        </div>
+    </section>
+
+    <!-- IS THIS RIGHT FOR YOU -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">06 - Is This Right for You?</div>
+            <h2>This System Was Built for a Specific Kind of Business</h2>
+            <p>Not every booking problem needs this level of architecture. Here's how to know if it fits.</p>
+
+            <div class="fit-grid">
+                <div class="fit-card good fade-up">
+                    <div class="fit-card-title">// Built For</div>
+                    <ul class="fit-list">
+                        <li>Consultants &amp; coaches whose time is their primary inventory</li>
+                        <li>High-ticket offers ($250+/session) where every ghost booking hurts revenue</li>
+                        <li>Businesses that need payment before committing calendar space</li>
+                        <li>Founders who want a human-in-the-loop approval before final booking</li>
+                        <li>Anyone tired of manually cross-referencing Stripe and Google Calendar</li>
+                    </ul>
+                </div>
+                <div class="fit-card bad fade-up" style="transition-delay:0.1s">
+                    <div class="fit-card-title">// Overkill For</div>
+                    <ul class="fit-list">
+                        <li>Free discovery calls - just use Calendly</li>
+                        <li>High-volume, low-margin appointments where speed matters more than vetting</li>
+                        <li>Businesses without a strict payment-first policy</li>
+                        <li>Teams that don't need a human approval step before booking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICABILITY -->
+    <section class="section">
+        <div class="section-tag">07 - Wider Application</div>
+        <h2>The Architecture Transfers Across Industries</h2>
+        <p>The prepay-first, AI-screened booking pattern isn't exclusive to consulting. Any high-value service where
+            time is finite and no-shows are costly can use this exact framework.</p>
+        <div class="apply-grid">
+            <div class="apply-card fade-up">
+                <h3>// Legal & Therapy</h3>
+                <p>Screen intake submissions for case fit before booking a consultation. Collect a session deposit
+                    automatically. Only confirm when payment clears.</p>
+            </div>
+            <div class="apply-card fade-up" style="transition-delay:0.1s">
+                <h3>// Creative Studios</h3>
+                <p>Photographers, studios, and production teams can gate session bookings behind prepayment -
+                    eliminating no-shows and protecting expensive equipment time.</p>
+            </div>
+            <div class="apply-card fade-up" style="transition-delay:0.2s">
+                <h3>// Medical & Aesthetics</h3>
+                <p>Clinics offering premium procedures can screen enquiries for eligibility, collect deposits
+                    automatically, and confirm slots only after payment - reducing wasted appointment slots.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="section-tag" style="justify-content:center; margin-bottom:1.5rem;">Is your calendar full of ghosts?
+        </div>
+        <h2>Your Time Is Your Inventory.<br />Stop Giving It Away for Free.</h2>
+        <p>
+            If unpaid holds, manual reconciliation, or tire-kicker inquiries are eating into your week, this system was
+            designed exactly for that problem.
+        </p>
+        <a href="../index.html#contact" class="cta-btn">Book a Discovery Call</a>
+        <p class="cta-sub">// 30 minutes - No pitch - Just your situation and whether we can solve it</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+        style="width:100%; padding:6rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border); position:relative; z-index:10;">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; max-width:none; text-align:center;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+            SYSTEM STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase; max-width:none; text-align:center;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;
+        </p>
+        <div
+            style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox">&#x2715;</div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        // Fade up
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Lightbox
+        const containers = document.querySelectorAll('.ngw-window-effect');
+        if (containers.length) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            const closeBtn = document.querySelector('.ngw-close');
+
+            function openLightbox(url) {
+                inner.innerHTML = '';
+                const img = new Image();
+                img.src = url;
+                inner.appendChild(img);
+                lb.style.display = 'flex';
+                lb.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lb.style.display = 'none';
+                lb.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            containers.forEach(c => {
+                const img1 = c.getAttribute('data-img1') || '';
+                const bgStyle = img1 ? `background-image:url('${img1}')` : 'background:#050505';
+                c.innerHTML = `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>`;
+                c.addEventListener('click', function () {
+                    const full = this.getAttribute('data-full') || img1;
+                    if (full) openLightbox(full);
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        }
+    </script>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
+

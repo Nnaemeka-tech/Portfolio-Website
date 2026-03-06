@@ -1,0 +1,610 @@
+{
+  "id": "0JTwv2s1ShlmWO2y",
+  "name": "Space Engine Workflow Phase 3",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "node-schedule",
+      "name": "ScheduleTrigger",
+      "position": [
+        0,
+        0
+      ],
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "mode": "list",
+          "value": "appWVxa4Vgn5i6VvC"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": "tblZchyK1HkgJPsdW"
+        },
+        "filterByFormula": "{Status} = 'Scripting'",
+        "options": {}
+      },
+      "id": "node-airtable-search",
+      "name": "AirtableSearch",
+      "position": [
+        208,
+        0
+      ],
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "PG2z40ek3Y0hmwc4",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.first().json;\n// Use bracket notation to handle flat Airtable search results\nconst text = inputData['Script'] || ''; \nconst title = inputData['Title'] || 'Space_Video';\nconst recordId = inputData.id;\n\nif (!text) {\n    throw new Error(\"Script field is empty or not found in Airtable.\");\n}\n\nconst scenes = [];\n\n// Simplified split logic to catch \"SCENE X\" regardless of parentheses/bolding\nconst blocks = text.split(/SCENE\\s*\\d+:/i);\n\n// The first block is usually intro text, so we skip it (i = 1)\nfor (let i = 1; i < blocks.length; i++) {\n    const block = blocks[i];\n    \n    // Improved Visual extraction\n    const visualMatch = block.match(/VISUAL:\\s*([\\s\\S]*?)(?=\\*\\*|\\)|$)/i);\n    \n    // Improved Narrator extraction\n    let narratorText = \"\";\n    const narratorRegex = /NARRATOR.*?:([\\s\\S]*?)(?=NARRATOR|VISUAL|###|$)/gi;\n    let nMatch;\n    while ((nMatch = narratorRegex.exec(block)) !== null) {\n        narratorText += nMatch[1].replace(/\\*\\*|\\*/g, '').trim() + \" \";\n    }\n\n    if (narratorText.trim() || visualMatch) {\n        scenes.push({\n            json: {\n                sceneNumber: i,\n                visualPrompt: visualMatch ? visualMatch[1].trim() : \"Cinematic space background\",\n                narratorText: narratorText.trim(),\n                title: title.trim(),\n                recordId: recordId\n            }\n        });\n    }\n}\n\nreturn scenes;"
+      },
+      "id": "node-code",
+      "name": "ParseScenes",
+      "position": [
+        400,
+        0
+      ],
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "node-loop",
+      "name": "LoopScenes",
+      "position": [
+        608,
+        0
+      ],
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cloud.leonardo.ai/api/rest/v1/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"height\": 720,\n  \"width\": 1280,\n  \"modelId\": \"b24e16ff-06e3-43eb-8d33-4416c2d75876\",\n  \"prompt\": \"{{ $json.visualPrompt }}\",\n  \"num_images\": 1\n}",
+        "options": {}
+      },
+      "id": "node-leonardo-post",
+      "name": "LeonardoPOST",
+      "position": [
+        800,
+        112
+      ],
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "IUAE0tC3n3UG6RFG",
+          "name": "Bearer Auth account"
+        },
+        "httpHeaderAuth": {
+          "id": "Evusg4iiPdEEFupK",
+          "name": "Leonardo_Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "id": "node-wait",
+      "name": "Wait30s",
+      "position": [
+        1008,
+        112
+      ],
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "webhookId": "86f731e2-09e2-4058-87c5-4ab0dd8feab6"
+    },
+    {
+      "parameters": {
+        "url": "=https://cloud.leonardo.ai/api/rest/v1/generations/{{$json.sdGenerationJob.generationId}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "node-leonardo-get",
+      "name": "LeonardoGET",
+      "position": [
+        1200,
+        112
+      ],
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Evusg4iiPdEEFupK",
+          "name": "Leonardo_Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "append",
+        "options": {}
+      },
+      "id": "node-merge",
+      "name": "MergeAssets",
+      "position": [
+        1600,
+        0
+      ],
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "name": "=",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "root",
+          "mode": "list",
+          "cachedResultName": "/ (Root folder)",
+          "cachedResultUrl": "https://drive.google.com/drive"
+        },
+        "options": {},
+        "fileName": "={{$('ParseScenes').item.json.title}}_Scene_{{$('LoopScenes').item.json.sceneNumber}}"
+      },
+      "id": "node-gdrive",
+      "name": "GoogleDrive",
+      "position": [
+        1800,
+        0
+      ],
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "NzVRSqQUf70wnMF4",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "mode": "list",
+          "value": "appWVxa4Vgn5i6VvC"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": "tblZchyK1HkgJPsdW"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Score": 0
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Idea",
+                  "value": "Idea"
+                },
+                {
+                  "name": "Review",
+                  "value": "Review"
+                },
+                {
+                  "name": "Approved",
+                  "value": "Approved"
+                },
+                {
+                  "name": "Scripting",
+                  "value": "Scripting"
+                },
+                {
+                  "name": "Assets Ready",
+                  "value": "Assets Ready"
+                },
+                {
+                  "name": "Edited",
+                  "value": "Edited"
+                },
+                {
+                  "name": "Published",
+                  "value": "Published"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Source URL",
+              "displayName": "Source URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Script",
+              "displayName": "Script",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Visual Prompts",
+              "displayName": "Visual Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Voiceover File",
+              "displayName": "Voiceover File",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Last Modified",
+              "displayName": "Last Modified",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "node-airtable-update",
+      "name": "AirtableUpdate",
+      "position": [
+        608,
+        288
+      ],
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "PG2z40ek3Y0hmwc4",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "machogeorgia4@gmail.com",
+        "subject": "Assets Ready!",
+        "message": "Assets for video are ready!",
+        "options": {}
+      },
+      "id": "node-gmail",
+      "name": "GmailNotification",
+      "position": [
+        800,
+        288
+      ],
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "webhookId": "e4565a56-4ae0-4aa9-a7f2-a795771c718e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4lb8ImSg37cTAuoX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.narratorText }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1008,
+        -96
+      ],
+      "id": "bb69706e-ce6a-4de2-ab60-2c00623e64d6",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "jSgKESYkUJI8oYQy",
+          "name": "ElevenLabs_Auth_Final"
+        }
+      }
+    },
+    {
+      "id": "node-download-image",
+      "name": "DownloadImage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1400,
+        112
+      ],
+      "parameters": {
+        "url": "={{$json.generations[0].generated_images[0].url}}",
+        "method": "GET",
+        "authentication": "none",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "AirtableSearch": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "ParseScenes",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "AirtableUpdate": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "GmailNotification",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "GoogleDrive": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "LoopScenes",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "LeonardoGET": {
+      "main": [
+        [
+          {
+            "node": "DownloadImage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LeonardoPOST": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "Wait30s",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "LoopScenes": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "AirtableUpdate",
+            "type": "main"
+          }
+        ],
+        [
+          {
+            "index": 0,
+            "node": "LeonardoPOST",
+            "type": "main"
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MergeAssets": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "GoogleDrive",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "ParseScenes": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "LoopScenes",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "ScheduleTrigger": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "AirtableSearch",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "Wait30s": {
+      "main": [
+        [
+          {
+            "index": 0,
+            "node": "LeonardoGET",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "MergeAssets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DownloadImage": {
+      "main": [
+        [
+          {
+            "node": "MergeAssets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,2092 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nnaemeka | Business Process & AI Workflow Automation Specialist | Lagos, Nigeria</title>
+    <meta name="description"
+        content="Nnaemeka is a business process automation specialist based in Lagos, Nigeria. I build AI-powered workflow systems for small businesses - lead intake, booking automation, CRM sync, and more using n8n, Zapier, and OpenAI." />
+    <meta name="keywords"
+        content="business process automation, AI workflow automation, n8n specialist, Zapier automation consultant, workflow automation small business, automation specialist Lagos Nigeria, AI-powered business systems, no-code automation expert, lead intake automation, CRM automation" />
+    <link rel="canonical" href="https://www.nnaemekasystems.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.nnaemekasystems.com/" />
+    <meta property="og:title" content="Nnaemeka | Business Process & AI Workflow Automation Specialist" />
+    <meta property="og:description"
+        content="I build AI-powered automation systems for small businesses. Lead intake, booking, CRM sync - running 24/7 without manual intervention." />
+    <meta property="og:image" content="https://www.nnaemekasystems.com/assets/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nnaemeka | Business Process & AI Workflow Automation Specialist" />
+    <meta name="twitter:description"
+        content="I build AI-powered automation systems for small businesses. Lead intake, booking, CRM sync - running 24/7 without manual intervention." />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nnaemeka",
+        "jobTitle": "Business Process & AI Workflow Automation Specialist",
+        "url": "https://www.nnaemekasystems.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" },
+        "knowsAbout": ["Business Process Automation", "AI Workflow Automation", "n8n", "Zapier", "Make", "OpenAI", "No-code Automation"],
+        "hasCredential": "n8n Certified"
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 67, 206, 0.005) 2px, rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            fill: none;
+            transition: all 0.3s;
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-cta {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            border: 1px solid var(--border);
+            text-transform: uppercase;
+        }
+
+        .nav-cta:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 2rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            color: var(--text-bright);
+            max-width: 1000px;
+            margin-bottom: 1.75rem;
+            letter-spacing: -0.03em;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 620px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 67, 206, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 67, 206, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+            transform: translateY(-2px);
+        }
+
+        .numbers-bar {
+            width: 100%;
+            margin-top: 5rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 0;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+
+        .numbers-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number-val {
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .number-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding: 7rem 3rem;
+        }
+
+        .section-alt {
+            padding: 7rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-tag::after {
+            content: '';
+            width: 2.5rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        h2 {
+            font-family: var(--sans);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 2.5rem 0;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+        }
+
+        .problem-item .x {
+            color: #ef4444;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pivot-box {
+            margin-top: 2.5rem;
+            border-left: 2px solid var(--accent-bright);
+            padding: 1.5rem 2rem;
+            background: rgba(74, 137, 255, 0.03);
+        }
+
+        .pivot-box p {
+            font-size: 1rem;
+            color: var(--text);
+            max-width: 100%;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .pivot-box p em {
+            font-style: normal;
+            color: var(--text-bright);
+            font-weight: 600;
+        }
+
+        .problem-visual {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .vis-header {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vis-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .vis-row {
+            height: 10px;
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .vis-errors {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .vis-error {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            color: #ef4444;
+        }
+
+        .vis-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--accent-bright);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .service-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: border-color 0.3s, transform 0.2s;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-bright));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-bright);
+            transform: translateY(-3px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-bright);
+            fill: none;
+        }
+
+        .service-card h3 {
+            font-size: 1.05rem;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .case-grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .case-card-new {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .case-card-new:hover {
+            border-color: var(--accent-bright);
+            transform: translateY(-3px);
+        }
+
+        .case-card-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-bright));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .case-card-new:hover::before {
+            transform: scaleX(1);
+        }
+
+        .case-card-top {
+            padding: 1.75rem 2rem 1.5rem;
+        }
+
+        .case-card-tag {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .case-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+
+        .case-card-new:hover .case-card-title {
+            color: var(--accent-bright);
+        }
+
+        .case-card-desc {
+            font-size: 0.83rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .case-card-metrics {
+            display: flex;
+            gap: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .case-metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .case-metric-val {
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .case-metric-label {
+            font-family: var(--mono);
+            font-size: 0.52rem;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .case-screenshot {
+            border-top: 1px solid var(--border);
+            background: #000;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .case-screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card-new:hover .case-screenshot img {
+            transform: scale(1.02);
+        }
+
+        .case-card-footer {
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface);
+        }
+
+        .case-card-link {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .case-card-new:hover .case-card-link {
+            color: var(--accent-bright);
+        }
+
+        .case-card-arrow {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .case-card-new:hover .case-card-arrow {
+            border-color: var(--accent-bright);
+            background: rgba(74, 137, 255, 0.08);
+        }
+
+        .case-card-arrow svg {
+            width: 10px;
+            height: 10px;
+            stroke: var(--text-dim);
+            fill: none;
+            transition: stroke 0.2s;
+        }
+
+        .case-card-new:hover .case-card-arrow svg {
+            stroke: var(--accent-bright);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 3.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .philosophy-card {
+            padding: 2.5rem;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .philosophy-card:last-child {
+            border-right: none;
+        }
+
+        .philosophy-num {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.15rem;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .philosophy-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .tools-strip {
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .tools-label {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            color: var(--text-dim);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tool-pill {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            transition: all 0.2s;
+        }
+
+        .tool-pill.cert {
+            border-color: var(--accent);
+            color: var(--accent-bright);
+        }
+
+        .tool-pill:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-portrait {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .about-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-portrait::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 67, 206, 0.08) 0%, transparent 60%);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+
+        .about-text p em {
+            font-style: normal;
+            color: var(--text-bright);
+        }
+
+        .about-text p strong {
+            color: var(--text-bright);
+            font-weight: 600;
+        }
+
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            border-left: 2px solid var(--accent);
+            padding: 1.5rem 1.75rem;
+            background: var(--surface2);
+        }
+
+        .testimonial p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            max-width: 100%;
+        }
+
+        .testimonial-attr {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .faq-item {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .faq-item h3 {
+            font-size: 0.95rem;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            line-height: 1.4;
+            font-family: var(--sans);
+        }
+
+        .faq-item p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-info p {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .contact-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-step {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 2.5rem;
+            height: 2.5rem;
+            min-width: 2.5rem;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent-bright);
+        }
+
+        .contact-step h4 {
+            font-size: 1rem;
+            color: var(--text-bright);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .contact-step p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--accent-bright);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.6rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1rem 1.25rem;
+            color: #fff;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            outline: none;
+            border-radius: 0;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-bright);
+            background: rgba(74, 137, 255, 0.03);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 1.25rem;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(--sans);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border-radius: 10px;
+            letter-spacing: 0.02em;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 67, 206, 0.4);
+            opacity: 0.92;
+        }
+
+        .success-message {
+            display: none;
+            padding: 2.5rem;
+            text-align: center;
+            background: rgba(74, 137, 255, 0.04);
+            border: 1px solid var(--accent-bright);
+        }
+
+        .success-message h3 {
+            color: var(--accent-bright);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .success-message p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -- INSIGHTS CARDS -- */
+        .insight-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .insight-card:hover {
+            border-color: var(--accent-bright);
+            transform: translateY(-3px);
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-bright));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .insight-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 1024px) {
+            .case-grid-2x2 {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-portrait {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .numbers-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section {
+                padding: 5rem 1.5rem;
+            }
+
+            .section-alt {
+                padding: 5rem 1.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy-card {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .philosophy-card:last-child {
+                border-bottom: none;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* ── MASTER MOBILE NAVIGATION ── */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logic-logo">
+                <div class="logo-part"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg></div>
+                <div class="logo-part logo-main"><span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg></div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="case-studies/index.html">Case Studies</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="index.html#insights">Blog</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Free Automation Audit</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+
+        <a href="#services">Services</a>
+        <a href="case-studies/index.html">Case Studies</a>
+        <a href="#about">About</a>
+        <a href="index.html#insights">Blog</a>
+
+        <a href="#contact" class="mob-cta">Free Automation Audit</a>
+    </div>
+
+
+    <section class="hero">
+        <div class="hero-eyebrow">Business Process & AI Workflow Automation</div>
+        <h1>Your Business Runs on <em>Manual Work</em> It Shouldn't Have To Do.</h1>
+        <p class="hero-sub">I build AI-powered automation systems for small businesses - lead intake, booking, CRM
+            sync,
+            legal processing - running 24/7 without manual intervention. No extra headcount. No errors. Just
+            systems
+            that work.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Get a Free Automation Audit</a>
+            <a href="case-studies/index.html" class="btn btn-secondary">See the Work &rarr;</a>
+        </div>
+        <div class="numbers-bar">
+            <div class="numbers-inner">
+                <div class="number-item"><span class="number-val">20+</span><span class="number-label">Systems
+                        Built</span></div>
+                <div class="number-item"><span class="number-val">5</span><span class="number-label">Industries</span>
+                </div>
+                <div class="number-item"><span class="number-val">3 yrs</span><span class="number-label">In
+                        Automation</span></div>
+                <div class="number-item"><span class="number-val">24/7</span><span class="number-label">Systems
+                        Uptime</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="problem">
+        <div class="section-inner">
+            <div class="problem-grid">
+                <div>
+                    <div class="section-tag">The Problem</div>
+                    <h2>Does Your Team Spend More Time <em>Managing Data</em> Than Growing the Business?</h2>
+                    <p style="color:var(--text-dim); font-size:1.05rem; max-width:100%; margin-bottom:0.5rem;">You know
+                        exactly what this looks like. Leads sitting in spreadsheets waiting for someone to manually sort
+                        them. Clients following up because nobody responded. Invoices going out late because someone
+                        forgot.</p>
+                    <div class="problem-list">
+                        <div class="problem-item"><span class="x">-</span> Manual data entry repeated across
+                            multiple
+                            platforms every day</div>
+                        <div class="problem-item"><span class="x">-</span> High-value leads going cold while
+                            routine
+                            ones clog the queue</div>
+                        <div class="problem-item"><span class="x">-</span> Critical documents lost in inboxes
+                            instead of
+                            filed where they belong</div>
+                        <div class="problem-item"><span class="x">-</span> Approval cycles and follow-ups handled
+                            by
+                            memory, not systems</div>
+                    </div>
+                    <div class="pivot-box">
+                        <p>I started as a web designer. I noticed a pattern: clients would get a website, leads would
+                            start coming in, and then everything went <em>manual</em>. The follow-up. The
+                            sorting. The
+                            routing. The filing. I chose to solve that problem instead of just building the front door.
+                            That's what this practice is built on.</p>
+                    </div>
+                </div>
+                <div class="problem-visual fade-up">
+                    <div class="vis-header">
+                        <div class="vis-dot" style="background:#ef4444; opacity:0.6;"></div>
+                        <div class="vis-dot" style="background:#fbbf24; opacity:0.6;"></div>
+                        <div class="vis-dot" style="background:#22c55e; opacity:0.6;"></div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem; opacity:0.5;">
+                        <div class="vis-row" style="width:80%;"></div>
+                        <div class="vis-row" style="width:100%;"></div>
+                        <div class="vis-row" style="width:55%;"></div>
+                        <div class="vis-row" style="width:90%;"></div>
+                    </div>
+                    <div class="vis-errors">
+                        <div class="vis-error">
+                            <div class="vis-spinner"></div>
+                        </div>
+                        <div class="vis-error">- -</div>
+                        <div class="vis-error">ERR: 404</div>
+                    </div>
+                    <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+                        <div
+                            style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim); letter-spacing:0.1em; margin-bottom:0.75rem;">
+                            MANUAL PROCESS COST</div>
+                        <div
+                            style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:0.72rem;">
+                            <span style="color:#ef4444;">15-20 min per intake</span>
+                            <span style="color:var(--text-dim);">- daily volume</span>
+                            <span style="color:#ef4444;">= hours lost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="section-inner">
+            <div class="section-tag">What I Build</div>
+            <h2>AI-Powered Workflow Systems<br />That Replace Manual Processes</h2>
+            <p style="color:var(--text-dim); font-size:1.05rem; max-width:620px;">Every system I build replaces a
+                specific manual process. No generic templates - each one is architected for the exact problem your
+                business has.</p>
+            <div class="services-grid">
+                <div class="service-card fade-up">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                        </svg></div>
+                    <h3>Lead Capture & Intake Systems</h3>
+                    <p>AI-powered intake that reads every inbound inquiry the moment it arrives, extracts structured
+                        data, and routes it based on value, urgency, and type - in seconds.</p>
+                </div>
+                <div class="service-card fade-up" style="transition-delay:0.05s">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg></div>
+                    <h3>Automated Booking & Invoicing</h3>
+                    <p>From inquiry to booked appointment to paid invoice - entirely automated. Calendly
+                        integration,
+                        payment verification, confirmation emails - no manual steps.</p>
+                </div>
+                <div class="service-card fade-up" style="transition-delay:0.1s">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                        </svg></div>
+                    <h3>CRM & Data Sync</h3>
+                    <p>Bidirectional synchronisation between lead sources, CRMs, and operational tools. Clean records,
+                        no duplicates, no data drift - maintained automatically.</p>
+                </div>
+                <div class="service-card fade-up" style="transition-delay:0.15s">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+                            <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07" />
+                        </svg></div>
+                    <h3>AI-Powered Workflows</h3>
+                    <p>OpenAI and local LLMs integrated directly into your business processes - extracting data,
+                        generating summaries, classifying requests, drafting responses.</p>
+                </div>
+                <div class="service-card fade-up" style="transition-delay:0.2s">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+                        </svg></div>
+                    <h3>API & Platform Integrations</h3>
+                    <p>Deep connections between tools with complex business logic that standard connectors can't handle
+                        - Clio, Airtable, Stripe, Twilio, Google Workspace, and more.</p>
+                </div>
+                <div class="service-card fade-up" style="transition-delay:0.25s">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg></div>
+                    <h3>System Reliability & Monitoring</h3>
+                    <p>Every system I build includes error handling and failure alerts. If something breaks, you know
+                        before your clients do - not after a day of silent failures.</p>
+                </div>
+            </div>
+            <div class="tools-strip fade-up">
+                <span class="tools-label">// Tools & Platforms</span>
+                <div class="tools-list">
+                    <span class="tool-pill cert">n8n - Certified</span><span class="tool-pill">Zapier</span><span
+                        class="tool-pill">Make</span><span class="tool-pill">OpenAI / GPT-4</span><span
+                        class="tool-pill">Ollama (Local AI)</span><span class="tool-pill">Airtable</span><span
+                        class="tool-pill">Google Workspace</span><span class="tool-pill">Clio</span><span
+                        class="tool-pill">Twilio</span><span class="tool-pill">Stripe</span><span
+                        class="tool-pill">Calendly</span><span class="tool-pill">Python</span><span
+                        class="tool-pill">NocoDB</span><span class="tool-pill">Bland AI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="work">
+        <div class="section-inner">
+            <div
+                style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:0.5rem;">
+                <div>
+                    <div class="section-tag">Proof of Work</div>
+                    <h2>Business Process Automation<br />Systems - Live & Documented</h2>
+                </div>
+                <a href="case-studies/index.html"
+                    style="font-family:var(--mono); font-size:0.72rem; color:var(--accent-bright); text-decoration:none; letter-spacing:0.08em; white-space:nowrap;">View
+                    All 7 Systems &rarr;</a>
+            </div>
+            <div class="case-grid-2x2">
+                <a href="case-studies/ai-receptionist-small-business.html" class="case-card-new fade-up">
+                    <div class="case-card-top"><span class="case-card-tag">// Conversational AI - Small
+                            Business</span>
+                        <div class="case-card-title">24/7 AI Receptionist for Small Businesses</div>
+                        <div class="case-card-desc">Replaced the missed-call problem entirely. Every inbound call
+                            answered, caller qualified, appointment booked - without a human involved at any
+                            point.
+                        </div>
+                        <div class="case-card-metrics">
+                            <div class="case-metric"><span class="case-metric-val">0</span><span
+                                    class="case-metric-label">Missed Calls</span></div>
+                            <div class="case-metric"><span class="case-metric-val">24/7</span><span
+                                    class="case-metric-label">Availability</span></div>
+                            <div class="case-metric"><span class="case-metric-val">Auto</span><span
+                                    class="case-metric-label">Booking</span></div>
+                        </div>
+                    </div>
+                    <div class="case-screenshot"><img
+                            src="assets/01 - AI Pre-Sales Assistant/ai-main-agent-workflow.webp"
+                            alt="AI receptionist workflow automation for small businesses - n8n and Bland AI"
+                            loading="lazy" /></div>
+                    <div class="case-card-footer"><span class="case-card-link">Read Full Case Study</span>
+                        <div class="case-card-arrow"><svg viewBox="0 0 24 24" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></div>
+                    </div>
+                </a>
+                <a href="case-studies/ai-screened-prepay-booking-system.html" class="case-card-new fade-up"
+                    style="transition-delay:0.1s">
+                    <div class="case-card-top"><span class="case-card-tag">// AI Screening - Consulting</span>
+                        <div class="case-card-title">AI-Screened, Prepay-First Automated Booking System</div>
+                        <div class="case-card-desc">For high-ticket consultants. AI scores lead intent before a calendar
+                            slot is offered. No payment, no booking. Ghost appointments eliminated entirely since
+                            launch.</div>
+                        <div class="case-card-metrics">
+                            <div class="case-metric"><span class="case-metric-val">100%</span><span
+                                    class="case-metric-label">Payment Before Booking</span></div>
+                            <div class="case-metric"><span class="case-metric-val">0</span><span
+                                    class="case-metric-label">Ghost Appointments</span></div>
+                        </div>
+                    </div>
+                    <div class="case-screenshot"><img src="assets/03 - Automated Booking Invoicing (Prepay)/exec.webp"
+                            alt="AI-screened prepay booking automation system - n8n and Gemini AI"
+                            loading="lazy" />
+                    </div>
+                    <div class="case-card-footer"><span class="case-card-link">Read Full Case Study</span>
+                        <div class="case-card-arrow"><svg viewBox="0 0 24 24" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></div>
+                    </div>
+                </a>
+                <a href="case-studies/vip-routed-moving-company-lead-intake.html" class="case-card-new fade-up"
+                    style="transition-delay:0.15s">
+                    <div class="case-card-top"><span class="case-card-tag">// Lead Routing - Logistics</span>
+                        <div class="case-card-title">VIP-Routed Lead Intake & Escalation for Moving Companies</div>
+                        <div class="case-card-desc">Commercial and large residential moves separated from standard ones
+                            at intake. Owner alerted instantly for high-value jobs. Two-stage escalation if they don't
+                            respond.</div>
+                        <div class="case-card-metrics">
+                            <div class="case-metric"><span class="case-metric-val">0</span><span
+                                    class="case-metric-label">VIP Leads Lost</span></div>
+                            <div class="case-metric"><span class="case-metric-val">2-</span><span
+                                    class="case-metric-label">Escalation Safety Net</span></div>
+                        </div>
+                    </div>
+                    <div class="case-screenshot"><img src="assets/07 - Moving Company Booking System/Atlas.png"
+                            alt="VIP lead routing and escalation automation for moving company - n8n and Airtable"
+                            loading="lazy" /></div>
+                    <div class="case-card-footer"><span class="case-card-link">Read Full Case Study</span>
+                        <div class="case-card-arrow"><svg viewBox="0 0 24 24" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></div>
+                    </div>
+                </a>
+                <a href="case-studies/ai-legal-intake-automation.html" class="case-card-new fade-up"
+                    style="transition-delay:0.2s">
+                    <div class="case-card-top"><span class="case-card-tag">// AI Extraction - Legal</span>
+                        <div class="case-card-title">AI-Powered Legal Intake: Email to Verified Case File in 30 Seconds
+                        </div>
+                        <div class="case-card-desc">Every inbound client email turned into a structured case file. AI
+                            extracts data, Drive gets the folder and documents, Clio gets the contact, matter, and
+                            intake note. Zero manual steps.</div>
+                        <div class="case-card-metrics">
+                            <div class="case-metric"><span class="case-metric-val">~30s</span><span
+                                    class="case-metric-label">Per Intake</span></div>
+                            <div class="case-metric"><span class="case-metric-val">0</span><span
+                                    class="case-metric-label">Manual Steps</span></div>
+                            <div class="case-metric"><span class="case-metric-val">24/7</span><span
+                                    class="case-metric-label">Processing</span></div>
+                        </div>
+                    </div>
+                    <div class="case-screenshot"><img
+                            src="assets/08 - Legal Client Onboarding/legal-zapier-workflow.webp"
+                            alt="AI-powered legal intake automation - Zapier, OpenAI GPT-4, Google Drive and Clio"
+                            loading="lazy" /></div>
+                    <div class="case-card-footer"><span class="case-card-link">Read Full Case Study</span>
+                        <div class="case-card-arrow"><svg viewBox="0 0 24 24" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="philosophy">
+        <div class="section-inner">
+            <div class="section-tag">How I Build</div>
+            <h2>Three Principles Behind<br />Every System I Deliver</h2>
+            <div class="philosophy-grid fade-up">
+                <div class="philosophy-card"><span class="philosophy-num">01 //</span>
+                    <h3>Reliability by Design</h3>
+                    <p>I build for edge cases and failure states from day one. Every system includes error handling and
+                        alert mechanisms. If something breaks, you know before your clients do - not after a day
+                        of
+                        silent failures and missed leads.</p>
+                </div>
+                <div class="philosophy-card"><span class="philosophy-num">02 //</span>
+                    <h3>Your Data Stays Yours</h3>
+                    <p>Your logic is your competitive advantage. Where privacy demands it - healthcare, legal,
+                        sensitive
+                        operations - I use locally-hosted AI models so client data never touches third-party
+                        servers.
+                        You own every byte.</p>
+                </div>
+                <div class="philosophy-card"><span class="philosophy-num">03 //</span>
+                    <h3>Documented Handover</h3>
+                    <p>No black boxes. Every system ships with full architectural documentation so your team can
+                        understand, maintain, and extend it without me. You're not buying dependency - you're
+                        buying
+                        capability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div>
+                    <div class="about-portrait fade-up"><img src="assets/Profile_pic.webp"
+                            alt="Nnaemeka - Business Process Automation Specialist based in Lagos Nigeria"
+                            loading="lazy" /></div>
+                </div>
+                <div class="about-text fade-up" style="transition-delay:0.1s">
+                    <div class="section-tag">About</div>
+                    <h2 style="font-size:clamp(2rem,5vw,3rem); margin-bottom:1.5rem;">I'm Nnaemeka.<br />I Build
+                        Systems,<br />Not Workarounds.</h2>
+                    <p>I'm a <em>business process and AI workflow automation specialist</em> based in Lagos, Nigeria,
+                        working remotely with small businesses across industries. I've been building automation systems
+                        for <strong>three years</strong>, across <strong>20+ projects</strong> in legal, healthcare,
+                        field services, logistics, and consulting.</p>
+                    <p>Before this, I was a web designer. I noticed that my clients would get a website, start
+                        generating leads, and then spend hours every day doing manually what a system could do in
+                        seconds. I pivoted to solve that problem. The website is the front door. <em>The automation is
+                            what happens after someone walks through it.</em></p>
+                    <p>I'm <strong>n8n certified</strong> and work across the full automation stack - from no-code
+                        workflow tools to AI model integration to custom API connections. Every system I build is
+                        documented, tested, and built to run without me holding it together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="testimonials">
+        <div class="section-inner">
+            <div class="section-tag">Success Stories</div>
+            <h2>What Clients Say About<br />Working With Me</h2>
+            <div class="testimonials fade-up">
+                <div class="testimonial">
+                    <p>"Working with Nnaemeka has been transformative for our firm. What used to take staff
+                        15-20 minutes per client - reading emails, extracting information, filing documents,
+                        updating our CRM - now happens in seconds. He has eased an enormous burden from our
+                        practice."</p><span class="testimonial-attr">- Chinwe Anyanwu, Legal Practitioner</span>
+                </div>
+                <div class="testimonial">
+                    <p>"Since the system went live, I no longer have to worry about missing a big job while I'm
+                        handling a routine one. The right leads get flagged immediately, and I can focus
+                        entirely on the work that actually grows the business."</p><span
+                        class="testimonial-attr">- Moving Company Owner, Lagos (name withheld by request)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="faq">
+        <div class="section-inner">
+            <div class="section-tag">FAQ</div>
+            <h2>Common Questions About<br />Business Process Automation</h2>
+            <div class="faq-grid">
+                <div class="faq-item fade-up">
+                    <h3>What is business process automation?</h3>
+                    <p>Business process automation (BPA) means replacing repetitive manual tasks - data entry,
+                        lead
+                        routing, follow-ups, document filing - with software systems that do the same work faster,
+                        without errors, and without needing a human to trigger them.</p>
+                </div>
+                <div class="faq-item fade-up" style="transition-delay:0.05s">
+                    <h3>How is this different from just using Zapier or Make?</h3>
+                    <p>Tools like Zapier and n8n are part of the stack, but the value is in the logic design -
+                        knowing
+                        which conditions to check, how to handle failures, how to route data correctly, and how to
+                        integrate AI into the workflow. The tools are just how you build it.</p>
+                </div>
+                <div class="faq-item fade-up" style="transition-delay:0.1s">
+                    <h3>How long does it take to build an automation system?</h3>
+                    <p>Most systems I build go live within one to two weeks. Complex multi-workflow systems with AI
+                        integration and custom CRM connections can take three to four weeks. I don't rush - I
+                        build for
+                        reliability first.</p>
+                </div>
+                <div class="faq-item fade-up" style="transition-delay:0.15s">
+                    <h3>Do I need technical knowledge to use the systems you build?</h3>
+                    <p>No. Every system ships with full documentation, and the interfaces are designed so your team can
+                        operate them without automation experience. If anything breaks or needs updating, I'm available
+                       , but most systems run without intervention.</p>
+                </div>
+                <div class="faq-item fade-up" style="transition-delay:0.2s">
+                    <h3>What kinds of businesses do you work with?</h3>
+                    <p>Primarily small businesses - law firms, moving companies, therapy practices, landscaping
+                        companies, consultants, field service operators. If your business has a manual process that runs
+                        daily, it's almost certainly automatable.</p>
+                </div>
+                <div class="faq-item fade-up" style="transition-delay:0.25s">
+                    <h3>What happens after the system is built?</h3>
+                    <p>You receive full documentation and ownership of everything - workflows, code, credentials.
+                        I
+                        offer ongoing maintenance and monitoring, but you're not locked in. The system is yours to run,
+                        modify, or hand to another developer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- -- INSIGHTS -- -->
+    <section class="section" id="insights">
+        <div class="section-inner">
+            <div
+                style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:3.5rem;">
+                <div>
+                    <div class="section-tag">From the Blog</div>
+                    <h2>Automation, <em>Written Honestly.</em></h2>
+                </div>
+                <a href="Blog/index.html"
+                    style="font-family:var(--mono); font-size:0.72rem; color:var(--accent-bright); text-decoration:none; letter-spacing:0.08em; white-space:nowrap;">View
+                    All Insights &rarr;</a>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+                <a href="Blog/legal-intake-automation.html"
+                    style="text-decoration:none; display:flex; flex-direction:column; border:1px solid var(--border); background:var(--surface2); overflow:hidden; transition:border-color 0.3s, transform 0.2s; position:relative;"
+                    class="fade-up"
+                    onmouseover="this.style.borderColor='var(--accent-bright)';this.style.transform='translateY(-3px)'"
+                    onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
+                    <div style="height:2px; background:linear-gradient(to right,var(--accent),var(--accent-bright)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; position:absolute; top:0; left:0; right:0;"
+                        class="insight-bar"></div>
+                    <div style="padding:2rem 2rem 1.5rem; flex:1;">
+                        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+                            <span
+                                style="font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-bright); padding:0.2rem 0.6rem; border:1px solid rgba(74,137,255,0.3); background:rgba(74,137,255,0.05);">Case
+                                Breakdown</span>
+                            <span style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim);">Feb 2026
+                                - 8
+                                min read</span>
+                        </div>
+                        <div
+                            style="font-family:var(--sans); font-size:1.05rem; font-weight:700; color:var(--text-bright); line-height:1.3; margin-bottom:0.75rem;">
+                            How I Reduced a Law Firm's Client Intake from 20 Minutes to 30 Seconds</div>
+                        <div style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">Every new client email
+                            was a 20-minute manual job. Here's exactly how we replaced all of it with a pipeline that
+                            runs around the clock.</div>
+                    </div>
+                    <div
+                        style="padding:1rem 2rem; border-top:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:space-between;">
+                        <span
+                            style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim); letter-spacing:0.1em; text-transform:uppercase;">Read
+                            Article</span>
+                        <div
+                            style="width:1.5rem; height:1.5rem; border:1px solid var(--border); display:flex; align-items:center; justify-content:center;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Blog/n8n-vs-zapier-small-business.html"
+                    style="text-decoration:none; display:flex; flex-direction:column; border:1px solid var(--border); background:var(--surface2); overflow:hidden; transition:border-color 0.3s, transform 0.2s; position:relative;"
+                    class="fade-up" style="transition-delay:0.1s"
+                    onmouseover="this.style.borderColor='var(--accent-bright)';this.style.transform='translateY(-3px)'"
+                    onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
+                    <div style="height:2px; background:linear-gradient(to right,var(--accent),var(--accent-bright)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; position:absolute; top:0; left:0; right:0;"
+                        class="insight-bar"></div>
+                    <div style="padding:2rem 2rem 1.5rem; flex:1;">
+                        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+                            <span
+                                style="font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-bright); padding:0.2rem 0.6rem; border:1px solid rgba(74,137,255,0.3); background:rgba(74,137,255,0.05);">Tool
+                                Comparison</span>
+                            <span style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim);">Feb 2026
+                                -
+                                10 min read</span>
+                        </div>
+                        <div
+                            style="font-family:var(--sans); font-size:1.05rem; font-weight:700; color:var(--text-bright); line-height:1.3; margin-bottom:0.75rem;">
+                            n8n vs Zapier: Which Is Better for Small Business Automation in 2026?</div>
+                        <div style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">An honest breakdown from
+                            someone who builds with both - when each tool wins, where pricing hurts, and the one
+                            question that determines the right answer.</div>
+                    </div>
+                    <div
+                        style="padding:1rem 2rem; border-top:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:space-between;">
+                        <span
+                            style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim); letter-spacing:0.1em; text-transform:uppercase;">Read
+                            Article</span>
+                        <div
+                            style="width:1.5rem; height:1.5rem; border:1px solid var(--border); display:flex; align-items:center; justify-content:center;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- -- CONTACT -- -->
+    <section class="section-alt" id="contact">
+        <div class="section-inner">
+            <div style="text-align:center; margin-bottom:5rem;">
+                <div class="section-tag" style="justify-content:center;"><span
+                        style="width:2rem; height:1px; background:var(--accent-bright); display:inline-block;"></span>Still
+                    Running on Manual Mode?<span
+                        style="width:2rem; height:1px; background:var(--accent-bright); display:inline-block;"></span>
+                </div>
+                <h2 style="font-size:clamp(2.5rem,6vw,4rem);">Let's Map Your Automation<br /><em>Before You Lose Another
+                        Lead.</em></h2>
+                <p style="color:var(--text-dim); font-size:1.1rem; max-width:520px; margin:0 auto;">Book a free
+                    30-minute audit. I'll identify exactly where your business is leaking time and what can be automated
+                    immediately.</p>
+            </div>
+            <div class="contact-grid" style="max-width:1000px; margin:0 auto;">
+                <div class="contact-info">
+                    <div class="contact-steps">
+                        <div class="contact-step">
+                            <div class="step-num">01</div>
+                            <div>
+                                <h4>Bottleneck Analysis</h4>
+                                <p>We identify exactly where your business is leaking time and revenue - the
+                                    manual
+                                    handoffs, the missed follow-ups, the repeated data entry.</p>
+                            </div>
+                        </div>
+                        <div class="contact-step">
+                            <div class="step-num">02</div>
+                            <div>
+                                <h4>Automation Roadmap</h4>
+                                <p>I map out which processes can be automated immediately, what the system would look
+                                    like, and what outcomes you can expect.</p>
+                            </div>
+                        </div>
+                        <div class="contact-step">
+                            <div class="step-num">03</div>
+                            <div>
+                                <h4>No Sales Pressure</h4>
+                                <p>This is an engineering consultation, not a pitch. If your situation isn't a fit, I'll
+                                    tell you. If it is, we'll talk about how to move forward.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="form-container">
+                    <form id="contact-form"
+                        action="https://script.google.com/macros/s/AKfycbzx2Pu5HnqESHkRd7aq1gxlI5-tgb8RmY_NTiz3a3Dp93CBsZaJ4ZzLReSp5fyGkqhY/exec"
+                        method="POST">
+                        <div class="form-group"><label class="form-label">Full Name</label><input type="text"
+                                name="name" class="form-input" placeholder="Your name" required /></div>
+                        <div class="form-group"><label class="form-label">Email Address</label><input type="email"
+                                name="email" class="form-input" placeholder="you@yourcompany.com" required /></div>
+                        <div class="form-group"><label class="form-label">What process do you want to
+                                automate?</label><textarea name="message" class="form-input"
+                                placeholder="Describe the manual process - what happens now, and what you'd want to happen automatically..."
+                                required></textarea></div>
+                        <button type="submit" class="submit-btn" id="submit-button"><span>Book Free Automation
+                                Audit</span><span style="font-family:var(--mono); font-weight:normal;">
+                                &rarr;</span></button>
+                        <p
+                            style="text-align:center; color:var(--text-dim); font-size:0.72rem; margin-top:1.25rem; font-family:var(--mono); letter-spacing:0.05em;">
+                            30 minutes - No pitch - No obligation</p>
+                    </form>
+                    <div id="success-message" class="success-message">
+                        <h3>Message Received.</h3>
+                        <p>I've logged your request. You'll hear from me within 24 hours to confirm your audit time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer
+        style="width:100%; padding:5rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border);">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright); animation:pulse 2s ease infinite;"></span>SYSTEM
+            STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;</p>
+        <div
+            style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/X</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submit-button');
+            const btnSpan = btn.querySelector('span');
+            const successMsg = document.getElementById('success-message');
+            btn.disabled = true; btnSpan.textContent = 'Sending...'; btn.style.opacity = '0.7';
+            fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
+                .then(() => { form.style.display = 'none'; successMsg.style.display = 'block'; })
+                .catch(err => { console.error('Error:', err); btn.disabled = false; btnSpan.textContent = 'Book Free Automation Audit'; btn.style.opacity = '1'; });
+        });
+    </script>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1638 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Study: 24/7 Private AI Intake Assistant for Therapy Practices | Nnaemeka Systems</title>
+    <meta name="description"
+        content="How we helped a private therapy practice respond to every client inquiry instantly - with a locally-run AI that generates compassionate care plans, automates follow-ups, and never shares client data with third-party servers." />
+    <meta name="keywords"
+        content="therapy intake automation, private AI for therapy practices, automated client onboarding therapy, n8n therapy workflow, NocoDB CRM therapy, local AI intake assistant, HIPAA-friendly automation, mental health practice automation" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent, transparent 2px,
+                    rgba(0, 67, 206, 0.005) 2px,
+                    rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* -- NAV -- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .nav-cta-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .nav-cta-btn:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        /* -- HERO -- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .hero h1 {
+            font-family: var(--sans);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-bright);
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-bottom: 3.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .hero-meta-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero-meta-value {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text-bright);
+        }
+
+        /* -- SNAPSHOT BAR -- */
+        .snapshot {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .snapshot-item {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .snapshot-item:hover {
+            border-color: var(--accent);
+        }
+
+        .snapshot-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .snapshot-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .snapshot-number {
+            font-family: var(--mono);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .snapshot-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        /* -- SECTIONS -- */
+        .section {
+            padding: 6rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-full {
+            padding: 6rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-full-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-tag::after {
+            content: '';
+            flex: 1;
+            max-width: 3rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        h2 {
+            font-family: var(--sans);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-family: var(--sans);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 720px;
+            line-height: 1.6;
+        }
+
+        /* -- PROBLEM CARDS -- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 1.75rem;
+            transition: transform 0.2s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .problem-card h3 {
+            color: var(--accent-bright);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
+            font-family: var(--mono);
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- FLOW -- */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .flow::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 2.5rem;
+            bottom: 2.5rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-bright));
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem 2rem 2rem 0;
+            position: relative;
+        }
+
+        .flow-number {
+            width: 4rem;
+            height: 4rem;
+            min-width: 4rem;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent-bright);
+            background: var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .flow-content {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0.75rem;
+        }
+
+        .flow-content h3 {
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-content p {
+            font-size: 0.95rem;
+            margin: 0 0 1rem;
+        }
+
+        .flow-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(0, 67, 206, 0.1);
+            color: var(--accent-bright);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- SCREENSHOT BLOCK -- */
+        .screenshot-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .screenshot-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .screenshot-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* -- CONSENT SPLIT -- */
+        .consent-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .consent-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .consent-card.yes {
+            border-top: 3px solid #22c55e;
+        }
+
+        .consent-card.no {
+            border-top: 3px solid var(--accent-bright);
+        }
+
+        .consent-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .consent-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .consent-card.yes .consent-label {
+            color: #22c55e;
+        }
+
+        .consent-card.no .consent-label {
+            color: var(--accent-bright);
+        }
+
+        .consent-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .consent-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- RETENTION TIMELINE -- */
+        .retention-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .retention-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .retention-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .retention-day {
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .retention-type {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .retention-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- PRIVACY BLOCK -- */
+        .privacy-block {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid #22c55e;
+            padding: 2rem 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .privacy-block h3 {
+            color: #22c55e;
+            font-size: 1rem;
+            font-family: var(--mono);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .privacy-block p {
+            font-size: 0.92rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- RESULTS TABLE -- */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2.5rem;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        .results-table th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .results-table td:first-child {
+            color: var(--text-dim);
+        }
+
+        .results-table td:nth-child(2) {
+            color: #ff6b35;
+        }
+
+        .results-table td:nth-child(3) {
+            color: var(--accent-bright);
+        }
+
+        .results-table tr:hover td {
+            background: var(--surface2);
+        }
+
+        /* -- TOOLS -- */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tool-badge {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            transition: all 0.2s;
+        }
+
+        .tool-badge:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        /* -- APPLY GRID -- */
+        .apply-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .apply-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .apply-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .apply-card h3 {
+            font-size: 0.9rem;
+            color: var(--accent-bright);
+            margin-bottom: 0.5rem;
+            font-family: var(--mono);
+        }
+
+        .apply-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- CTA -- */
+        .cta-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 6rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 67, 206, 0.4);
+        }
+
+        .cta-sub {
+            margin-top: 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- ANIMATIONS -- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .snapshot {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-full {
+                padding: 4rem 1.5rem;
+            }
+
+            .problem-grid,
+            .consent-split,
+            .apply-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .retention-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .flow::before {
+                display: none;
+            }
+        }
+
+        /* -- LIGHTBOX -- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 100000;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .ngw-close:hover {
+            opacity: 1;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 6px;
+            box-shadow: 0 0 40px rgba(74, 137, 255, 0.25);
+        }
+
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 320px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.04);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        .ngw-overlay svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            stroke: #fff;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+        }
+
+        /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logic-logo">
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                </div>
+                <div class="logo-part logo-main">
+                    <span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../case-studies/index.html">Case Studies</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#insights">Blog</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+
+        <a href="../index.html#services">Services</a>
+        <a href="../case-studies/index.html">Case Studies</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#insights">Blog</a>
+
+        <a href="../index.html#contact" class="mob-cta">FREE AUTOMATION AUDIT</a>
+    </div>
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:1200px;">
+            <div class="hero-eyebrow">Case Study - Mental Health - Private Practice Automation</div>
+            <h1>24/7 <em>Private AI</em> Intake Assistant for Therapy Practices</h1>
+            <p class="hero-sub">
+                A private therapy practice was losing vulnerable clients to slow response times. We built a three-lane
+                system that responds to every inquiry instantly, follows up on stalled leads automatically, and
+                generates AI-personalised care plans - all on local infrastructure, so client data never touches a
+                third-party server.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Industry</span>
+                    <span class="hero-meta-value">Private Therapy Practice</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Primary Stack</span>
+                    <span class="hero-meta-value">n8n - Ollama - NocoDB - SMTP</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Outcome</span>
+                    <span class="hero-meta-value">0 Missed Inquiries</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Privacy</span>
+                    <span class="hero-meta-value">✦ 100% Local Infrastructure</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNAPSHOT BAR -->
+    <div class="snapshot">
+        <div class="snapshot-item fade-up">
+            <span class="snapshot-number">&lt;60s</span>
+            <span class="snapshot-label">Time to first<br />personalised response</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.1s">
+            <span class="snapshot-number">100%</span>
+            <span class="snapshot-label">Inquiry capture rate<br />including after hours</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.2s">
+            <span class="snapshot-number">0</span>
+            <span class="snapshot-label">Client data sent<br />to third-party servers</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.3s">
+            <span class="snapshot-number">~0</span>
+            <span class="snapshot-label">Admin hours spent<br />on intake follow-ups</span>
+        </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="section">
+        <div class="section-tag">01 - The Problem</div>
+        <h2>Slow Responses Were Costing Them Clients Who Needed Help Most</h2>
+        <p>
+            Adhoc Therapy offers private mental health support. The nature of the work means most clients reach out at
+            their lowest point - late at night, during a break at work, in a moment of courage they might not have
+            again
+            tomorrow. They submit a form, and then they wait.
+        </p>
+        <p>
+            The practice was overwhelmed. A real human reply took anywhere from a few hours to a full day. By then, the
+            window had often closed. The client had either found another provider, talked themselves out of it, or
+            simply lost the energy to follow through. And because there was no tracking system, stalled leads just
+            disappeared - no one knew how many potential clients were slipping away every week.
+        </p>
+        <p>
+            A cold auto-responder wasn't the answer. What was needed was a system that responded with warmth, remembered
+            every lead, and kept following up - without adding a single hour to the admin workload.
+        </p>
+
+        <div class="problem-grid">
+            <div class="problem-card fade-up">
+                <h3>// The Delayed Response Gap</h3>
+                <p>Clients reaching out during vulnerable moments couldn't wait 24 hours. By the time the practice
+                    responded, many had already moved on or lost the motivation to start therapy.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.1s">
+                <h3>// No Lead Tracking</h3>
+                <p>There was no central record of who had enquired, who had completed their intake, and who had gone
+                    quiet. Stalled leads simply vanished - no follow-up, no second chance.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.2s">
+                <h3>// Generic Auto-Responders</h3>
+                <p>Standard tools could send an immediate reply, but not one that acknowledged the client's
+                    specific
+                    situation. A generic "we'll be in touch" felt cold in a context that required warmth.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.3s">
+                <h3>// Privacy Risk</h3>
+                <p>Client messages describe deeply personal struggles. Routing that data through cloud-based AI tools
+                    -
+                    OpenAI, Gemini, etc. - posed a real privacy risk the practice wasn't willing to take.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">02 - The Solution</div>
+            <h2>A Three-Lane System - Intake, Retention, Intelligence</h2>
+            <p>
+                The system was architected in n8n across three independent lanes, each running on its own trigger and
+                handling a distinct phase of the client journey. They share a single NocoDB database as the source of
+                truth for every lead's status.
+            </p>
+
+            <div class="flow">
+
+                <!-- LANE 1 -->
+                <div class="flow-step fade-up">
+                    <div class="flow-number">01</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">Lane 1 - Digital Front Desk</span>
+                        <h3>Every Inquiry Gets an Instant, Warm Response</h3>
+                        <p>
+                            The moment a potential client submits the sign-up form, the system fires. It checks NocoDB
+                            for an existing record - if the person has reached out before, their record is
+                            updated; if
+                            they're new, a fresh record is created. Either way, a branded welcome email lands in their
+                            inbox within seconds, containing a secure, personalised link to the intake questionnaire. No
+                            human needed. No delay. The practice's front door is always open.
+                        </p>
+                        <div class="screenshot-block">
+                            <div class="screenshot-label">// Figure 1 - Lane 1 - Intake &amp; CRM Flow</div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc5.webp"
+                                data-full="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc5.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANE 2 -->
+                <div class="flow-step fade-up" style="transition-delay:0.1s">
+                    <div class="flow-number">02</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">Lane 2 - Retention Engine</span>
+                        <h3>No One Slips Through the Cracks</h3>
+                        <p>
+                            Life gets in the way. Clients often open the welcome email, intend to fill in the form, and
+                            then forget. The retention lane runs on a daily schedule, scanning NocoDB for anyone whose
+                            questionnaire link was sent but never completed. It routes them through a timed follow-up
+                            sequence - a gentle nudge at Day 3, and a respectful "closing your file" message at
+                            Day 7 if
+                            there's still no response. Every action is logged back to the CRM so nothing is sent twice.
+                        </p>
+
+                        <div class="retention-bar">
+                            <div class="retention-card">
+                                <span class="retention-day">Day 0</span>
+                                <span class="retention-type">Instant Welcome</span>
+                                <p>Warm branded email with secure intake link sent immediately on sign-up.</p>
+                            </div>
+                            <div class="retention-card">
+                                <span class="retention-day">Day 3</span>
+                                <span class="retention-type">Gentle Reminder</span>
+                                <p>A soft check-in email with the intake link resent. Compassionate tone, no pressure.
+                                </p>
+                            </div>
+                            <div class="retention-card">
+                                <span class="retention-day">Day 7</span>
+                                <span class="retention-type">File Closed</span>
+                                <p>A respectful "pausing your file" email is sent. Lead marked Inactive in CRM. Door
+                                    left open to return.</p>
+                            </div>
+                        </div>
+
+                        <div class="screenshot-block" style="margin-top:1.5rem;">
+                            <div class="screenshot-label">// Figure 2 - Lane 2 - Automated Retention Logic
+                            </div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc2.webp"
+                                data-full="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc2.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANE 3 -->
+                <div class="flow-step fade-up" style="transition-delay:0.2s">
+                    <div class="flow-number">03</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">Lane 3 - AI Intelligence Engine</span>
+                        <h3>Personalised Care Plans - Privately Generated</h3>
+                        <p>
+                            When a client submits their intake questionnaire, the system reads their AI consent flag
+                            before doing anything else. The response path splits based on what the client chose.
+                        </p>
+
+                        <div class="consent-split">
+                            <div class="consent-card yes">
+                                <span class="consent-label">// Consent: Yes</span>
+                                <h3>AI-Generated Care Plan</h3>
+                                <p>The client's struggle is passed to a locally-run Llama 3 model via Ollama. The AI
+                                    generates a compassionate, personalised email - written as a human letter, not
+                                    a
+                                    clinical report. The care plan is saved to NocoDB and emailed to the client within
+                                    60 seconds of form submission.</p>
+                            </div>
+                            <div class="consent-card no">
+                                <span class="consent-label">// Consent: No</span>
+                                <h3>Human Booking Invite</h3>
+                                <p>The AI is bypassed entirely. The client receives a warm email acknowledging their
+                                    choice and inviting them directly to book a strategy call with a human therapist.
+                                    Their preference is respected, no questions asked.</p>
+                            </div>
+                        </div>
+
+                        <div class="screenshot-block" style="margin-top:1.5rem;">
+                            <div class="screenshot-label">// Figure 3 - Lane 3 - Consent Gate &amp; AI Logic
+                                Flow</div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc3.webp"
+                                data-full="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc3.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY -->
+    <section class="section">
+        <div class="section-tag">03 - Privacy Architecture</div>
+        <h2>Why Local AI Matters Here</h2>
+        <p>
+            Most AI-powered intake systems route client data through cloud APIs - OpenAI, Google, Anthropic. For a
+            general business, that's acceptable. For a therapy practice, where a client might write "I feel so broken, I
+            just lost my mum" in their intake form, it's a problem.
+        </p>
+        <p>
+            This system runs the intelligence layer entirely on local infrastructure. The Llama 3 model is served via
+            Ollama - self-hosted, no external API calls, no data leaving the server. The AI reads the client's
+            struggle,
+            generates a response, and saves the care plan to NocoDB - all without a single byte of client data
+            touching
+            a third-party service.
+        </p>
+
+        <div class="privacy-block fade-up">
+            <h3>// What "Local Infrastructure" Actually Means</h3>
+            <p>The AI model runs on the practice's own server. There is no OpenAI account involved. No Gemini API. No
+                third-party model provider. If the internet connection drops, the intelligence engine keeps working
+                -
+                because it doesn't need the internet. Client data stays on the machine it was submitted to, and nowhere
+                else.</p>
+        </div>
+
+        <div class="screenshot-block" style="margin-top:2rem;">
+            <div class="screenshot-label">// Figure 4 - n8n workflow</div>
+            <div class="ngw-window-effect"
+                data-img1="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc6.webp"
+                data-full="../assets/04 - Therapy Patient Intake (24-7 Assistant)/adhoc6.webp">
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">04 - Results</div>
+            <h2>Before vs. After</h2>
+            <p>From the day the system went live, Adhoc Therapy's intake process ran without manual intervention.</p>
+
+            <table class="results-table fade-up">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Before</th>
+                        <th>After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Time to first client response</td>
+                        <td>Hours to next business day</td>
+                        <td>Under 60 seconds, 24/7</td>
+                    </tr>
+                    <tr>
+                        <td>Leads that went untracked</td>
+                        <td>All of them - no CRM</td>
+                        <td>Zero - every lead logged with status in NocoDB</td>
+                    </tr>
+                    <tr>
+                        <td>Follow-up on stalled leads</td>
+                        <td>Memory-dependent, often missed</td>
+                        <td>Automated at Day 3 and Day 7, every time</td>
+                    </tr>
+                    <tr>
+                        <td>Client data privacy</td>
+                        <td>Unmanaged - data in email threads</td>
+                        <td>100% local - no third-party AI services used</td>
+                    </tr>
+                    <tr>
+                        <td>Admin time spent on intake</td>
+                        <td>Several hours per week</td>
+                        <td>Near zero - edge cases only</td>
+                    </tr>
+                    <tr>
+                        <td>Personalised response quality</td>
+                        <td>Generic or delayed</td>
+                        <td>AI-generated care plan within 60 seconds of form submission</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TOOLS -->
+    <section class="section">
+        <div class="section-tag">05 - Stack</div>
+        <h2>Tools Used</h2>
+        <p>Every tool was chosen with privacy and reliability in mind - no unnecessary cloud dependencies, no data
+            leakage risk.</p>
+        <div class="tools-grid">
+            <span class="tool-badge">n8n (Workflow Orchestration)</span>
+            <span class="tool-badge">Ollama (Local AI Runtime)</span>
+            <span class="tool-badge">Llama 3 (Local Language Model)</span>
+            <span class="tool-badge">NocoDB (Self-Hosted CRM)</span>
+            <span class="tool-badge">SMTP (Email Delivery)</span>
+            <span class="tool-badge">Webhook (Form Submission Trigger)</span>
+            <span class="tool-badge">Schedule Trigger (Daily Retention Check)</span>
+        </div>
+    </section>
+
+    <!-- APPLICABILITY -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">06 - Wider Application</div>
+            <h2>Any Sensitive-Data Practice Can Use This Architecture</h2>
+            <p>
+                The three-lane pattern - instant response, automated retention, private AI fulfillment - is
+                not
+                exclusive to therapy. Any practice where client data is sensitive and response time matters can deploy
+                this exact framework.
+            </p>
+            <div class="apply-grid">
+                <div class="apply-card fade-up">
+                    <h3>// Legal Intake</h3>
+                    <p>Law firms handling sensitive cases can automate client onboarding, follow up on stalled
+                        consultations, and generate case summaries - all without routing confidential information
+                        through cloud AI providers.</p>
+                </div>
+                <div class="apply-card fade-up" style="transition-delay:0.1s">
+                    <h3>// Medical Clinics</h3>
+                    <p>GP surgeries, specialist clinics, and telehealth providers can capture patient inquiries
+                        instantly, track intake completion, and send personalised next-step guidance - 24/7, no
+                        receptionist required.</p>
+                </div>
+                <div class="apply-card fade-up" style="transition-delay:0.2s">
+                    <h3>// Financial Advisory</h3>
+                    <p>IFAs and wealth managers can automate prospect intake, follow up on leads who went quiet, and
+                        generate personalised financial health summaries - all within a compliant,
+                        locally-controlled
+                        environment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="section-tag" style="justify-content:center; margin-bottom:1.5rem;">Ready to stop losing clients to
+            slow responses?</div>
+        <h2>Every Delayed Reply<br />Is a Client You Didn't Keep.</h2>
+        <p>
+            If your practice is losing enquiries to slow follow-ups, or you need an intake system that respects client
+            privacy without sacrificing speed - this is exactly what we build.
+        </p>
+        <a href="../index.html#contact" class="cta-btn">Book a Discovery Call</a>
+        <p class="cta-sub">// 30 minutes - No pitch - Just your situation and whether we can solve it</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+        style="width:100%; padding:6rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border); position:relative; z-index:10;">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; max-width:none; text-align:center;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+            SYSTEM STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase; max-width:none; text-align:center;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;
+        </p>
+        <div
+            style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox">&#x2715;</div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        // Fade up
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Lightbox
+        const containers = document.querySelectorAll('.ngw-window-effect');
+        if (containers.length) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            const closeBtn = document.querySelector('.ngw-close');
+
+            function openLightbox(url) {
+                inner.innerHTML = '';
+                const img = new Image();
+                img.src = url;
+                inner.appendChild(img);
+                lb.style.display = 'flex';
+                lb.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lb.style.display = 'none';
+                lb.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            containers.forEach(c => {
+                const img1 = c.getAttribute('data-img1') || '';
+                const bgStyle = img1 ? `background-image:url('${img1}')` : 'background:#050505';
+                c.innerHTML = `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>`;
+                c.addEventListener('click', function () {
+                    const full = this.getAttribute('data-full') || img1;
+                    if (full) openLightbox(full);
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        }
+    </script>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
+

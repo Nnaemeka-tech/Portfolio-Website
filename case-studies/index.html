@@ -1,0 +1,1392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Studies | Nnaemeka Systems</title>
+    <meta name="description"
+        content="A documented library of automation systems built for real businesses - legal intake, landscaping triage, moving company lead routing, therapy intake, AI receptionists, and more." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent, transparent 2px,
+                    rgba(0, 67, 206, 0.005) 2px,
+                    rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* -- NAV -- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .nav-cta-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .nav-cta-btn:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        /* -- HERO -- */
+        .hero {
+            padding: 10rem 3rem 6rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .hero h1 {
+            font-family: var(--sans);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .hero-stat-number {
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+        }
+
+        .hero-stat-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* -- FILTER BAR -- */
+        .filter-bar {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            padding: 1.25rem 3rem;
+        }
+
+        .filter-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+
+        .filter-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            cursor: default;
+            transition: all 0.2s;
+        }
+
+        .filter-tag.active {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+            background: rgba(74, 137, 255, 0.05);
+        }
+
+        /* -- GRID -- */
+        .grid-section {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 3rem 8rem;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* -- CASE CARD -- */
+        .case-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .case-card:hover {
+            border-color: var(--accent-bright);
+            transform: translateY(-3px);
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-bright));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .case-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.3s;
+        }
+
+        .case-card:hover .card-icon {
+            border-color: var(--accent-bright);
+        }
+
+        .card-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-bright);
+            fill: none;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.35rem;
+        }
+
+        .card-stack {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-align: right;
+        }
+
+        .card-status {
+            font-family: var(--mono);
+            font-size: 0.52rem;
+            padding: 0.15rem 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .card-status.live {
+            background: rgba(34, 197, 94, 0.08);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .card-status.building {
+            background: rgba(74, 137, 255, 0.08);
+            color: var(--accent-bright);
+            border: 1px solid rgba(74, 137, 255, 0.2);
+        }
+
+        .card-status.confidential {
+            background: rgba(90, 122, 144, 0.08);
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+        }
+
+        .card-body {
+            padding: 1.75rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-family: var(--sans);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            transition: color 0.2s;
+        }
+
+        .case-card:hover .card-title {
+            color: var(--accent-bright);
+        }
+
+        .card-desc {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-outcome {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.08em;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-outcome::before {
+            content: '\2726';
+            font-size: 0.5rem;
+        }
+
+        .card-footer {
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-link-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .case-card:hover .card-link-label {
+            color: var(--accent-bright);
+        }
+
+        .card-arrow {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .case-card:hover .card-arrow {
+            border-color: var(--accent-bright);
+            background: rgba(74, 137, 255, 0.08);
+        }
+
+        .card-arrow svg {
+            width: 10px;
+            height: 10px;
+            stroke: var(--text-dim);
+            transition: stroke 0.2s;
+        }
+
+        .case-card:hover .card-arrow svg {
+            stroke: var(--accent-bright);
+        }
+
+        /* -- LOCKED CARD -- */
+        .case-card.locked {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(0.4);
+        }
+
+        .case-card.locked:hover {
+            transform: none;
+            border-color: var(--border);
+        }
+
+        /* -- SECTION DIVIDER -- */
+        .section-divider {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            margin: 1rem 0;
+        }
+
+        .section-divider span {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* -- CTA -- */
+        .cta-section {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            padding: 6rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .cta-eyebrow::before,
+        .cta-eyebrow::after {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .cta-section h2 {
+            font-family: var(--sans);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 67, 206, 0.5);
+        }
+
+        .cta-sub {
+            margin-top: 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- FOOTER -- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 3rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-status {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            box-shadow: 0 0 8px var(--accent-bright);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* -- FADE UP -- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 1024px) {
+            .case-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .filter-bar {
+                padding: 1rem 1.5rem;
+            }
+
+            .grid-section {
+                padding: 3rem 1.5rem 5rem;
+            }
+
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logic-logo">
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                </div>
+                <div class="logo-part logo-main">
+                    <span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../case-studies/index.html">Case Studies</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#insights">Blog</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+        <a href="../index.html#services">Services</a>
+        <a href="../case-studies/index.html">Case Studies</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#insights">Blog</a>
+        <a href="../index.html#contact" class="mob-cta">FREE AUTOMATION AUDIT</a>
+    </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-eyebrow">Project Library</div>
+        <h1>Systems Built.<br /><em>Results Documented.</em></h1>
+        <p class="hero-sub">
+            Real automation systems built for real businesses - with the architecture, decisions, and
+            outcomes written
+            up in full.
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">7</span>
+                <span class="hero-stat-label">Live Systems</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">5</span>
+                <span class="hero-stat-label">Industries</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">0</span>
+                <span class="hero-stat-label">Generic Templates</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+        <div class="filter-inner">
+            <span class="filter-label">Industry //</span>
+            <span class="filter-tag active" data-filter="all">All</span>
+            <span class="filter-tag" data-filter="legal">Legal</span>
+            <span class="filter-tag" data-filter="healthcare">Healthcare</span>
+            <span class="filter-tag" data-filter="field-services">Field Services</span>
+            <span class="filter-tag" data-filter="consulting">Consulting</span>
+            <span class="filter-tag" data-filter="logistics">Logistics</span>
+        </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid-section">
+        <div class="case-grid">
+
+            <!-- 1. AI Receptionist -->
+            <a href="ai-receptionist-small-business.html" class="case-card fade-up" data-industry="consulting">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M12 18.5a6.5 6.5 0 100-13 6.5 6.5 0 000 13z" />
+                            <path d="M12 14a2 2 0 100-4 2 2 0 000 4z" />
+                            <path
+                                d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Bland AI - Cal.com</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">24/7 AI Receptionist for Small Businesses</div>
+                    <div class="card-desc">Replaces the missed-call problem entirely. Answers every
+                        inbound call,
+                        qualifies the caller, and books appointments directly into the owner's calendar
+                        - without a
+                        human involved.</div>
+                    <div class="card-outcome">Zero missed calls since deployment</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2. Automated Invoicing -->
+            <a href="automated-invoice-to-payment-pipeline.html" class="case-card fade-up"
+                style="transition-delay:0.05s" data-industry="consulting">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Stripe - Google Sheets</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Automated Invoicing & Payment Reconciliation</div>
+                    <div class="card-desc">End-to-end invoice generation, delivery, and payment tracking
+                        - triggered
+                        automatically when a job is marked complete. No manual chasing, no missed
+                        payments.</div>
+                    <div class="card-outcome">Hours of manual admin eliminated weekly</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 3. AI Screened Prepay Booking -->
+            <a href="ai-screened-prepay-booking-system.html" class="case-card fade-up" style="transition-delay:0.1s"
+                data-industry="consulting">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Gemini - Google Calendar</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">AI-Screened, Prepay-First Automated Booking System</div>
+                    <div class="card-desc">For high-ticket consultants. AI scores lead intent before a
+                        calendar slot is
+                        offered. No payment, no booking. Zero ghost appointments since launch.</div>
+                    <div class="card-outcome">100% payment compliance before confirmation</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 4. Therapy Intake -->
+            <a href="private-ai-therapy-intake.html" class="case-card fade-up" style="transition-delay:0.15s"
+                data-industry="healthcare">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Ollama - NocoDB</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">24/7 Private AI Intake Assistant for Therapy Practices</div>
+                    <div class="card-desc">Responds to every client inquiry instantly, follows up on
+                        stalled leads
+                        automatically, and generates AI care plans - with a locally-run model. Client
+                        data never leaves
+                        the server.</div>
+                    <div class="card-outcome">Zero client data sent to third-party AI services</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 5. Landscaping -->
+            <a href="digital-foreman-landscaping-lead-triage.html" class="case-card fade-up"
+                style="transition-delay:0.2s" data-industry="field-services">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Airtable - Twilio</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">The Digital Foreman: Lead Triage for Landscaping Companies
+                    </div>
+                    <div class="card-desc">Reads every inquiry the moment it arrives and routes it -
+                        tree emergencies,
+                        high-value hardscaping projects, and routine maintenance all get completely
+                        different response
+                        protocols.</div>
+                    <div class="card-outcome">Zero missed emergency leads since launch</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 6. Atlas Movers -->
+            <a href="vip-routed-moving-company-lead-intake.html" class="case-card fade-up"
+                style="transition-delay:0.25s" data-industry="logistics">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m0 0h3l3 3v4h-3m-3-7v7m0 0H8m9 0a2 2 0 11-4 0 2 2 0 014 0zM8 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - Airtable - Gmail</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">VIP-Routed Lead Intake & Escalation for Moving Companies
+                    </div>
+                    <div class="card-desc">Separates commercial and large residential moves from
+                        standard ones at
+                        intake, alerts the owner immediately for high-value jobs, and escalates twice if
+                        they don't
+                        respond.</div>
+                    <div class="card-outcome">No VIP lead goes cold - two-stage escalation guarantee
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 7. Legal Intake -->
+            <a href="ai-legal-intake-automation.html" class="case-card fade-up" style="transition-delay:0.3s"
+                data-industry="legal">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">Zapier - OpenAI - Clio - Drive</span>
+                        <span class="card-status live">✦ Live</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">AI-Powered Legal Intake: Email to Verified Case File in 30
+                        Seconds</div>
+                    <div class="card-desc">Turns every inbound client email into a structured case file
+                        - AI extracts
+                        the data, Drive gets the folder and documents, Clio gets the contact, matter,
+                        and intake note.
+                        Zero manual steps.</div>
+                    <div class="card-outcome">15-20 min manual process reduced to ~30 seconds</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Read Case Study</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <div class="section-divider">
+                <span>// In Progress & Confidential</span>
+            </div>
+
+            <!-- Locked: Lead Scoring -->
+            <div class="case-card locked fade-up" style="transition-delay:0.35s">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">n8n - HubSpot - Webhooks</span>
+                        <span class="card-status building">✦ Documenting</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Automated Lead Scoring & Sales Qualification Engine</div>
+                    <div class="card-desc">Fit-score algorithm that routes high-intent leads to instant
+                        booking and
+                        low-intent leads to a nurture sequence - preserving the calendar for buyers
+                        only.</div>
+                    <div class="card-outcome">100% qualified bookings - 20hrs saved weekly</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Documentation in progress</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Locked: AI Support -->
+            <div class="case-card locked fade-up" style="transition-delay:0.4s">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-stack">GPT-4 - Sentiment - Ticketing</span>
+                        <span class="card-status confidential">✦ Confidential</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">AI Customer Support - VIP Sentiment Triage</div>
+                    <div class="card-desc">GPT-4 powered support system that detects angry VIP customers
+                        and
+                        auto-escalates their tickets, while drafting responses for the rest. Built for a
+                        high-volume
+                        e-commerce operation.</div>
+                    <div class="card-outcome">Under NDA - details withheld</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-link-label">Confidential</span>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="cta-eyebrow">Ready to build yours?</div>
+        <h2>Your Process Deserves<br />a System This Thorough.</h2>
+        <p>Every system on this page started with a 30-minute conversation about what was broken.</p>
+        <a href="../index.html#contact" class="cta-btn">Book a Discovery Call</a>
+        <p class="cta-sub">// No pitch - Just your situation and whether we can solve it</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+        style="width:100%; padding:4rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border);">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+            SYSTEM STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;</p>
+                <div style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank" style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank" style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank" style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+    <script>
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Filter logic
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                const filter = tag.dataset.filter;
+
+                // Update active state
+                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                // Show/hide cards
+                document.querySelectorAll('.case-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.industry === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Hide divider if no locked cards are visible
+                const divider = document.querySelector('.section-divider');
+                const lockedVisible = [...document.querySelectorAll('.case-card.locked')]
+                    .some(c => c.style.display !== 'none');
+                divider.style.display = lockedVisible ? 'flex' : 'none';
+            });
+        });
+    </script>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
+

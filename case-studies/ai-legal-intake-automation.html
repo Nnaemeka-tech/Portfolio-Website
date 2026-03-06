@@ -1,0 +1,1631 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Study: AI-Powered Legal Intake - From Unstructured Email to Verified Case File in 30 Seconds |
+        Nnaemeka
+        Systems</title>
+    <meta name="description"
+        content="How we eliminated manual legal intake for a law firm - using Zapier, OpenAI GPT-4o, Google Drive, and Clio to turn every inbound client email into a structured case file, uploaded documents, and a verified CRM record in under 30 seconds." />
+    <meta name="keywords"
+        content="legal intake automation, law firm automation, Clio automation, Zapier legal workflow, OpenAI legal intake, automated case file creation, Google Drive legal documents, legal CRM automation, zero-touch intake law firm" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --surface: #050505;
+            --surface2: #0a0a0a;
+            --border: #1e2d3d;
+            --accent: #0043CE;
+            --accent-bright: #4A89FF;
+            --text: #c8d8e8;
+            --text-dim: #5a7a90;
+            --text-bright: #eaf4ff;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Outfit', sans-serif;
+            --gold: #f59e0b;
+            --green: #22c55e;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent, transparent 2px,
+                    rgba(0, 67, 206, 0.005) 2px,
+                    rgba(0, 67, 206, 0.005) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* -- NAV -- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logic-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-part {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .logo-main {
+            padding: 0.4rem 1rem;
+            position: relative;
+            background: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+        }
+
+        .logo-main span {
+            font-family: var(--sans);
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            box-shadow: 0 0 5px var(--accent-bright);
+        }
+
+        .logo-part svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .nav-cta-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            background: rgba(13, 19, 25, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .nav-cta-btn:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .logic-logo:hover .logo-part:first-child svg {
+            stroke: var(--accent-bright);
+        }
+
+        .logic-logo:hover .logo-main {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 20px rgba(0, 67, 206, 0.3);
+        }
+
+        /* -- HERO -- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        .hero h1 {
+            font-family: var(--sans);
+            font-size: clamp(2.8rem, 7vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-bright);
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-bright);
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-bottom: 3.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .hero-meta-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero-meta-value {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text-bright);
+        }
+
+        /* -- SNAPSHOT -- */
+        .snapshot {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .snapshot-item {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .snapshot-item:hover {
+            border-color: var(--accent);
+        }
+
+        .snapshot-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .snapshot-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .snapshot-number {
+            font-family: var(--mono);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .snapshot-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        /* -- SECTIONS -- */
+        .section {
+            padding: 6rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-full {
+            padding: 6rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-full-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-tag::after {
+            content: '';
+            flex: 1;
+            max-width: 3rem;
+            height: 1px;
+            background: var(--accent-bright);
+        }
+
+        h2 {
+            font-family: var(--sans);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-family: var(--sans);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 720px;
+            line-height: 1.6;
+        }
+
+        /* -- PROBLEM GRID -- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .problem-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 1.75rem;
+        }
+
+        .problem-card h3 {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--accent-bright);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
+        }
+
+        .problem-card p {
+            font-size: 0.92rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- PIPELINE FLOW -- */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .flow::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 2.5rem;
+            bottom: 2.5rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-bright));
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem 2rem 2rem 0;
+        }
+
+        .flow-number {
+            width: 4rem;
+            height: 4rem;
+            min-width: 4rem;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent-bright);
+            background: var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .flow-content {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0.75rem;
+        }
+
+        .flow-content h3 {
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-content p {
+            font-size: 0.95rem;
+            margin: 0 0 1rem;
+        }
+
+        .flow-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(0, 67, 206, 0.1);
+            color: var(--accent-bright);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- SCREENSHOT BLOCK -- */
+        .screenshot-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .screenshot-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .screenshot-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* -- AI OUTPUT BLOCK -- */
+        .ai-output {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem 1.75rem;
+            margin: 1.5rem 0;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            line-height: 1.8;
+        }
+
+        .ai-output-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .ai-output-field {
+            color: var(--text-dim);
+        }
+
+        .ai-output-value {
+            color: var(--text-bright);
+        }
+
+        /* -- CALLOUT -- */
+        .callout {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-bright);
+            padding: 1.75rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .callout h3 {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--accent-bright);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .callout p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- DRIVE STRUCTURE -- */
+        .drive-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            margin-top: 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+        }
+
+        .drive-card-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .drive-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .drive-folder {
+            color: var(--gold);
+        }
+
+        .drive-file {
+            color: var(--text-dim);
+            padding-left: 1.5rem;
+        }
+
+        .drive-file::before {
+            content: '+-- ';
+            color: var(--border);
+        }
+
+        /* -- RESULTS TABLE -- */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2.5rem;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        .results-table th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .results-table td:first-child {
+            color: var(--text-dim);
+        }
+
+        .results-table td:nth-child(2) {
+            color: #ff6b35;
+        }
+
+        .results-table td:nth-child(3) {
+            color: var(--accent-bright);
+        }
+
+        .results-table tr:hover td {
+            background: var(--surface2);
+        }
+
+        /* -- TOOLS -- */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tool-badge {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            transition: all 0.2s;
+        }
+
+        .tool-badge:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+        }
+
+        /* -- APPLY GRID -- */
+        .apply-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .apply-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .apply-card:hover {
+            border-color: var(--accent-bright);
+        }
+
+        .apply-card h3 {
+            font-size: 0.9rem;
+            color: var(--accent-bright);
+            margin-bottom: 0.5rem;
+            font-family: var(--mono);
+        }
+
+        .apply-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        /* -- CTA -- */
+        .cta-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 6rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 67, 206, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 67, 206, 0.4);
+        }
+
+        .cta-sub {
+            margin-top: 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* -- ANIMATIONS -- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .snapshot {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-full {
+                padding: 4rem 1.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .apply-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow::before {
+                display: none;
+            }
+        }
+
+        /* -- SCREENSHOT BLOCK FULL WIDTH FIX -- */
+        .flow-content {
+            min-width: 0;
+        }
+
+        .screenshot-block {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* -- LIGHTBOX -- */
+        .ngw-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .ngw-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 100000;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .ngw-close:hover {
+            opacity: 1;
+        }
+
+        #ngw-lightbox-inner img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 6px;
+            box-shadow: 0 0 40px rgba(74, 137, 255, 0.25);
+        }
+
+        .ngw-window-effect {
+            cursor: zoom-in;
+            position: relative;
+            height: 320px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ngw-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-bg {
+            transform: scale(1.04);
+        }
+
+        .ngw-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ngw-window-effect:hover .ngw-overlay {
+            opacity: 1;
+        }
+
+        .ngw-overlay svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            stroke: #fff;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .ngw-window-effect {
+                height: 200px;
+            }
+        }
+
+        /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+        nav {
+            z-index: 10000 !important;
+            height: 80px;
+        }
+
+        body::before {
+            z-index: 9000 !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 10px;
+            background: rgba(74, 137, 255, 0.08);
+            border: 1px solid rgba(74, 137, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10005;
+            position: relative;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(74, 137, 255, 0.15);
+            border-color: #4A89FF;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #4A89FF;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 10010;
+            padding: 1rem 2rem 2.5rem;
+            flex-direction: column;
+        }
+
+        .nav-mobile-menu.open {
+            display: flex;
+        }
+
+        .nav-mobile-menu a {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .nav-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #fff;
+        }
+
+        .nav-mobile-menu .mob-cta {
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            background: var(--accent);
+            color: #fff !important;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-hamburger {
+                display: flex !important;
+            }
+
+            .nav-cta,
+            .nav-cta-btn {
+                display: none !important;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9S17HVSE7E');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logic-logo">
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                </div>
+                <div class="logo-part logo-main">
+                    <span>NNAEMEKA</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <div class="logo-part">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../case-studies/index.html">Case Studies</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#insights">Blog</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+        </div>
+    </nav>
+
+    <div id="navMob" class="nav-mobile-menu">
+
+        <a href="../index.html#services">Services</a>
+        <a href="../case-studies/index.html">Case Studies</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#insights">Blog</a>
+
+        <a href="../index.html#contact" class="mob-cta">FREE AUTOMATION AUDIT</a>
+    </div>
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:1200px;">
+            <div class="hero-eyebrow">Case Study - Legal - AI-Powered Intake Automation</div>
+            <h1><em>AI-Powered</em> Legal Intake: From Unstructured Email to Verified Case File in 30 Seconds</h1>
+            <p class="hero-sub">
+                A high-volume law firm was spending 15-20 minutes per intake manually reading emails, downloading
+                attachments, and typing data into Clio. We replaced the entire process with a pipeline that reads the
+                email, extracts structured case data with AI, builds a Google Drive case folder, files all attachments,
+                and creates a verified Clio matter - without a human touching anything.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Industry</span>
+                    <span class="hero-meta-value">Legal / Law Firm</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Primary Stack</span>
+                    <span class="hero-meta-value">Zapier - OpenAI - Google Drive - Clio</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Time Per Intake</span>
+                    <span class="hero-meta-value">15-20 min &rarr; ~30 seconds</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Data Accuracy</span>
+                    <span class="hero-meta-value">✦ 100% Normalised</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNAPSHOT BAR -->
+    <div class="snapshot">
+        <div class="snapshot-item fade-up">
+            <span class="snapshot-number">~30s</span>
+            <span class="snapshot-label">Time from email received<br />to case file created</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.1s">
+            <span class="snapshot-number">0</span>
+            <span class="snapshot-label">Manual data entry steps<br />remaining</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.2s">
+            <span class="snapshot-number">100%</span>
+            <span class="snapshot-label">Duplicate contacts<br />prevented via search-or-create</span>
+        </div>
+        <div class="snapshot-item fade-up" style="transition-delay:0.3s">
+            <span class="snapshot-number">24/7</span>
+            <span class="snapshot-label">Intake processing -<br />no office hours required</span>
+        </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="section">
+        <div class="section-tag">01 - The Problem</div>
+        <h2>The Intake Process Was a Liability.</h2>
+        <p>
+            Legal intake is supposed to be where a client relationship begins. In practice, for this firm, it was where
+            time went to die. Every new client inquiry arrived as an unstructured email - no consistent format, no
+            guaranteed fields, no way to process it without a human reading it first.
+        </p>
+        <p>
+            Staff would open the email, manually extract the relevant details, download any attached documents, check
+            whether the client already existed in Clio, and then type everything in by hand. Twenty minutes per intake,
+            multiplied across dozens of inquiries a week. And that's when it went right. When it went wrong - a
+            typo in
+            a name, a missed attachment, a duplicate contact - the errors compounded downstream.
+        </p>
+
+        <div class="problem-grid">
+            <div class="problem-card fade-up">
+                <h3>// Data Entry Errors</h3>
+                <p>Names misspelled, phone numbers mistyped, emails entered incorrectly. Every manual keystroke was a
+                    point of failure that created broken records further into the matter lifecycle.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.1s">
+                <h3>// Duplicate Client Records</h3>
+                <p>Staff regularly created new Clio contacts for clients who already existed. Case history became
+                    fragmented across multiple records - no single source of truth for a returning client.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.2s">
+                <h3>// Lost Attachments</h3>
+                <p>PDFs and supporting documents sat in Outlook inboxes rather than being filed against the matter.
+                    Attorneys searched for documents that had technically arrived but were never properly stored.</p>
+            </div>
+            <div class="problem-card fade-up" style="transition-delay:0.3s">
+                <h3>// After-Hours Blind Spot</h3>
+                <p>Intake only happened when someone was in the office to process it. A client who emailed at 9pm on
+                    Friday waited until Monday morning - a 60-hour gap before the firm even knew they existed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">02 - The Pipeline</div>
+            <h2>Nine Steps. Zero Human Involvement.</h2>
+            <p>The moment an email arrives in the Outlook inbox, the pipeline runs. Here's exactly what happens.</p>
+
+            <div class="flow">
+
+                <div class="flow-step fade-up">
+                    <div class="flow-number">01</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">Trigger - Outlook</span>
+                        <h3>Email Arrives - Pipeline Starts</h3>
+                        <p>Zapier listens to the firm's Outlook inbox. The moment a new email lands, it captures the
+                            sender name, sender address, subject line, body content, and any attachments. Nothing is
+                            touched manually. The pipeline runs whether it's 2pm Tuesday or 11pm Sunday.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.05s">
+                    <div class="flow-number">02</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">AI Extraction - OpenAI GPT-4o-mini</span>
+                        <h3>The AI Reads the Email and Returns Structured Data</h3>
+                        <p>The full email - sender details, subject, and body - is passed to GPT-4o-mini
+                            with a strict
+                            extraction prompt. The model is instructed to return a JSON object only, with no preamble or
+                            explanation. Six fields are extracted every time, regardless of how the client phrased their
+                            message.</p>
+
+                        <div class="ai-output">
+                            <span class="ai-output-label">// AI Output - Structured JSON Extraction</span>
+                            <div><span class="ai-output-field">Client Name: </span><span class="ai-output-value">"Sarah
+                                    Okonkwo"</span></div>
+                            <div><span class="ai-output-field">Client Email: </span><span
+                                    class="ai-output-value">"s.okonkwo@email.com"</span></div>
+                            <div><span class="ai-output-field">Case Type: </span><span class="ai-output-value">"Business
+                                    Contract Dispute"</span></div>
+                            <div><span class="ai-output-field">Urgency: </span><span class="ai-output-value">"High
+                                    -
+                                    court date in 3 weeks"</span></div>
+                            <div><span class="ai-output-field">Case Summary: </span><span
+                                    class="ai-output-value">"Client is in dispute with a former business partner over an
+                                    unpaid services agreement valued at -42,000. A county court claim has already
+                                    been
+                                    filed..."</span></div>
+                            <div><span class="ai-output-field">Follow Up Required: </span><span
+                                    class="ai-output-value">"Yes"</span></div>
+                        </div>
+
+                        <div class="screenshot-block">
+                            <div class="screenshot-label">// Figure 1 - Zapier Pipeline - Outlook Trigger &
+                                AI
+                                Extraction Step</div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/08 - Legal Client Onboarding/legal-zapier-workflow.webp"
+                                data-full="../assets/08 - Legal Client Onboarding/legal-zapier-workflow.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.1s">
+                    <div class="flow-number">03</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">Data Prep - Zapier Formatter</span>
+                        <h3>Case Summary Extracted. Email Normalised.</h3>
+                        <p>Two formatter steps run in sequence. First, a regex pattern extracts the Case Summary field
+                            cleanly from the AI's JSON output - ready to be written to a document and a CRM note.
+                            Second, the client's email address is normalised from a line-item format to a plain string.
+                            This normalised email becomes the consistent identifier used in every downstream step:
+                            folder names, Clio searches, document titles.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.15s">
+                    <div class="flow-number">04</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">File System - Google Drive</span>
+                        <h3>Case Folder Created. Standardised. Automatically.</h3>
+                        <p>A new folder is created in the firm's Google Drive, named using the pattern <span
+                                style="font-family:var(--mono); font-size:0.85em; color:var(--accent-bright);">[client
+                                email] - [received date]</span>. Every case gets the same structure, every time.
+                            No
+                            naming inconsistencies, no folders in the wrong place, no manual filing.</p>
+
+                        <div class="drive-card">
+                            <span class="drive-card-label">// Google Drive - Auto-Generated Case Folder</span>
+                            <div class="drive-tree">
+                                <div class="drive-folder">📁 s.okonkwo@email.com - 2026-01-14</div>
+                                <div class="drive-file">📄 Case Summary - s.okonkwo@email.com.gdoc</div>
+                                <div class="drive-file">📄 contract_dispute_evidence.pdf</div>
+                                <div class="drive-file">📄 signed_services_agreement.pdf</div>
+                            </div>
+                        </div>
+
+                        <div class="screenshot-block" style="margin-top:1.5rem;">
+                            <div class="screenshot-label">// Figure 2 - Google Drive - Auto-Created Case
+                                Folders</div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/08 - Legal Client Onboarding/legal-drive-folders.webp"
+                                data-full="../assets/08 - Legal Client Onboarding/legal-drive-folders.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.2s">
+                    <div class="flow-number">05</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">File System - Google Drive</span>
+                        <h3>Attachments Filed. Automatically. Into the Right Folder.</h3>
+                        <p>Any attachments from the original Outlook email are uploaded directly into the newly created
+                            case folder. PDFs, Word documents, images - whatever the client sent - are moved
+                            from the
+                            inbox and filed correctly without anyone touching them. The attorney opens the folder and
+                            the supporting documents are already there.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.25s">
+                    <div class="flow-number">06</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">File System - Google Drive</span>
+                        <h3>AI Case Summary Saved as a Google Doc</h3>
+                        <p>The case summary extracted by the AI is saved as an actual Google Doc inside the case folder,
+                            titled "Case Summary - [client email]." When the attorney opens the folder, they don't read
+                            the original email thread to understand the situation - they read a clean, 2-3
+                            sentence
+                            brief written by the AI. Context is there before they've opened Clio.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.3s">
+                    <div class="flow-number">07</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">CRM - Clio - Search or Create</span>
+                        <h3>Duplicate Prevention Built Into the Architecture</h3>
+                        <p>Before anything is created in Clio, the system searches by email address. If a contact
+                            already exists - a returning client, a previous inquiry - their record is
+                            returned and used.
+                            If not, a new contact is created. This search-or-create pattern is the duplicate prevention
+                            mechanism. It's not a check that happens sometimes. It happens on every single intake, every
+                            time.</p>
+
+                        <div class="callout">
+                            <h3>// Why This Matters More Than It Sounds</h3>
+                            <p>Every duplicate contact in Clio means fragmented case history - two records for the
+                                same
+                                client, with matters and notes split across them. Attorneys lose context. Billing
+                                becomes complicated. The search-or-create step costs milliseconds and prevents a problem
+                                that used to take hours to clean up manually.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.35s">
+                    <div class="flow-number">08</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">CRM - Clio - Matter Creation</span>
+                        <h3>Legal Matter Created. Assigned. Ready.</h3>
+                        <p>A new matter is created in Clio, linked to the contact, assigned to the correct attorney
+                            group and practice area, with the case summary embedded in the matter's custom fields. The
+                            attorney opens Clio and the matter is already structured - they didn't create it, they
+                            didn't assign it, and they didn't have to type a single word.</p>
+
+                        <div class="screenshot-block">
+                            <div class="screenshot-label">// Figure 3 - Clio - Auto-Created Matter with AI
+                                Case Summary
+                            </div>
+                            <div class="ngw-window-effect"
+                                data-img1="../assets/08 - Legal Client Onboarding/legal-clio-record.webp"
+                                data-full="../assets/08 - Legal Client Onboarding/legal-clio-record.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step fade-up" style="transition-delay:0.4s">
+                    <div class="flow-number">09</div>
+                    <div class="flow-content">
+                        <span class="flow-tag">CRM - Clio - Matter Note</span>
+                        <h3>AI Intake Brief Logged as a Timestamped Note</h3>
+                        <p>The final step writes the AI-generated case summary as a note on the matter in Clio,
+                            timestamped with the original email's received date and time - not the automation's
+                            run
+                            time. The audit trail is accurate. Open the matter, open the notes, and the intake brief is
+                            there exactly when the client first made contact.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULTS -->
+    <section class="section">
+        <div class="section-tag">03 - Results</div>
+        <h2>Before vs. After</h2>
+        <p>The same intake process that once required a trained staff member, an open inbox, and 15-20 minutes of
+            careful manual work now runs in under 30 seconds without human involvement.</p>
+
+        <table class="results-table fade-up">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Before</th>
+                    <th>After</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Time per intake</td>
+                    <td>15-20 minutes of manual processing</td>
+                    <td>~30 seconds - fully automated end-to-end</td>
+                </tr>
+                <tr>
+                    <td>Data accuracy</td>
+                    <td>Human error risk on every keystroke</td>
+                    <td>100% normalised - AI extracts, formatter cleans, no typing involved</td>
+                </tr>
+                <tr>
+                    <td>Duplicate client records</td>
+                    <td>Regular occurrence - no dedup step</td>
+                    <td>Zero - search-or-create runs on every intake without exception</td>
+                </tr>
+                <tr>
+                    <td>Attachment filing</td>
+                    <td>Left in Outlook - frequently lost or missed</td>
+                    <td>Auto-uploaded to the correct case folder in Drive immediately</td>
+                </tr>
+                <tr>
+                    <td>Case brief for attorneys</td>
+                    <td>Read the full email thread to get up to speed</td>
+                    <td>AI-written Google Doc summary waiting in the case folder</td>
+                </tr>
+                <tr>
+                    <td>After-hours intake</td>
+                    <td>No processing until the next business day</td>
+                    <td>Processed immediately - 24/7, including weekends</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- TOOLS -->
+    <div class="section-full">
+        <div class="section-full-inner">
+            <div class="section-tag">04 - Stack</div>
+            <h2>Tools Used</h2>
+            <p>Each tool handles exactly one responsibility. The pipeline is linear and auditable - if any step
+                fails,
+                it's immediately clear where and why.</p>
+            <div class="tools-grid">
+                <span class="tool-badge">Zapier (Workflow Orchestration)</span>
+                <span class="tool-badge">Microsoft Outlook (Email Trigger)</span>
+                <span class="tool-badge">OpenAI GPT-4o-mini (Structured Data Extraction)</span>
+                <span class="tool-badge">Zapier Formatter (Regex Extraction & Normalisation)</span>
+                <span class="tool-badge">Google Drive (Case Folder, Attachments & Summary Doc)</span>
+                <span class="tool-badge">Clio (Legal CRM - Contact, Matter & Note Creation)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICABILITY -->
+    <section class="section">
+        <div class="section-tag">05 - Wider Application</div>
+        <h2>Any Practice That Processes Inbound Emails Into Case Records Can Use This</h2>
+        <p>The pattern - AI extraction from unstructured email, structured file creation, CRM deduplication
+            - applies
+            across any professional services firm where client intake arrives via email and ends up in a case management
+            system.</p>
+        <div class="apply-grid">
+            <div class="apply-card fade-up">
+                <h3>// Immigration Law</h3>
+                <p>High volumes of client inquiries with complex supporting documents. AI extraction pulls visa type,
+                    country, timeline, and urgency. Documents are auto-filed by client. No intake form required from the
+                    client.</p>
+            </div>
+            <div class="apply-card fade-up" style="transition-delay:0.1s">
+                <h3>// Accountancy Firms</h3>
+                <p>New client onboarding via email - company details, filing deadlines, tax year, service
+                    required. AI
+                    structures the data, creates a client folder in Drive, and opens a job in the practice management
+                    system.</p>
+            </div>
+            <div class="apply-card fade-up" style="transition-delay:0.2s">
+                <h3>// Insurance Brokers</h3>
+                <p>Policy inquiry emails arrive in varying formats from different sources. AI extracts coverage type,
+                    asset details, and contact information. Client record created or updated in the CRM before a human
+                    reads the email.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="section-tag" style="justify-content:center; margin-bottom:1.5rem;">Still processing intake by hand?
+        </div>
+        <h2>Every Manual Intake<br />Is 20 Minutes You're Billing Nowhere.</h2>
+        <p>
+            If your team is reading emails, downloading attachments, and typing into a CRM by hand - this system
+            eliminates that entirely. It works while your office is closed and makes no typos.
+        </p>
+        <a href="../index.html#contact" class="cta-btn">Book a Discovery Call</a>
+        <p class="cta-sub">// 30 minutes - No pitch - Just your situation and whether we can solve it</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+        style="width:100%; padding:6rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border); position:relative; z-index:10;">
+        <p
+            style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; max-width:none; text-align:center;">
+            <span
+                style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+            SYSTEM STATUS: OPERATIONAL - LAGOS, NG [REMOTE]
+        </p>
+        <p
+            style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase; max-width:none; text-align:center;">
+            &lt; Design &amp; Code by Nnaemeka /&gt;</p>
+        <div
+            style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+            <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+            <a href="https://x.com/Nnaemeka_20" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+            <a href="https://github.com/Nnaemeka-tech" target="_blank"
+                style="color:var(--text-dim); text-decoration:none; transition:0.3s;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="ngw-close" aria-label="Close lightbox">&#x2715;</div>
+        <div id="ngw-lightbox-inner"></div>
+    </div>
+
+    <script>
+        // Fade up
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Lightbox
+        const containers = document.querySelectorAll('.ngw-window-effect');
+        if (containers.length) {
+            const lb = document.getElementById('ngw-lightbox');
+            const inner = document.getElementById('ngw-lightbox-inner');
+            const closeBtn = document.querySelector('.ngw-close');
+
+            function openLightbox(url) {
+                inner.innerHTML = '';
+                const img = new Image();
+                img.src = url;
+                inner.appendChild(img);
+                lb.style.display = 'flex';
+                lb.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lb.style.display = 'none';
+                lb.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            containers.forEach(c => {
+                const img1 = c.getAttribute('data-img1') || '';
+                const bgStyle = img1 ? `background-image:url('${img1}')` : 'background:#050505';
+                c.innerHTML = `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>`;
+                c.addEventListener('click', function () {
+                    const full = this.getAttribute('data-full') || img1;
+                    if (full) openLightbox(full);
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        }
+    </script>
+
+
+
+    <script>
+        (function () {
+            var ham = document.getElementById('navHam');
+            var mob = document.getElementById('navMob');
+            if (!ham || !mob) return;
+            function toggleMenu() {
+                var open = mob.classList.toggle('open');
+                ham.classList.toggle('open', open);
+                ham.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            ham.addEventListener('click', toggleMenu);
+            mob.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    mob.classList.remove('open');
+                    ham.classList.remove('open');
+                    ham.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
