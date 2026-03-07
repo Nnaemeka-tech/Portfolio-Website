@@ -1111,41 +1111,46 @@
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1.5rem !important;
-            }
+            .nav-container { padding: 0 1.5rem !important; }
+            .nav-links { display: none !important; }
+            .nav-hamburger { display: flex !important; }
+            .nav-cta, .nav-cta-btn { display: none !important; }
 
-            .nav-links {
-                display: none !important;
-            }
+            /* FIX 1 — Shrink logo so hamburger stays on screen */
+            .logic-logo { gap: 0.4rem !important; }
+            .logo-part { padding: 0.3rem 0.4rem !important; }
+            .logo-main { padding: 0.3rem 0.6rem !important; }
+            .logo-main span { font-size: 0.72rem !important; letter-spacing: 0.02em !important; }
+            .logo-part svg { width: 11px !important; height: 11px !important; }
 
-            .nav-hamburger {
-                display: flex !important;
-            }
-
-            .nav-cta,
-            .nav-cta-btn {
-                display: none !important;
-            }
-        }
-    
-        
-        /* SAFE MOBILE GRID OVERRIDES */
-        @media (max-width: 768px) {
-            .case-grid-2x2, .blog-grid, .problem-grid, .constraints-grid, .fit-grid, .apply-grid, .escalation-bar, .results-grid { 
-                grid-template-columns: 1fr !important; 
-            }
-            .case-card-metrics { 
-                flex-direction: column !important; 
-                gap: 0.75rem !important; 
-            }
-            .snapshot { 
-                grid-template-columns: repeat(2, 1fr) !important;
-                padding: 2rem 1.5rem !important; 
-            }
+            /* FIX 2 — Flow steps stack vertically */
             .flow::before { display: none !important; }
-            .flow-step { padding: 1.5rem 0 !important; gap: 1.25rem !important; }
-            .flow-content { padding-top: 0 !important; }
+            .flow-step { flex-direction: column !important; padding: 1.5rem 0 !important; gap: 0.75rem !important; }
+            .flow-number { width: 3rem !important; height: 3rem !important; min-width: 3rem !important; }
+            .flow-content { padding-top: 0 !important; width: 100% !important; }
+            .screenshot-block { width: 100% !important; margin-top: 1.25rem !important; }
+
+            /* FIX 3 — Snapshot drops to 2 columns */
+            .snapshot { padding: 2rem 1rem !important; }
+            .snapshot-inner { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
+
+            /* FIX 4 — Results table card layout */
+            .results-table thead { display: none !important; }
+            .results-table tbody { display: flex !important; flex-direction: column !important; gap: 0 !important; }
+            .results-table tr { display: grid !important; grid-template-columns: 1fr 1fr !important; border-bottom: 1px solid var(--border) !important; padding: 1.25rem 0 !important; }
+            .results-table tr:last-child { border-bottom: none !important; }
+            .results-table td { padding: 0.25rem 0.75rem !important; border-bottom: none !important; font-size: 0.78rem !important; }
+            .results-table td:first-child { grid-column: 1 / -1 !important; font-size: 0.72rem !important; padding-bottom: 0.6rem !important; padding-left: 0 !important; }
+            .results-table td:nth-child(2)::before { content: 'BEFORE'; display: block; font-size: 0.52rem; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 0.25rem; opacity: 0.7; }
+            .results-table td:nth-child(3)::before { content: 'AFTER'; display: block; font-size: 0.52rem; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 0.25rem; opacity: 0.7; }
+
+            /* FIX 5 — Centre hero meta */
+            .hero-meta { justify-content: center !important; text-align: center !important; }
+            .hero-meta-item { align-items: center !important; }
+
+            /* General */
+            .case-grid-2x2, .blog-grid, .problem-grid, .constraints-grid, .fit-grid, .apply-grid, .escalation-bar, .results-grid { grid-template-columns: 1fr !important; }
+            .case-card-metrics { flex-direction: column !important; gap: 0.75rem !important; }
             .hero { padding: 7rem 1.5rem 4rem !important; }
             .section, .section-full, .cta-section { padding: 4rem 1.5rem !important; }
         }
