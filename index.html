@@ -1377,6 +1377,26 @@
                 display: none !important;
             }
         }
+    
+        /* TARGETED MOBILE FIXES (Safely Appended) */
+        @media (max-width: 768px) {
+            .case-grid-2x2, .blog-grid, .problem-grid, .constraints-grid, .fit-grid, .apply-grid, .escalation-bar, .results-grid { 
+                grid-template-columns: 1fr !important; 
+            }
+            .case-card-metrics { 
+                flex-direction: column !important; 
+                gap: 0.75rem !important; 
+            }
+            .snapshot { 
+                grid-template-columns: repeat(2, 1fr) !important;
+                padding: 2rem 1.5rem !important; 
+            }
+            .flow::before { display: none !important; }
+            .flow-step { padding: 1.5rem 0 !important; gap: 1.25rem !important; }
+            .flow-content { padding-top: 0 !important; }
+            .hero { padding: 7rem 1.5rem 4rem !important; }
+            .section, .section-full, .cta-section { padding: 4rem 1.5rem !important; }
+        }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
     <script>
@@ -1864,7 +1884,7 @@
                     style="font-family:var(--mono); font-size:0.72rem; color:var(--accent-bright); text-decoration:none; letter-spacing:0.08em; white-space:nowrap;">View
                     All Insights &rarr;</a>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+            <div style="display:grid; gap:1.5rem;" class="blog-grid">
 
                 <a href="Blog/legal-intake-automation.html"
                     style="text-decoration:none; display:flex; flex-direction:column; border:1px solid var(--border); background:var(--surface2); overflow:hidden; transition:border-color 0.3s, transform 0.2s; position:relative;"
@@ -2090,3 +2110,5 @@
 </body>
 
 </html>
+
+
