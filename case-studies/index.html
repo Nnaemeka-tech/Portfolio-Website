@@ -79,6 +79,7 @@
             height: 80px;
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
 
         .nav-container {
@@ -877,6 +878,9 @@
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0 1.5rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
             }
 
             .nav-links {
@@ -885,6 +889,7 @@
 
             .nav-hamburger {
                 display: flex !important;
+                flex-shrink: 0 !important;
             }
 
             .nav-cta,
@@ -893,7 +898,7 @@
             }
 
             /* FIX — Shrink logo so hamburger stays on screen */
-            .logic-logo { gap: 0.4rem !important; }
+            .logic-logo { gap: 0.4rem !important; flex-shrink: 1 !important; min-width: 0 !important; overflow: hidden !important; }
             .logo-part { padding: 0.3rem 0.4rem !important; }
             .logo-main { padding: 0.3rem 0.6rem !important; }
             .logo-main span { font-size: 0.72rem !important; letter-spacing: 0.02em !important; }
