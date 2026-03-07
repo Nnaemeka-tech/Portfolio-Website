@@ -1377,25 +1377,53 @@
                 display: none !important;
             }
         }
-    
+
         /* TARGETED MOBILE FIXES (Safely Appended) */
         @media (max-width: 768px) {
-            .case-grid-2x2, .blog-grid, .problem-grid, .constraints-grid, .fit-grid, .apply-grid, .escalation-bar, .results-grid { 
-                grid-template-columns: 1fr !important; 
+
+            .case-grid-2x2,
+            .blog-grid,
+            .problem-grid,
+            .constraints-grid,
+            .fit-grid,
+            .apply-grid,
+            .escalation-bar,
+            .results-grid {
+                grid-template-columns: 1fr !important;
             }
-            .case-card-metrics { 
-                flex-direction: column !important; 
-                gap: 0.75rem !important; 
+
+            .case-card-metrics {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
             }
-            .snapshot { 
+
+            .snapshot {
                 grid-template-columns: repeat(2, 1fr) !important;
-                padding: 2rem 1.5rem !important; 
+                padding: 2rem 1.5rem !important;
             }
-            .flow::before { display: none !important; }
-            .flow-step { padding: 1.5rem 0 !important; gap: 1.25rem !important; }
-            .flow-content { padding-top: 0 !important; }
-            .hero { padding: 7rem 1.5rem 4rem !important; }
-            .section, .section-full, .cta-section { padding: 4rem 1.5rem !important; }
+
+            .flow::before {
+                display: none !important;
+            }
+
+            .flow-step {
+                padding: 1.5rem 0 !important;
+                gap: 1.25rem !important;
+            }
+
+            .flow-content {
+                padding-top: 0 !important;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem !important;
+            }
+
+            .section,
+            .section-full,
+            .cta-section {
+                padding: 4rem 1.5rem !important;
+            }
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
@@ -1678,8 +1706,7 @@
                         </div>
                     </div>
                     <div class="case-screenshot"><img src="assets/03 - Automated Booking Invoicing (Prepay)/exec.webp"
-                            alt="AI-screened prepay booking automation system - n8n and Gemini AI"
-                            loading="lazy" />
+                            alt="AI-screened prepay booking automation system - n8n and Gemini AI" loading="lazy" />
                     </div>
                     <div class="case-card-footer"><span class="case-card-link">Read Full Case Study</span>
                         <div class="case-card-arrow"><svg viewBox="0 0 24 24" stroke-width="2">
@@ -1814,8 +1841,8 @@
                 <div class="testimonial">
                     <p>"Since the system went live, I no longer have to worry about missing a big job while I'm
                         handling a routine one. The right leads get flagged immediately, and I can focus
-                        entirely on the work that actually grows the business."</p><span
-                        class="testimonial-attr">- Moving Company Owner, Lagos (name withheld by request)</span>
+                        entirely on the work that actually grows the business."</p><span class="testimonial-attr">-
+                        Moving Company Owner, Lagos (name withheld by request)</span>
                 </div>
             </div>
         </div>
@@ -1851,7 +1878,7 @@
                     <h3>Do I need technical knowledge to use the systems you build?</h3>
                     <p>No. Every system ships with full documentation, and the interfaces are designed so your team can
                         operate them without automation experience. If anything breaks or needs updating, I'm available
-                       , but most systems run without intervention.</p>
+                        , but most systems run without intervention.</p>
                 </div>
                 <div class="faq-item fade-up" style="transition-delay:0.2s">
                     <h3>What kinds of businesses do you work with?</h3>
@@ -1884,7 +1911,7 @@
                     style="font-family:var(--mono); font-size:0.72rem; color:var(--accent-bright); text-decoration:none; letter-spacing:0.08em; white-space:nowrap;">View
                     All Insights &rarr;</a>
             </div>
-            <div style="display:grid; gap:1.5rem;" class="blog-grid">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;" class="blog-grid">
 
                 <a href="Blog/legal-intake-automation.html"
                     style="text-decoration:none; display:flex; flex-direction:column; border:1px solid var(--border); background:var(--surface2); overflow:hidden; transition:border-color 0.3s, transform 0.2s; position:relative;"
@@ -2110,5 +2137,3 @@
 </body>
 
 </html>
-
-
