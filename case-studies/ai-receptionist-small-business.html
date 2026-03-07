@@ -1,15 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1319' rx='35'/><text x='50' y='50' font-family='monospace' font-weight='bold' font-size='70' fill='%234a89ff' text-anchor='middle' dy='.35em'>N</text></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study: The AI Receptionist That Chats, Qualifies & Captures Leads — 24/7 | Nnaemeka Systems</title>
-  <meta name="description" content="How we replaced a broken chatbot with an AI receptionist that qualifies home service leads automatically — cutting response time from hours to seconds and saving 3+ hours a week." />
-  <meta name="keywords" content="AI receptionist home services, automated lead qualification chatbot, n8n AI agent small business, 24/7 chatbot HVAC security, AI pre-sales assistant, conversational AI lead capture" />
+  <title>Case Study: The AI Receptionist That Chats, Qualifies & Captures Leads &mdash; 24/7 | Nnaemeka Systems</title>
+  <meta name="description"
+    content="How we replaced a broken chatbot with an AI receptionist that qualifies home service leads automatically &mdash; cutting response time from hours to seconds and saving 3+ hours a week." />
+  <meta name="keywords"
+    content="AI receptionist home services, automated lead qualification chatbot, n8n AI agent small business, 24/7 chatbot HVAC security, AI pre-sales assistant, conversational AI lead capture" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -26,142 +33,865 @@
       --sans: 'Outfit', sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
     body::before {
-      content: ''; position: fixed; inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,67,206,0.005) 2px, rgba(0,67,206,0.005) 4px);
-      pointer-events: none; z-index: 9999;
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 67, 206, 0.005) 2px, rgba(0, 67, 206, 0.005) 4px);
+      pointer-events: none;
+      z-index: 9999;
     }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); height: 80px; display: flex; align-items: center; }
-    .nav-container { max-width: 1300px; width: 100%; margin: 0 auto; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; }
-    .logic-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-    .logo-part { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 0.6rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-    .logo-main { padding: 0.4rem 1rem; position: relative; background: #000; border-color: var(--accent); box-shadow: 0 0 15px rgba(0,67,206,0.1); }
-    .logo-main span { font-family: var(--sans); font-weight: 700; color: #fff; font-size: 0.95rem; letter-spacing: 0.05em; }
-    .logo-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-bright); position: absolute; top: 4px; right: 4px; box-shadow: 0 0 5px var(--accent-bright); }
-    .logo-part svg { width: 14px; height: 14px; stroke: var(--text-dim); fill: none; transition: all 0.3s; }
-    .logic-logo:hover .logo-part:first-child svg { stroke: var(--accent-bright); }
-    .logic-logo:hover .logo-main { border-color: var(--accent-bright); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 0.72rem; font-family: var(--mono); color: var(--text-dim); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
-    .nav-links a:hover { color: #fff; }
-    .nav-cta { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; color: var(--text-bright); padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; letter-spacing: 0.1em; transition: 0.3s; background: rgba(13,19,25,0.4); border: 1px solid var(--border); text-transform: uppercase; }
-    .nav-cta:hover { border-color: var(--accent-bright); color: var(--accent-bright); }
-
-    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 8rem 3rem 5rem; position: relative; overflow: hidden; width: 100%; }
-    .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,67,206,0.06) 0%, transparent 70%); pointer-events: none; }
-    .hero-eyebrow { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-bright); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-    .hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--accent-bright); }
-    .hero h1 { font-family: var(--sans); font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; color: var(--text-bright); max-width: 1000px; margin-bottom: 2rem; letter-spacing: -0.02em; }
-    .hero h1 em { font-style: normal; color: var(--accent-bright); }
-    .hero-sub { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text-dim); max-width: 800px; margin-bottom: 3.5rem; line-height: 1.6; }
-    .hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .hero-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
-    .hero-meta-label { font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim); letter-spacing: 0.18em; text-transform: uppercase; }
-    .hero-meta-value { font-family: var(--mono); font-size: 0.82rem; color: var(--text-bright); }
-
-    .snapshot { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem; }
-    .snapshot-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-    .snapshot-item { text-align: center; padding: 1.5rem; border: 1px solid var(--border); position: relative; transition: border-color 0.3s; }
-    .snapshot-item:hover { border-color: var(--accent-bright); }
-    .snapshot-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--accent), var(--accent-bright)); transform: scaleX(0); transition: transform 0.3s; }
-    .snapshot-item:hover::before { transform: scaleX(1); }
-    .snapshot-number { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--accent-bright); display: block; margin-bottom: 0.4rem; }
-    .snapshot-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5; }
-
-    .section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
-    .section-full { padding: 6rem 3rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .section-full-inner { max-width: 1200px; margin: 0 auto; }
-    .section-tag { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .section-tag::after { content: ''; width: 2.5rem; height: 1px; background: var(--accent-bright); }
-    h2 { font-family: var(--sans); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--text-bright); margin-bottom: 2rem; line-height: 1.15; letter-spacing: -0.02em; }
-    h3 { font-family: var(--sans); font-size: 1.1rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.75rem; }
-    p { color: var(--text); margin-bottom: 1.25rem; font-size: 1rem; max-width: 680px; }
-
-    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-    .problem-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 1.75rem; transition: transform 0.2s, border-color 0.2s; }
-    .problem-card:hover { transform: translateY(-2px); border-color: var(--accent-bright); }
-    .problem-card h3 { color: var(--accent-bright); font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 0.6rem; font-family: var(--mono); }
-    .problem-card p { font-size: 0.9rem; color: var(--text-dim); margin: 0; }
-
-    .flow { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; position: relative; }
-    .flow::before { content: ''; position: absolute; left: 2rem; top: 2.5rem; bottom: 2.5rem; width: 1px; background: linear-gradient(to bottom, var(--accent), var(--accent-bright)); }
-    .flow-step { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 2rem 2rem 0; position: relative; }
-    .flow-number { width: 4rem; height: 4rem; min-width: 4rem; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.8rem; color: var(--accent-bright); background: var(--bg); position: relative; z-index: 1; }
-    .flow-content { padding-top: 0.75rem; flex: 1; }
-    .flow-content h3 { color: var(--text-bright); margin-bottom: 0.5rem; }
-    .flow-content p { font-size: 0.92rem; margin: 0; }
-    .flow-tag { display: inline-block; font-family: var(--mono); font-size: 0.58rem; padding: 0.2rem 0.6rem; background: rgba(74,137,255,0.08); color: var(--accent-bright); border: 1px solid rgba(74,137,255,0.25); margin-bottom: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; }
-
-    .screenshot-block { margin-top: 2rem; border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface2); overflow: hidden; }
-    .screenshot-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); background: var(--surface); }
-    .screenshot-block img { width: 100%; height: auto; display: block; }
-
-    .results-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; font-family: var(--mono); font-size: 0.82rem; }
-    .results-table th { text-align: left; padding: 1rem 1.5rem; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); background: var(--surface); }
-    .results-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .results-table tr:last-child td { border-bottom: none; }
-    .results-table td:first-child { color: var(--text-dim); }
-    .results-table td:nth-child(2) { color: #ef4444; }
-    .results-table td:nth-child(3) { color: #22c55e; }
-    .results-table tr:hover td { background: var(--surface2); }
-
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-    .tool-badge { font-family: var(--mono); font-size: 0.72rem; padding: 0.5rem 1.1rem; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: 0.08em; transition: all 0.2s; }
-    .tool-badge:hover { border-color: var(--accent-bright); color: var(--accent-bright); }
-
-    .apply-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    .apply-card { background: var(--surface2); border: 1px solid var(--border); padding: 1.75rem; transition: border-color 0.3s; }
-    .apply-card:hover { border-color: var(--accent-bright); }
-    .apply-card h3 { font-size: 0.95rem; color: var(--accent-bright); margin-bottom: 0.5rem; }
-    .apply-card p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
-
-    .cta-section { background: var(--surface); border-top: 1px solid var(--border); padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; }
-    .cta-section::before { content: ''; position: absolute; bottom: -300px; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,67,206,0.07) 0%, transparent 65%); pointer-events: none; }
-    .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
-    .cta-section p { color: var(--text-dim); max-width: 500px; margin: 0 auto 2.5rem; }
-    .cta-btn { display: inline-block; font-family: var(--sans); font-size: 1rem; font-weight: 700; color: #fff; background: var(--accent); padding: 1.1rem 2.75rem; text-decoration: none; border-radius: 10px; transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,67,206,0.3); }
-    .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,67,206,0.5); }
-    .cta-sub { margin-top: 1.25rem; font-family: var(--mono); font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
-
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .nav-container { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
-
-      /* FIX 1 — Shrink logo so hamburger stays on screen */
-      .logic-logo { gap: 0.4rem; }
-      .logo-part { padding: 0.3rem 0.4rem; }
-      .logo-main { padding: 0.3rem 0.6rem; }
-      .logo-main span { font-size: 0.72rem; letter-spacing: 0.02em; }
-      .logo-part svg { width: 11px; height: 11px; }
-
-      /* FIX 3 — Snapshot drops to 2 columns */
-      .snapshot { padding: 2rem 1rem; }
-      .snapshot-inner { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-
-      /* FIX 2 — Flow steps stack vertically */
-      .flow::before { display: none; }
-      .flow-step { flex-direction: column; padding: 1.5rem 0; gap: 0.75rem; }
-      .flow-number { width: 3rem; height: 3rem; min-width: 3rem; }
-      .flow-content { padding-top: 0; width: 100%; }
-      .screenshot-block { width: 100%; margin-top: 1.25rem; }
-
-      .hero { padding: 7rem 1.5rem 4rem; }
-      .section { padding: 4rem 1.5rem; }
-      .section-full { padding: 4rem 1.5rem; }
-      .problem-grid { grid-template-columns: 1fr; }
-      .apply-grid { grid-template-columns: 1fr; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 80px;
+      display: flex;
+      align-items: center;
     }
 
-    /* HAMBURGER */
+    .nav-container {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logic-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-part {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .logo-main {
+      padding: 0.4rem 1rem;
+      position: relative;
+      background: #000;
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(0, 67, 206, 0.1);
+    }
+
+    .logo-main span {
+      font-family: var(--sans);
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+
+    .logo-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent-bright);
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      box-shadow: 0 0 5px var(--accent-bright);
+    }
+
+    .logo-part svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--text-dim);
+      fill: none;
+      transition: all 0.3s;
+    }
+
+    .logic-logo:hover .logo-part:first-child svg {
+      stroke: var(--accent-bright);
+    }
+
+    .logic-logo:hover .logo-main {
+      border-color: var(--accent-bright);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: 0.3s;
+      background: rgba(13, 19, 25, 0.4);
+      border: 1px solid var(--border);
+      text-transform: uppercase;
+    }
+
+    .nav-cta:hover {
+      border-color: var(--accent-bright);
+      color: var(--accent-bright);
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0, 67, 206, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent-bright);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent-bright);
+    }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text-bright);
+      max-width: 1000px;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent-bright);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--text-dim);
+      max-width: 800px;
+      margin-bottom: 3.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hero-meta-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--text-dim);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta-value {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text-bright);
+    }
+
+    .snapshot {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem;
+    }
+
+    .snapshot-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .snapshot-item {
+      text-align: center;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .snapshot-item:hover {
+      border-color: var(--accent-bright);
+    }
+
+    .snapshot-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-bright));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .snapshot-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .snapshot-number {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-bright);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .snapshot-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-full {
+      padding: 6rem 3rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-full-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-tag::after {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent-bright);
+    }
+
+    h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--text-bright);
+      margin-bottom: 2rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-family: var(--sans);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      max-width: 680px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.75rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .problem-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-bright);
+    }
+
+    .problem-card h3 {
+      color: var(--accent-bright);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+      font-family: var(--mono);
+    }
+
+    .problem-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .flow::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 2.5rem;
+      bottom: 2.5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-bright));
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 0;
+      position: relative;
+    }
+
+    .flow-number {
+      width: 4rem;
+      height: 4rem;
+      min-width: 4rem;
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent-bright);
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-content {
+      padding-top: 0.75rem;
+      flex: 1;
+    }
+
+    .flow-content h3 {
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-content p {
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    .flow-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(74, 137, 255, 0.08);
+      color: var(--accent-bright);
+      border: 1px solid rgba(74, 137, 255, 0.25);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .screenshot-block {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .screenshot-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .screenshot-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+    }
+
+    .results-table th {
+      text-align: left;
+      padding: 1rem 1.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .results-table td {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .results-table td:first-child {
+      color: var(--text-dim);
+    }
+
+    .results-table td:nth-child(2) {
+      color: #ef4444;
+    }
+
+    .results-table td:nth-child(3) {
+      color: #22c55e;
+    }
+
+    .results-table tr:hover td {
+      background: var(--surface2);
+    }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .tool-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.5rem 1.1rem;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      transition: all 0.2s;
+    }
+
+    .tool-badge:hover {
+      border-color: var(--accent-bright);
+      color: var(--accent-bright);
+    }
+
+    .apply-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .apply-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.3s;
+    }
+
+    .apply-card:hover {
+      border-color: var(--accent-bright);
+    }
+
+    .apply-card h3 {
+      font-size: 0.95rem;
+      color: var(--accent-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .apply-card p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .cta-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 7rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0, 67, 206, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+      padding: 1.1rem 2.75rem;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(0, 67, 206, 0.3);
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 67, 206, 0.5);
+    }
+
+    .cta-sub {
+      margin-top: 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* -- LIGHTBOX -- */
+    .ngw-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 99999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .ngw-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 100000;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .ngw-close:hover {
+      opacity: 1;
+    }
+
+    #ngw-lightbox-inner img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 6px;
+      box-shadow: 0 0 40px rgba(74, 137, 255, 0.25);
+    }
+
+    .ngw-window-effect {
+      cursor: zoom-in;
+      position: relative;
+      height: 320px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0;
+    }
+
+    .ngw-bg {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: top center;
+      transition: transform 0.5s ease;
+    }
+
+    .ngw-window-effect:hover .ngw-bg {
+      transform: scale(1.04);
+    }
+
+    .ngw-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .ngw-window-effect:hover .ngw-overlay {
+      opacity: 1;
+    }
+
+    .ngw-overlay svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      stroke: #fff;
+      fill: none;
+    }
+
+    /* -- HAMBURGER MENU -- */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px 9px;
+      background: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .nav-hamburger:hover {
+      border-color: var(--accent-bright);
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 998;
+      padding: 1.5rem 2rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+    }
+
+    .nav-mobile-menu a {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+      display: block;
+    }
+
+    .nav-mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-mobile-menu a:hover {
+      color: #fff;
+    }
+
+    .nav-mobile-menu .mob-cta {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1.5rem;
+      background: var(--accent);
+      color: #fff !important;
+      text-align: center;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    .nav-mobile-menu .mob-cta:hover {
+      background: var(--accent-bright);
+      color: #fff !important;
+    }
+
+    /* â”€â”€ MASTER MOBILE NAVIGATION â”€â”€ */
+    nav {
+      z-index: 10000 !important;
+      height: 80px;
+    }
+
+    body::before {
+      z-index: 9000 !important;
+    }
+
     .nav-hamburger {
       display: none;
       flex-direction: column;
@@ -176,207 +906,279 @@
       z-index: 10005;
       position: relative;
     }
-    .nav-hamburger:hover { background: rgba(74,137,255,0.15); border-color: #4A89FF; }
-    .nav-hamburger span { display: block; width: 20px; height: 2.5px; background: #4A89FF; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .nav-hamburger:hover {
+      background: rgba(74, 137, 255, 0.15);
+      border-color: #4A89FF;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2.5px;
+      background: #4A89FF;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
 
     .nav-mobile-menu {
       display: none;
       position: fixed;
-      top: 80px; left: 0; right: 0;
-      background: rgba(0,0,0,0.98);
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.98);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       z-index: 10010;
       padding: 1rem 2rem 2.5rem;
       flex-direction: column;
     }
-    .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-menu a { font-family: var(--mono); font-size: 0.85rem; color: var(--text-dim); text-decoration: none; text-transform: uppercase; letter-spacing: 0.12em; padding: 1.1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; display: block; }
-    .nav-mobile-menu a:last-child { border-bottom: none; }
-    .nav-mobile-menu a:hover { color: #fff; }
-    .nav-mobile-menu .mob-cta { margin-top: 1.5rem; padding: 1.1rem; background: var(--accent); color: #fff !important; text-align: center; font-weight: 700; border-radius: 8px; text-decoration: none; display: block; }
 
-    @media (max-width: 768px) {
-      .nav-hamburger { display: flex !important; }
-      .nav-cta { display: none !important; }
-      .nav-links { display: none !important; }
-
-      /* FIX — Results table: hide header, stack each row as a card */
-      .results-table thead { display: none; }
-      .results-table tbody { display: flex; flex-direction: column; gap: 0; }
-      .results-table tr {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 1.25rem 0;
-      }
-      .results-table tr:last-child { border-bottom: none; }
-      .results-table td {
-        padding: 0.25rem 0.75rem;
-        border-bottom: none;
-        font-size: 0.78rem;
-      }
-      .results-table td:first-child {
-        grid-column: 1 / -1;
-        font-size: 0.72rem;
-        color: var(--text-dim);
-        padding-bottom: 0.6rem;
-        padding-left: 0;
-      }
-      .results-table td:nth-child(2)::before {
-        content: 'BEFORE';
-        display: block;
-        font-size: 0.52rem;
-        letter-spacing: 0.15em;
-        color: var(--text-dim);
-        margin-bottom: 0.25rem;
-        opacity: 0.7;
-      }
-      .results-table td:nth-child(3)::before {
-        content: 'AFTER';
-        display: block;
-        font-size: 0.52rem;
-        letter-spacing: 0.15em;
-        color: var(--text-dim);
-        margin-bottom: 0.25rem;
-        opacity: 0.7;
-      }
+    .nav-mobile-menu.open {
+      display: flex;
     }
 
+    .nav-mobile-menu a {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: color 0.2s;
+      display: block;
+    }
+
+    .nav-mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-mobile-menu a:hover {
+      color: #fff;
+    }
+
+    .nav-mobile-menu .mob-cta {
+      margin-top: 1.5rem;
+      padding: 1.1rem;
+      background: var(--accent);
+      color: #fff !important;
+      text-align: center;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 1.5rem !important;
+      }
+
+      .nav-links {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+
+      .nav-cta,
+      .nav-cta-btn {
+        display: none !important;
+      }
+    }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S17HVSE7E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-9S17HVSE7E');
+  </script>
 </head>
+
 <body>
 
   <nav>
     <div class="nav-container">
       <a href="../index.html" class="logic-logo">
         <div class="logo-part">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
         </div>
         <div class="logo-part logo-main">
           <span>NNAEMEKA</span>
           <div class="logo-dot"></div>
         </div>
         <div class="logo-part">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
         </div>
       </a>
+      <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
       <ul class="nav-links">
         <li><a href="../index.html#services">Services</a></li>
         <li><a href="../case-studies/index.html">Case Studies</a></li>
-        <li><a href="../insights/index.html">Insights</a></li>
         <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#insights">Blog</a></li>
       </ul>
-      <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <a href="../index.html#contact" class="nav-cta">Free Automation Audit</a>
     </div>
   </nav>
 
   <div id="navMob" class="nav-mobile-menu">
+
     <a href="../index.html#services">Services</a>
     <a href="../case-studies/index.html">Case Studies</a>
     <a href="../index.html#about">About</a>
     <a href="../index.html#insights">Blog</a>
+
     <a href="../index.html#contact" class="mob-cta">Free Automation Audit</a>
   </div>
 
+
   <section class="hero">
-    <div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:1200px; position:relative; z-index:1;">
-    <div class="hero-eyebrow">Case Study · Home & Field Services · AI Automation</div>
-    <h1>The AI Receptionist That <em>Chats, Qualifies</em> &amp; Captures Leads — 24/7</h1>
-    <p class="hero-sub">
-      A smart home security company was losing leads every night. Their old chatbot couldn't answer real questions — and every edge case fell back on a human. We replaced it with a conversational AI receptionist that handles the entire pre-sales conversation, end-to-end, without anyone lifting a finger.
-    </p>
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Industry</span>
-        <span class="hero-meta-value">Smart Home / Field Services</span>
+    <div
+      style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:1200px; position:relative; z-index:1;">
+      <div class="hero-eyebrow">Case Study &mdash; Home & Field Services &mdash; AI Automation</div>
+      <h1>The AI Receptionist That <em>Chats, Qualifies</em> &amp; Captures Leads &mdash; 24/7</h1>
+      <p class="hero-sub">
+        A smart home security company was losing leads every night. Their old chatbot couldn't answer real questions
+        &mdash;
+        and every edge case fell back on a human. We replaced it with a conversational AI receptionist that handles the
+        entire pre-sales conversation, end-to-end, without anyone lifting a finger.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Industry</span>
+          <span class="hero-meta-value">Smart Home / Field Services</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Primary Stack</span>
+          <span class="hero-meta-value">n8n &mdash; Google Gemini &mdash; Pinecone</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Outcome</span>
+          <span class="hero-meta-value">24/7 Qualified Lead Capture</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Status</span>
+          <span class="hero-meta-value">✦ Live &amp; Operational</span>
+        </div>
       </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Primary Stack</span>
-        <span class="hero-meta-value">n8n · Google Gemini · Pinecone</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Outcome</span>
-        <span class="hero-meta-value">24/7 Qualified Lead Capture</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Status</span>
-        <span class="hero-meta-value">✦ Live &amp; Operational</span>
-      </div>
-    </div>
     </div>
   </section>
 
   <div class="snapshot">
     <div class="snapshot-inner">
-    <div class="snapshot-item fade-up">
-      <span class="snapshot-number">&lt;3s</span>
-      <span class="snapshot-label">Response time<br/>(was 2–4 hours)</span>
-    </div>
-    <div class="snapshot-item fade-up" style="transition-delay:0.1s">
-      <span class="snapshot-number">~3 hrs</span>
-      <span class="snapshot-label">Saved per week<br/>in manual follow-ups</span>
-    </div>
-    <div class="snapshot-item fade-up" style="transition-delay:0.2s">
-      <span class="snapshot-number">~70%</span>
-      <span class="snapshot-label">Fewer wasted<br/>sales calls</span>
-    </div>
-    <div class="snapshot-item fade-up" style="transition-delay:0.3s">
-      <span class="snapshot-number">100%</span>
-      <span class="snapshot-label">Leads arrive<br/>pre-qualified in CRM</span>
-    </div>
+      <div class="snapshot-item fade-up">
+        <span class="snapshot-number">&lt;3s</span>
+        <span class="snapshot-label">Response time<br />(was 2&mdash;4 hours)</span>
+      </div>
+      <div class="snapshot-item fade-up" style="transition-delay:0.1s">
+        <span class="snapshot-number">~3 hrs</span>
+        <span class="snapshot-label">Saved per week<br />in manual follow-ups</span>
+      </div>
+      <div class="snapshot-item fade-up" style="transition-delay:0.2s">
+        <span class="snapshot-number">~70%</span>
+        <span class="snapshot-label">Fewer wasted<br />sales calls</span>
+      </div>
+      <div class="snapshot-item fade-up" style="transition-delay:0.3s">
+        <span class="snapshot-number">100%</span>
+        <span class="snapshot-label">Leads arrive<br />pre-qualified in CRM</span>
+      </div>
     </div>
   </div>
 
   <section class="section">
-    <div class="section-tag">01 · The Problem</div>
+    <div class="section-tag">01 &mdash; The Problem</div>
     <h2>Their Old Chatbot Was Creating More Work, Not Less</h2>
-    <p>Sentinel Smart Homes was getting around 40 inquiries a month from homeowners and small businesses interested in smart security. On paper, they had a chatbot. In practice, it was a liability.</p>
-    <p>The bot could handle "What are your hours?" and not much else. The moment a prospect asked about pricing tiers, coverage areas, or which package fit their property — the conversation stalled. A human had to step in. And if that human wasn't available? The lead went cold.</p>
-    <p>Worse, the leads that did make it through were often half-baked. Sales staff would show up to consultations not knowing the property size, the client's budget range, or even what they were trying to achieve — security, automation, or both. It was inefficient, frustrating, and costing them business.</p>
+    <p>Sentinel Smart Homes was getting around 40 inquiries a month from homeowners and small businesses interested in
+      smart security. On paper, they had a chatbot. In practice, it was a liability.</p>
+    <p>The bot could handle "What are your hours?" and not much else. The moment a prospect asked about pricing tiers,
+      coverage areas, or which package fit their property &mdash; the conversation stalled. A human had to step in. And
+      if
+      that human wasn't available? The lead went cold.</p>
+    <p>Worse, the leads that did make it through were often half-baked. Sales staff would show up to consultations not
+      knowing the property size, the client's budget range, or even what they were trying to achieve &mdash; security,
+      automation, or both. It was inefficient, frustrating, and costing them business.</p>
     <div class="problem-grid">
       <div class="problem-card fade-up">
         <h3>// Human Bottleneck</h3>
-        <p>Every unusual question required a staff member to intervene — even outside business hours. Leads that came in at night often didn't get a response until the next morning.</p>
+        <p>Every unusual question required a staff member to intervene &mdash; even outside business hours. Leads that
+          came in
+          at night often didn't get a response until the next morning.</p>
       </div>
       <div class="problem-card fade-up" style="transition-delay:0.1s">
         <h3>// Unqualified Leads</h3>
-        <p>The sales team had no structured info before consultations. They were flying blind — wasting time on prospects who weren't a fit.</p>
+        <p>The sales team had no structured info before consultations. They were flying blind &mdash; wasting time on
+          prospects who weren't a fit.</p>
       </div>
       <div class="problem-card fade-up" style="transition-delay:0.2s">
         <h3>// Hallucination Risk</h3>
-        <p>Any AI upgrade risked the bot inventing prices or services that didn't exist — promising "solar cameras" when none were on offer — destroying trust instantly.</p>
+        <p>Any AI upgrade risked the bot inventing prices or services that didn't exist &mdash; promising "solar
+          cameras" when
+          none were on offer &mdash; destroying trust instantly.</p>
       </div>
       <div class="problem-card fade-up" style="transition-delay:0.3s">
         <h3>// Data Silos</h3>
-        <p>Lead details were scattered across WhatsApp chats, email threads, and mental notes. Nothing structured. Nothing in a CRM. Nothing actionable.</p>
+        <p>Lead details were scattered across WhatsApp chats, email threads, and mental notes. Nothing structured.
+          Nothing in a CRM. Nothing actionable.</p>
       </div>
     </div>
   </section>
 
   <div class="section-full">
     <div class="section-full-inner">
-      <div class="section-tag">02 · The Solution</div>
-      <h2>A Three-Layer AI Receptionist — Built to Behave Like a Trained Human</h2>
-      <p>The goal wasn't to build another chatbot. It was to build a system with the discipline of a trained senior receptionist: capable of answering real questions, guiding a natural conversation, and never making things up. We called her Ada.</p>
-      <p>Ada was engineered in n8n across three distinct layers — each solving a different failure mode of the old system.</p>
+      <div class="section-tag">02 &mdash; The Solution</div>
+      <h2>A Three-Layer AI Receptionist &mdash; Built to Behave Like a Trained Human</h2>
+      <p>The goal wasn't to build another chatbot. It was to build a system with the discipline of a trained senior
+        receptionist: capable of answering real questions, guiding a natural conversation, and never making things up.
+        We called her Ada.</p>
+      <p>Ada was engineered in n8n across three distinct layers &mdash; each solving a different failure mode of the old
+        system.</p>
 
       <div class="flow">
         <div class="flow-step fade-up">
           <div class="flow-number">01</div>
           <div class="flow-content">
             <span class="flow-tag">Knowledge Layer</span>
-            <h3>A "Frozen" Source of Truth — No Hallucinations Allowed</h3>
-            <p>Rather than letting the AI rely on its general training data, we built a Retrieval-Augmented Generation (RAG) pipeline. All of Sentinel's actual service documents, pricing guides, and policies were ingested, chunked, embedded via Google Gemini, and stored in a Pinecone vector database. When a prospect asks "What's included in the Full Smart Home Package?" — Ada pulls the exact answer from that database. She cannot invent an answer that doesn't exist there.</p>
+            <h3>A "Frozen" Source of Truth &mdash; No Hallucinations Allowed</h3>
+            <p>Rather than letting the AI rely on its general training data, we built a Retrieval-Augmented Generation
+              (RAG) pipeline. All of Sentinel's actual service documents, pricing guides, and policies were ingested,
+              chunked, embedded via Google Gemini, and stored in a Pinecone vector database. When a prospect asks
+              "What's included in the Full Smart Home Package?" &mdash; Ada pulls the exact answer from that database.
+              She
+              cannot invent an answer that doesn't exist there.</p>
             <div class="screenshot-block">
-              <div class="screenshot-label">// Figure 1 · RAG Pipeline — Document Ingestion & Vector Storage in Pinecone</div>
-              <img src="../assets/ada-fig1-rag-pipeline.png" alt="n8n RAG pipeline showing document ingestion, Google Gemini embeddings, and Pinecone vector database storage for AI receptionist" loading="lazy" />
+              <div class="screenshot-label">// Figure 1 &mdash; RAG Pipeline &mdash; Document Ingestion & Vector Storage
+                in Pinecone
+              </div>
+              <div class="ngw-window-effect"
+                data-img1="../assets/01 - AI Pre-Sales Assistant/ai-ingestion-workflow.webp"
+                data-full="../assets/01 - AI Pre-Sales Assistant/ai-ingestion-workflow.webp">
+              </div>
             </div>
           </div>
         </div>
@@ -385,11 +1187,22 @@
           <div class="flow-number">02</div>
           <div class="flow-content">
             <span class="flow-tag">Reasoning Layer</span>
-            <h3>The Gatekeeper — Qualification Before Recommendation</h3>
-            <p>This is the core innovation. Ada operates under a strict business logic framework: she cannot recommend a package until she has collected four specific data points from the prospect — property type, approximate size, primary goal (security, automation, or both), and preference level. If someone asks "What should I buy?" in the first message, she politely pivots back to discovery. She also remembers everything said earlier in the conversation, so she never asks the same question twice. The result is a qualification flow that feels natural — not like filling out a form.</p>
+            <h3>The Gatekeeper &mdash; Qualification Before Recommendation</h3>
+            <p>This is the core innovation. Ada operates under a strict business logic framework: she cannot recommend a
+              package until she has collected four specific data points from the prospect &mdash; property type,
+              approximate
+              size, primary goal (security, automation, or both), and preference level. If someone asks "What should I
+              buy?" in the first message, she politely pivots back to discovery. She also remembers everything said
+              earlier in the conversation, so she never asks the same question twice. The result is a qualification flow
+              that feels natural &mdash; not like filling out a form.</p>
             <div class="screenshot-block">
-              <div class="screenshot-label">// Figure 2 · Gatekeeper Logic — Qualification Flow & Conversation Memory</div>
-              <img src="../assets/ada-fig2-gatekeeper-logic.png" alt="n8n gatekeeper node showing Ada's four-point qualification logic and conversation memory handling" loading="lazy" />
+              <div class="screenshot-label">// Figure 2 &mdash; Gatekeeper Logic &mdash; Qualification Flow &
+                Conversation Memory
+              </div>
+              <div class="ngw-window-effect"
+                data-img1="../assets/01 - AI Pre-Sales Assistant/ai-main-agent-workflow.webp"
+                data-full="../assets/01 - AI Pre-Sales Assistant/ai-main-agent-workflow.webp">
+              </div>
             </div>
           </div>
         </div>
@@ -398,11 +1211,21 @@
           <div class="flow-number">03</div>
           <div class="flow-content">
             <span class="flow-tag">Operations Layer</span>
-            <h3>CRM Handoff — A Warm Lead, Ready to Close</h3>
-            <p>Once a prospect agrees to a consultation, Ada switches from conversation mode to data entry mode. She collects name, email, phone, and preferred time — then converts relative dates ("Next Tuesday at 2pm") into structured timestamps and saves the full qualified lead profile directly to Airtable via API. When the sales team opens their CRM in the morning, they're not looking at a name and a phone number. They have the prospect's property type, size, goal, preference level, and availability — everything needed to have a productive first call.</p>
+            <h3>CRM Handoff &mdash; A Warm Lead, Ready to Close</h3>
+            <p>Once a prospect agrees to a consultation, Ada switches from conversation mode to data entry mode. She
+              collects name, email, phone, and preferred time &mdash; then converts relative dates ("Next Tuesday at
+              2pm")
+              into structured timestamps and saves the full qualified lead profile directly to Airtable via API. When
+              the sales team opens their CRM in the morning, they're not looking at a name and a phone number. They have
+              the prospect's property type, size, goal, preference level, and availability &mdash; everything needed to
+              have a
+              productive first call.</p>
             <div class="screenshot-block">
-              <div class="screenshot-label">// Figure 3 · CRM Handoff — Qualified Lead Record Saved to Airtable</div>
-              <img src="../assets/ada-fig3-airtable-crm.png" alt="Airtable CRM showing fully qualified lead record with property type, size, goal, preference level, and availability captured by Ada" loading="lazy" />
+              <div class="screenshot-label">// Figure 3 &mdash; CRM Handoff &mdash; Qualified Lead Record Saved to
+                Airtable</div>
+              <div class="ngw-window-effect" data-img1="../assets/01 - AI Pre-Sales Assistant/ai-airtable-crm.webp"
+                data-full="../assets/01 - AI Pre-Sales Assistant/ai-airtable-crm.webp">
+              </div>
             </div>
           </div>
         </div>
@@ -411,31 +1234,63 @@
   </div>
 
   <section class="section">
-    <div class="section-tag">03 · Results</div>
+    <div class="section-tag">03 &mdash; Results</div>
     <h2>Before Ada vs. After Ada</h2>
-    <p>The system went live handling the full pre-sales conversation for Sentinel's incoming inquiries — approximately 40 per month. Here's what changed.</p>
+    <p>The system went live handling the full pre-sales conversation for Sentinel's incoming inquiries &mdash;
+      approximately
+      40 per month. Here's what changed.</p>
     <table class="results-table fade-up">
       <thead>
-        <tr><th>Metric</th><th>Before</th><th>After</th></tr>
+        <tr>
+          <th>Metric</th>
+          <th>Before</th>
+          <th>After</th>
+        </tr>
       </thead>
       <tbody>
-        <tr><td>Response time to first message</td><td>2–4 hours (or next day)</td><td>Under 3 seconds, 24/7</td></tr>
-        <tr><td>Staff time spent on pre-sales chat</td><td>~3–4 hours/week</td><td>Near zero — only edge cases</td></tr>
-        <tr><td>Lead data quality in CRM</td><td>Partial or missing info</td><td>100% of leads pre-qualified with 4 data points</td></tr>
-        <tr><td>Wasted consultations (unqualified leads)</td><td>Frequent — no filtering</td><td>~70% reduction</td></tr>
-        <tr><td>After-hours lead capture</td><td>Lost until morning</td><td>Captured and qualified instantly</td></tr>
-        <tr><td>AI-invented answers (hallucinations)</td><td>Risk with any AI tool</td><td>Eliminated via RAG + Gatekeeper logic</td></tr>
+        <tr>
+          <td>Response time to first message</td>
+          <td>2&mdash;4 hours (or next day)</td>
+          <td>Under 3 seconds, 24/7</td>
+        </tr>
+        <tr>
+          <td>Staff time spent on pre-sales chat</td>
+          <td>~3&mdash;4 hours/week</td>
+          <td>Near zero &mdash; only edge cases</td>
+        </tr>
+        <tr>
+          <td>Lead data quality in CRM</td>
+          <td>Partial or missing info</td>
+          <td>100% of leads pre-qualified with 4 data points</td>
+        </tr>
+        <tr>
+          <td>Wasted consultations (unqualified leads)</td>
+          <td>Frequent &mdash; no filtering</td>
+          <td>~70% reduction</td>
+        </tr>
+        <tr>
+          <td>After-hours lead capture</td>
+          <td>Lost until morning</td>
+          <td>Captured and qualified instantly</td>
+        </tr>
+        <tr>
+          <td>AI-invented answers (hallucinations)</td>
+          <td>Risk with any AI tool</td>
+          <td>Eliminated via RAG + Gatekeeper logic</td>
+        </tr>
       </tbody>
     </table>
     <div class="screenshot-block fade-up" style="margin-top:2.5rem;">
-      <div class="screenshot-label">// Figure 4 · Full Conversation Flow — Ada Qualifying a Live Prospect</div>
-      <img src="../assets/ada-fig4-conversation-flow.png" alt="Full Ada AI receptionist conversation showing qualification flow from first message to booked consultation" loading="lazy" />
+      <div class="screenshot-label">// Figure 4 &mdash; Full Conversation Flow &mdash; Ada Qualifying a Live Prospect
+      </div>
+      <div class="ngw-window-effect" data-img1="" data-full="">
+      </div>
     </div>
   </section>
 
   <div class="section-full">
     <div class="section-full-inner">
-      <div class="section-tag">04 · Stack</div>
+      <div class="section-tag">04 &mdash; Stack</div>
       <h2>Tools Used</h2>
       <p>Every component was chosen for reliability, cost-efficiency, and ease of handover.</p>
       <div class="tools-grid">
@@ -450,56 +1305,121 @@
   </div>
 
   <section class="section">
-    <div class="section-tag">05 · Wider Application</div>
+    <div class="section-tag">05 &mdash; Wider Application</div>
     <h2>This Architecture Works Beyond Home Services</h2>
-    <p>Ada was built for Sentinel, but the underlying system is domain-agnostic. Swapping the knowledge documents and qualification rules redeploys the entire stack for a new industry — without rebuilding from scratch.</p>
+    <p>Ada was built for Sentinel, but the underlying system is domain-agnostic. Swapping the knowledge documents and
+      qualification rules redeploys the entire stack for a new industry &mdash; without rebuilding from scratch.</p>
     <div class="apply-grid">
       <div class="apply-card fade-up">
         <h3>HVAC &amp; Plumbing</h3>
-        <p>Qualify emergency vs. maintenance calls. Route urgent jobs to on-call staff automatically while capturing non-urgent leads for scheduling.</p>
+        <p>Qualify emergency vs. maintenance calls. Route urgent jobs to on-call staff automatically while capturing
+          non-urgent leads for scheduling.</p>
       </div>
       <div class="apply-card fade-up" style="transition-delay:0.1s">
         <h3>Legal &amp; Consulting</h3>
-        <p>Run intake conversations for new clients. Identify case type, urgency, and jurisdiction before a lawyer spends a single minute on a call.</p>
+        <p>Run intake conversations for new clients. Identify case type, urgency, and jurisdiction before a lawyer
+          spends a single minute on a call.</p>
       </div>
       <div class="apply-card fade-up" style="transition-delay:0.2s">
         <h3>Real Estate</h3>
-        <p>Pre-screen tenants or buyers before scheduling viewings. Collect budget, timeline, and property preferences in a natural chat — not a form.</p>
+        <p>Pre-screen tenants or buyers before scheduling viewings. Collect budget, timeline, and property preferences
+          in a natural chat &mdash; not a form.</p>
       </div>
     </div>
   </section>
 
   <div class="cta-section">
-    <div class="section-tag" style="justify-content:center; margin-bottom:1.5rem;">Ready to automate your front desk?</div>
-    <h2>Your Business Shouldn't<br/>Sleep When You Do</h2>
-    <p>If you're losing leads after hours, wasting time on unqualified prospects, or manually managing pre-sales conversations — this system was built for exactly that problem.</p>
+    <div class="section-tag" style="justify-content:center; margin-bottom:1.5rem;">Ready to automate your front desk?
+    </div>
+    <h2>Your Business Shouldn't<br />Sleep When You Do</h2>
+    <p>If you're losing leads after hours, wasting time on unqualified prospects, or manually managing pre-sales
+      conversations &mdash; this system was built for exactly that problem.</p>
     <a href="../index.html#contact" class="cta-btn">Book a Free Automation Audit</a>
-    <p class="cta-sub">// 30 minutes · No pitch · Just your situation and whether we can solve it</p>
+    <p class="cta-sub" style="max-width:none; text-align:center;">// 30 minutes &mdash; No pitch &mdash; Just your
+      situation and whether we can solve it</p>
   </div>
 
-  <footer style="width:100%; padding:4rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border);">
-    <p style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-      <span style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
-      SYSTEM STATUS: OPERATIONAL · LAGOS, NG [REMOTE]
+  <footer
+    style="width:100%; padding:4rem 2rem; background:#000; text-align:center; border-top:1px solid var(--border);">
+    <p
+      style="color:var(--text-dim); font-size:0.7rem; font-family:var(--mono); letter-spacing:0.1em; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; max-width:none; text-align:center;">
+      <span
+        style="width:6px; height:6px; background:var(--accent-bright); border-radius:50%; box-shadow:0 0 8px var(--accent-bright);"></span>
+      SYSTEM STATUS: OPERATIONAL &mdash; LAGOS, NG [REMOTE]
     </p>
-    <p style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase;">&lt; Design &amp; Code by Nnaemeka /&gt;</p>
-    <div style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
-      <a href="https://linkedin.com/in/nnaemekasystems" target="_blank" style="color:var(--text-dim); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
-      <a href="https://twitter.com/nnaemekasystems" target="_blank" style="color:var(--text-dim); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
-      <a href="https://github.com/nnaemekasystems" target="_blank" style="color:var(--text-dim); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
+    <p
+      style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono); letter-spacing:0.05em; margin-bottom:3rem; text-transform:uppercase; max-width:none; text-align:center;">
+      &lt; Design &amp; Code by Nnaemeka /&gt;</p>
+    <div
+      style="display:flex; justify-content:center; gap:2.5rem; font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em;">
+      <a href="https://www.linkedin.com/in/nnaemeka-anyanwu-ba0428147/" target="_blank"
+        style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'"
+        onmouseout="this.style.color='var(--text-dim)'">/LinkedIn</a>
+      <a href="https://x.com/Nnaemeka_20" target="_blank"
+        style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'"
+        onmouseout="this.style.color='var(--text-dim)'">/Twitter</a>
+      <a href="https://github.com/Nnaemeka-tech" target="_blank"
+        style="color:var(--text-dim); text-decoration:none; transition:0.3s;" onmouseover="this.style.color='#fff'"
+        onmouseout="this.style.color='var(--text-dim)'">/GitHub</a>
     </div>
   </footer>
 
+  <!-- LIGHTBOX OVERLAY -->
+  <div id="ngw-lightbox" class="ngw-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="ngw-close" aria-label="Close lightbox">&#x2715;</div>
+    <div id="ngw-lightbox-inner"></div>
+  </div>
+
   <script>
+    // Fade up
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Lightbox
+    const containers = document.querySelectorAll('.ngw-window-effect');
+    if (containers.length) {
+      const lb = document.getElementById('ngw-lightbox');
+      const inner = document.getElementById('ngw-lightbox-inner');
+      const closeBtn = document.querySelector('.ngw-close');
+
+      function openLightbox(url) {
+        inner.innerHTML = '';
+        const img = new Image();
+        img.src = url;
+        inner.appendChild(img);
+        lb.style.display = 'flex';
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lb.style.display = 'none';
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      containers.forEach(c => {
+        const img1 = c.getAttribute('data-img1') || '';
+        const bgStyle = img1 ? `background-image:url('${img1}')` : 'background:#050505';
+        c.innerHTML = `<div class="ngw-bg" style="${bgStyle}"></div><div class="ngw-overlay"><svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>`;
+        c.addEventListener('click', function () {
+          const full = this.getAttribute('data-full') || img1;
+          if (full) openLightbox(full);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    }
   </script>
 
 
+
   <script>
-    (function() {
+    (function () {
       var ham = document.getElementById('navHam');
       var mob = document.getElementById('navMob');
       if (!ham || !mob) return;
@@ -510,8 +1430,8 @@
         document.body.style.overflow = open ? 'hidden' : '';
       }
       ham.addEventListener('click', toggleMenu);
-      mob.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
+      mob.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
           mob.classList.remove('open');
           ham.classList.remove('open');
           ham.setAttribute('aria-expanded', 'false');
@@ -520,6 +1440,6 @@
       });
     })();
   </script>
-
 </body>
+
 </html>
