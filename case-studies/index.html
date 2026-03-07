@@ -41,6 +41,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -51,6 +52,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
+            width: 100%;
         }
 
         body::before {
@@ -903,6 +905,11 @@
             .logo-main { padding: 0.3rem 0.6rem !important; }
             .logo-main span { font-size: 0.72rem !important; letter-spacing: 0.02em !important; }
             .logo-part svg { width: 11px !important; height: 11px !important; }
+
+            /* FIX — Prevent horizontal overflow from wide padding */
+            .filter-bar { padding: 1rem 1.5rem !important; }
+            .grid-section { padding: 3rem 1.5rem 5rem !important; }
+            .hero { padding: 8rem 1.5rem 4rem !important; }
         }
     
         
