@@ -50,6 +50,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -834,6 +835,17 @@
         .nav-links { display: none !important; }
         .nav-hamburger { display: flex !important; }
         .nav-cta, .nav-cta-btn { display: none !important; }
+
+        /* Logo shrink */
+        .logic-logo { gap: 0.4rem !important; flex-shrink: 1 !important; min-width: 0 !important; }
+        .logo-part { padding: 0.3rem 0.4rem !important; }
+        .logo-main { padding: 0.3rem 0.6rem !important; }
+        .logo-main span { font-size: 0.72rem !important; letter-spacing: 0.02em !important; }
+        .logo-part svg { width: 11px !important; height: 11px !important; }
+
+        /* Featured card body — reduce side padding */
+        .featured-body { padding: 1.5rem !important; }
+        .featured-image-placeholder { padding: 1.5rem !important; }
     }
   
         /* TARGETED MOBILE FIXES (Safely Appended) */
@@ -888,7 +900,6 @@
                     </svg>
                 </div>
             </a>
-            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="../case-studies/index.html">Case Studies</a></li>
@@ -896,6 +907,7 @@
                 <li><a href="../index.html#insights">Blog</a></li>
             </ul>
             <a href="../index.html#contact" class="nav-cta-btn">FREE AUTOMATION AUDIT</a>
+            <button class="nav-hamburger" id="navHam" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -1122,6 +1134,3 @@
 </body>
 
 </html>
-
-
-
